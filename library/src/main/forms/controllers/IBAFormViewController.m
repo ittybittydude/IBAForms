@@ -126,12 +126,13 @@
 #pragma mark -
 #pragma mark Property management
 
-// this setter also sets the datasource of the tableView
+// this setter also sets the datasource of the tableView and reloads the table
 - (void)setFormDataSource:(IBAFormDataSource *)dataSource {
 	[formDataSource release];
 	formDataSource = [dataSource retain];
 	
 	tableView.dataSource = formDataSource;
+	[tableView reloadData];
 }
 
 
