@@ -17,6 +17,7 @@
 
 @implementation IBAFormDataSource
 
+@synthesize name;
 @synthesize sections;
 @synthesize model;
 @synthesize formFieldStyle;
@@ -25,6 +26,7 @@
 #pragma mark Initialisation and memory management
 
 - (void)dealloc {
+	IBA_RELEASE_SAFELY(name);
 	IBA_RELEASE_SAFELY(sections);
 	IBA_RELEASE_SAFELY(model);
 	IBA_RELEASE_SAFELY(formFieldStyle);

@@ -17,11 +17,13 @@
 #import "IBAFormFieldStyle.h"
 
 @interface IBAFormDataSource : NSObject <UITableViewDataSource, IBAFormModelManager> {
+	NSString *name;
 	id model; // the underlying object this datasource represents
 	NSMutableArray *sections;
 	IBAFormFieldStyle *formFieldStyle;
 }
 
+@property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSMutableArray *sections;
 @property (nonatomic, retain, readonly) id model;
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;

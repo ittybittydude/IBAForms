@@ -63,7 +63,7 @@
 		148E93FB12656FF60065EDD1 /* IBAInputManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93ED12656FF60065EDD1 /* IBAInputManagerView.m */; };
 		148E93FC12656FF60065EDD1 /* IBAInputNavigationToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93EE12656FF60065EDD1 /* IBAInputNavigationToolbar.h */; };
 		148E93FD12656FF60065EDD1 /* IBAInputNavigationToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93EF12656FF60065EDD1 /* IBAInputNavigationToolbar.m */; };
-		148E940D1265702D0065EDD1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148E940C1265702D0065EDD1 /* CoreData.framework */; };
+		148E940D1265702D0065EDD1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148E940C1265702D0065EDD1 /* CoreData.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		148E9414126571D30065EDD1 /* IBACommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E9413126571D30065EDD1 /* IBACommon.h */; };
 		148E9418126571F10065EDD1 /* SynthesizeSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E9417126571F10065EDD1 /* SynthesizeSingleton.h */; };
 		148E941D126572570065EDD1 /* IBACoreDataContextProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E941B126572570065EDD1 /* IBACoreDataContextProvider.h */; };
@@ -171,7 +171,6 @@
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				148E940C1265702D0065EDD1 /* CoreData.framework */,
 			);
 			name = IBAForms;
 			sourceTree = "<group>";
@@ -179,6 +178,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				148E940C1265702D0065EDD1 /* CoreData.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
 			);
 			name = Frameworks;
