@@ -34,9 +34,9 @@ typedef enum {
 @property (nonatomic, assign) IBADateFormFieldType dateFormFieldType;
 @property (nonatomic, retain) NSDate *defaultValue;
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle defaultValue:(NSDate *)date;
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType;
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType 
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date;
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType;
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType 
 		 editable:(BOOL)editableFlag movable:(BOOL)movableFlag dateFormatter:(NSDateFormatter *)aDateFormatter;
 
 - (void)clear:(id)sender;

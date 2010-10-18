@@ -23,3 +23,4 @@
 #define IBAInputDataTypeTime @"IBAInputDataTypeTime"
 #define IBAInputDataTypeDateTime @"IBAInputDataTypeDateTime"
 #define IBAInputDataTypeColor @"IBAInputDataTypeColor"
+#define IBAInputDataTypePickList @"IBAInputDataTypePickList"

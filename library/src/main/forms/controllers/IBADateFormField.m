@@ -31,7 +31,7 @@
 }
 
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType 
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType 
 		 editable:(BOOL)editableFlag movable:(BOOL)movableFlag dateFormatter:(NSDateFormatter *)aDateFormatter {
 	self = [super initWithKey:aKey title:aTitle editable:editableFlag movable:movableFlag];
 	if (self != nil) {
@@ -50,11 +50,11 @@
 	return self;
 }
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType {	
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType {	
 	return [self initWithKey:aKey title:aTitle defaultValue:date type:dateFieldType editable:NO movable:NO dateFormatter:nil];
 }
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle defaultValue:(NSDate *)date {	
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date {	
 	return [self initWithKey:aKey title:aTitle defaultValue:date type:IBADateFormFieldTypeDate];
 }
 

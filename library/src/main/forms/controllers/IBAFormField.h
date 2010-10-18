@@ -41,13 +41,13 @@
 @property (nonatomic, assign, getter=isNullable) BOOL nullable;
 
 
-- (id)initWithKey:(NSString*)key 
-			title:(NSString*)title 
+- (id)initWithKey:(NSString *)key 
+			title:(NSString *)title 
 		 editable:(BOOL)editable 
 		  movable:(BOOL)movable;
 
-- (id)initWithKey:(NSString*)key 
-			title:(NSString*)title;
+- (id)initWithKey:(NSString *)key 
+			title:(NSString *)title;
 
 - (void)updateCellContents;
 

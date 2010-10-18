@@ -20,7 +20,7 @@
 #import "IBADateInputProvider.h"
 #import "IBATextInputProvider.h"
 #import "IBAInputNavigationToolbar.h"
-
+#import "IBAPickListInputProvider.h"
 
 @interface IBAInputManager ()
 - (void)registerForNotifications;
@@ -92,6 +92,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		// Date & Time
 		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:UIDatePickerModeDateAndTime] autorelease]
 						forDataType:IBAInputDataTypeDateTime];
+		
+		// Picklist
+		[self registerInputProvider:[[[IBAPickListInputProvider alloc] init] autorelease]
+						forDataType:IBAInputDataTypePickList];
 		
 		[self registerForNotifications];
 	}

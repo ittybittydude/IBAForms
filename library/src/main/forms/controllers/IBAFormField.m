@@ -38,7 +38,7 @@
 	[super dealloc];
 }
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle editable:(BOOL)editableFlag movable:(BOOL)movableFlag {
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle editable:(BOOL)editableFlag movable:(BOOL)movableFlag {
 	self = [super init];
 	if (self != nil) {
 		self.key = aKey;
