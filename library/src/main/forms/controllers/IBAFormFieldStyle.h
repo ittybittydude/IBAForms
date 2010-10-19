@@ -19,7 +19,8 @@
 	UIColor *valueBackgroundColor;
 	UIFont *valueFont;
 	CGRect valueFrame;
-	
+	UITextAlignment valueTextAlignment;
+
 	UIColor *activeColor;
 }
 
@@ -33,6 +34,7 @@
 @property (nonatomic, retain) UIColor *valueBackgroundColor;
 @property (nonatomic, retain) UIFont *valueFont;
 @property (nonatomic, assign) CGRect valueFrame;
+@property (nonatomic, assign) UITextAlignment valueTextAlignment;
 
 @property (nonatomic, retain) UIColor *activeColor;
 

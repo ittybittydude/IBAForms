@@ -15,6 +15,7 @@
 #import "IBADateFormField.h"
 #import "IBAPickListOptionsProvider.h"
 #import "IBAPickListFormField.h"
+#import "IBAFormFieldStyle.h"
 
 @implementation FormDataSource
 
@@ -26,9 +27,26 @@
 		
 		[textFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"text" title:@"Text"] autorelease]];
 		[textFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"password" title:@"Password"] autorelease]];
-//		[textFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKey:@"multiLineText" title:@"Text"] autorelease]];
 		[textFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"url" title:@"Website"] autorelease]];
 		  
+		// Styled form fields
+		IBAFormSection *styledFieldSection = [self addSectionWithHeaderTitle:@"Styled Fields" footerTitle:nil];		
+		
+		IBAFormFieldStyle *style = [[[IBAFormFieldStyle alloc] init] autorelease];
+		style.labelTextColor = [UIColor blackColor];
+		style.labelFont = [UIFont systemFontOfSize:14];
+		style.labelTextAlignment = UITextAlignmentLeft;
+		style.valueTextAlignment = UITextAlignmentRight;
+		style.valueTextColor = [UIColor darkGrayColor];
+		style.activeColor = [UIColor colorWithRed:0.934 green:0.791 blue:0.905 alpha:1.000];
+		
+		styledFieldSection.formFieldStyle = style;
+		
+		[styledFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"textStyled" title:@"Text"] autorelease]];
+		[styledFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"passwordStyled" title:@"Password"] autorelease]];
+		[styledFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"urlStyled" title:@"Website"] autorelease]];
+		
+		
 		// Date fields
 		IBAFormSection *dateFieldSection = [self addSectionWithHeaderTitle:@"Dates" footerTitle:nil];		
 

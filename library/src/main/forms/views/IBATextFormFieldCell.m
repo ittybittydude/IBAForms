@@ -51,6 +51,7 @@
 	self.textField.textColor = self.formFieldStyle.valueTextColor;
 	self.textField.backgroundColor = self.formFieldStyle.valueBackgroundColor;
 	self.textField.frame = self.formFieldStyle.valueFrame;
+	self.textField.textAlignment = self.formFieldStyle.valueTextAlignment;
 }
 
 @end

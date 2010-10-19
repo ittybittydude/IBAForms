@@ -24,14 +24,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 14BA8E5E12681FC9005456E6 /* IBAForms.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libIBAForms.a */;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = IBAForms;
 		};
 		14BA8E6712681FDC005456E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14BA8E5E12681FC9005456E6 /* IBAForms.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D /* IBAForms */;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = IBAForms;
 		};
 /* End PBXContainerItemProxy section */

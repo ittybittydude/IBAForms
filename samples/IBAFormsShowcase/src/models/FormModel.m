@@ -12,11 +12,14 @@
 @implementation FormModel
 
 @synthesize text;
+@synthesize textStyled;
 @synthesize password;
+@synthesize passwordStyled;
 @synthesize mandatoryDate;
 @synthesize nonMandatoryDate;
 @synthesize multiLineText;
 @synthesize url;
+@synthesize urlStyled;
 @synthesize singlePickListItem;
 @synthesize multiplePickListItems;
 

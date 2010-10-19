@@ -26,6 +26,7 @@
 @synthesize valueBackgroundColor;
 @synthesize valueFont;
 @synthesize valueFrame;
+@synthesize valueTextAlignment;
 @synthesize activeColor;
 
 - (void)dealloc {
@@ -56,7 +57,8 @@
 		self.valueBackgroundColor = IBAFormFieldValueBackgroundColor;
 		self.valueFont = IBAFormFieldValueFont;
 		self.valueFrame = CGRectMake(IBAFormFieldValueX, IBAFormFieldValueY, IBAFormFieldValueWidth, IBAFormFieldValueHeight);
-		
+		self.valueTextAlignment = IBAFormFieldValueTextAlignment;
+
 		self.activeColor = IBAFormFieldActiveColor;
 	}
 	return self;
