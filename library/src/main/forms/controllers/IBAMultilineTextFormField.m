@@ -39,7 +39,7 @@
 - (IBAMultilineTextFormFieldCell *)multilineTextFormFieldCell {
 	if (multilineTextFormFieldCell == nil) {
 		multilineTextFormFieldCell = [[IBAMultilineTextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
-		multilineTextFormFieldCell.textView.editable = NO;
+//		multilineTextFormFieldCell.textView.editable = NO;
 	}
 	
 	return multilineTextFormFieldCell;
@@ -60,15 +60,15 @@
 
 #pragma mark -
 #pragma mark Detail View Controller management
-- (BOOL)hasDetailViewController {
-	return YES;
-}
-
-- (UIViewController *)detailViewController {
-	IBAMultilineTextViewController *viewController = [[[IBAMultilineTextViewController alloc] initWithInputRequestor:self title:self.title] autorelease];
-	
-	return viewController;
-}
+//- (BOOL)hasDetailViewController {
+//	return YES;
+//}
+//
+//- (UIViewController *)detailViewController {
+//	IBAMultilineTextViewController *viewController = [[[IBAMultilineTextViewController alloc] initWithInputRequestor:self title:self.title] autorelease];
+//	
+//	return viewController;
+//}
 
 
 - (void)setInputRequestorValue:(id)aValue {

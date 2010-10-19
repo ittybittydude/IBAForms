@@ -26,7 +26,7 @@
 		
 		[textFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"text" title:@"Text"] autorelease]];
 		[textFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"password" title:@"Password"] autorelease]];
-//		[textFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKey:@"multiLineText" title:@"Text"] autorelease]];
+		[textFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKey:@"multiLineText" title:nil] autorelease]];
 		[textFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"url" title:@"Website"] autorelease]];
 		  
 		// Date fields

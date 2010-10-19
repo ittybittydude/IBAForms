@@ -16,7 +16,7 @@
 #import "IBAEventPassthroughTextView.h"
 
 @interface IBAMultilineTextFormFieldCell : IBAFormFieldCell {
-	IBAEventPassthroughTextView *textView;
+	UITextView *textView;
 }
 
 @property (nonatomic, retain) UITextView *textView;

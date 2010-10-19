@@ -34,9 +34,9 @@
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
 		// Create the text view for data entry
-		textView = [[IBAEventPassthroughTextView alloc] initWithFrame:CGRectZero];
-		textView.editable = NO;		
-		textView.scrollEnabled = NO;
+		textView = [[UITextView alloc] initWithFrame:CGRectZero];
+//		textView.editable = NO;		
+//		textView.scrollEnabled = NO;
 		[self.cellView addSubview:self.textView];
 	}
 	
@@ -44,7 +44,7 @@
 }
 
 - (void)activate {
-	self.textView.backgroundColor = [UIColor clearColor];
+//	self.textView.backgroundColor = [UIColor clearColor];
 	
 	[super activate];
 }
@@ -53,7 +53,10 @@
 	[super applyFormFieldStyle];
 	
 	self.textView.font = self.formFieldStyle.valueFont;
-	self.textView.textColor = self.formFieldStyle.valueTextColor;
+//	self.textView.textColor = self.formFieldStyle.valueTextColor;
+	self.textView.textColor = [UIColor blackColor];
+	self.textView.backgroundColor = [UIColor redColor];
+
 	self.textView.backgroundColor = self.formFieldStyle.valueBackgroundColor;
 
 	[self layoutTextView];
@@ -65,7 +68,7 @@
 
 - (CGSize)sizeThatFits:(CGSize)size {
 	CGRect newFrame = [self textViewFrame];
-	int cellHeight = 18 + newFrame.size.height;
+	int cellHeight = 20+ 18 + newFrame.size.height;
 	int cellWidth = 320;
 	
 	return CGSizeMake(cellWidth, cellHeight);
@@ -75,8 +78,8 @@
 	CGSize newTextViewSize = [self.textView.text sizeWithFont:self.formFieldStyle.valueFont 
 											constrainedToSize:CGSizeMake(self.formFieldStyle.valueFrame.size.width, 
 																		 1000) lineBreakMode:UILineBreakModeWordWrap];
-	newTextViewSize.height = newTextViewSize.height + self.textView.contentInset.top + self.textView.contentInset.bottom;
-	
+//	newTextViewSize.height = newTextViewSize.height + self.textView.contentInset.top + self.textView.contentInset.bottom;
+//	
 	if (newTextViewSize.height < self.formFieldStyle.valueFrame.size.height) {
 		newTextViewSize.height = self.formFieldStyle.valueFrame.size.height;
 	}
