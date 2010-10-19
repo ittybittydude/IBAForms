@@ -15,7 +15,7 @@
 #import "IBAInputRequestorFormField.h"
 #import "IBAMultilineTextFormFieldCell.h"
 
-@interface IBAMultilineTextFormField : IBAInputRequestorFormField {
+@interface IBAMultilineTextFormField : IBAInputRequestorFormField <UITextViewDelegate> {
 	IBAMultilineTextFormFieldCell *multilineTextFormFieldCell;
 }
 

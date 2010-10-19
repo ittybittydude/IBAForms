@@ -17,6 +17,10 @@
 #import "IBAFormModelManager.h"
 #import "IBACommon.h"
 
+// Notifications
+#define IBAFormFieldResized @"IBAFormFieldResized"
+
+
 @protocol IBAFormFieldDelegate;
 
 @interface IBAFormField : NSObject {

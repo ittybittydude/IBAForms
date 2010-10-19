@@ -65,7 +65,7 @@
 - (UITableViewCell *)cellForFormFieldAtIndexPath:(NSIndexPath *)indexPath {
 	// We make the form field update its contents before handing it back its cell
 	IBAFormField *formField = [self formFieldAtIndexPath:indexPath];
-	[formField updateCellContents];
+//	[formField updateCellContents];
 	
 	return [formField cell];
 }
