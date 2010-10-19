@@ -15,6 +15,7 @@
 #import "IBADateFormField.h"
 #import "IBAPickListOptionsProvider.h"
 #import "IBAPickListFormField.h"
+#import "IBAFormFieldStyle.h"
 
 @implementation FormDataSource
 
@@ -29,6 +30,24 @@
 		[textFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKey:@"multiLineText" title:nil] autorelease]];
 		[textFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"url" title:@"Website"] autorelease]];
 		  
+		// Styled form fields
+		IBAFormSection *styledFieldSection = [self addSectionWithHeaderTitle:@"Styled Fields" footerTitle:nil];		
+		
+		IBAFormFieldStyle *style = [[[IBAFormFieldStyle alloc] init] autorelease];
+		style.labelTextColor = [UIColor blackColor];
+		style.labelFont = [UIFont systemFontOfSize:14];
+		style.labelTextAlignment = UITextAlignmentLeft;
+		style.valueTextAlignment = UITextAlignmentRight;
+		style.valueTextColor = [UIColor darkGrayColor];
+		style.activeColor = [UIColor colorWithRed:0.934 green:0.791 blue:0.905 alpha:1.000];
+		
+		styledFieldSection.formFieldStyle = style;
+		
+		[styledFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"textStyled" title:@"Text"] autorelease]];
+		[styledFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"passwordStyled" title:@"Password"] autorelease]];
+		[styledFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"urlStyled" title:@"Website"] autorelease]];
+		
+		
 		// Date fields
 		IBAFormSection *dateFieldSection = [self addSectionWithHeaderTitle:@"Dates" footerTitle:nil];		
 
@@ -82,6 +101,7 @@
 		
 		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKey:@"singlePickListItem"
 																		   title:@"Single"
+																valueTransformer:nil
 																   selectionMode:IBAPickListSelectionModeSingle
 																		 options:pickListOptions] autorelease]];
 	
@@ -93,8 +113,10 @@
 																					  @"Mitsubishi",
 																					  nil]];
 		
+		IBAPickListFormOptionsStringTransformer *transformer = [[[IBAPickListFormOptionsStringTransformer alloc] initWithPickListOptions:carListOptions] autorelease];
 		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKey:@"multiplePickListItems"
 																		   title:@"Multiple"
+																valueTransformer:transformer
 																   selectionMode:IBAPickListSelectionModeMultiple
 																		 options:carListOptions] autorelease]];
 		

@@ -33,7 +33,7 @@
 
 - (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType 
 		 editable:(BOOL)editableFlag movable:(BOOL)movableFlag dateFormatter:(NSDateFormatter *)aDateFormatter {
-	self = [super initWithKey:aKey title:aTitle editable:editableFlag movable:movableFlag];
+	self = [super initWithKey:aKey title:aTitle valueTransformer:nil editable:editableFlag movable:movableFlag];
 	if (self != nil) {
 		self.dateFormFieldType = dateFieldType;
 		self.defaultValue = date;

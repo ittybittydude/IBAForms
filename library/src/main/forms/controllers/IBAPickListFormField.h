@@ -27,11 +27,14 @@
 @property (nonatomic, assign) IBAPickListSelectionMode selectionMode;
 @property (nonatomic, copy) NSArray *pickListOptions;
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)thePickListOptions;
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)thePickListOptions 
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer 
+	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)thePickListOptions;
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer 
+	selectionMode:(IBAPickListSelectionMode)theSelectionMode options:(NSArray *)thePickListOptions 
 		 editable:(BOOL)editableFlag movable:(BOOL)movableFlag;
 
 @end
+
 
 @interface IBAPickListFormOption : NSObject <IBAPickListOption> {
 	NSString *name;
@@ -41,4 +44,13 @@
 + (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames;
 - (id)initWithName:(NSString *)name iconImage:(UIImage *)iconImage;
 
+@end
+
+
+@interface IBAPickListFormOptionsStringTransformer : NSValueTransformer {
+	NSArray *pickListOptions;
+}
+
+- (id)initWithPickListOptions:(NSArray *)pickListOptions;
+@property (nonatomic, copy) NSArray *pickListOptions;
 @end

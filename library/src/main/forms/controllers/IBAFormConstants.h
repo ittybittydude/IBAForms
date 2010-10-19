@@ -45,4 +45,5 @@
 #define IBAFormFieldValueHeight 26
 #define IBAFormFieldValueFont [UIFont systemFontOfSize:16]
 #define IBAFormFieldValueTextColor [UIColor blackColor]
+#define IBAFormFieldValueTextAlignment UITextAlignmentLeft
 #define IBAFormFieldValueBackgroundColor [UIColor whiteColor]
