@@ -25,15 +25,27 @@
 
 - (void)dealloc {
     [self setText:nil];
+	[self setTextStyled:nil];
     [self setPassword:nil];
+	[self setPasswordStyled:nil];
 	[self setMandatoryDate:nil];
 	[self setNonMandatoryDate:nil];
 	[self setMultiLineText:nil];
 	[self setURL:nil];
+	[self setURLStyled:nil];
 	[self setSinglePickListItem:nil];
-	[self setMultiLineText:nil];
+	[self setMultiplePickListItems:nil];
 	
     [super dealloc];
+}
+
+- (id)init {
+	self = [super init];
+	if (self != nil) {
+		self.multiplePickListItems = [NSArray arrayWithObjects:@"Honda", @"Toyota", nil];
+	}
+	
+	return self;
 }
 
 @end

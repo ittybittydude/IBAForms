@@ -28,6 +28,7 @@
 	id<IBAFormFieldDelegate> delegate;
 	IBAFormFieldStyle *formFieldStyle;
 	BOOL nullable;
+	NSValueTransformer *valueTransformer;
 }
 
 @property (nonatomic, copy) NSString *key;
@@ -39,12 +40,18 @@
 @property (nonatomic, assign) id<IBAFormFieldDelegate> delegate;
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
 @property (nonatomic, assign, getter=isNullable) BOOL nullable;
+@property (nonatomic, retain) NSValueTransformer *valueTransformer;
 
 
 - (id)initWithKey:(NSString *)key 
 			title:(NSString *)title 
+ valueTransformer:(NSValueTransformer *)valueTransformer
 		 editable:(BOOL)editable 
 		  movable:(BOOL)movable;
+
+- (id)initWithKey:(NSString *)key 
+			title:(NSString *)title
+ valueTransformer:(NSValueTransformer *)valueTransformer;
 
 - (id)initWithKey:(NSString *)key 
 			title:(NSString *)title;

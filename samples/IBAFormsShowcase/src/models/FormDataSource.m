@@ -100,6 +100,7 @@
 		
 		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKey:@"singlePickListItem"
 																		   title:@"Single"
+																valueTransformer:nil
 																   selectionMode:IBAPickListSelectionModeSingle
 																		 options:pickListOptions] autorelease]];
 	
@@ -111,8 +112,10 @@
 																					  @"Mitsubishi",
 																					  nil]];
 		
+		IBAPickListFormOptionsStringTransformer *transformer = [[[IBAPickListFormOptionsStringTransformer alloc] initWithPickListOptions:carListOptions] autorelease];
 		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKey:@"multiplePickListItems"
 																		   title:@"Multiple"
+																valueTransformer:transformer
 																   selectionMode:IBAPickListSelectionModeMultiple
 																		 options:carListOptions] autorelease]];
 		

@@ -25,6 +25,7 @@
 @synthesize delegate;
 @synthesize formFieldStyle;
 @synthesize nullable;
+@synthesize valueTransformer;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
@@ -34,11 +35,12 @@
 	IBA_RELEASE_SAFELY(title);
 	IBA_RELEASE_SAFELY(modelManager);
 	IBA_RELEASE_SAFELY(formFieldStyle);
-
+	IBA_RELEASE_SAFELY(valueTransformer);
+	
 	[super dealloc];
 }
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle editable:(BOOL)editableFlag movable:(BOOL)movableFlag {
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer editable:(BOOL)editableFlag movable:(BOOL)movableFlag {
 	self = [super init];
 	if (self != nil) {
 		self.key = aKey;
@@ -46,18 +48,22 @@
 		self.editable = editableFlag;
 		self.movable = movableFlag;
 		self.nullable = YES;
+		self.valueTransformer = aValueTransformer;
 	}
 	
 	return self;
 }
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle; {	
-	return [self initWithKey:aKey title:aTitle editable:NO movable:NO];
+- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer {	
+	return [self initWithKey:aKey title:aTitle valueTransformer:aValueTransformer editable:NO movable:NO];
 }
 
+- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle {	
+	return [self initWithKey:aKey title:aTitle valueTransformer:nil editable:NO movable:NO];
+}
 
 - (id)init {
-	return [self initWithKey:nil title:nil editable:NO movable:NO];
+	return [self initWithKey:nil title:nil];
 }
 
 
@@ -119,7 +125,13 @@
 #pragma mark -
 #pragma mark Getting and setting the form field value
 - (id)formFieldValue {
-	return [self.modelManager modelValueForKey:self.key];
+	id value = [self.modelManager modelValueForKey:self.key];
+	
+	if (self.valueTransformer != nil) {
+		value = [self.valueTransformer reverseTransformedValue:value];
+	}
+	
+	return value;
 }
 
 - (NSString *)formFieldStringValue {
@@ -129,16 +141,22 @@
 - (BOOL)setFormFieldValue:(id)formVieldValue {
 	BOOL setValue = YES;
 	
+	// Transform the value if we have a transformer
+	id value = formVieldValue;
+	if (self.valueTransformer != nil) {
+		value = [self.valueTransformer transformedValue:value];
+	}
+	
 	if (self.delegate && [self.delegate respondsToSelector:@selector(formField:willSetValue:)]) {
-		setValue = [self.delegate formField:self willSetValue:formVieldValue];
+		setValue = [self.delegate formField:self willSetValue:value];
 	}
 	
 	if (setValue) {
-		[self.modelManager setModelValue:formVieldValue forKey:self.key];
+		[self.modelManager setModelValue:value forKey:self.key];
 		[self updateCellContents];
 		
 		if (self.delegate && [self.delegate respondsToSelector:@selector(formField:didSetValue:)]) {
-			[self.delegate formField:self didSetValue:formVieldValue];
+			[self.delegate formField:self didSetValue:value];
 		}
 	}
 	
