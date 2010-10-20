@@ -125,8 +125,8 @@
 #pragma mark -
 #pragma mark Getting and setting the form field value
 - (id)formFieldValue {
-	id value = [self.modelManager modelValueForKey:self.key];
-	
+	id value = [self.modelManager modelValueForKeyPath:self.key];
+
 	if (self.valueTransformer != nil) {
 		value = [self.valueTransformer reverseTransformedValue:value];
 	}
@@ -152,7 +152,7 @@
 	}
 	
 	if (setValue) {
-		[self.modelManager setModelValue:value forKey:self.key];
+		[self.modelManager setModelValue:value forKeyPath:self.key];
 		[self updateCellContents];
 		
 		if (self.delegate && [self.delegate respondsToSelector:@selector(formField:didSetValue:)]) {

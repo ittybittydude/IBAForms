@@ -35,8 +35,8 @@
 }
 
 
-- (void)setModelValue:(id)value forKey:(NSString *)key {
-	[super setModelValue:value forKey:key];
+- (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
+	[super setModelValue:value forKeyPath:keyPath];
 
 	if (autoSaveEnabled) {
 		// If the model is a managed object, save the change to the database

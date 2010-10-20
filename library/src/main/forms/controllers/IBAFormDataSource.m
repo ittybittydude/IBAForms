@@ -192,14 +192,14 @@
 
 
 #pragma mark -
-#pragma mark IBAFormModelManager 
-- (void)setModelValue:(id)value forKey:(NSString *)key {
-	[self.model setValue:value forKey:key];
+#pragma mark IBAFormModelManager
+- (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
+	[self.model setValue:value forKeyPath:keyPath];
 }
 
 
-- (id)modelValueForKey:(NSString *)key {
-	return [self.model valueForKey:key];
+- (id)modelValueForKeyPath:(NSString *)keyPath {
+	return [self.model valueForKeyPath:keyPath];
 }
 
 @end

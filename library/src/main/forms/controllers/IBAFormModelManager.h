@@ -16,7 +16,7 @@
 
 
 @protocol IBAFormModelManager <NSObject>
-- (void)setModelValue:(id)value forKey:(NSString *)key;
-- (id)modelValueForKey:(NSString *)key;
+- (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath;
+- (id)modelValueForKeyPath:(NSString *)keyPath;
 - (id)model;
 @end
