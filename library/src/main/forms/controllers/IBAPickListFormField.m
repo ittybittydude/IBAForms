@@ -52,9 +52,10 @@
 
 - (NSString *)formFieldStringValue {
 	NSMutableArray *itemNames = [[[NSMutableArray alloc] init] autorelease];
-	for (id<IBAPickListOption> item in [self formFieldValue]) {
+  
+	for (id<IBAPickListOption> item in [self pickListOptions]) {
 		NSString *itemName = [item name];
-		if (itemName.length > 0) {
+    if (([[self formFieldValue] containsObject:item]) && (itemName.length > 0)) {
 			[itemNames addObject:itemName];
 		}
 	}
