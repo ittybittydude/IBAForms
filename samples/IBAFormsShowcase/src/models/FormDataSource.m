@@ -16,6 +16,8 @@
 #import "IBAPickListOptionsProvider.h"
 #import "IBAPickListFormField.h"
 #import "IBAFormFieldStyle.h"
+#import "IBABooleanFormField.h"
+
 
 @implementation FormDataSource
 
@@ -23,12 +25,13 @@
 	self = [super initWithModel:aModel];
 	if (self != nil) {
 		// Some basic form fields that accept text input
-		IBAFormSection *textFieldSection = [self addSectionWithHeaderTitle:@"Basic Form Fields" footerTitle:nil];		
+		IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:@"Basic Form Fields" footerTitle:nil];		
 		
-		[textFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"text" title:@"Text"] autorelease]];
-		[textFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"password" title:@"Password"] autorelease]];
-		[textFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"url" title:@"Website"] autorelease]];
-		  
+		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"text" title:@"Text"] autorelease]];
+		[basicFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"password" title:@"Password"] autorelease]];
+		[basicFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"url" title:@"Website"] autorelease]];
+		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKey:@"booleanValue" title:@"Boolean"] autorelease]];
+		 
 		// Styled form fields
 		IBAFormSection *styledFieldSection = [self addSectionWithHeaderTitle:@"Styled Fields" footerTitle:nil];		
 		

@@ -22,6 +22,7 @@
 @synthesize urlStyled;
 @synthesize singlePickListItem;
 @synthesize multiplePickListItems;
+@synthesize booleanValue;
 
 - (void)dealloc {
     [self setText:nil];
@@ -35,7 +36,8 @@
 	[self setURLStyled:nil];
 	[self setSinglePickListItem:nil];
 	[self setMultiplePickListItems:nil];
-	
+	[self setBooleanValue:nil];
+
     [super dealloc];
 }
 
@@ -46,6 +48,10 @@
 	}
 	
 	return self;
+}
+
+- (void)setBooleanValue:(NSNumber *)number {
+	booleanValue = number;
 }
 
 @end

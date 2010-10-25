@@ -22,6 +22,7 @@
 	NSString *urlStyled;
 	NSSet *singlePickListItem;
 	NSSet *multiplePickListItems;
+	NSNumber *booleanValue;
 }
 
 @property (nonatomic, retain) NSString *text;
@@ -35,5 +36,6 @@
 @property (nonatomic, retain, setter=setURLStyled) NSString *urlStyled;
 @property (nonatomic, retain) NSSet *singlePickListItem;
 @property (nonatomic, retain) NSSet *multiplePickListItems;
+@property (nonatomic, retain) NSNumber *booleanValue;
 
 @end
