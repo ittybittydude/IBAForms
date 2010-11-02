@@ -21,6 +21,7 @@
 @synthesize singlePickListItem;
 @synthesize multiplePickListItems;
 @synthesize booleanValue;
+@synthesize number;
 
 - (void)dealloc {
     [self setText:nil];
@@ -33,6 +34,7 @@
 	[self setSinglePickListItem:nil];
 	[self setMultiplePickListItems:nil];
 	[self setBooleanValue:nil];
+    [self setNumber:nil];
 
     [super dealloc];
 }

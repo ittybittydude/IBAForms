@@ -21,6 +21,7 @@
 	NSSet *singlePickListItem;
 	NSSet *multiplePickListItems;
 	NSNumber *booleanValue;
+    NSNumber *number;
 }
 
 @property (nonatomic, retain) NSString *text;
@@ -33,5 +34,6 @@
 @property (nonatomic, retain) NSSet *singlePickListItem;
 @property (nonatomic, retain) NSSet *multiplePickListItems;
 @property (nonatomic, retain) NSNumber *booleanValue;
+@property (nonatomic, retain) NSNumber *number;
 
 @end

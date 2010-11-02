@@ -8,6 +8,7 @@
 
 #import <IBAForms/IBAForms.h>
 #import "FormDataSource.h"
+#import "StringToNumberTransformer.h"
 
 @implementation FormDataSource
 
@@ -110,6 +111,14 @@
 																   selectionMode:IBAPickListSelectionModeMultiple
 																		 options:carListOptions] autorelease]];
 
+		// An example of modifying the UITextInputTraits of an IBATextFormField and using an NSValueTransformer
+		IBAFormSection *textInputTraitsSection = [self addSectionWithHeaderTitle:@"Traits & Transformations" footerTitle:nil];
+		IBATextFormField *numberField = [[IBATextFormField alloc] initWithKey:@"number"
+																		title:@"Number"
+															 valueTransformer:[StringToNumberTransformer instance]];
+		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+		[textInputTraitsSection addFormField:[numberField autorelease]];
+
 
 		// Some examples of how you might use the button form field
 		IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:@"Buttons" footerTitle:nil];
@@ -127,9 +136,10 @@
 																	   [[UIApplication sharedApplication]
 																		openURL:[NSURL URLWithString:@"mailto:info@google.com"]];
 																   }] autorelease]];
-		}
 
-		return self;
+    }
+
+    return self;
 }
 
 @end

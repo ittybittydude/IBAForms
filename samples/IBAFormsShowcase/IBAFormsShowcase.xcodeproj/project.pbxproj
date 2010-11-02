@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141A939B12802FFD002C3C19 /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 141A939A12802FFD002C3C19 /* StringToNumberTransformer.m */; };
 		14BA8E5812681D03005456E6 /* IBAFormsShowcaseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA8E5312681D03005456E6 /* IBAFormsShowcaseAppDelegate.m */; };
 		14BA8E5D12681F3D005456E6 /* FormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA8E5C12681F3D005456E6 /* FormController.m */; };
 		14BA8E7112682042005456E6 /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BA8E6612681FC9005456E6 /* libIBAForms.a */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		141A939912802FFD002C3C19 /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
+		141A939A12802FFD002C3C19 /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
 		14BA8E5212681D03005456E6 /* IBAFormsShowcaseAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAFormsShowcaseAppDelegate.h; sourceTree = "<group>"; };
 		14BA8E5312681D03005456E6 /* IBAFormsShowcaseAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAFormsShowcaseAppDelegate.m; sourceTree = "<group>"; };
 		14BA8E5B12681F3D005456E6 /* FormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormController.h; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 				14BA8FF01269A550005456E6 /* FormModel.m */,
 				14BA900C1269A839005456E6 /* FormDataSource.h */,
 				14BA900D1269A839005456E6 /* FormDataSource.m */,
+				141A939912802FFD002C3C19 /* StringToNumberTransformer.h */,
+				141A939A12802FFD002C3C19 /* StringToNumberTransformer.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 				14BA8E5D12681F3D005456E6 /* FormController.m in Sources */,
 				14BA8FF11269A550005456E6 /* FormModel.m in Sources */,
 				14BA900E1269A839005456E6 /* FormDataSource.m in Sources */,
+				141A939B12802FFD002C3C19 /* StringToNumberTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
