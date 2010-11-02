@@ -20,7 +20,7 @@
 @protocol IBAFormFieldDelegate;
 
 @interface IBAFormField : NSObject {
-	NSString *key;
+	NSString *keyPath;
 	NSString *title;
 	id<IBAFormModelManager> modelManager;
 	id<IBAFormFieldDelegate> delegate;
@@ -29,7 +29,7 @@
 	NSValueTransformer *valueTransformer;
 }
 
-@property (nonatomic, copy) NSString *key;
+@property (nonatomic, copy) NSString *keyPath;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, readonly) IBAFormFieldCell *cell;
 @property (nonatomic, retain) id<IBAFormModelManager> modelManager;
@@ -39,11 +39,11 @@
 @property (nonatomic, retain) NSValueTransformer *valueTransformer;
 
 
-- (id)initWithKey:(NSString *)key
+- (id)initWithKeyPath:(NSString *)keyPath
 			title:(NSString *)title
  valueTransformer:(NSValueTransformer *)valueTransformer;
 
-- (id)initWithKey:(NSString *)key
+- (id)initWithKeyPath:(NSString *)keyPath
 			title:(NSString *)title;
 
 - (void)updateCellContents;

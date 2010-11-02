@@ -17,7 +17,7 @@
 
 @implementation IBAFormField
 
-@synthesize key;
+@synthesize keyPath;
 @synthesize title;
 @synthesize modelManager;
 @synthesize delegate;
@@ -29,7 +29,7 @@
 #pragma mark Initialisation and memory management
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(key);
+	IBA_RELEASE_SAFELY(keyPath);
 	IBA_RELEASE_SAFELY(title);
 	IBA_RELEASE_SAFELY(modelManager);
 	IBA_RELEASE_SAFELY(formFieldStyle);
@@ -38,11 +38,11 @@
 	[super dealloc];
 }
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer {
+- (id)initWithKeyPath:(NSString*)aKeyPath title:(NSString*)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer {
 	self = [super init];
 	if (self != nil) {
-		self.key = aKey;
-		title = [aTitle retain];
+		self.keyPath = aKeyPath;
+		self.title = aTitle;
 		self.nullable = YES;
 		self.valueTransformer = aValueTransformer;
 	}
@@ -50,34 +50,44 @@
 	return self;
 }
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle {
-	return [self initWithKey:aKey title:aTitle valueTransformer:nil];
+- (id)initWithKeyPath:(NSString*)aKeyPath title:(NSString*)aTitle {
+	return [self initWithKeyPath:aKeyPath title:aTitle valueTransformer:nil];
 }
 
 - (id)init {
-	return [self initWithKey:nil title:nil];
+	return [self initWithKeyPath:nil title:nil];
 }
 
 
 - (void)setModelManager:(id<IBAFormModelManager>) aModelManager {
-	[modelManager release];
-	modelManager = [aModelManager retain];
+	if (aModelManager != modelManager) {
+		id<IBAFormModelManager> oldModelManager = modelManager;
+		modelManager = [aModelManager retain];
+		IBA_RELEASE_SAFELY(oldModelManager);
 
-	// When the model manager changes we should update the content of the cell
-	[self updateCellContents];
+		// When the model manager changes we should update the content of the cell
+		[self updateCellContents];
+	}
 }
 
 - (void)setFormFieldStyle:(IBAFormFieldStyle *)style {
-	[formFieldStyle release];
-	formFieldStyle = [style retain];
+	if (style != formFieldStyle) {
+		IBAFormFieldStyle *oldStyle = formFieldStyle;
+		formFieldStyle = [style retain];
+		IBA_RELEASE_SAFELY(oldStyle);
 
-	self.cell.formFieldStyle = style;
+		self.cell.formFieldStyle = style;
+	}
 }
 
 - (void)setTitle:(NSString *)newTitle {
-	[title release];
-	title = [newTitle copyWithZone:[self zone]];
-	[self updateCellContents];
+	if (![newTitle isEqualToString:title]) {
+		NSString *oldTitle = title;
+		title = [newTitle copyWithZone:[self zone]];
+		IBA_RELEASE_SAFELY(oldTitle);
+
+		[self updateCellContents];
+	}
 }
 
 #pragma mark -
@@ -117,7 +127,7 @@
 #pragma mark -
 #pragma mark Getting and setting the form field value
 - (id)formFieldValue {
-	id value = [self.modelManager modelValueForKeyPath:self.key];
+	id value = [self.modelManager modelValueForKeyPath:self.keyPath];
 
 	if (self.valueTransformer != nil) {
 		value = [self.valueTransformer reverseTransformedValue:value];
@@ -144,7 +154,7 @@
 	}
 
 	if (setValue) {
-		[self.modelManager setModelValue:value forKeyPath:self.key];
+		[self.modelManager setModelValue:value forKeyPath:self.keyPath];
 		[self updateCellContents];
 
 		if (self.delegate && [self.delegate respondsToSelector:@selector(formField:didSetValue:)]) {

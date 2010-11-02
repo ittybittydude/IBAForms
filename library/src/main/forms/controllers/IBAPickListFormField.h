@@ -27,7 +27,7 @@
 @property (nonatomic, assign) IBAPickListSelectionMode selectionMode;
 @property (nonatomic, copy) NSArray *pickListOptions;
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer
+- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer
 	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)thePickListOptions;
 
 @end

@@ -31,9 +31,9 @@
 }
 
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
+- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
 		 dateFormatter:(NSDateFormatter *)aDateFormatter {
-	self = [super initWithKey:aKey title:aTitle valueTransformer:nil];
+	self = [super initWithKeyPath:aKeyPath title:aTitle valueTransformer:nil];
 	if (self != nil) {
 		self.dateFormFieldType = dateFieldType;
 		self.defaultValue = date;
@@ -50,16 +50,12 @@
 	return self;
 }
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType {
-	return [self initWithKey:aKey title:aTitle defaultValue:date type:dateFieldType dateFormatter:nil];
+- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType {
+	return [self initWithKeyPath:aKeyPath title:aTitle defaultValue:date type:dateFieldType dateFormatter:nil];
 }
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle defaultValue:(NSDate *)date {
-	return [self initWithKey:aKey title:aTitle defaultValue:date type:IBADateFormFieldTypeDate];
-}
-
-- (id)init {
-	return [self initWithKey:nil title:nil];
+- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle defaultValue:(NSDate *)date {
+	return [self initWithKeyPath:aKeyPath title:aTitle defaultValue:date type:IBADateFormFieldTypeDate];
 }
 
 - (NSString *)formFieldStringValue {

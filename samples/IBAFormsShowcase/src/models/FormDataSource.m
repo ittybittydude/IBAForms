@@ -18,9 +18,9 @@
 		// Some basic form fields that accept text input
 		IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:@"Basic Form Fields" footerTitle:nil];
 
-		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"text" title:@"Text"] autorelease]];
-		[basicFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"password" title:@"Password"] autorelease]];
-		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKey:@"booleanValue" title:@"Boolean"] autorelease]];
+		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"text" title:@"Text"] autorelease]];
+		[basicFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKeyPath:@"password" title:@"Password"] autorelease]];
+		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanValue" title:@"Boolean"] autorelease]];
 
 		// Styled form fields
 		IBAFormSection *styledFieldSection = [self addSectionWithHeaderTitle:@"Styled Fields" footerTitle:nil];
@@ -35,8 +35,8 @@
 
 		styledFieldSection.formFieldStyle = style;
 
-		[styledFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"textStyled" title:@"Text"] autorelease]];
-		[styledFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"passwordStyled" title:@"Password"] autorelease]];
+		[styledFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"textStyled" title:@"Text"] autorelease]];
+		[styledFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKeyPath:@"passwordStyled" title:@"Password"] autorelease]];
 
 
 		// Date fields
@@ -47,7 +47,7 @@
 		[dateTimeFormatter setTimeStyle:NSDateFormatterNoStyle];
 		[dateTimeFormatter setDateFormat:@"EEE d MMM  h:mm a"];
 
-		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKey:@"dateTime"
+		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKeyPath:@"dateTime"
 															 title:@"Date & Time"
 													  defaultValue:[NSDate date]
 															  type:IBADateFormFieldTypeDateTime
@@ -58,7 +58,7 @@
 		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 		[dateFormatter setDateFormat:@"EEE d MMM yyyy"];
 
-		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKey:@"date"
+		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKeyPath:@"date"
 																		title:@"Date"
 																 defaultValue:[NSDate date]
 																		 type:IBADateFormFieldTypeDate
@@ -69,7 +69,7 @@
 		[timeFormatter setTimeStyle:NSDateFormatterNoStyle];
 		[timeFormatter setDateFormat:@"h:mm a"];
 
-		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKey:@"time"
+		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKeyPath:@"time"
 																		title:@"Time"
 																 defaultValue:[NSDate date]
 																		 type:IBADateFormFieldTypeTime
@@ -84,7 +84,7 @@
 																					 @"Lemons",
 																					 nil]];
 
-		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKey:@"singlePickListItem"
+		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"singlePickListItem"
 																		   title:@"Single"
 																valueTransformer:nil
 																   selectionMode:IBAPickListSelectionModeSingle
@@ -99,7 +99,7 @@
 																					  nil]];
 
 		IBAPickListFormOptionsStringTransformer *transformer = [[[IBAPickListFormOptionsStringTransformer alloc] initWithPickListOptions:carListOptions] autorelease];
-		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKey:@"multiplePickListItems"
+		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"multiplePickListItems"
 																		   title:@"Multiple"
 																valueTransformer:transformer
 																   selectionMode:IBAPickListSelectionModeMultiple
@@ -107,7 +107,7 @@
 
 		// An example of modifying the UITextInputTraits of an IBATextFormField and using an NSValueTransformer
 		IBAFormSection *textInputTraitsSection = [self addSectionWithHeaderTitle:@"Traits & Transformations" footerTitle:nil];
-		IBATextFormField *numberField = [[IBATextFormField alloc] initWithKey:@"number"
+		IBATextFormField *numberField = [[IBATextFormField alloc] initWithKeyPath:@"number"
 																		title:@"Number"
 															 valueTransformer:[StringToNumberTransformer instance]];
 		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;

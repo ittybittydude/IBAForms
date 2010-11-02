@@ -31,9 +31,9 @@
 	[super dealloc];
 }
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer
+- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer
 	selectionMode:(IBAPickListSelectionMode)theSelectionMode options:(NSArray *)thePickListOptions {
-	self = [super initWithKey:aKey title:aTitle valueTransformer:aValueTransformer];
+	self = [super initWithKeyPath:aKeyPath title:aTitle valueTransformer:aValueTransformer];
 	if (self != nil) {
 		self.selectionMode = theSelectionMode;
 		self.pickListOptions = thePickListOptions;
