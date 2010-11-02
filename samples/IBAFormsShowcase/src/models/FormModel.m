@@ -46,7 +46,7 @@
 	if (self != nil) {
 		self.multiplePickListItems = [NSArray arrayWithObjects:@"Honda", @"Toyota", nil];
 	}
-	
+
 	return self;
 }
 
