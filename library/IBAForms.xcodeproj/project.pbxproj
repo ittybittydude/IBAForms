@@ -36,8 +36,6 @@
 		148E93D112656FEC0065EDD1 /* IBAPasswordFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93A612656FEC0065EDD1 /* IBAPasswordFormField.m */; };
 		148E93D212656FEC0065EDD1 /* IBATextFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93A712656FEC0065EDD1 /* IBATextFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		148E93D312656FEC0065EDD1 /* IBATextFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93A812656FEC0065EDD1 /* IBATextFormField.m */; };
-		148E93D412656FEC0065EDD1 /* IBAURLFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93A912656FEC0065EDD1 /* IBAURLFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		148E93D512656FEC0065EDD1 /* IBAURLFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93AA12656FEC0065EDD1 /* IBAURLFormField.m */; };
 		148E93D612656FEC0065EDD1 /* IBADateFormFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93AC12656FEC0065EDD1 /* IBADateFormFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		148E93D712656FEC0065EDD1 /* IBADateFormFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93AD12656FEC0065EDD1 /* IBADateFormFieldCell.m */; };
 		148E93D812656FEC0065EDD1 /* IBAFormFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93AE12656FEC0065EDD1 /* IBAFormFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -109,8 +107,6 @@
 		148E93A612656FEC0065EDD1 /* IBAPasswordFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAPasswordFormField.m; sourceTree = "<group>"; };
 		148E93A712656FEC0065EDD1 /* IBATextFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATextFormField.h; sourceTree = "<group>"; };
 		148E93A812656FEC0065EDD1 /* IBATextFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBATextFormField.m; sourceTree = "<group>"; };
-		148E93A912656FEC0065EDD1 /* IBAURLFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAURLFormField.h; sourceTree = "<group>"; };
-		148E93AA12656FEC0065EDD1 /* IBAURLFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAURLFormField.m; sourceTree = "<group>"; };
 		148E93AC12656FEC0065EDD1 /* IBADateFormFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBADateFormFieldCell.h; sourceTree = "<group>"; };
 		148E93AD12656FEC0065EDD1 /* IBADateFormFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBADateFormFieldCell.m; sourceTree = "<group>"; };
 		148E93AE12656FEC0065EDD1 /* IBAFormFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAFormFieldCell.h; sourceTree = "<group>"; };
@@ -282,8 +278,6 @@
 				14BA9399126BAB07005456E6 /* IBAPickListFormField.m */,
 				148E93A712656FEC0065EDD1 /* IBATextFormField.h */,
 				148E93A812656FEC0065EDD1 /* IBATextFormField.m */,
-				148E93A912656FEC0065EDD1 /* IBAURLFormField.h */,
-				148E93AA12656FEC0065EDD1 /* IBAURLFormField.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -370,7 +364,6 @@
 				148E93CE12656FEC0065EDD1 /* IBAMultilineTextViewController.h in Headers */,
 				148E93D012656FEC0065EDD1 /* IBAPasswordFormField.h in Headers */,
 				148E93D212656FEC0065EDD1 /* IBATextFormField.h in Headers */,
-				148E93D412656FEC0065EDD1 /* IBAURLFormField.h in Headers */,
 				148E93D612656FEC0065EDD1 /* IBADateFormFieldCell.h in Headers */,
 				148E93D812656FEC0065EDD1 /* IBAFormFieldCell.h in Headers */,
 				148E93DA12656FEC0065EDD1 /* IBALabelFormCell.h in Headers */,
@@ -477,7 +470,6 @@
 				148E93CF12656FEC0065EDD1 /* IBAMultilineTextViewController.m in Sources */,
 				148E93D112656FEC0065EDD1 /* IBAPasswordFormField.m in Sources */,
 				148E93D312656FEC0065EDD1 /* IBATextFormField.m in Sources */,
-				148E93D512656FEC0065EDD1 /* IBAURLFormField.m in Sources */,
 				148E93D712656FEC0065EDD1 /* IBADateFormFieldCell.m in Sources */,
 				148E93D912656FEC0065EDD1 /* IBAFormFieldCell.m in Sources */,
 				148E93DB12656FEC0065EDD1 /* IBALabelFormCell.m in Sources */,

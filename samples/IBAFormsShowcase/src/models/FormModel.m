@@ -18,8 +18,6 @@
 @synthesize mandatoryDate;
 @synthesize nonMandatoryDate;
 @synthesize multiLineText;
-@synthesize url;
-@synthesize urlStyled;
 @synthesize singlePickListItem;
 @synthesize multiplePickListItems;
 @synthesize booleanValue;
@@ -32,8 +30,6 @@
 	[self setMandatoryDate:nil];
 	[self setNonMandatoryDate:nil];
 	[self setMultiLineText:nil];
-	[self setURL:nil];
-	[self setURLStyled:nil];
 	[self setSinglePickListItem:nil];
 	[self setMultiplePickListItems:nil];
 	[self setBooleanValue:nil];

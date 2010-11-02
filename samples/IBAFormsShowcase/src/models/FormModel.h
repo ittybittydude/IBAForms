@@ -18,8 +18,6 @@
 	NSDate *date;
 	NSDate *time;
 	NSString *multiLineText;
-	NSString *url;
-	NSString *urlStyled;
 	NSSet *singlePickListItem;
 	NSSet *multiplePickListItems;
 	NSNumber *booleanValue;
@@ -32,8 +30,6 @@
 @property (nonatomic, retain) NSDate *mandatoryDate;
 @property (nonatomic, retain) NSDate *nonMandatoryDate;
 @property (nonatomic, retain) NSString *multiLineText;
-@property (nonatomic, retain, setter=setURL) NSString *url;
-@property (nonatomic, retain, setter=setURLStyled) NSString *urlStyled;
 @property (nonatomic, retain) NSSet *singlePickListItem;
 @property (nonatomic, retain) NSSet *multiplePickListItems;
 @property (nonatomic, retain) NSNumber *booleanValue;

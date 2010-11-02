@@ -48,7 +48,6 @@
 #import <IBAForms/IBATextFormField.h>
 #import <IBAForms/IBATextFormFieldCell.h>
 #import <IBAForms/IBATextInputProvider.h>
-#import <IBAForms/IBAURLFormField.h>
 #import <IBAForms/SynthesizeSingleton.h>
 
 

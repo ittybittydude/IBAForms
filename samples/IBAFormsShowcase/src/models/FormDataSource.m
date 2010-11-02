@@ -19,7 +19,6 @@
 
 		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"text" title:@"Text"] autorelease]];
 		[basicFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"password" title:@"Password"] autorelease]];
-		[basicFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"url" title:@"Website"] autorelease]];
 		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKey:@"booleanValue" title:@"Boolean"] autorelease]];
 
 		// Styled form fields
@@ -37,7 +36,6 @@
 
 		[styledFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"textStyled" title:@"Text"] autorelease]];
 		[styledFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"passwordStyled" title:@"Password"] autorelease]];
-		[styledFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"urlStyled" title:@"Website"] autorelease]];
 
 
 		// Date fields
