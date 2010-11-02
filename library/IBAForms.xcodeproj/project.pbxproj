@@ -27,8 +27,6 @@
 		148E93C712656FEC0065EDD1 /* IBAInputRequestorFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E939C12656FEC0065EDD1 /* IBAInputRequestorFormField.m */; };
 		148E93C812656FEC0065EDD1 /* IBALabelFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E939D12656FEC0065EDD1 /* IBALabelFormField.h */; };
 		148E93C912656FEC0065EDD1 /* IBALabelFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E939E12656FEC0065EDD1 /* IBALabelFormField.m */; };
-		148E93CA12656FEC0065EDD1 /* IBAManagedObjectFormDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E939F12656FEC0065EDD1 /* IBAManagedObjectFormDataSource.h */; };
-		148E93CB12656FEC0065EDD1 /* IBAManagedObjectFormDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93A012656FEC0065EDD1 /* IBAManagedObjectFormDataSource.m */; };
 		148E93CC12656FEC0065EDD1 /* IBAMultilineTextFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93A112656FEC0065EDD1 /* IBAMultilineTextFormField.h */; };
 		148E93CD12656FEC0065EDD1 /* IBAMultilineTextFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93A212656FEC0065EDD1 /* IBAMultilineTextFormField.m */; };
 		148E93CE12656FEC0065EDD1 /* IBAMultilineTextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93A312656FEC0065EDD1 /* IBAMultilineTextViewController.h */; };
@@ -63,11 +61,8 @@
 		148E93FB12656FF60065EDD1 /* IBAInputManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93ED12656FF60065EDD1 /* IBAInputManagerView.m */; };
 		148E93FC12656FF60065EDD1 /* IBAInputNavigationToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93EE12656FF60065EDD1 /* IBAInputNavigationToolbar.h */; };
 		148E93FD12656FF60065EDD1 /* IBAInputNavigationToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93EF12656FF60065EDD1 /* IBAInputNavigationToolbar.m */; };
-		148E940D1265702D0065EDD1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148E940C1265702D0065EDD1 /* CoreData.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		148E9414126571D30065EDD1 /* IBACommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E9413126571D30065EDD1 /* IBACommon.h */; };
 		148E9418126571F10065EDD1 /* SynthesizeSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E9417126571F10065EDD1 /* SynthesizeSingleton.h */; };
-		148E941D126572570065EDD1 /* IBACoreDataContextProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E941B126572570065EDD1 /* IBACoreDataContextProvider.h */; };
-		148E941E126572570065EDD1 /* IBACoreDataContextProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E941C126572570065EDD1 /* IBACoreDataContextProvider.m */; };
 		148E9428126573460065EDD1 /* IBAEventPassthroughTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E9426126573460065EDD1 /* IBAEventPassthroughTextView.h */; };
 		148E9429126573460065EDD1 /* IBAEventPassthroughTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E9427126573460065EDD1 /* IBAEventPassthroughTextView.m */; };
 		14BA939A126BAB07005456E6 /* IBAPickListFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BA9398126BAB07005456E6 /* IBAPickListFormField.h */; };
@@ -104,8 +99,6 @@
 		148E939C12656FEC0065EDD1 /* IBAInputRequestorFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputRequestorFormField.m; sourceTree = "<group>"; };
 		148E939D12656FEC0065EDD1 /* IBALabelFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBALabelFormField.h; sourceTree = "<group>"; };
 		148E939E12656FEC0065EDD1 /* IBALabelFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBALabelFormField.m; sourceTree = "<group>"; };
-		148E939F12656FEC0065EDD1 /* IBAManagedObjectFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAManagedObjectFormDataSource.h; sourceTree = "<group>"; };
-		148E93A012656FEC0065EDD1 /* IBAManagedObjectFormDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAManagedObjectFormDataSource.m; sourceTree = "<group>"; };
 		148E93A112656FEC0065EDD1 /* IBAMultilineTextFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAMultilineTextFormField.h; sourceTree = "<group>"; };
 		148E93A212656FEC0065EDD1 /* IBAMultilineTextFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAMultilineTextFormField.m; sourceTree = "<group>"; };
 		148E93A312656FEC0065EDD1 /* IBAMultilineTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAMultilineTextViewController.h; sourceTree = "<group>"; };
@@ -140,11 +133,8 @@
 		148E93ED12656FF60065EDD1 /* IBAInputManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputManagerView.m; sourceTree = "<group>"; };
 		148E93EE12656FF60065EDD1 /* IBAInputNavigationToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputNavigationToolbar.h; sourceTree = "<group>"; };
 		148E93EF12656FF60065EDD1 /* IBAInputNavigationToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputNavigationToolbar.m; sourceTree = "<group>"; };
-		148E940C1265702D0065EDD1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		148E9413126571D30065EDD1 /* IBACommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBACommon.h; sourceTree = "<group>"; };
 		148E9417126571F10065EDD1 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
-		148E941B126572570065EDD1 /* IBACoreDataContextProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBACoreDataContextProvider.h; sourceTree = "<group>"; };
-		148E941C126572570065EDD1 /* IBACoreDataContextProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBACoreDataContextProvider.m; sourceTree = "<group>"; };
 		148E9426126573460065EDD1 /* IBAEventPassthroughTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAEventPassthroughTextView.h; sourceTree = "<group>"; };
 		148E9427126573460065EDD1 /* IBAEventPassthroughTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAEventPassthroughTextView.m; sourceTree = "<group>"; };
 		14BA9398126BAB07005456E6 /* IBAPickListFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAPickListFormField.h; sourceTree = "<group>"; };
@@ -167,7 +157,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
-				148E940D1265702D0065EDD1 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +185,6 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				148E940C1265702D0065EDD1 /* CoreData.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -244,8 +232,6 @@
 		148E938812656FD10065EDD1 /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				148E941B126572570065EDD1 /* IBACoreDataContextProvider.h */,
-				148E941C126572570065EDD1 /* IBACoreDataContextProvider.m */,
 				148E9417126571F10065EDD1 /* SynthesizeSingleton.h */,
 			);
 			path = utils;
@@ -283,8 +269,6 @@
 				148E939C12656FEC0065EDD1 /* IBAInputRequestorFormField.m */,
 				148E939D12656FEC0065EDD1 /* IBALabelFormField.h */,
 				148E939E12656FEC0065EDD1 /* IBALabelFormField.m */,
-				148E939F12656FEC0065EDD1 /* IBAManagedObjectFormDataSource.h */,
-				148E93A012656FEC0065EDD1 /* IBAManagedObjectFormDataSource.m */,
 				148E93A112656FEC0065EDD1 /* IBAMultilineTextFormField.h */,
 				148E93A212656FEC0065EDD1 /* IBAMultilineTextFormField.m */,
 				148E93A312656FEC0065EDD1 /* IBAMultilineTextViewController.h */,
@@ -379,7 +363,6 @@
 				148E93C412656FEC0065EDD1 /* IBAFormViewController.h in Headers */,
 				148E93C612656FEC0065EDD1 /* IBAInputRequestorFormField.h in Headers */,
 				148E93C812656FEC0065EDD1 /* IBALabelFormField.h in Headers */,
-				148E93CA12656FEC0065EDD1 /* IBAManagedObjectFormDataSource.h in Headers */,
 				148E93CC12656FEC0065EDD1 /* IBAMultilineTextFormField.h in Headers */,
 				148E93CE12656FEC0065EDD1 /* IBAMultilineTextViewController.h in Headers */,
 				148E93D012656FEC0065EDD1 /* IBAPasswordFormField.h in Headers */,
@@ -401,7 +384,6 @@
 				148E93FC12656FF60065EDD1 /* IBAInputNavigationToolbar.h in Headers */,
 				148E9414126571D30065EDD1 /* IBACommon.h in Headers */,
 				148E9418126571F10065EDD1 /* SynthesizeSingleton.h in Headers */,
-				148E941D126572570065EDD1 /* IBACoreDataContextProvider.h in Headers */,
 				148E9428126573460065EDD1 /* IBAEventPassthroughTextView.h in Headers */,
 				14BA939A126BAB07005456E6 /* IBAPickListFormField.h in Headers */,
 				14BA9461126BCF03005456E6 /* IBAPickListInputProvider.h in Headers */,
@@ -470,7 +452,6 @@
 				148E93C512656FEC0065EDD1 /* IBAFormViewController.m in Sources */,
 				148E93C712656FEC0065EDD1 /* IBAInputRequestorFormField.m in Sources */,
 				148E93C912656FEC0065EDD1 /* IBALabelFormField.m in Sources */,
-				148E93CB12656FEC0065EDD1 /* IBAManagedObjectFormDataSource.m in Sources */,
 				148E93CD12656FEC0065EDD1 /* IBAMultilineTextFormField.m in Sources */,
 				148E93CF12656FEC0065EDD1 /* IBAMultilineTextViewController.m in Sources */,
 				148E93D112656FEC0065EDD1 /* IBAPasswordFormField.m in Sources */,
@@ -486,7 +467,6 @@
 				148E93F812656FF60065EDD1 /* IBATextInputProvider.m in Sources */,
 				148E93FB12656FF60065EDD1 /* IBAInputManagerView.m in Sources */,
 				148E93FD12656FF60065EDD1 /* IBAInputNavigationToolbar.m in Sources */,
-				148E941E126572570065EDD1 /* IBACoreDataContextProvider.m in Sources */,
 				148E9429126573460065EDD1 /* IBAEventPassthroughTextView.m in Sources */,
 				14BA939B126BAB07005456E6 /* IBAPickListFormField.m in Sources */,
 				14BA9462126BCF03005456E6 /* IBAPickListInputProvider.m in Sources */,
