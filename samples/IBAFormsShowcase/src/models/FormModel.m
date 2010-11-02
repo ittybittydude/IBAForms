@@ -50,8 +50,4 @@
 	return self;
 }
 
-- (void)setBooleanValue:(NSNumber *)number {
-	booleanValue = number;
-}
-
 @end
