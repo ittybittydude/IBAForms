@@ -1,13 +1,13 @@
 //
 // Copyright 2010 Itty Bitty Apps Pty Ltd
-// 
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
-// file except in compliance with the License. You may obtain a copy of the License at 
-// 
-// http://www.apache.org/licenses/LICENSE-2.0 
-// 
+//
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+// file except in compliance with the License. You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
 // Unless required by applicable law or agreed to in writing, software distributed under
-// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
@@ -19,8 +19,6 @@
 
 @synthesize key;
 @synthesize title;
-@synthesize editable;
-@synthesize movable;
 @synthesize modelManager;
 @synthesize delegate;
 @synthesize formFieldStyle;
@@ -30,36 +28,30 @@
 #pragma mark -
 #pragma mark Initialisation and memory management
 
-- (void)dealloc {	
+- (void)dealloc {
 	IBA_RELEASE_SAFELY(key);
 	IBA_RELEASE_SAFELY(title);
 	IBA_RELEASE_SAFELY(modelManager);
 	IBA_RELEASE_SAFELY(formFieldStyle);
 	IBA_RELEASE_SAFELY(valueTransformer);
-	
+
 	[super dealloc];
 }
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer editable:(BOOL)editableFlag movable:(BOOL)movableFlag {
+- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer {
 	self = [super init];
 	if (self != nil) {
 		self.key = aKey;
 		title = [aTitle retain];
-		self.editable = editableFlag;
-		self.movable = movableFlag;
 		self.nullable = YES;
 		self.valueTransformer = aValueTransformer;
 	}
-	
+
 	return self;
 }
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer {	
-	return [self initWithKey:aKey title:aTitle valueTransformer:aValueTransformer editable:NO movable:NO];
-}
-
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle {	
-	return [self initWithKey:aKey title:aTitle valueTransformer:nil editable:NO movable:NO];
+- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle {
+	return [self initWithKey:aKey title:aTitle valueTransformer:nil];
 }
 
 - (id)init {
@@ -70,7 +62,7 @@
 - (void)setModelManager:(id<IBAFormModelManager>) aModelManager {
 	[modelManager release];
 	modelManager = [aModelManager retain];
-	
+
 	// When the model manager changes we should update the content of the cell
 	[self updateCellContents];
 }
@@ -78,7 +70,7 @@
 - (void)setFormFieldStyle:(IBAFormFieldStyle *)style {
 	[formFieldStyle release];
 	formFieldStyle = [style retain];
-	
+
 	self.cell.formFieldStyle = style;
 }
 
@@ -130,7 +122,7 @@
 	if (self.valueTransformer != nil) {
 		value = [self.valueTransformer reverseTransformedValue:value];
 	}
-	
+
 	return value;
 }
 
@@ -140,26 +132,26 @@
 
 - (BOOL)setFormFieldValue:(id)formVieldValue {
 	BOOL setValue = YES;
-	
+
 	// Transform the value if we have a transformer
 	id value = formVieldValue;
 	if (self.valueTransformer != nil) {
 		value = [self.valueTransformer transformedValue:value];
 	}
-	
+
 	if (self.delegate && [self.delegate respondsToSelector:@selector(formField:willSetValue:)]) {
 		setValue = [self.delegate formField:self willSetValue:value];
 	}
-	
+
 	if (setValue) {
 		[self.modelManager setModelValue:value forKeyPath:self.key];
 		[self updateCellContents];
-		
+
 		if (self.delegate && [self.delegate respondsToSelector:@selector(formField:didSetValue:)]) {
 			[self.delegate formField:self didSetValue:value];
 		}
 	}
-	
+
 	return setValue;
 }
 

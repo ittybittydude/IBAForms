@@ -51,8 +51,6 @@
 															 title:@"Date & Time"
 													  defaultValue:[NSDate date]
 															  type:IBADateFormFieldTypeDateTime
-														  editable:NO
-														   movable:NO
 													 dateFormatter:dateTimeFormatter] autorelease]];
 
 		NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -64,8 +62,6 @@
 																		title:@"Date"
 																 defaultValue:[NSDate date]
 																		 type:IBADateFormFieldTypeDate
-																	 editable:NO
-																	  movable:NO
 																dateFormatter:dateFormatter] autorelease]];
 
 		NSDateFormatter *timeFormatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -77,8 +73,6 @@
 																		title:@"Time"
 																 defaultValue:[NSDate date]
 																		 type:IBADateFormFieldTypeTime
-																	 editable:NO
-																	  movable:NO
 																dateFormatter:timeFormatter] autorelease]];
 
 		// Picklists
