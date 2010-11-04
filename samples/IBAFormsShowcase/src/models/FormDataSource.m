@@ -6,16 +6,9 @@
 //  Copyright 2010 Itty Bitty Apps Pty Ltd. All rights reserved.
 //
 
+#import <IBAForms/IBAForms.h>
 #import "FormDataSource.h"
-#import "IBATextFormField.h"
-#import "IBAPasswordFormField.h"
-#import "IBAMultilineTextFormField.h"
-#import "IBAURLFormField.h"
-#import "IBAButtonFormField.h"
-#import "IBADateFormField.h"
-#import "IBAPickListOptionsProvider.h"
-#import "IBAPickListFormField.h"
-#import "IBAFormFieldStyle.h"
+#import "StringToNumberTransformer.h"
 
 @implementation FormDataSource
 
@@ -23,16 +16,16 @@
 	self = [super initWithModel:aModel];
 	if (self != nil) {
 		// Some basic form fields that accept text input
-		IBAFormSection *textFieldSection = [self addSectionWithHeaderTitle:@"Basic Form Fields" footerTitle:nil];		
-		
-		[textFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"text" title:@"Text"] autorelease]];
-		[textFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"password" title:@"Password"] autorelease]];
-		[textFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKey:@"multiLineText" title:nil] autorelease]];
-		[textFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"url" title:@"Website"] autorelease]];
-		  
+		IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:@"Basic Form Fields" footerTitle:nil];
+
+		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"text" title:@"Text"] autorelease]];
+		[basicFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKeyPath:@"password" title:@"Password"] autorelease]];
+		[basicFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKey:@"multiLineText" title:nil] autorelease]];
+		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanValue" title:@"Boolean"] autorelease]];
+
 		// Styled form fields
-		IBAFormSection *styledFieldSection = [self addSectionWithHeaderTitle:@"Styled Fields" footerTitle:nil];		
-		
+		IBAFormSection *styledFieldSection = [self addSectionWithHeaderTitle:@"Styled Fields" footerTitle:nil];
+
 		IBAFormFieldStyle *style = [[[IBAFormFieldStyle alloc] init] autorelease];
 		style.labelTextColor = [UIColor blackColor];
 		style.labelFont = [UIFont systemFontOfSize:14];
@@ -40,106 +33,108 @@
 		style.valueTextAlignment = UITextAlignmentRight;
 		style.valueTextColor = [UIColor darkGrayColor];
 		style.activeColor = [UIColor colorWithRed:0.934 green:0.791 blue:0.905 alpha:1.000];
-		
+
 		styledFieldSection.formFieldStyle = style;
-		
-		[styledFieldSection addFormField:[[[IBATextFormField alloc] initWithKey:@"textStyled" title:@"Text"] autorelease]];
-		[styledFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKey:@"passwordStyled" title:@"Password"] autorelease]];
-		[styledFieldSection addFormField:[[[IBAURLFormField alloc] initWithKey:@"urlStyled" title:@"Website"] autorelease]];
-		
-		
+
+		[styledFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"textStyled" title:@"Text"] autorelease]];
+		[styledFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKeyPath:@"passwordStyled" title:@"Password"] autorelease]];
+
+
 		// Date fields
-		IBAFormSection *dateFieldSection = [self addSectionWithHeaderTitle:@"Dates" footerTitle:nil];		
+		IBAFormSection *dateFieldSection = [self addSectionWithHeaderTitle:@"Dates" footerTitle:nil];
 
 		NSDateFormatter *dateTimeFormatter = [[[NSDateFormatter alloc] init] autorelease];
 		[dateTimeFormatter setDateStyle:NSDateFormatterShortStyle];
-		[dateTimeFormatter setTimeStyle:NSDateFormatterNoStyle];	
+		[dateTimeFormatter setTimeStyle:NSDateFormatterNoStyle];
 		[dateTimeFormatter setDateFormat:@"EEE d MMM  h:mm a"];
 
-		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKey:@"dateTime" 
-															 title:@"Date & Time" 
+		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKeyPath:@"dateTime"
+															 title:@"Date & Time"
 													  defaultValue:[NSDate date]
-															  type:IBADateFormFieldTypeDateTime 
-														  editable:NO 
-														   movable:NO 
+															  type:IBADateFormFieldTypeDateTime
 													 dateFormatter:dateTimeFormatter] autorelease]];
 
 		NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 		[dateFormatter setDateStyle:NSDateFormatterShortStyle];
-		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];	
+		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 		[dateFormatter setDateFormat:@"EEE d MMM yyyy"];
-		
-		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKey:@"date" 
-																		title:@"Date" 
+
+		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKeyPath:@"date"
+																		title:@"Date"
 																 defaultValue:[NSDate date]
-																		 type:IBADateFormFieldTypeDate 
-																	 editable:NO 
-																	  movable:NO 
+																		 type:IBADateFormFieldTypeDate
 																dateFormatter:dateFormatter] autorelease]];
-		
+
 		NSDateFormatter *timeFormatter = [[[NSDateFormatter alloc] init] autorelease];
 		[timeFormatter setDateStyle:NSDateFormatterShortStyle];
-		[timeFormatter setTimeStyle:NSDateFormatterNoStyle];	
+		[timeFormatter setTimeStyle:NSDateFormatterNoStyle];
 		[timeFormatter setDateFormat:@"h:mm a"];
-		
-		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKey:@"time" 
-																		title:@"Time" 
-																 defaultValue:[NSDate date]
-																		 type:IBADateFormFieldTypeTime 
-																	 editable:NO 
-																	  movable:NO 
-																dateFormatter:timeFormatter] autorelease]];
-		  
-		// Picklists
-		IBAFormSection *pickListSection = [self addSectionWithHeaderTitle:@"Pick Lists" footerTitle:nil];		
 
-		NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:@"Apples", 
-																					 @"Bananas", 
-																					 @"Oranges", 
-																					 @"Lemons", 
+		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKeyPath:@"time"
+																		title:@"Time"
+																 defaultValue:[NSDate date]
+																		 type:IBADateFormFieldTypeTime
+																dateFormatter:timeFormatter] autorelease]];
+
+		// Picklists
+		IBAFormSection *pickListSection = [self addSectionWithHeaderTitle:@"Pick Lists" footerTitle:nil];
+
+		NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:@"Apples",
+																					 @"Bananas",
+																					 @"Oranges",
+																					 @"Lemons",
 																					 nil]];
-		
-		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKey:@"singlePickListItem"
+
+		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"singlePickListItem"
 																		   title:@"Single"
 																valueTransformer:nil
 																   selectionMode:IBAPickListSelectionModeSingle
 																		 options:pickListOptions] autorelease]];
-	
-		NSArray *carListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:@"Honda", 
-																					  @"BMW", 
-																					  @"Holden", 
+
+		NSArray *carListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:@"Honda",
+																					  @"BMW",
+																					  @"Holden",
 																					  @"Ford",
 																					  @"Toyota",
 																					  @"Mitsubishi",
 																					  nil]];
-		
+
 		IBAPickListFormOptionsStringTransformer *transformer = [[[IBAPickListFormOptionsStringTransformer alloc] initWithPickListOptions:carListOptions] autorelease];
-		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKey:@"multiplePickListItems"
+		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"multiplePickListItems"
 																		   title:@"Multiple"
 																valueTransformer:transformer
 																   selectionMode:IBAPickListSelectionModeMultiple
 																		 options:carListOptions] autorelease]];
-		
-		
+
+		// An example of modifying the UITextInputTraits of an IBATextFormField and using an NSValueTransformer
+		IBAFormSection *textInputTraitsSection = [self addSectionWithHeaderTitle:@"Traits & Transformations" footerTitle:nil];
+		IBATextFormField *numberField = [[IBATextFormField alloc] initWithKeyPath:@"number"
+																		title:@"Number"
+															 valueTransformer:[StringToNumberTransformer instance]];
+		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+		[textInputTraitsSection addFormField:[numberField autorelease]];
+
+
 		// Some examples of how you might use the button form field
-		IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:@"Buttons" footerTitle:nil];		
-		  
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Go to Google" 
-																			 icon:nil 
+		IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:@"Buttons" footerTitle:nil];
+
+		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Go to Google"
+																			 icon:nil
 																   executionBlock:^{
-																	   [[UIApplication sharedApplication] 
+																	   [[UIApplication sharedApplication]
 																		openURL:[NSURL URLWithString:@"http://www.google.com"]];
 																   }] autorelease]];
-		  
-		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Compose email" 
-																			 icon:nil 
+
+		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Compose email"
+																			 icon:nil
 																   executionBlock:^{
-																	   [[UIApplication sharedApplication] 
+																	   [[UIApplication sharedApplication]
 																		openURL:[NSURL URLWithString:@"mailto:info@google.com"]];
-																   }] autorelease]];	
-		}
-		  
-		return self;
+																   }] autorelease]];
+
+    }
+
+    return self;
 }
-		  	  
+
 @end

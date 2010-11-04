@@ -12,13 +12,14 @@
 // permissions and limitations under the License.
 //
 
-#import "IBAFormDataSource.h"
+#import "IBAFormField.h"
+#import "IBABooleanFormFieldCell.h"
 
-
-@interface IBAManagedObjectFormDataSource : IBAFormDataSource {
-	BOOL autoSaveEnabled;
+@interface IBABooleanFormField : IBAFormField {
+	IBABooleanFormFieldCell *booleanFormFieldCell;
 }
 
-@property (nonatomic, assign) BOOL autoSaveEnabled;
+@property (nonatomic, retain) IBABooleanFormFieldCell *booleanFormFieldCell;
+
 
 @end

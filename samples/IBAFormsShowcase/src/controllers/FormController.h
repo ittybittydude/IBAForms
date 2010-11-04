@@ -6,7 +6,7 @@
 //  Copyright 2010 Itty Bitty Apps Pty Ltd. All rights reserved.
 //
 
-#import "IBAFormViewController.h"
+#import <IBAForms/IBAFormViewController.h>
 
 
 @interface FormController : IBAFormViewController {

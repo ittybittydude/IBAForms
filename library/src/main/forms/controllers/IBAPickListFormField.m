@@ -1,13 +1,13 @@
 //
 // Copyright 2010 Itty Bitty Apps Pty Ltd
-// 
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
-// file except in compliance with the License. You may obtain a copy of the License at 
-// 
-// http://www.apache.org/licenses/LICENSE-2.0 
-// 
+//
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+// file except in compliance with the License. You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
 // Unless required by applicable law or agreed to in writing, software distributed under
-// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
@@ -31,35 +31,29 @@
 	[super dealloc];
 }
 
-
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer 
-	selectionMode:(IBAPickListSelectionMode)theSelectionMode options:(NSArray *)thePickListOptions editable:(BOOL)editableFlag movable:(BOOL)movableFlag {
-	self = [super initWithKey:aKey title:aTitle valueTransformer:aValueTransformer editable:editableFlag movable:movableFlag];
+- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer
+	selectionMode:(IBAPickListSelectionMode)theSelectionMode options:(NSArray *)thePickListOptions {
+	self = [super initWithKeyPath:aKeyPath title:aTitle valueTransformer:aValueTransformer];
 	if (self != nil) {
 		self.selectionMode = theSelectionMode;
 		self.pickListOptions = thePickListOptions;
 	}
-	
+
 	return self;
-}
-
-
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer
-	selectionMode:(IBAPickListSelectionMode)theSelectionMode options:(NSArray *)thePickListOptions {
-	return [self initWithKey:aKey title:aTitle valueTransformer:aValueTransformer selectionMode:theSelectionMode options:thePickListOptions editable:NO movable:NO ];
 }
 
 
 - (NSString *)formFieldStringValue {
 	NSMutableArray *itemNames = [[[NSMutableArray alloc] init] autorelease];
-	for (id<IBAPickListOption> item in [self formFieldValue]) {
+
+	for (id<IBAPickListOption> item in [self pickListOptions]) {
 		NSString *itemName = [item name];
-		if (itemName.length > 0) {
+    if (([[self formFieldValue] containsObject:item]) && (itemName.length > 0)) {
 			[itemNames addObject:itemName];
 		}
 	}
-	
-	return [itemNames componentsJoinedByString:@", "]; 
+
+	return [itemNames componentsJoinedByString:@", "];
 }
 
 
@@ -71,7 +65,7 @@
 		pickListCell = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
 		pickListCell.textField.enabled = NO;
 	}
-	
+
 	return pickListCell;
 }
 
@@ -100,7 +94,7 @@
 
 @end
 
-@implementation IBAPickListFormOption 
+@implementation IBAPickListFormOption
 
 @synthesize name;
 @synthesize iconImage;
@@ -108,7 +102,7 @@
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(name);
 	IBA_RELEASE_SAFELY(iconImage);
-	
+
 	[super dealloc];
 }
 
@@ -118,7 +112,7 @@
 		self.name = theName;
 		self.iconImage = theIconImage;
 	}
-	
+
 	return self;
 }
 
@@ -127,7 +121,7 @@
 	for (NSString *optionName in optionNames) {
 		[options addObject:[[[IBAPickListFormOption alloc] initWithName:optionName iconImage:nil] autorelease]];
 	}
-	
+
 	return options;
 }
 
@@ -148,7 +142,7 @@
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(pickListOptions);
-	
+
 	[super dealloc];
 }
 
@@ -157,7 +151,7 @@
 	if (self != nil) {
 		self.pickListOptions = thePickListOptions;
 	}
-	
+
 	return self;
 }
 
@@ -175,7 +169,7 @@
 	for (IBAPickListFormOption *option in value) {
 		[optionNames addObject:[option name]];
 	}
-	
+
 	return optionNames;
 }
 
@@ -188,7 +182,7 @@
 			[options addObject:option];
 		}
 	}
-	
+
 	return options;
 }
 

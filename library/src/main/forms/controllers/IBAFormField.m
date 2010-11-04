@@ -1,13 +1,13 @@
 //
 // Copyright 2010 Itty Bitty Apps Pty Ltd
-// 
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
-// file except in compliance with the License. You may obtain a copy of the License at 
-// 
-// http://www.apache.org/licenses/LICENSE-2.0 
-// 
+//
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+// file except in compliance with the License. You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
 // Unless required by applicable law or agreed to in writing, software distributed under
-// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
@@ -17,10 +17,8 @@
 
 @implementation IBAFormField
 
-@synthesize key;
+@synthesize keyPath;
 @synthesize title;
-@synthesize editable;
-@synthesize movable;
 @synthesize modelManager;
 @synthesize delegate;
 @synthesize formFieldStyle;
@@ -30,62 +28,66 @@
 #pragma mark -
 #pragma mark Initialisation and memory management
 
-- (void)dealloc {	
-	IBA_RELEASE_SAFELY(key);
+- (void)dealloc {
+	IBA_RELEASE_SAFELY(keyPath);
 	IBA_RELEASE_SAFELY(title);
 	IBA_RELEASE_SAFELY(modelManager);
 	IBA_RELEASE_SAFELY(formFieldStyle);
 	IBA_RELEASE_SAFELY(valueTransformer);
-	
+
 	[super dealloc];
 }
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer editable:(BOOL)editableFlag movable:(BOOL)movableFlag {
+- (id)initWithKeyPath:(NSString*)aKeyPath title:(NSString*)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer {
 	self = [super init];
 	if (self != nil) {
-		self.key = aKey;
-		title = [aTitle retain];
-		self.editable = editableFlag;
-		self.movable = movableFlag;
+		self.keyPath = aKeyPath;
+		self.title = aTitle;
 		self.nullable = YES;
 		self.valueTransformer = aValueTransformer;
 	}
-	
+
 	return self;
 }
 
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer {	
-	return [self initWithKey:aKey title:aTitle valueTransformer:aValueTransformer editable:NO movable:NO];
-}
-
-- (id)initWithKey:(NSString*)aKey title:(NSString*)aTitle {	
-	return [self initWithKey:aKey title:aTitle valueTransformer:nil editable:NO movable:NO];
+- (id)initWithKeyPath:(NSString*)aKeyPath title:(NSString*)aTitle {
+	return [self initWithKeyPath:aKeyPath title:aTitle valueTransformer:nil];
 }
 
 - (id)init {
-	return [self initWithKey:nil title:nil];
+	return [self initWithKeyPath:nil title:nil];
 }
 
 
 - (void)setModelManager:(id<IBAFormModelManager>) aModelManager {
-	[modelManager release];
-	modelManager = [aModelManager retain];
-	
-	// When the model manager changes we should update the content of the cell
-	[self updateCellContents];
+	if (aModelManager != modelManager) {
+		id<IBAFormModelManager> oldModelManager = modelManager;
+		modelManager = [aModelManager retain];
+		IBA_RELEASE_SAFELY(oldModelManager);
+
+		// When the model manager changes we should update the content of the cell
+		[self updateCellContents];
+	}
 }
 
 - (void)setFormFieldStyle:(IBAFormFieldStyle *)style {
-	[formFieldStyle release];
-	formFieldStyle = [style retain];
-	
-	self.cell.formFieldStyle = style;
+	if (style != formFieldStyle) {
+		IBAFormFieldStyle *oldStyle = formFieldStyle;
+		formFieldStyle = [style retain];
+		IBA_RELEASE_SAFELY(oldStyle);
+
+		self.cell.formFieldStyle = style;
+	}
 }
 
 - (void)setTitle:(NSString *)newTitle {
-	[title release];
-	title = [newTitle copyWithZone:[self zone]];
-	[self updateCellContents];
+	if (![newTitle isEqualToString:title]) {
+		NSString *oldTitle = title;
+		title = [newTitle copyWithZone:[self zone]];
+		IBA_RELEASE_SAFELY(oldTitle);
+
+		[self updateCellContents];
+	}
 }
 
 #pragma mark -
@@ -125,12 +127,12 @@
 #pragma mark -
 #pragma mark Getting and setting the form field value
 - (id)formFieldValue {
-	id value = [self.modelManager modelValueForKey:self.key];
-	
+	id value = [self.modelManager modelValueForKeyPath:self.keyPath];
+
 	if (self.valueTransformer != nil) {
 		value = [self.valueTransformer reverseTransformedValue:value];
 	}
-	
+
 	return value;
 }
 
@@ -140,26 +142,26 @@
 
 - (BOOL)setFormFieldValue:(id)formVieldValue {
 	BOOL setValue = YES;
-	
+
 	// Transform the value if we have a transformer
 	id value = formVieldValue;
 	if (self.valueTransformer != nil) {
 		value = [self.valueTransformer transformedValue:value];
 	}
-	
+
 	if (self.delegate && [self.delegate respondsToSelector:@selector(formField:willSetValue:)]) {
 		setValue = [self.delegate formField:self willSetValue:value];
 	}
-	
+
 	if (setValue) {
-		[self.modelManager setModelValue:value forKey:self.key];
+		[self.modelManager setModelValue:value forKeyPath:self.keyPath];
 		[self updateCellContents];
-		
+
 		if (self.delegate && [self.delegate respondsToSelector:@selector(formField:didSetValue:)]) {
 			[self.delegate formField:self didSetValue:value];
 		}
 	}
-	
+
 	return setValue;
 }
 

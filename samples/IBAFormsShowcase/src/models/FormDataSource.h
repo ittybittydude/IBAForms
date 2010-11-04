@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IBAFormDataSource.h"
+#import <IBAForms/IBAFormDataSource.h>
 
 @interface FormDataSource : IBAFormDataSource
 

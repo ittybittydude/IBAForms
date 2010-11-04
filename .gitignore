@@ -1,6 +1,6 @@
 build/
 .DS_Store
-*.mode1v3
+*.mode*
 *.pbxuser
 .svn
 *.orig

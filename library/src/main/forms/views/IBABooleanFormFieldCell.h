@@ -11,12 +11,14 @@
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
-#import "IBATextFormField.h"
 
-@interface IBAURLFormField : IBATextFormField {
-	UIButton *openURLButton;
+#import "IBAFormFieldCell.h"
+
+
+@interface IBABooleanFormFieldCell : IBAFormFieldCell {
+	UISwitch *switchControl;
 }
 
-@property (nonatomic, retain) UIButton *openURLButton;
+@property (nonatomic, retain) UISwitch *switchControl;
 
 @end
