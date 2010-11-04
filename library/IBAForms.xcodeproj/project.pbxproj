@@ -30,8 +30,6 @@
 		148E93C912656FEC0065EDD1 /* IBALabelFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E939E12656FEC0065EDD1 /* IBALabelFormField.m */; };
 		148E93CC12656FEC0065EDD1 /* IBAMultilineTextFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93A112656FEC0065EDD1 /* IBAMultilineTextFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		148E93CD12656FEC0065EDD1 /* IBAMultilineTextFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93A212656FEC0065EDD1 /* IBAMultilineTextFormField.m */; };
-		148E93CE12656FEC0065EDD1 /* IBAMultilineTextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93A312656FEC0065EDD1 /* IBAMultilineTextViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		148E93CF12656FEC0065EDD1 /* IBAMultilineTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93A412656FEC0065EDD1 /* IBAMultilineTextViewController.m */; };
 		148E93D012656FEC0065EDD1 /* IBAPasswordFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93A512656FEC0065EDD1 /* IBAPasswordFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		148E93D112656FEC0065EDD1 /* IBAPasswordFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93A612656FEC0065EDD1 /* IBAPasswordFormField.m */; };
 		148E93D212656FEC0065EDD1 /* IBATextFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93A712656FEC0065EDD1 /* IBATextFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -101,8 +99,6 @@
 		148E939E12656FEC0065EDD1 /* IBALabelFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBALabelFormField.m; sourceTree = "<group>"; };
 		148E93A112656FEC0065EDD1 /* IBAMultilineTextFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAMultilineTextFormField.h; sourceTree = "<group>"; };
 		148E93A212656FEC0065EDD1 /* IBAMultilineTextFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAMultilineTextFormField.m; sourceTree = "<group>"; };
-		148E93A312656FEC0065EDD1 /* IBAMultilineTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAMultilineTextViewController.h; sourceTree = "<group>"; };
-		148E93A412656FEC0065EDD1 /* IBAMultilineTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAMultilineTextViewController.m; sourceTree = "<group>"; };
 		148E93A512656FEC0065EDD1 /* IBAPasswordFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAPasswordFormField.h; sourceTree = "<group>"; };
 		148E93A612656FEC0065EDD1 /* IBAPasswordFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAPasswordFormField.m; sourceTree = "<group>"; };
 		148E93A712656FEC0065EDD1 /* IBATextFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATextFormField.h; sourceTree = "<group>"; };
@@ -270,8 +266,6 @@
 				148E939E12656FEC0065EDD1 /* IBALabelFormField.m */,
 				148E93A112656FEC0065EDD1 /* IBAMultilineTextFormField.h */,
 				148E93A212656FEC0065EDD1 /* IBAMultilineTextFormField.m */,
-				148E93A312656FEC0065EDD1 /* IBAMultilineTextViewController.h */,
-				148E93A412656FEC0065EDD1 /* IBAMultilineTextViewController.m */,
 				148E93A512656FEC0065EDD1 /* IBAPasswordFormField.h */,
 				148E93A612656FEC0065EDD1 /* IBAPasswordFormField.m */,
 				14BA9398126BAB07005456E6 /* IBAPickListFormField.h */,
@@ -361,7 +355,6 @@
 				148E93C612656FEC0065EDD1 /* IBAInputRequestorFormField.h in Headers */,
 				148E93C812656FEC0065EDD1 /* IBALabelFormField.h in Headers */,
 				148E93CC12656FEC0065EDD1 /* IBAMultilineTextFormField.h in Headers */,
-				148E93CE12656FEC0065EDD1 /* IBAMultilineTextViewController.h in Headers */,
 				148E93D012656FEC0065EDD1 /* IBAPasswordFormField.h in Headers */,
 				148E93D212656FEC0065EDD1 /* IBATextFormField.h in Headers */,
 				148E93D612656FEC0065EDD1 /* IBADateFormFieldCell.h in Headers */,
@@ -467,7 +460,6 @@
 				148E93C712656FEC0065EDD1 /* IBAInputRequestorFormField.m in Sources */,
 				148E93C912656FEC0065EDD1 /* IBALabelFormField.m in Sources */,
 				148E93CD12656FEC0065EDD1 /* IBAMultilineTextFormField.m in Sources */,
-				148E93CF12656FEC0065EDD1 /* IBAMultilineTextViewController.m in Sources */,
 				148E93D112656FEC0065EDD1 /* IBAPasswordFormField.m in Sources */,
 				148E93D312656FEC0065EDD1 /* IBATextFormField.m in Sources */,
 				148E93D712656FEC0065EDD1 /* IBADateFormFieldCell.m in Sources */,

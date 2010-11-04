@@ -20,7 +20,7 @@
 
 		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"text" title:@"Text"] autorelease]];
 		[basicFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKeyPath:@"password" title:@"Password"] autorelease]];
-		[basicFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKey:@"multiLineText" title:nil] autorelease]];
+		[basicFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKeyPath:@"multiLineText" title:nil] autorelease]];
 		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanValue" title:@"Boolean"] autorelease]];
 
 		// Styled form fields
