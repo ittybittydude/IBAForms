@@ -65,10 +65,13 @@
 }
 
 - (void)setFormFieldStyle:(IBAFormFieldStyle *)style {
-	[formFieldStyle release];
-	formFieldStyle = [style retain];
-
-	self.styleApplied = NO;
+	if (style != formFieldStyle) {
+		IBAFormFieldStyle *oldStyle = formFieldStyle;
+		formFieldStyle = [style retain];
+		IBA_RELEASE_SAFELY(oldStyle);
+		
+		self.styleApplied = NO;
+	}
 }
 
 - (void)applyFormFieldStyle {

@@ -44,16 +44,22 @@
 
 
 - (NSString *)formFieldStringValue {
-	NSMutableArray *itemNames = [[[NSMutableArray alloc] init] autorelease];
+	NSString *value = nil;
+	
+	if (self.formFieldValue != nil) {
+		NSMutableArray *itemNames = [[[NSMutableArray alloc] init] autorelease];
 
-	for (id<IBAPickListOption> item in [self pickListOptions]) {
-		NSString *itemName = [item name];
-    if (([[self formFieldValue] containsObject:item]) && (itemName.length > 0)) {
-			[itemNames addObject:itemName];
+		for (id<IBAPickListOption> item in [self pickListOptions]) {
+			NSString *itemName = [item name];
+			if (([[self formFieldValue] containsObject:item]) && (itemName.length > 0)) {
+				[itemNames addObject:itemName];
+			}
 		}
+		
+		value = [itemNames componentsJoinedByString:@", "];
 	}
 
-	return [itemNames componentsJoinedByString:@", "];
+	return value;
 }
 
 
@@ -70,8 +76,10 @@
 }
 
 - (void)updateCellContents {
-	self.pickListCell.label.text = self.title;
-	self.pickListCell.textField.text = [self formFieldStringValue];
+	if (pickListCell != nil) {
+		self.pickListCell.label.text = self.title;
+		self.pickListCell.textField.text = [self formFieldStringValue];
+	}
 }
 
 
