@@ -147,7 +147,6 @@
 - (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
 	[super setModelValue:value forKeyPath:keyPath];
 	
-	NSLog(@"Model:");
 	NSLog(@"%@", [self.model description]);
 }
 
