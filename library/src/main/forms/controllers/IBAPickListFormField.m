@@ -133,6 +133,10 @@
 	return options;
 }
 
+- (NSString *)description {
+	return self.name;
+}
+
 @end
 
 
