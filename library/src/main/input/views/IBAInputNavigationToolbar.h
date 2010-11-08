@@ -21,8 +21,8 @@ typedef enum {
 
 
 @interface IBAInputNavigationToolbar : UIToolbar {
-	UIBarButtonItem *doneButton;
-	UISegmentedControl *nextPreviousButton;
+	UIBarButtonItem *doneButton_;
+	UISegmentedControl *nextPreviousButton_;
 }
 
 @property (nonatomic, retain) UIBarButtonItem *doneButton;

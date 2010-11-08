@@ -16,10 +16,10 @@
 
 
 @interface IBAInputManagerView : UIView {
-	IBAInputNavigationToolbar *inputNavigationToolbar;
-	UIView *inputProviderView;
-	UIView *previousInputProviderView;
-	BOOL inputNavigationToolbarEnabled;
+	IBAInputNavigationToolbar *inputNavigationToolbar_;
+	UIView *inputProviderView_;
+	UIView *previousInputProviderView_;
+	BOOL inputNavigationToolbarEnabled_;
 }
 
 @property (nonatomic, readonly) IBAInputNavigationToolbar *inputNavigationToolbar;
