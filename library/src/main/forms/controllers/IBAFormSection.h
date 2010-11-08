@@ -16,11 +16,11 @@
 #import "IBAFormModelManager.h"
 
 @interface IBAFormSection : NSObject {
-	NSString *headerTitle;
-	NSString *footerTitle;
-	NSMutableArray *formFields;
-	id<IBAFormModelManager> modelManager;
-	IBAFormFieldStyle *formFieldStyle;
+	NSString *headerTitle_;
+	NSString *footerTitle_;
+	NSMutableArray *formFields_;
+	id<IBAFormModelManager> modelManager_;
+	IBAFormFieldStyle *formFieldStyle_;
 }
 
 @property (nonatomic, copy) NSString *headerTitle;

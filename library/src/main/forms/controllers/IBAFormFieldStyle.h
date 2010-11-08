@@ -9,19 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface IBAFormFieldStyle : NSObject {
-	UIColor *labelTextColor;
-	UIColor *labelBackgroundColor;
-	UIFont *labelFont;
-	CGRect labelFrame;
-	UITextAlignment labelTextAlignment;
+	UIColor *labelTextColor_;
+	UIColor *labelBackgroundColor_;
+	UIFont *labelFont_;
+	CGRect labelFrame_;
+	UITextAlignment labelTextAlignment_;
 	
-	UIColor *valueTextColor;
-	UIColor *valueBackgroundColor;
-	UIFont *valueFont;
-	CGRect valueFrame;
-	UITextAlignment valueTextAlignment;
+	UIColor *valueTextColor_;
+	UIColor *valueBackgroundColor_;
+	UIFont *valueFont_;
+	CGRect valueFrame_;
+	UITextAlignment valueTextAlignment_;
 
-	UIColor *activeColor;
+	UIColor *activeColor_;
 }
 
 @property (nonatomic, retain) UIColor *labelTextColor;

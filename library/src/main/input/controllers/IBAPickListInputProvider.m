@@ -18,15 +18,15 @@
 
 @implementation IBAPickListInputProvider
 
-@synthesize pickListTableView;
-@synthesize inputRequestor;
+@synthesize pickListTableView = pickListTableView_;
+@synthesize inputRequestor = inputRequestor_;
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc
 {	
-	IBA_RELEASE_SAFELY(pickListTableView);
+	IBA_RELEASE_SAFELY(pickListTableView_);
 	
 	[super dealloc];
 }
@@ -34,22 +34,22 @@
 - (id)init {
 	self = [super init];
 	if (self != nil) {
-		pickListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 216) style:UITableViewStyleGrouped];
-		pickListTableView.dataSource = self;
-		pickListTableView.delegate = self;
-		pickListTableView.backgroundColor = [UIColor clearColor];
+		pickListTableView_ = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 216) style:UITableViewStyleGrouped];
+		pickListTableView_.dataSource = self;
+		pickListTableView_.delegate = self;
+		pickListTableView_.backgroundColor = [UIColor clearColor];
 	}
 	
 	return self;
 }
 
 
-- (void)setInputRequestor:(id<IBAInputRequestor>)anInputRequestor{
-	inputRequestor = anInputRequestor;
+- (void)setInputRequestor:(id<IBAInputRequestor>)inputRequestor{
+	inputRequestor_ = inputRequestor;
 	
-	if (anInputRequestor != nil) {
-		[[self pickListTableView] reloadData];
-		[[self pickListTableView] flashScrollIndicators];
+	if (inputRequestor != nil) {
+		[self.pickListTableView reloadData];
+		[self.pickListTableView flashScrollIndicators];
 	}
 }
 
@@ -94,7 +94,7 @@
 }
 
 - (NSArray *)pickListOptions {
-	return [[self pickListOptionsProvider] pickListOptions];
+	return [self.pickListOptionsProvider pickListOptions];
 }
 
 #pragma mark -

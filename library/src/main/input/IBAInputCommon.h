@@ -18,9 +18,7 @@
 // Data Types
 #define IBAInputDataTypeText @"IBAInputDataTypeText"
 #define IBAInputDataTypeNumber @"IBAInputDataTypeNumber"
-#define IBAInputDataTypeDecimalNumber @"IBAInputDataTypeDecimalNumber"
 #define IBAInputDataTypeDate @"IBAInputDataTypeDate"
 #define IBAInputDataTypeTime @"IBAInputDataTypeTime"
 #define IBAInputDataTypeDateTime @"IBAInputDataTypeDateTime"
-#define IBAInputDataTypeColor @"IBAInputDataTypeColor"
 #define IBAInputDataTypePickList @"IBAInputDataTypePickList"

@@ -19,10 +19,10 @@
 
 @implementation IBATextFormField
 
-@synthesize textFormFieldCell;
+@synthesize textFormFieldCell = textFormFieldCell_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(textFormFieldCell);
+	IBA_RELEASE_SAFELY(textFormFieldCell_);
 	
 	[super dealloc];
 }
@@ -37,13 +37,13 @@
 
 
 - (IBATextFormFieldCell *)textFormFieldCell {
-	if (textFormFieldCell == nil) {
-		textFormFieldCell = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
-		textFormFieldCell.textField.delegate = self;
-		textFormFieldCell.textField.enabled = NO;
+	if (textFormFieldCell_ == nil) {
+		textFormFieldCell_ = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+		textFormFieldCell_.textField.delegate = self;
+		textFormFieldCell_.textField.enabled = NO;
 	}
 	
-	return textFormFieldCell;
+	return textFormFieldCell_;
 }
 
 - (void)updateCellContents {
@@ -72,7 +72,7 @@
 - (void)activate {
 	[super activate];
 	
-	textFormFieldCell.textField.enabled = YES;
+	self.textFormFieldCell.textField.enabled = YES;
 	[self.textFormFieldCell.textField becomeFirstResponder];
 }
 

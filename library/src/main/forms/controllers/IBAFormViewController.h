@@ -18,10 +18,10 @@
 #import "IBAInputRequestorDataSource.h"
 
 @interface IBAFormViewController : UIViewController  <UITableViewDelegate, IBAInputRequestorDataSource> {
-	UITableView *tableView;
-	CGRect tableViewOriginalFrame;
-	IBAFormField *editingFormField; // The form field currently being edited
-	IBAFormDataSource *formDataSource;
+	UITableView *tableView_;
+	CGRect tableViewOriginalFrame_;
+	IBAFormField *editingFormField_; // The form field currently being edited
+	IBAFormDataSource *formDataSource_;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
@@ -30,6 +30,6 @@
 @property (nonatomic, assign) IBAFormField *editingFormField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
-	   formDataSource:(IBAFormDataSource *)aFormDataSource;
+	   formDataSource:(IBAFormDataSource *)formDataSource;
 
 @end

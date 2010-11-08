@@ -117,6 +117,14 @@
 		// Some examples of how you might use the button form field
 		IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:@"Buttons" footerTitle:nil];
 
+		IBAFormFieldStyle *buttonStyle = [[[IBAFormFieldStyle alloc] init] autorelease];
+		buttonStyle.labelTextColor = [UIColor colorWithRed:0.318 green:0.400 blue:0.569 alpha:1.0];
+		buttonStyle.labelFont = [UIFont boldSystemFontOfSize:14];
+		buttonStyle.labelTextAlignment = UITextAlignmentCenter;
+		buttonStyle.labelFrame = CGRectMake(10, 8, 280, 30);
+		
+		buttonsSection.formFieldStyle = buttonStyle;
+		
 		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Go to Google"
 																			 icon:nil
 																   executionBlock:^{

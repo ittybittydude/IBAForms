@@ -18,13 +18,14 @@
 typedef void (^IBAButtonFormFieldBlock)(void);
 
 @interface IBAButtonFormField : IBAFormField {
-	IBALabelFormCell *cell;
-	UIImage *iconImage;
-	IBAButtonFormFieldBlock executionBlock;
-	UIViewController *detailViewController;
+	IBALabelFormCell *cell_;
+	UIImage *iconImage_;
+	IBAButtonFormFieldBlock executionBlock_;
+	UIViewController *detailViewController_;
 }
 
 - (id)initWithTitle:(NSString*)title icon:(UIImage *)iconImage executionBlock:(IBAButtonFormFieldBlock)block;
 - (id)initWithTitle:(NSString*)title icon:(UIImage *)iconImage detailViewController:(UIViewController *)viewController;
 - (id)initWithTitle:(NSString*)title icon:(UIImage *)iconImage executionBlock:(IBAButtonFormFieldBlock)aBlock detailViewController:(UIViewController *)viewController;
+
 @end

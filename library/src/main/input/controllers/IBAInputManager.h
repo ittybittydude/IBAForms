@@ -25,10 +25,10 @@
 #define IBAInputManagerDidHideNotification @"IBAInputManagerDidHideNotification"
 
 @interface IBAInputManager : NSObject {
-	NSMutableDictionary *inputProviders;
-	id<IBAInputRequestorDataSource> inputRequestorDataSource;
-	id<IBAInputRequestor> activeInputRequestor;
-	IBAInputManagerView *inputManagerView;
+	NSMutableDictionary *inputProviders_;
+	id<IBAInputRequestorDataSource> inputRequestorDataSource_;
+	id<IBAInputRequestor> activeInputRequestor_;
+	IBAInputManagerView *inputManagerView_;
 }
 
 

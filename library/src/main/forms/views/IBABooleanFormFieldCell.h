@@ -16,7 +16,7 @@
 
 
 @interface IBABooleanFormFieldCell : IBAFormFieldCell {
-	UISwitch *switchControl;
+	UISwitch *switchControl_;
 }
 
 @property (nonatomic, retain) UISwitch *switchControl;

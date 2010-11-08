@@ -23,10 +23,10 @@ typedef enum {
 
 
 @interface IBADateFormField : IBAInputRequestorFormField {
-	IBADateFormFieldCell *dateFormFieldCell;
-	NSDateFormatter *dateFormatter;
-	IBADateFormFieldType dateFormFieldType;
-	NSDate *defaultValue;
+	IBADateFormFieldCell *dateFormFieldCell_;
+	NSDateFormatter *dateFormatter_;
+	IBADateFormFieldType dateFormFieldType_;
+	NSDate *defaultValue_;
 }
 
 @property (nonatomic, retain) IBADateFormFieldCell *dateFormFieldCell;
@@ -34,10 +34,10 @@ typedef enum {
 @property (nonatomic, assign) IBADateFormFieldType dateFormFieldType;
 @property (nonatomic, retain) NSDate *defaultValue;
 
-- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle defaultValue:(NSDate *)date;
-- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType;
-- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
-	dateFormatter:(NSDateFormatter *)aDateFormatter;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
+	dateFormatter:(NSDateFormatter *)dateFormatter;
 
 - (void)clear:(id)sender;
 

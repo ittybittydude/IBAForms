@@ -17,28 +17,28 @@
 
 @implementation IBAFormFieldStyle
 
-@synthesize labelTextColor;
-@synthesize labelTextAlignment;
-@synthesize labelBackgroundColor;
-@synthesize labelFont;
-@synthesize labelFrame;
-@synthesize valueTextColor;
-@synthesize valueBackgroundColor;
-@synthesize valueFont;
-@synthesize valueFrame;
-@synthesize valueTextAlignment;
-@synthesize activeColor;
+@synthesize labelTextColor = labelTextColor_;
+@synthesize labelTextAlignment = labelTextAlignment_;
+@synthesize labelBackgroundColor = labelBackgroundColor_;
+@synthesize labelFont = labelFont_;
+@synthesize labelFrame = labelFrame_;
+@synthesize valueTextColor = valueTextColor_;
+@synthesize valueBackgroundColor = valueBackgroundColor_;
+@synthesize valueFont = valueFont_;
+@synthesize valueFrame = valueFrame_;
+@synthesize valueTextAlignment = valueTextAlignment_;
+@synthesize activeColor = activeColor_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(labelTextColor);
-	IBA_RELEASE_SAFELY(labelBackgroundColor);
-	IBA_RELEASE_SAFELY(labelFont);
+	IBA_RELEASE_SAFELY(labelTextColor_);
+	IBA_RELEASE_SAFELY(labelBackgroundColor_);
+	IBA_RELEASE_SAFELY(labelFont_);
 	
-	IBA_RELEASE_SAFELY(valueTextColor);
-	IBA_RELEASE_SAFELY(valueBackgroundColor);
-	IBA_RELEASE_SAFELY(valueFont);
+	IBA_RELEASE_SAFELY(valueTextColor_);
+	IBA_RELEASE_SAFELY(valueBackgroundColor_);
+	IBA_RELEASE_SAFELY(valueFont_);
 	
-	IBA_RELEASE_SAFELY(activeColor);
+	IBA_RELEASE_SAFELY(activeColor_);
 
 	[super dealloc];
 }
@@ -61,6 +61,7 @@
 
 		self.activeColor = IBAFormFieldActiveColor;
 	}
+	
 	return self;
 }
 

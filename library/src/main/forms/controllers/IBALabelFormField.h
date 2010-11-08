@@ -17,7 +17,7 @@
 
 
 @interface IBALabelFormField : IBAFormField {
-	IBALabelFormCell *cell;
+	IBALabelFormCell *cell_;
 }
 
 @end

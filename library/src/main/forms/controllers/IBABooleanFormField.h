@@ -16,7 +16,7 @@
 #import "IBABooleanFormFieldCell.h"
 
 @interface IBABooleanFormField : IBAFormField {
-	IBABooleanFormFieldCell *booleanFormFieldCell;
+	IBABooleanFormFieldCell *booleanFormFieldCell_;
 }
 
 @property (nonatomic, retain) IBABooleanFormFieldCell *booleanFormFieldCell;

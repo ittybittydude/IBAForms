@@ -15,8 +15,8 @@
 #import "IBATextFormFieldCell.h"
 
 @interface IBADateFormFieldCell : IBATextFormFieldCell{
-	UIButton *clearButton;
-	BOOL nullable;
+	UIButton *clearButton_;
+	BOOL nullable_;
 }
 
 @property (nonatomic, retain) UIButton *clearButton;

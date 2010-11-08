@@ -10,8 +10,8 @@
 #import "IBAInputProvider.h"
 
 @interface IBAPickListInputProvider : NSObject <IBAInputProvider, UITableViewDataSource, UITableViewDelegate> {
-	UITableView *pickListTableView;
-	id<IBAInputRequestor> inputRequestor;
+	UITableView *pickListTableView_;
+	id<IBAInputRequestor> inputRequestor_;
 }
 
 @property (nonatomic, readonly) UITableView *pickListTableView;

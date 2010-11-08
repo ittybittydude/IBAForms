@@ -19,7 +19,6 @@
 #import <IBAForms/IBADateFormField.h>
 #import <IBAForms/IBADateFormFieldCell.h>
 #import <IBAForms/IBADateInputProvider.h>
-#import <IBAForms/IBAEventPassthroughTextView.h>
 #import <IBAForms/IBAFormConstants.h>
 #import <IBAForms/IBAFormDataSource.h>
 #import <IBAForms/IBAFormField.h>

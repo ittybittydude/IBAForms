@@ -32,29 +32,29 @@
 
 @implementation IBAFormViewController
 
-@synthesize tableView;
-@synthesize tableViewOriginalFrame;
-@synthesize formDataSource;
-@synthesize editingFormField;
+@synthesize tableView = tableView_;
+@synthesize tableViewOriginalFrame = tableViewOriginalFrame_;
+@synthesize formDataSource = formDataSource_;
+@synthesize editingFormField = editingFormField_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
 
 - (void)dealloc {
 	[self releaseViews];
-	IBA_RELEASE_SAFELY(formDataSource);
+	IBA_RELEASE_SAFELY(formDataSource_);
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
     [super dealloc];
 }
 
 - (void)releaseViews {
-	IBA_RELEASE_SAFELY(tableView);
+	IBA_RELEASE_SAFELY(tableView_);
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)aFormDataSource {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-		self.formDataSource = aFormDataSource;
+		self.formDataSource = formDataSource;
 		self.hidesBottomBarWhenPushed = YES;
 		
 		[self registerForNotifications];
@@ -93,7 +93,7 @@
 	self.tableView.dataSource = self.formDataSource;
 	self.tableView.delegate = self;
 	
-	tableViewOriginalFrame = self.tableView.frame;
+	tableViewOriginalFrame_ = self.tableView.frame;
 }
 
 - (void)viewDidUnload {
@@ -105,14 +105,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	// TODO. Need to factor this out so clients of the form view controller can set the bar style and have this stype 
-	// reapplied every time the view controller appears (e.g. displaying the photo picker can change the bar style).
-	UINavigationBar* bar = self.navigationController.navigationBar;
-	bar.barStyle = UIBarStyleBlack;
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
-	
 	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:self];
-	
 	[self.tableView reloadData];
 }
 
@@ -128,13 +121,13 @@
 
 // this setter also sets the datasource of the tableView and reloads the table
 - (void)setFormDataSource:(IBAFormDataSource *)dataSource {
-	if (dataSource != formDataSource) {
-		IBAFormDataSource *oldDataSource = formDataSource;
-		formDataSource = [dataSource retain];
+	if (dataSource != formDataSource_) {
+		IBAFormDataSource *oldDataSource = formDataSource_;
+		formDataSource_ = [dataSource retain];
 		IBA_RELEASE_SAFELY(oldDataSource);
 
-		tableView.dataSource = formDataSource;
-		[tableView reloadData];
+		self.tableView.dataSource = formDataSource_;
+		[self.tableView reloadData];
 	}
 }
 
@@ -221,9 +214,7 @@
 - (void)adjustTableViewHeightForCoveringRect:(CGRect)coveringRect {
 	CGRect newTableViewFrame = self.tableView.frame;
 	newTableViewFrame.size.height = self.tableViewOriginalFrame.size.height - coveringRect.size.height;
-	
-  
-  
+
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.2];
 	[UIView setAnimationDelegate:self];

@@ -17,11 +17,11 @@
 
 @implementation IBADateFormFieldCell
 
-@synthesize clearButton;
-@synthesize nullable;
+@synthesize clearButton = clearButton_;
+@synthesize nullable = nullable_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(clearButton);
+	IBA_RELEASE_SAFELY(clearButton_);
 	
 	[super dealloc];
 }
@@ -29,11 +29,12 @@
 
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
-		self.clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[clearButton setImage:[UIImage imageNamed:@"clear.png"] forState:UIControlStateNormal];
 		clearButton.contentMode = UIViewContentModeCenter;
 		clearButton.center = CGPointMake(264, CGRectGetMidY(self.cellView.bounds) + 2);
 		clearButton.frame = CGRectInset(clearButton.frame, -20, -20);
+		self.clearButton = clearButton;
 		self.textField.enabled = NO;
 	}
 	

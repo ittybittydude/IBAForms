@@ -48,17 +48,17 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 
-@synthesize inputRequestorDataSource;
-@synthesize inputManagerView;
+@synthesize inputRequestorDataSource = inputRequestorDataSource_;
+@synthesize inputManagerView = inputManagerView_;
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(inputProviders);
-	IBA_RELEASE_SAFELY(inputRequestorDataSource);
-	IBA_RELEASE_SAFELY(activeInputRequestor);
-	IBA_RELEASE_SAFELY(inputManagerView);
+	IBA_RELEASE_SAFELY(inputProviders_);
+	IBA_RELEASE_SAFELY(inputRequestorDataSource_);
+	IBA_RELEASE_SAFELY(activeInputRequestor_);
+	IBA_RELEASE_SAFELY(inputManagerView_);
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
@@ -68,13 +68,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 - (id)init {
 	self = [super init];
 	if (self != nil) {
-		inputProviders = [[NSMutableDictionary alloc] init];
+		inputProviders_ = [[NSMutableDictionary alloc] init];
 		
-		inputManagerView = [[IBAInputManagerView alloc] initWithFrame:CGRectMake(0, 0, 320, 260)];
-		
-		inputManagerView.inputNavigationToolbar.doneButton.target = self;
-		inputManagerView.inputNavigationToolbar.doneButton.action = @selector(deactivateActiveInputRequestor);
-		[inputManagerView.inputNavigationToolbar.nextPreviousButton addTarget:self action:@selector(nextPreviousButtonSelected) 
+		inputManagerView_ = [[IBAInputManagerView alloc] initWithFrame:CGRectMake(0, 0, 320, 260)];	
+		inputManagerView_.inputNavigationToolbar.doneButton.target = self;
+		inputManagerView_.inputNavigationToolbar.doneButton.action = @selector(deactivateActiveInputRequestor);
+		[inputManagerView_.inputNavigationToolbar.nextPreviousButton addTarget:self action:@selector(nextPreviousButtonSelected) 
 			forControlEvents:UIControlEventValueChanged];
 		
 		// Setup some default input providers
@@ -109,21 +108,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 
 - (BOOL)setActiveInputRequestor:(id<IBAInputRequestor>)inputRequestor {
 	id<IBAInputProvider>oldInputProvider = nil;
-	if (activeInputRequestor != nil) {
-		oldInputProvider = [self inputProviderForRequestor:activeInputRequestor];
+	if (activeInputRequestor_ != nil) {
+		oldInputProvider = [self inputProviderForRequestor:activeInputRequestor_];
 		
-		if (![activeInputRequestor deactivate]) {
+		if (![activeInputRequestor_ deactivate]) {
 			return NO;
 		}
 		
 		oldInputProvider.inputRequestor = nil;
-		[activeInputRequestor release];
+		[activeInputRequestor_ release];
 	}
 	
 	if (inputRequestor != nil)  {
-		activeInputRequestor = [inputRequestor retain];
+		activeInputRequestor_ = [inputRequestor retain];
 
-		id<IBAInputProvider>newInputProvider = [self inputProviderForRequestor:activeInputRequestor];
+		id<IBAInputProvider>newInputProvider = [self inputProviderForRequestor:activeInputRequestor_];
 		
 		if (newInputProvider != oldInputProvider) {
 			[self displayInputProvider:newInputProvider];
@@ -132,20 +131,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		// NOTE: the input requestor must be activated after the input provider has been displayed because the
 		// act of displaying the input provider may affect the visibility of the input requestor, which needs
 		// to be compensated for when the requestor is activated.
-		[activeInputRequestor activate];
+		[activeInputRequestor_ activate];
 		
-		newInputProvider.inputRequestor = activeInputRequestor;
+		newInputProvider.inputRequestor = activeInputRequestor_;
 	} else {
 		// The new input requestor is nil, so hide the input manager's view
 		[self hideInputManagerView];
-		activeInputRequestor = nil;
+		activeInputRequestor_ = nil;
 	}
 	
 	return YES;
 }
 
 - (id<IBAInputRequestor>)activeInputRequestor {
-	return activeInputRequestor;
+	return activeInputRequestor_;
 }
 
 #pragma mark -
@@ -167,15 +166,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 #pragma mark Input Provider Registration/Deregistration
 
 - (void)registerInputProvider:(id<IBAInputProvider>)provider forDataType:(NSString *)dataType {
-	[inputProviders setValue:provider forKey:dataType];
+	[inputProviders_ setValue:provider forKey:dataType];
 }
 
 - (void)deregisterInputProviderForDataType:(NSString *)dataType {
-	[inputProviders removeObjectForKey:dataType];
+	[inputProviders_ removeObjectForKey:dataType];
 }
 
 - (id<IBAInputProvider>)inputProviderForDataType:(NSString *)dataType {
-	return [inputProviders objectForKey:dataType];
+	return [inputProviders_ objectForKey:dataType];
 }
 
 

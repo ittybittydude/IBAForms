@@ -17,18 +17,18 @@
 
 @implementation IBAFormSection
 
-@synthesize headerTitle;
-@synthesize footerTitle;
-@synthesize formFields;
-@synthesize modelManager;
-@synthesize formFieldStyle;
+@synthesize headerTitle = headerTitle_;
+@synthesize footerTitle = footerTitle_;
+@synthesize formFields = formFields_;
+@synthesize modelManager = modelManager_;
+@synthesize formFieldStyle = formFieldStyle_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(headerTitle);
-	IBA_RELEASE_SAFELY(footerTitle);
-	IBA_RELEASE_SAFELY(formFields);
-	IBA_RELEASE_SAFELY(modelManager);
-	IBA_RELEASE_SAFELY(formFieldStyle);
+	IBA_RELEASE_SAFELY(headerTitle_);
+	IBA_RELEASE_SAFELY(footerTitle_);
+	IBA_RELEASE_SAFELY(formFields_);
+	IBA_RELEASE_SAFELY(modelManager_);
+	IBA_RELEASE_SAFELY(formFieldStyle_);
 	
 	[super dealloc];
 }
@@ -38,7 +38,7 @@
 	if (self != nil) {
 		self.headerTitle = header;
 		self.footerTitle = footer;
-		formFields = [[NSMutableArray alloc] init];
+		formFields_ = [[NSMutableArray alloc] init];
 	}
 	
 	return self;

@@ -17,10 +17,10 @@
 
 @implementation IBABooleanFormFieldCell
 
-@synthesize switchControl;
+@synthesize switchControl = switchControl_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(switchControl);
+	IBA_RELEASE_SAFELY(switchControl_);
 	
 	[super dealloc];
 }

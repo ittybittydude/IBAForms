@@ -23,10 +23,10 @@
 
 @implementation IBABooleanFormField
 
-@synthesize booleanFormFieldCell;
+@synthesize booleanFormFieldCell = booleanFormFieldCell_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(booleanFormFieldCell);
+	IBA_RELEASE_SAFELY(booleanFormFieldCell_);
 	
 	[super dealloc];
 }
@@ -39,12 +39,12 @@
 }
 
 - (IBABooleanFormFieldCell *)booleanFormFieldCell {
-	if (booleanFormFieldCell == nil) {
-		booleanFormFieldCell = [[IBABooleanFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
-		[booleanFormFieldCell.switchControl addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
+	if (booleanFormFieldCell_ == nil) {
+		booleanFormFieldCell_ = [[IBABooleanFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+		[booleanFormFieldCell_.switchControl addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
 	}
 	
-	return booleanFormFieldCell;
+	return booleanFormFieldCell_;
 }
 
 - (void)updateCellContents {
