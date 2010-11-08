@@ -26,7 +26,7 @@
 	
 	NSMutableDictionary *formModel = [[[NSMutableDictionary alloc] init] autorelease];
 	FormDataSource *formDataSource = [[[FormDataSource alloc] initWithModel:formModel] autorelease];
-	FormController *formController = [[FormController alloc] initWithNibName:nil bundle:nil formDataSource:formDataSource];
+	FormController *formController = [[[FormController alloc] initWithNibName:nil bundle:nil formDataSource:formDataSource] autorelease];
 	[formController setTitle:@"IBAForms Showcase"];
 	UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:formController] autorelease];
 	
