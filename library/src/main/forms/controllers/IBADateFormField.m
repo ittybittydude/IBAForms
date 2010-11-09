@@ -85,8 +85,10 @@
 }
 
 - (void)updateCellContents {
-	self.dateFormFieldCell.label.text = self.title;
-	self.dateFormFieldCell.textField.text = [self formFieldStringValue];
+	if (dateFormFieldCell_ != nil) {
+		self.dateFormFieldCell.label.text = self.title;
+		self.dateFormFieldCell.textField.text = [self formFieldStringValue];
+	}
 }
 
 #pragma mark -

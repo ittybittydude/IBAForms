@@ -15,6 +15,14 @@
 #import "IBADateFormFieldCell.h"
 #import "IBAFormConstants.h"
 
+static UIImage *clearImage_ = nil;
+
+
+@interface IBADateFormFieldCell ()
++ (UIImage *)clearImage;
+@end
+
+
 @implementation IBADateFormFieldCell
 
 @synthesize clearButton = clearButton_;
@@ -30,9 +38,9 @@
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
 		UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		[clearButton setImage:[UIImage imageNamed:@"clear.png"] forState:UIControlStateNormal];
+		[clearButton setImage:[IBADateFormFieldCell clearImage] forState:UIControlStateNormal];
 		clearButton.contentMode = UIViewContentModeCenter;
-		clearButton.center = CGPointMake(264, CGRectGetMidY(self.cellView.bounds) + 2);
+		clearButton.center = CGPointMake(264, CGRectGetMidY(self.cellView.bounds));
 		clearButton.frame = CGRectInset(clearButton.frame, -20, -20);
 		self.clearButton = clearButton;
 		self.textField.enabled = NO;
@@ -55,6 +63,43 @@
 	}
 	
 	return [super deactivate];
+}
+
++ (UIImage *)clearImage {
+	if (clearImage_ == nil) {
+		CGFloat size = 19;
+		CGFloat strokeInset = 5;
+		CGFloat lineWidth = 2;
+		
+		UIGraphicsBeginImageContextWithOptions(CGSizeMake(size, size), NO, [[UIScreen mainScreen] scale]);
+		UIBezierPath* circle = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, size, size)];	
+		
+		[[UIColor colorWithRed:0.698 green:0.698 blue:0.698 alpha:1.0] setFill];
+		[circle fill];
+
+		UIBezierPath *stroke1 = [UIBezierPath bezierPath];
+		stroke1.lineWidth = lineWidth;
+		stroke1.lineCapStyle = kCGLineCapRound;
+		[stroke1 moveToPoint:CGPointMake(strokeInset, strokeInset)];
+		[stroke1 addLineToPoint:CGPointMake(size - strokeInset, size - strokeInset)];
+		[stroke1 closePath];
+		
+		[[UIColor whiteColor] setStroke];
+		[stroke1 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
+		
+		UIBezierPath *stroke2 = [UIBezierPath bezierPath];
+		stroke2.lineWidth = lineWidth;
+		stroke2.lineCapStyle = kCGLineCapRound;
+		[stroke2 moveToPoint:CGPointMake(size - strokeInset, strokeInset)];
+		[stroke2 addLineToPoint:CGPointMake(strokeInset, size - strokeInset)];
+		[stroke2 closePath];
+		[stroke2 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
+		
+		clearImage_ = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+	}
+	
+	return clearImage_;
 }
 
 @end
