@@ -5,12 +5,13 @@ IBAForms is a framework for building data entry screens on the iPhone. You can q
 Features
 ============
 IBAForms:
- * provides a set of common form field types (text, password, boolean, date, pick list). 
- * manages focus and navigation between form fields.
- * supports binding a form to its backing model via KVC.
- * supports transformation of form values via NSValueTransformer.
- * provides basic styling capabilities at the form, section and field level.
- * provides extension points for creating your own custom form fields.
+
+ *  provides a set of common form field types (text, password, boolean, date, pick list). 
+ *  manages focus and navigation between form fields.
+ *  supports binding a form to its backing model via KVC.
+ *  supports transformation of form values via NSValueTransformer.
+ *  provides basic styling capabilities at the form, section and field level.
+ *  provides extension points for creating your own custom form fields.
 
 About
 ============
