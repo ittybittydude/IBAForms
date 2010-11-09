@@ -15,7 +15,7 @@
 #import "IBAFormFieldCell.h"
 
 
-@interface IBABooleanFormFieldCell : IBAFormFieldCell {
+@interface IBABooleanSwitchCell : IBAFormFieldCell {
 	UISwitch *switchControl_;
 }
 

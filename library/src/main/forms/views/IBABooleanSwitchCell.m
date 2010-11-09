@@ -12,10 +12,10 @@
 // permissions and limitations under the License.
 //
 
-#import "IBABooleanFormFieldCell.h"
+#import "IBABooleanSwitchCell.h"
 #import "IBAFormConstants.h"
 
-@implementation IBABooleanFormFieldCell
+@implementation IBABooleanSwitchCell
 
 @synthesize switchControl = switchControl_;
 

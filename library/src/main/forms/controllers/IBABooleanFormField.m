@@ -20,42 +20,107 @@
 @end
 
 
-
 @implementation IBABooleanFormField
 
-@synthesize booleanFormFieldCell = booleanFormFieldCell_;
+@synthesize switchCell = switchCell_;
+@synthesize checkCell = checkCell_;
+@synthesize booleanFormFieldType = booleanFormFieldType_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(booleanFormFieldCell_);
+	IBA_RELEASE_SAFELY(switchCell_);
+	IBA_RELEASE_SAFELY(checkCell_);
 	
 	[super dealloc];
 }
+
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer 
+				 type:(IBABooleanFormFieldType)booleanFormFieldType {
+	self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer];
+	if (self != nil) {
+		self.booleanFormFieldType = booleanFormFieldType;
+	}
+	
+	return self;	
+}
+
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title type:(IBABooleanFormFieldType)booleanFormFieldType {
+	return [self initWithKeyPath:keyPath title:title valueTransformer:nil type:booleanFormFieldType];
+}
+
 
 #pragma mark -
 #pragma mark Cell management
 
 - (IBAFormFieldCell *)cell {
-	return [self booleanFormFieldCell];
-}
-
-- (IBABooleanFormFieldCell *)booleanFormFieldCell {
-	if (booleanFormFieldCell_ == nil) {
-		booleanFormFieldCell_ = [[IBABooleanFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
-		[booleanFormFieldCell_.switchControl addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
+	IBAFormFieldCell *cell = nil;
+	
+	switch (self.booleanFormFieldType) {
+		case IBABooleanFormFieldTypeSwitch:
+			cell = [self switchCell];
+			break;
+		case IBABooleanFormFieldTypeCheck:
+			cell = [self checkCell];
+			break;
+		default:
+			NSAssert(NO, @"Invalid booleanFormFieldType");
+			break;
 	}
 	
-	return booleanFormFieldCell_;
+	return cell;
+}
+
+- (IBABooleanSwitchCell *)switchCell {
+	if (switchCell_ == nil) {
+		switchCell_ = [[IBABooleanSwitchCell alloc] initWithFormFieldStyle:self.formFieldStyle 
+																		reuseIdentifier:@"IBABooleanSwitchCell"];
+	
+		[switchCell_.switchControl addTarget:self action:@selector(switchValueChanged:) 
+									  forControlEvents:UIControlEventValueChanged];
+	}
+	
+	return switchCell_;
+}
+
+- (IBABooleanCheckCell *)checkCell {
+	if (checkCell_ == nil) {
+		checkCell_ = [[IBABooleanCheckCell alloc] initWithFormFieldStyle:self.formFieldStyle 
+														   reuseIdentifier:@"IBABooleanCheckCell"];
+	}
+	
+	return checkCell_;
 }
 
 - (void)updateCellContents {
-	self.booleanFormFieldCell.label.text = self.title;
-	[self.booleanFormFieldCell.switchControl setOn:[[self formFieldValue] boolValue]];
+	switch (self.booleanFormFieldType) {
+		case IBABooleanFormFieldTypeSwitch:
+		{
+			self.switchCell.label.text = self.title;
+			[self.switchCell.switchControl setOn:[[self formFieldValue] boolValue]];
+			break;
+		}
+		case IBABooleanFormFieldTypeCheck:
+		{
+			self.checkCell.label.text = self.title;
+			self.checkCell.accessoryType = ([[self formFieldValue] boolValue]) ? UITableViewCellAccessoryCheckmark : 
+				UITableViewCellAccessoryNone;
+			break;
+		}
+		default:
+			NSAssert(NO, @"Invalid booleanFormFieldType");
+			break;
+	}
 }
 
-	 
+- (void)select {
+	if (self.booleanFormFieldType == IBABooleanFormFieldTypeCheck) {
+		[self setFormFieldValue:[NSNumber numberWithBool:![[self formFieldValue] boolValue]]];
+		[self updateCellContents];
+	}
+}
+
 - (void)switchValueChanged:(id)sender {
-	if (sender == self.booleanFormFieldCell.switchControl) {
-		[self setFormFieldValue:[NSNumber numberWithBool:self.booleanFormFieldCell.switchControl.on]];
+	if (sender == self.switchCell.switchControl) {
+		[self setFormFieldValue:[NSNumber numberWithBool:self.switchCell.switchControl.on]];
 	}
 }
 
