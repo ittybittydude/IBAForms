@@ -16,7 +16,7 @@
 
 @interface IBAButtonFormField ()
 @property (nonatomic, retain) UIImage *iconImage;
-@property (nonatomic, retain) IBAButtonFormFieldBlock executionBlock;
+@property (nonatomic, copy) IBAButtonFormFieldBlock executionBlock;
 @end
 
 

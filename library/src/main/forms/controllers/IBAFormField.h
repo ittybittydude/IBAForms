@@ -32,7 +32,7 @@
 @property (nonatomic, copy) NSString *keyPath;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, readonly) IBAFormFieldCell *cell;
-@property (nonatomic, retain) id<IBAFormModelManager> modelManager;
+@property (nonatomic, assign) id<IBAFormModelManager> modelManager;
 @property (nonatomic, assign) id<IBAFormFieldDelegate> delegate;
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
 @property (nonatomic, assign, getter=isNullable) BOOL nullable;
