@@ -31,7 +31,6 @@
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(keyPath_);
 	IBA_RELEASE_SAFELY(title_);
-	IBA_RELEASE_SAFELY(modelManager_);
 	IBA_RELEASE_SAFELY(formFieldStyle_);
 	IBA_RELEASE_SAFELY(valueTransformer_);
 
