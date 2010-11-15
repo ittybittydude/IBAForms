@@ -61,9 +61,7 @@
 
 - (void)setModelManager:(id<IBAFormModelManager>) modelManager {
 	if (modelManager != modelManager_) {
-		id<IBAFormModelManager> oldModelManager = modelManager_;
-		modelManager_ = [modelManager retain];
-		IBA_RELEASE_SAFELY(oldModelManager);
+		modelManager_ = modelManager;
 
 		// When the model manager changes we should update the content of the cell
 		[self updateCellContents];
