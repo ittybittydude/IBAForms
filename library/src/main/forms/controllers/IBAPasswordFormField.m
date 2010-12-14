@@ -18,14 +18,11 @@
 
 @implementation IBAPasswordFormField
 
-- (id)initWithKeyPath:(NSString*)aKeyPath title:(NSString*)aTitle;
-{
-    if (self = [super initWithKeyPath:aKeyPath title:aTitle]) {
-		IBATextFormFieldCell *formFieldCell = self.textFormFieldCell;
-		formFieldCell.textField.secureTextEntry = YES;
-	}
-
-	return self;
+- (void)setFormFieldStyle:(IBAFormFieldStyle *)formFieldStyle {
+	[super setFormFieldStyle:formFieldStyle];
+	
+	IBATextFormFieldCell *formFieldCell = self.textFormFieldCell;
+	formFieldCell.textField.secureTextEntry = YES;	
 }
 
 @end
