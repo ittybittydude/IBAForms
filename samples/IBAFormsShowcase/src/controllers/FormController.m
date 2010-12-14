@@ -15,12 +15,16 @@
 {
 	[super loadView];
 
-	UITableView *formTableView = [[[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320., 460.) style:UITableViewStyleGrouped] autorelease];
+	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
 	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 
 	[self setTableView:formTableView];
 	[self setView:formTableView];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	return YES;
+}
 
 @end
