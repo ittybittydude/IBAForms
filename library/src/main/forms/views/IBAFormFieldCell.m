@@ -35,11 +35,12 @@
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 
 		self.cellView = [[[UIView alloc] initWithFrame:self.contentView.bounds] autorelease];
+		self.cellView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.cellView.userInteractionEnabled = YES;
 		[self.contentView addSubview:self.cellView];
 
 		// Create a label
-		self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+		self.label = [[[UILabel alloc] initWithFrame:style.labelFrame] autorelease];
 		self.label.adjustsFontSizeToFitWidth = YES;
 		self.label.minimumFontSize = 10;
 		[self.cellView addSubview:self.label];
@@ -79,7 +80,7 @@
 	self.label.textAlignment = self.formFieldStyle.labelTextAlignment;
 	self.label.backgroundColor = self.formFieldStyle.labelBackgroundColor;
 	self.backgroundColor = self.formFieldStyle.labelBackgroundColor;
-	self.label.frame = self.formFieldStyle.labelFrame;
+//	self.label.frame = self.formFieldStyle.labelFrame;
 
 	self.styleApplied = YES;
 }

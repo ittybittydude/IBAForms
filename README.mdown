@@ -6,16 +6,42 @@ Features
 ============
 IBAForms:
 
- *  provides a set of common form field types (text, password, boolean, date, pick list). 
- *  manages focus and navigation between form fields.
- *  supports binding a form to its backing model via KVC.
- *  supports transformation of form values via NSValueTransformer.
- *  provides basic styling capabilities at the form, section and field level.
- *  provides extension points for creating your own custom form fields.
+ *  Provides a set of common form field types (text, password, boolean, date, pick list). 
+ *  Manages focus and navigation between form fields.
+ *  Supports binding a form to its backing model via KVC.
+ *  Supports transformation of form values via NSValueTransformer.
+ *  Provides basic styling capabilities at the form, section and field level.
+ *  Provides extension points for creating your own custom form fields.
+
+
+Installation
+============
+
+IBAForms is distributed as an XCode static library project that you can include as a dependency in your own projects. To add IBAForms to your project:
+
+ *  Clone the IBAForms git repository: 'git clone git@github.com:ittybittydude/IBAForms.git'
+ *  Drag the library/IBAForms.xcodeproj file to the 'Frameworks' folder of your XCode project
+ *  When the dialog appears, make sure you uncheck the 'Copy items into destination group's folder (if needed)' checkbox and 'Reference Type:' is 'Relative to Project'
+ *  To link with the static library click the IBAForms.xcodeproj 
+ *  
+ *  
+
 
 About
 ============
 
-IBAForms is brought to you by Itty Bitty Apps under the Apache 2.0 license. If you like IBAForms, or you've used it in one of your projects, [drop us a line](http://ittybittyapps.com/contact-us/), we'd love to hear about it.
+IBAForms is brought to you by Itty Bitty Apps. If you like IBAForms, or you've used it in one of your projects, [drop us a line](http://ittybittyapps.com/contact-us/), we'd love to hear about it.
 
 [http://ittybittyapps.com](http://ittybittyapps.com)
+
+
+License
+============
+
+Copyright 2010 Itty Bitty Apps Pty Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at 
+
+http://www.apache.org/licenses/LICENSE-2.0 
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

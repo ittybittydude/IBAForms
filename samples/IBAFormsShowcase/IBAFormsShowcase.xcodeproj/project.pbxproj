@@ -11,7 +11,6 @@
 		14BA8E5812681D03005456E6 /* IBAFormsShowcaseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA8E5312681D03005456E6 /* IBAFormsShowcaseAppDelegate.m */; };
 		14BA8E5D12681F3D005456E6 /* FormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA8E5C12681F3D005456E6 /* FormController.m */; };
 		14BA8E7112682042005456E6 /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BA8E6612681FC9005456E6 /* libIBAForms.a */; };
-		14BA90091269A7EC005456E6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BA90081269A7EC005456E6 /* CoreData.framework */; };
 		14BA900E1269A839005456E6 /* FormDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA900D1269A839005456E6 /* FormDataSource.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -44,7 +43,6 @@
 		14BA8E5B12681F3D005456E6 /* FormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormController.h; sourceTree = "<group>"; };
 		14BA8E5C12681F3D005456E6 /* FormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormController.m; sourceTree = "<group>"; };
 		14BA8E5E12681FC9005456E6 /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = ../../library/IBAForms.xcodeproj; sourceTree = SOURCE_ROOT; };
-		14BA90081269A7EC005456E6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		14BA900C1269A839005456E6 /* FormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormDataSource.h; sourceTree = "<group>"; };
 		14BA900D1269A839005456E6 /* FormDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormDataSource.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,7 +63,6 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				14BA8E7112682042005456E6 /* libIBAForms.a in Frameworks */,
-				14BA90091269A7EC005456E6 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +132,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				14BA90081269A7EC005456E6 /* CoreData.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -305,6 +301,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};

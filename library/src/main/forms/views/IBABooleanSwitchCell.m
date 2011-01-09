@@ -29,19 +29,15 @@
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
 		switchControl_ = [[UISwitch alloc] initWithFrame:CGRectZero];
-		[self.cellView addSubview:self.switchControl];
+		[self.cellView addSubview:switchControl_];
+		switchControl_.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+		switchControl_.frame = CGRectMake(style.valueFrame.origin.x + style.valueFrame.size.width - switchControl_.bounds.size.width,
+										  ceil((self.bounds.size.height - switchControl_.bounds.size.height)/2),
+										  switchControl_.bounds.size.width,
+										  switchControl_.bounds.size.height);
 	}
 
     return self;
-}
-
-- (void)applyFormFieldStyle {
-	[super applyFormFieldStyle];
-
-	self.switchControl.frame = CGRectMake(self.formFieldStyle.valueFrame.origin.x + self.formFieldStyle.valueFrame.size.width - self.switchControl.bounds.size.width,
-								   ceil((self.bounds.size.height - self.switchControl.bounds.size.height)/2),
-								   self.switchControl.bounds.size.width,
-								   self.switchControl.bounds.size.height);
 }
 
 @end
