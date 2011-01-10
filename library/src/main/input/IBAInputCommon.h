@@ -21,4 +21,5 @@
 #define IBAInputDataTypeDate @"IBAInputDataTypeDate"
 #define IBAInputDataTypeTime @"IBAInputDataTypeTime"
 #define IBAInputDataTypeDateTime @"IBAInputDataTypeDateTime"
-#define IBAInputDataTypePickList @"IBAInputDataTypePickList"
+#define IBAInputDataTypePickListSingle @"IBAInputDataTypePickListSingle"
+#define IBAInputDataTypePickListMultiple @"IBAInputDataTypePickListMultiple"

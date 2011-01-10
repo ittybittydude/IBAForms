@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "IBAInputProvider.h"
 
-@interface IBAPickListInputProvider : NSObject <IBAInputProvider, UITableViewDataSource, UITableViewDelegate> {
+@interface IBAMultiplePickListInputProvider : NSObject <IBAInputProvider, UITableViewDataSource, UITableViewDelegate> {
 	UITableView *pickListTableView_;
 	id<IBAInputRequestor> inputRequestor_;
 }

@@ -6,17 +6,17 @@
 //  Copyright 2010 Itty Bitty Apps Pty Ltd. All rights reserved.
 //
 
-#import "IBAPickListInputProvider.h"
+#import "IBAMultiplePickListInputProvider.h"
 #import "IBACommon.h"
 #import "IBAPickListOptionsProvider.h"
 
-@interface IBAPickListInputProvider ()
+@interface IBAMultiplePickListInputProvider ()
 - (NSArray *)pickListOptions;
 - (id<IBAPickListOptionsProvider>)pickListOptionsProvider;
 @end
 
 
-@implementation IBAPickListInputProvider
+@implementation IBAMultiplePickListInputProvider
 
 @synthesize pickListTableView = pickListTableView_;
 @synthesize inputRequestor = inputRequestor_;
@@ -71,14 +71,14 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
 
-    id<IBAPickListOption> pickListOption = [[self pickListOptions] objectAtIndex:indexPath.row];
-    cell.textLabel.text = pickListOption.name;
+  id<IBAPickListOption> pickListOption = [[self pickListOptions] objectAtIndex:indexPath.row];
+  cell.textLabel.text = pickListOption.name;
 	cell.imageView.image = pickListOption.iconImage;
 	
 	NSArray *selectedOptions = self.inputRequestor.inputRequestorValue;
 	cell.accessoryType = [selectedOptions containsObject:pickListOption] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 
-    return cell;
+  return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
