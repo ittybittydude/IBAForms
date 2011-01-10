@@ -63,7 +63,7 @@
 		14BA9461126BCF03005456E6 /* IBAMultiplePickListInputProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BA945F126BCF03005456E6 /* IBAMultiplePickListInputProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14BA9462126BCF03005456E6 /* IBAMultiplePickListInputProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA9460126BCF03005456E6 /* IBAMultiplePickListInputProvider.m */; };
 		14BA9465126BD257005456E6 /* IBAPickListOptionsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BA9463126BD257005456E6 /* IBAPickListOptionsProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14D2574012DA874F00E228F5 /* IBASinglePickListInputProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D2573E12DA874F00E228F5 /* IBASinglePickListInputProvider.h */; };
+		14D2574012DA874F00E228F5 /* IBASinglePickListInputProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D2573E12DA874F00E228F5 /* IBASinglePickListInputProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14D2574112DA874F00E228F5 /* IBASinglePickListInputProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D2573F12DA874F00E228F5 /* IBASinglePickListInputProvider.m */; };
 		14E5167C127526BD00396121 /* IBABooleanFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E5167A127526BD00396121 /* IBABooleanFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E5167D127526BD00396121 /* IBABooleanFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5167B127526BD00396121 /* IBABooleanFormField.m */; };
