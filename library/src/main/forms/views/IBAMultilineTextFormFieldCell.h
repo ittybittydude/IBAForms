@@ -13,7 +13,6 @@
 //
 
 #import "IBAFormFieldCell.h"
-#import "IBAEventPassthroughTextView.h"
 
 @interface IBAMultilineTextFormFieldCell : IBAFormFieldCell {
 	UITextView *textView;

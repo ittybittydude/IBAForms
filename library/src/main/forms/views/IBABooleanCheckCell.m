@@ -12,33 +12,21 @@
 // permissions and limitations under the License.
 //
 
-#import "IBATextInputProvider.h"
-#import "IBACommon.h"
+#import "IBABooleanCheckCell.h"
 
-@implementation IBATextInputProvider
 
-@synthesize inputRequestor = inputRequestor_;
-@synthesize view = view_;
+@implementation IBABooleanCheckCell
 
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {	
-	IBA_RELEASE_SAFELY(view_);
+- (void)layoutSubviews {
+	[super layoutSubviews];
 	
-	[super dealloc];
-}
+	// Make sure the accessory view is not covered by the cellView
+	CGRect cellViewFrame = self.cellView.frame;
 
-
-- (id)init {
-	self = [super init];
-	if (self != nil) {
-		// The frame of this view is defined here because we don't get the keyboard's size until after we need to size 
-		// up the input manager view.
-		view_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+	if ((cellViewFrame.origin.x + cellViewFrame.size.width) > self.accessoryView.frame.origin.x) {
+		cellViewFrame.size.width = self.accessoryView.frame.origin.x - cellViewFrame.origin.x;
+		self.cellView.frame = cellViewFrame;
 	}
-	
-	return self;
 }
 
 @end

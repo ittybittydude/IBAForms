@@ -17,15 +17,15 @@
 
 @implementation IBAFormFieldCell
 
-@synthesize cellView;
-@synthesize label;
-@synthesize formFieldStyle;
-@synthesize styleApplied;
+@synthesize cellView = cellView_;
+@synthesize label = label_;
+@synthesize formFieldStyle = formFieldStyle_;
+@synthesize styleApplied = styleApplied_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(cellView);
-	IBA_RELEASE_SAFELY(label);
-	IBA_RELEASE_SAFELY(formFieldStyle);
+	IBA_RELEASE_SAFELY(cellView_);
+	IBA_RELEASE_SAFELY(label_);
+	IBA_RELEASE_SAFELY(formFieldStyle_);
 
 	[super dealloc];
 }
@@ -34,13 +34,12 @@
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-
-		cellView = [[UIView alloc] initWithFrame:self.contentView.bounds];
-		cellView.userInteractionEnabled = YES;
+		self.cellView = [[[UIView alloc] initWithFrame:self.contentView.bounds] autorelease];
+		self.cellView.userInteractionEnabled = YES;
 		[self.contentView addSubview:self.cellView];
 
 		// Create a label
-		label = [[UILabel alloc] initWithFrame:CGRectZero];
+		self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 		self.label.adjustsFontSizeToFitWidth = YES;
 		self.label.minimumFontSize = 10;
 		[self.cellView addSubview:self.label];
@@ -65,10 +64,13 @@
 }
 
 - (void)setFormFieldStyle:(IBAFormFieldStyle *)style {
-	[formFieldStyle release];
-	formFieldStyle = [style retain];
-
-	self.styleApplied = NO;
+	if (style != formFieldStyle_) {
+		IBAFormFieldStyle *oldStyle = formFieldStyle_;
+		formFieldStyle_ = [style retain];
+		IBA_RELEASE_SAFELY(oldStyle);
+		
+		self.styleApplied = NO;
+	}
 }
 
 - (void)applyFormFieldStyle {
@@ -92,7 +94,7 @@
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-  return [cellView bounds].size;
+  return [self.cellView bounds].size;
 }
 
 @end

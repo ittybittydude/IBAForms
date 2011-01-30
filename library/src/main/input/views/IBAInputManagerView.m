@@ -24,13 +24,13 @@
 
 @implementation IBAInputManagerView
 
-@synthesize inputNavigationToolbar;
-@synthesize inputProviderView;
-@synthesize previousInputProviderView;
+@synthesize inputNavigationToolbar = inputNavigationToolbar_;
+@synthesize inputProviderView = inputProviderView_;
+@synthesize previousInputProviderView = previousInputProviderView_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(inputNavigationToolbar);
-	IBA_RELEASE_SAFELY(inputProviderView);
+	IBA_RELEASE_SAFELY(inputNavigationToolbar_);
+	IBA_RELEASE_SAFELY(inputProviderView_);
 	
     [super dealloc];
 }
@@ -40,7 +40,7 @@
     if (self = [super initWithFrame:frame]) {
 		CGRect inputNavigationToolbarFrame = frame;
 		inputNavigationToolbarFrame.size.height = 44;
-		inputNavigationToolbar = [[IBAInputNavigationToolbar alloc] initWithFrame:inputNavigationToolbarFrame];   
+		inputNavigationToolbar_ = [[IBAInputNavigationToolbar alloc] initWithFrame:inputNavigationToolbarFrame];   
 		[self setInputNavigationToolbarEnabled:YES]; // this will add the navigation toolbar as a subview and resize ourself
 		
 		self.backgroundColor = [UIColor viewFlipsideBackgroundColor];
@@ -53,23 +53,23 @@
 - (void)setInputProviderView:(UIView *)newView {
 	BOOL animate = (self.superview != nil);
 	
-	// TODO This needs some work to change the size of the InputManagerView to accommodate the size of newView instead
-	// of constraining newView to InputManagerView - inputNavigationToolbar height.
-	previousInputProviderView = inputProviderView;
-	inputProviderView = newView;
+	self.previousInputProviderView = self.inputProviderView;
+	inputProviderView_ = newView;
 	
 	CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-//	int veiwHeight = self.inputNavigationToolbarEnabled ? self.bounds.size.height - self.inputNavigationToolbar.bounds.size.height : self.bounds.size.height;
-	CGRect inputProviderViewStartFrame = CGRectMake(0, screenRect.origin.y + screenRect.size.height, inputProviderView.bounds.size.width, inputProviderView.bounds.size.height);
+	CGRect inputProviderViewStartFrame = CGRectMake(0, 
+													screenRect.origin.y + screenRect.size.height, 
+													self.inputProviderView.bounds.size.width, 
+													self.inputProviderView.bounds.size.height);
 	CGRect inputProviderViewEndFrame = inputProviderViewStartFrame;
 	inputProviderViewEndFrame.origin.y = self.inputNavigationToolbarEnabled ? self.inputNavigationToolbar.bounds.size.height : 0;
 	
-	if (inputProviderView != nil) {
-		[self addSubview:inputProviderView];
-		inputProviderView.frame = inputProviderViewStartFrame;
+	if (self.inputProviderView != nil) {
+		[self addSubview:self.inputProviderView];
+		self.inputProviderView.frame = inputProviderViewStartFrame;
 	}
 		
-	CGRect previousInputProviderViewEndFrame = previousInputProviderView.frame;
+	CGRect previousInputProviderViewEndFrame = self.previousInputProviderView.frame;
 	previousInputProviderViewEndFrame.origin.y = screenRect.origin.y + screenRect.size.height;
 	
 	if (animate) {
@@ -82,10 +82,10 @@
 		[UIView setAnimationDidStopSelector:@selector(inputProviderViewSwapFinished)];
 	}
 	
-	previousInputProviderView.frame = previousInputProviderViewEndFrame;
+	self.previousInputProviderView.frame = previousInputProviderViewEndFrame;
 	
-	if (inputProviderView != nil) {
-		inputProviderView.frame = inputProviderViewEndFrame;
+	if (self.inputProviderView != nil) {
+		self.inputProviderView.frame = inputProviderViewEndFrame;
 	}
 	
 	if (animate) {
@@ -94,29 +94,29 @@
 }
 
 - (void)inputProviderViewSwapFinished {
-	[previousInputProviderView removeFromSuperview];
+	[self.previousInputProviderView removeFromSuperview];
 }
 
 
 #pragma mark -
 #pragma mark Enablement of the input navigation toolbar
 - (BOOL)inputNavigationToolbarEnabled {
-	return inputNavigationToolbarEnabled;
+	return inputNavigationToolbarEnabled_;
 }
 
 - (void)setInputNavigationToolbarEnabled:(BOOL)enabled {
-	inputNavigationToolbarEnabled = enabled;
+	inputNavigationToolbarEnabled_ = enabled;
 	if (enabled) {
-		[self addSubview:inputNavigationToolbar];
+		[self addSubview:self.inputNavigationToolbar];
 	} else {
-		[inputNavigationToolbar removeFromSuperview];
+		[self.inputNavigationToolbar removeFromSuperview];
 	}
 
 	[self sizeToFit];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-	CGRect minRect = inputNavigationToolbarEnabled ? inputNavigationToolbar.bounds : CGRectZero;
+	CGRect minRect = self.inputNavigationToolbarEnabled ? self.inputNavigationToolbar.bounds : CGRectZero;
 	if (self.inputProviderView != nil) {
 		minRect.size.width = fmax(minRect.size.width, self.inputProviderView.bounds.size.width);
 		minRect.size.height += self.inputProviderView.bounds.size.height;

@@ -8,7 +8,6 @@
 
 #import "IBAFormsShowcaseAppDelegate.h"
 #import "FormController.h"
-#import "FormModel.h"
 #import "FormDataSource.h"
 
 @interface IBAFormsShowcaseAppDelegate ()
@@ -24,21 +23,17 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-	FormModel *formModel = [[FormModel alloc] init];
-	FormDataSource *formDataSource = [[FormDataSource alloc] initWithModel:formModel];
-	FormController *formController = [[FormController alloc] initWithNibName:nil bundle:nil formDataSource:formDataSource];
+	
+	NSMutableDictionary *formModel = [[[NSMutableDictionary alloc] init] autorelease];
+	FormDataSource *formDataSource = [[[FormDataSource alloc] initWithModel:formModel] autorelease];
+	FormController *formController = [[[FormController alloc] initWithNibName:nil bundle:nil formDataSource:formDataSource] autorelease];
 	[formController setTitle:@"IBAForms Showcase"];
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:formController];
+	UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:formController] autorelease];
 	
 	[self setWindow:[[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease]];
 	[[self window] setRootViewController:navController];
 	[[self window] makeKeyAndVisible];
 	
-	[formDataSource release];
-	[formModel release];
-	[navController release];
-
     return YES;
 }
 

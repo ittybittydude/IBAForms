@@ -1,32 +1,38 @@
 //
-//  IBAPickListInputProvider.m
-//  IBAForms
-//
-//  Created by sean on 18/10/10.
-//  Copyright 2010 Itty Bitty Apps Pty Ltd. All rights reserved.
+// Copyright 2010 Itty Bitty Apps Pty Ltd
+// 
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
+// file except in compliance with the License. You may obtain a copy of the License at 
+// 
+// http://www.apache.org/licenses/LICENSE-2.0 
+// 
+// Unless required by applicable law or agreed to in writing, software distributed under
+// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+// ANY KIND, either express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
 //
 
-#import "IBAPickListInputProvider.h"
+#import "IBAMultiplePickListInputProvider.h"
 #import "IBACommon.h"
 #import "IBAPickListOptionsProvider.h"
 
-@interface IBAPickListInputProvider ()
+@interface IBAMultiplePickListInputProvider ()
 - (NSArray *)pickListOptions;
 - (id<IBAPickListOptionsProvider>)pickListOptionsProvider;
 @end
 
 
-@implementation IBAPickListInputProvider
+@implementation IBAMultiplePickListInputProvider
 
-@synthesize pickListTableView;
-@synthesize inputRequestor;
+@synthesize pickListTableView = pickListTableView_;
+@synthesize inputRequestor = inputRequestor_;
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc
 {	
-	IBA_RELEASE_SAFELY(pickListTableView);
+	IBA_RELEASE_SAFELY(pickListTableView_);
 	
 	[super dealloc];
 }
@@ -34,22 +40,22 @@
 - (id)init {
 	self = [super init];
 	if (self != nil) {
-		pickListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 216) style:UITableViewStyleGrouped];
-		pickListTableView.dataSource = self;
-		pickListTableView.delegate = self;
-		pickListTableView.backgroundColor = [UIColor clearColor];
+		pickListTableView_ = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 216) style:UITableViewStyleGrouped];
+		pickListTableView_.dataSource = self;
+		pickListTableView_.delegate = self;
+		pickListTableView_.backgroundColor = [UIColor clearColor];
 	}
 	
 	return self;
 }
 
 
-- (void)setInputRequestor:(id<IBAInputRequestor>)anInputRequestor{
-	inputRequestor = anInputRequestor;
+- (void)setInputRequestor:(id<IBAInputRequestor>)inputRequestor{
+	inputRequestor_ = inputRequestor;
 	
-	if (anInputRequestor != nil) {
-		[[self pickListTableView] reloadData];
-		[[self pickListTableView] flashScrollIndicators];
+	if (inputRequestor != nil) {
+		[self.pickListTableView reloadData];
+		[self.pickListTableView flashScrollIndicators];
 	}
 }
 
@@ -71,14 +77,14 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 	}
 
-    id<IBAPickListOption> pickListOption = [[self pickListOptions] objectAtIndex:indexPath.row];
-    cell.textLabel.text = pickListOption.name;
+  id<IBAPickListOption> pickListOption = [[self pickListOptions] objectAtIndex:indexPath.row];
+  cell.textLabel.text = pickListOption.name;
 	cell.imageView.image = pickListOption.iconImage;
 	
 	NSArray *selectedOptions = self.inputRequestor.inputRequestorValue;
 	cell.accessoryType = [selectedOptions containsObject:pickListOption] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 
-    return cell;
+  return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -94,7 +100,7 @@
 }
 
 - (NSArray *)pickListOptions {
-	return [[self pickListOptionsProvider] pickListOptions];
+	return [self.pickListOptionsProvider pickListOptions];
 }
 
 #pragma mark -

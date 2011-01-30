@@ -1,0 +1,21 @@
+IBAForms
+============
+IBAForms is a framework for building data entry screens on the iPhone. You can quickly make forms using the built-in form field types or create your own custom fields and the user interfaces used to enter data for them. It is an Objective-C library that provides an abstraction layer above common UIKit classes such as UITableView and UITableViewCell.
+
+Features
+============
+IBAForms:
+
+ *  provides a set of common form field types (text, password, boolean, date, pick list). 
+ *  manages focus and navigation between form fields.
+ *  supports binding a form to its backing model via KVC.
+ *  supports transformation of form values via NSValueTransformer.
+ *  provides basic styling capabilities at the form, section and field level.
+ *  provides extension points for creating your own custom form fields.
+
+About
+============
+
+IBAForms is brought to you by Itty Bitty Apps under the Apache 2.0 license. If you like IBAForms, or you've used it in one of your projects, [drop us a line](http://ittybittyapps.com/contact-us/), we'd love to hear about it.
+
+[http://ittybittyapps.com](http://ittybittyapps.com)

@@ -17,10 +17,10 @@
 
 @implementation IBATextFormFieldCell
 
-@synthesize textField;
+@synthesize textField = textField_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(textField);
+	IBA_RELEASE_SAFELY(textField_);
 	
 	[super dealloc];
 }
@@ -29,7 +29,7 @@
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
 		// Create the text field for data entry
-		textField = [[UITextField alloc] initWithFrame:CGRectZero];
+		self.textField = [[[UITextField alloc] initWithFrame:CGRectZero] autorelease];
 		self.textField.returnKeyType = UIReturnKeyNext;
 		[self.cellView addSubview:self.textField];
 	}

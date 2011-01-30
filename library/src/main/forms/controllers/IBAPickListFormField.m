@@ -20,23 +20,23 @@
 
 @implementation IBAPickListFormField
 
-@synthesize pickListCell;
-@synthesize selectionMode;
-@synthesize pickListOptions;
+@synthesize pickListCell = pickListCell_;
+@synthesize selectionMode = selectionMode_;
+@synthesize pickListOptions = pickListOptions_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(pickListCell);
-	IBA_RELEASE_SAFELY(pickListOptions);
+	IBA_RELEASE_SAFELY(pickListCell_);
+	IBA_RELEASE_SAFELY(pickListOptions_);
 
 	[super dealloc];
 }
 
-- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer
-	selectionMode:(IBAPickListSelectionMode)theSelectionMode options:(NSArray *)thePickListOptions {
-	self = [super initWithKeyPath:aKeyPath title:aTitle valueTransformer:aValueTransformer];
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions {
+	self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer];
 	if (self != nil) {
-		self.selectionMode = theSelectionMode;
-		self.pickListOptions = thePickListOptions;
+		self.selectionMode = selectionMode;
+		self.pickListOptions = pickListOptions;
 	}
 
 	return self;
@@ -44,16 +44,22 @@
 
 
 - (NSString *)formFieldStringValue {
-	NSMutableArray *itemNames = [[[NSMutableArray alloc] init] autorelease];
+	NSString *value = nil;
+	
+	if (self.formFieldValue != nil) {
+		NSMutableArray *itemNames = [[[NSMutableArray alloc] init] autorelease];
 
-	for (id<IBAPickListOption> item in [self pickListOptions]) {
-		NSString *itemName = [item name];
-    if (([[self formFieldValue] containsObject:item]) && (itemName.length > 0)) {
-			[itemNames addObject:itemName];
+		for (id<IBAPickListOption> item in [self pickListOptions]) {
+			NSString *itemName = [item name];
+			if (([[self formFieldValue] containsObject:item]) && (itemName.length > 0)) {
+				[itemNames addObject:itemName];
+			}
 		}
+		
+		value = [itemNames componentsJoinedByString:@", "];
 	}
 
-	return [itemNames componentsJoinedByString:@", "];
+	return value;
 }
 
 
@@ -61,17 +67,19 @@
 #pragma mark Cell management
 
 - (IBAFormFieldCell *)cell {
-	if (pickListCell == nil) {
-		pickListCell = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
-		pickListCell.textField.enabled = NO;
+	if (pickListCell_ == nil) {
+		pickListCell_ = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+		pickListCell_.textField.enabled = NO;
 	}
 
-	return pickListCell;
+	return pickListCell_;
 }
 
 - (void)updateCellContents {
-	self.pickListCell.label.text = self.title;
-	self.pickListCell.textField.text = [self formFieldStringValue];
+	if (self.pickListCell != nil) {
+		self.pickListCell.label.text = self.title;
+		self.pickListCell.textField.text = [self formFieldStringValue];
+	}
 }
 
 
@@ -79,7 +87,8 @@
 #pragma mark IBAInputRequestor
 
 - (NSString *)dataType {
-	return IBAInputDataTypePickList;
+	return (self.selectionMode == IBAPickListSelectionModeSingle) ? IBAInputDataTypePickListSingle : 
+           IBAInputDataTypePickListMultiple;
 }
 
 @end
@@ -96,21 +105,21 @@
 
 @implementation IBAPickListFormOption
 
-@synthesize name;
-@synthesize iconImage;
+@synthesize name = name_;
+@synthesize iconImage = iconImage_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(name);
-	IBA_RELEASE_SAFELY(iconImage);
+	IBA_RELEASE_SAFELY(name_);
+	IBA_RELEASE_SAFELY(iconImage_);
 
 	[super dealloc];
 }
 
-- (id)initWithName:(NSString *)theName iconImage:(UIImage *)theIconImage {
+- (id)initWithName:(NSString *)name iconImage:(UIImage *)iconImage {
 	self = [super init];
 	if (self != nil) {
-		self.name = theName;
-		self.iconImage = theIconImage;
+		self.name = name;
+		self.iconImage = iconImage;
 	}
 
 	return self;
@@ -123,6 +132,10 @@
 	}
 
 	return options;
+}
+
+- (NSString *)description {
+	return self.name;
 }
 
 @end
@@ -141,7 +154,7 @@
 @synthesize pickListOptions;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(pickListOptions);
+	IBA_RELEASE_SAFELY(pickListOptions_);
 
 	[super dealloc];
 }

@@ -12,33 +12,11 @@
 // permissions and limitations under the License.
 //
 
-#import "IBATextInputProvider.h"
-#import "IBACommon.h"
+#import <Foundation/Foundation.h>
+#import "IBAInputProvider.h"
 
-@implementation IBATextInputProvider
-
-@synthesize inputRequestor = inputRequestor_;
-@synthesize view = view_;
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {	
-	IBA_RELEASE_SAFELY(view_);
-	
-	[super dealloc];
-}
-
-
-- (id)init {
-	self = [super init];
-	if (self != nil) {
-		// The frame of this view is defined here because we don't get the keyboard's size until after we need to size 
-		// up the input manager view.
-		view_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
-	}
-	
-	return self;
+@interface IBASinglePickListInputProvider : NSObject <IBAInputProvider, UIPickerViewDataSource, UIPickerViewDelegate> {
+	id<IBAInputRequestor> inputRequestor_;
 }
 
 @end

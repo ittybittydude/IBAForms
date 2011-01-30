@@ -13,13 +13,13 @@
 //
 
 #import <IBAForms/IBABooleanFormField.h>
-#import <IBAForms/IBABooleanFormFieldCell.h>
+#import <IBAForms/IBABooleanCheckCell.h>
+#import <IBAForms/IBABooleanSwitchCell.h>
 #import <IBAForms/IBAButtonFormField.h>
 #import <IBAForms/IBACommon.h>
 #import <IBAForms/IBADateFormField.h>
 #import <IBAForms/IBADateFormFieldCell.h>
 #import <IBAForms/IBADateInputProvider.h>
-#import <IBAForms/IBAEventPassthroughTextView.h>
 #import <IBAForms/IBAFormConstants.h>
 #import <IBAForms/IBAFormDataSource.h>
 #import <IBAForms/IBAFormField.h>
@@ -42,7 +42,8 @@
 #import <IBAForms/IBAMultilineTextFormFieldCell.h>
 #import <IBAForms/IBAPasswordFormField.h>
 #import <IBAForms/IBAPickListFormField.h>
-#import <IBAForms/IBAPickListInputProvider.h>
+#import <IBAForms/IBAMultiplePickListInputProvider.h>
+#import <IBAForms/IBASinglePickListInputProvider.h>
 #import <IBAForms/IBAPickListOptionsProvider.h>
 #import <IBAForms/IBATextFormField.h>
 #import <IBAForms/IBATextFormFieldCell.h>

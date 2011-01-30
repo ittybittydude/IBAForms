@@ -18,10 +18,10 @@
 @class IBAFormField;
 
 @interface IBAFormFieldCell : UITableViewCell {
-	UIView *cellView;
-	UILabel *label;
-	IBAFormFieldStyle *formFieldStyle;
-	BOOL styleApplied;
+	UIView *cellView_;
+	UILabel *label_;
+	IBAFormFieldStyle *formFieldStyle_;
+	BOOL styleApplied_;
 }
 
 @property (nonatomic, retain) UIView *cellView;

@@ -24,31 +24,27 @@
 @protocol IBAFormFieldDelegate;
 
 @interface IBAFormField : NSObject {
-	NSString *keyPath;
-	NSString *title;
-	id<IBAFormModelManager> modelManager;
-	id<IBAFormFieldDelegate> delegate;
-	IBAFormFieldStyle *formFieldStyle;
-	BOOL nullable;
-	NSValueTransformer *valueTransformer;
+	NSString *keyPath_;
+	NSString *title_;
+	id<IBAFormModelManager> modelManager_;
+	id<IBAFormFieldDelegate> delegate_;
+	IBAFormFieldStyle *formFieldStyle_;
+	BOOL nullable_;
+	NSValueTransformer *valueTransformer_;
 }
 
 @property (nonatomic, copy) NSString *keyPath;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, readonly) IBAFormFieldCell *cell;
-@property (nonatomic, retain) id<IBAFormModelManager> modelManager;
+@property (nonatomic, assign) id<IBAFormModelManager> modelManager;
 @property (nonatomic, assign) id<IBAFormFieldDelegate> delegate;
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
 @property (nonatomic, assign, getter=isNullable) BOOL nullable;
 @property (nonatomic, retain) NSValueTransformer *valueTransformer;
 
 
-- (id)initWithKeyPath:(NSString *)keyPath
-			title:(NSString *)title
- valueTransformer:(NSValueTransformer *)valueTransformer;
-
-- (id)initWithKeyPath:(NSString *)keyPath
-			title:(NSString *)title;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title;
 
 - (void)updateCellContents;
 

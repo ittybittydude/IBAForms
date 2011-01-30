@@ -22,14 +22,14 @@
 
 @implementation IBADateInputProvider
 
-@synthesize inputRequestor;
-@synthesize datePickerMode;
+@synthesize inputRequestor = inputRequestor_;
+@synthesize datePickerMode = datePickerMode_;
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(datePickerView);
+	IBA_RELEASE_SAFELY(datePickerView_);
 	
 	[super dealloc];
 }
@@ -38,10 +38,10 @@
 	return [self initWithDatePickerMode:UIDatePickerModeDate];
 }
 
-- (id)initWithDatePickerMode:(UIDatePickerMode)aDatePickerMode {
+- (id)initWithDatePickerMode:(UIDatePickerMode)datePickerMode {
 	self = [super init];
 	if (self != nil) {
-		self.datePickerMode = aDatePickerMode;
+		self.datePickerMode = datePickerMode;
 	}
 	
 	return self;
@@ -52,14 +52,14 @@
 #pragma mark Accessors
 
 - (UIDatePicker *)datePickerView {
-	if (datePickerView == nil) {
-		datePickerView = [[UIDatePicker alloc] init];
-		datePickerView.datePickerMode = self.datePickerMode;
-		datePickerView.minuteInterval = 5;
-		[datePickerView addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];		
+	if (datePickerView_ == nil) {
+		datePickerView_ = [[UIDatePicker alloc] init];
+		datePickerView_.datePickerMode = self.datePickerMode;
+		datePickerView_.minuteInterval = 5;
+		[datePickerView_ addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];		
 	}
 	
-	return datePickerView;
+	return datePickerView_;
 }
 
 
@@ -75,14 +75,14 @@
 #pragma mark Date value change management
 
 - (void)datePickerValueChanged {
-	inputRequestor.inputRequestorValue = self.datePickerView.date;
+	inputRequestor_.inputRequestorValue = self.datePickerView.date;
 }
 
 
-- (void)setInputRequestor:(id<IBAInputRequestor>)anInputRequestor{
-	inputRequestor = anInputRequestor;
+- (void)setInputRequestor:(id<IBAInputRequestor>)inputRequestor {
+	inputRequestor_ = inputRequestor;
 	
-	if (anInputRequestor != nil) {
+	if (inputRequestor != nil) {
 		// update the date picker's value with that of the new inputRequestors current value
 		NSDate *date = inputRequestor.inputRequestorValue;
 		if (date == nil) {
@@ -90,7 +90,7 @@
 			inputRequestor.inputRequestorValue = date;
 		}
 		
-		[datePickerView setDate:date animated:YES];
+		[self.datePickerView setDate:date animated:YES];
 	}
 }
 

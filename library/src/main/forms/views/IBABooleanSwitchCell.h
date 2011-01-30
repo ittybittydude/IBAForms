@@ -12,26 +12,13 @@
 // permissions and limitations under the License.
 //
 
-#import "IBAEventPassthroughTextView.h"
+#import "IBAFormFieldCell.h"
 
 
-@implementation IBAEventPassthroughTextView
-
-- (void)dealloc {
-    [super dealloc];
+@interface IBABooleanSwitchCell : IBAFormFieldCell {
+	UISwitch *switchControl_;
 }
 
-- (id)initWithFrame:(CGRect)aRect {
-    if (self = [super initWithFrame:aRect]) {
-		self.userInteractionEnabled = YES;
-	}
-	
-    return self;
-}
-
-// All events end up going up the resonder chain
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-	return NO;
-}
+@property (nonatomic, retain) UISwitch *switchControl;
 
 @end

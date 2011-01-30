@@ -17,29 +17,29 @@
 
 @implementation IBAFormDataSource
 
-@synthesize name;
-@synthesize sections;
-@synthesize model;
-@synthesize formFieldStyle;
+@synthesize name = name_;
+@synthesize sections = sections_;
+@synthesize model = model_;
+@synthesize formFieldStyle = formFieldStyle_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(name);
-	IBA_RELEASE_SAFELY(sections);
-	IBA_RELEASE_SAFELY(model);
-	IBA_RELEASE_SAFELY(formFieldStyle);
+	IBA_RELEASE_SAFELY(name_);
+	IBA_RELEASE_SAFELY(sections_);
+	IBA_RELEASE_SAFELY(model_);
+	IBA_RELEASE_SAFELY(formFieldStyle_);
 	
 	[super dealloc];
 }
 
-- (id)initWithModel:(id)aModel {
+- (id)initWithModel:(id)model {
 	self = [super init];
 	if (self != nil) {
-		model = [aModel retain];
-		sections = [[NSMutableArray alloc] init];
-		formFieldStyle = [[IBAFormFieldStyle alloc] init];
+		model_ = [model retain];
+		sections_ = [[NSMutableArray alloc] init];
+		formFieldStyle_ = [[IBAFormFieldStyle alloc] init];
 	}
 	
 	return self;
@@ -54,11 +54,11 @@
 #pragma mark Section and field management
 
 - (NSInteger)sectionCount {
-	return [sections count];
+	return [self.sections count];
 }
 
 - (NSInteger)numberOfFormFieldsInSection:(NSInteger)sectionLocation {
-	IBAFormSection *section = [sections objectAtIndex:sectionLocation];
+	IBAFormSection *section = [self.sections objectAtIndex:sectionLocation];
 	return (section != nil) ? [section.formFields count] : 0;
 }
 
@@ -71,7 +71,7 @@
 }
 
 - (IBAFormField *)formFieldAtIndexPath:(NSIndexPath *)indexPath {
-	IBAFormSection *section = [sections objectAtIndex:indexPath.section];
+	IBAFormSection *section = [self.sections objectAtIndex:indexPath.section];
 	return [section.formFields objectAtIndex:indexPath.row];
 }
 
@@ -81,7 +81,7 @@
 	
 	NSUInteger sectionCount = [self sectionCount];
 	for (NSUInteger sectionIndex = 0; sectionIndex < sectionCount; sectionIndex++) {
-		IBAFormSection *section = [sections objectAtIndex:sectionIndex];
+		IBAFormSection *section = [self.sections objectAtIndex:sectionIndex];
 		NSUInteger fieldLocation = [section.formFields indexOfObject:formField];
 		if (fieldLocation != NSNotFound) {
 			indexPath = [NSIndexPath indexPathForRow:fieldLocation inSection:sectionIndex];
@@ -99,13 +99,13 @@
 	
 	NSUInteger sectionCount = [self sectionCount];
 	for (NSUInteger sectionIndex = 0; sectionIndex < sectionCount; sectionIndex++) {
-		IBAFormSection *section = [sections objectAtIndex:sectionIndex];
+		IBAFormSection *section = [self.sections objectAtIndex:sectionIndex];
 		NSUInteger fieldLocation = [section.formFields indexOfObject:field];
 		if (fieldLocation != NSNotFound) {
 			if ([field isEqual:[section.formFields lastObject]]) {
 				// it's the last field in the section, so get the first one in the next section (if there is one)
 				if (sectionIndex < (sectionCount - 1)) {
-					section = [sections objectAtIndex:sectionIndex + 1];
+					section = [self.sections objectAtIndex:sectionIndex + 1];
 					if ([section.formFields count] > 0) {
 						nextField = [section.formFields objectAtIndex:0];
 					}	
@@ -124,13 +124,13 @@
 	
 	NSUInteger sectionCount = [self sectionCount];
 	for (NSUInteger sectionIndex = 0; sectionIndex < sectionCount; sectionIndex++) {
-		IBAFormSection *section = [sections objectAtIndex:sectionIndex];
+		IBAFormSection *section = [self.sections objectAtIndex:sectionIndex];
 		NSUInteger fieldLocation = [section.formFields indexOfObject:field];
 		if (fieldLocation != NSNotFound) {
 			if ([field isEqual:[section.formFields objectAtIndex:0]]) {
 				// it's the first field in the section, so get the last one in the previous section (if there is one)
 				if (sectionIndex > 0) {
-					section = [sections objectAtIndex:sectionIndex - 1];
+					section = [self.sections objectAtIndex:sectionIndex - 1];
 					if ([section.formFields count] > 0) {
 						previousField = [section.formFields lastObject];
 					}	
@@ -145,25 +145,25 @@
 }
 
 - (void)addSection:(IBAFormSection *)newSection {
-	[sections addObject:newSection];
+	[self.sections addObject:newSection];
 	newSection.modelManager = self;
 	newSection.formFieldStyle = self.formFieldStyle;
 }
 
 - (IBAFormSection *)addSectionWithHeaderTitle:(NSString *)headerTitle footerTitle:(NSString *)footerTitle {
 	IBAFormSection *newSection = [[[IBAFormSection alloc] initWithHeaderTitle:headerTitle
-																					 footerTitle:footerTitle] autorelease];
+																  footerTitle:footerTitle] autorelease];
 	[self addSection:newSection];
 	
 	return newSection;
 }
 
 - (UIView *)viewForHeaderInSection:(NSInteger)section {
-	return [[sections objectAtIndex:section] headerView];
+	return [[self.sections objectAtIndex:section] headerView];
 }
 
 - (UIView *)viewForFooterInSection:(NSInteger)section {
-	return [[sections objectAtIndex:section] footerView];
+	return [[self.sections objectAtIndex:section] footerView];
 }
 
 

@@ -15,35 +15,18 @@
 #import "IBALabelFormField.h"
 #import "IBAFormFieldStyle.h"
 
-#define IBALabelX 10
-#define IBALabelY 10
-#define IBALabelWidth 240
-#define IBALabelHeight 24
-#define IBALabelFontSize 16
-
 @implementation IBALabelFormField
 
 - (IBAFormFieldCell *)cell {
-	if (cell == nil) {
-		cell = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
-		formFieldStyle = [[IBAFormFieldStyle alloc] init];
-		formFieldStyle.labelFont = [UIFont systemFontOfSize:IBALabelFontSize];
-		formFieldStyle.labelFrame = CGRectMake(IBALabelX, IBALabelY, IBALabelWidth, IBALabelHeight);
-		formFieldStyle.labelTextColor = self.formFieldStyle.valueTextColor;
-		formFieldStyle.labelTextAlignment = UITextAlignmentLeft;
-		
-		cell.formFieldStyle = formFieldStyle;
+	if (cell_ == nil) {
+		cell_ = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
 	}
 	
-	return cell;
+	return cell_;
 }
 
 - (void)updateCellContents {
 	self.cell.label.text = [self formFieldValue];
-}
-
-- (void)setFormFieldStyle:(IBAFormFieldStyle *)style {
-	// can't set the style of a label form field
 }
 
 @end

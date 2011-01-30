@@ -14,25 +14,22 @@
 
 #import "IBAButtonFormField.h"
 
-#define IBAButtonTitleFrame CGRectMake(55, 10, 195, 24)
-#define IBAButtonTitleFontSize 16
-
 @interface IBAButtonFormField ()
 @property (nonatomic, retain) UIImage *iconImage;
-@property (nonatomic, retain) IBAButtonFormFieldBlock executionBlock;
+@property (nonatomic, copy) IBAButtonFormFieldBlock executionBlock;
 @end
 
 
 @implementation IBAButtonFormField
 
-@synthesize iconImage;
-@synthesize executionBlock;
+@synthesize iconImage = iconImage_;
+@synthesize executionBlock = executionBlock_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(cell);
-	IBA_RELEASE_SAFELY(iconImage);
-	IBA_RELEASE_SAFELY(executionBlock);
-	IBA_RELEASE_SAFELY(detailViewController);
+	IBA_RELEASE_SAFELY(cell_);
+	IBA_RELEASE_SAFELY(iconImage_);
+	IBA_RELEASE_SAFELY(executionBlock_);
+	IBA_RELEASE_SAFELY(detailViewController_);
 
 	[super dealloc];
 }
@@ -51,63 +48,53 @@
 	if (self != nil) {
 		self.iconImage = anIconImage;
 		self.executionBlock = aBlock;
-		detailViewController = [viewController retain];
+		detailViewController_ = [viewController retain];
 	}
 
 	return self;
 }
 
 - (IBAFormFieldCell *)cell {
-	if (cell == nil) {
-		cell = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
-		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+	if (cell_ == nil) {
+		cell_ = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+		cell_.selectionStyle = UITableViewCellSelectionStyleGray;
 
 		if (self.iconImage != nil) {
 			UIImageView *imageView = [[UIImageView alloc] initWithImage:self.iconImage];
 			imageView.userInteractionEnabled = YES;
 
-			CGRect cellViewBounds = cell.cellView.bounds;
-			CGPoint imageCenter = CGPointMake(cell.label.bounds.origin.x + CGRectGetMidX(imageView.bounds), CGRectGetMidY(cellViewBounds));
+			CGRect cellViewBounds = cell_.cellView.bounds;
+			CGPoint imageCenter = CGPointMake(cell_.label.bounds.origin.x + CGRectGetMidX(imageView.bounds), CGRectGetMidY(cellViewBounds));
 
 			imageView.center = imageCenter;
 
-			[cell.cellView addSubview:imageView];
+			[cell_.cellView addSubview:imageView];
 			[imageView release];
 		}
-
-		formFieldStyle = [[IBAFormFieldStyle alloc] init];
-		formFieldStyle.labelFont = [UIFont boldSystemFontOfSize:IBAButtonTitleFontSize];
-		formFieldStyle.labelFrame = IBAButtonTitleFrame;
-		formFieldStyle.labelTextColor = self.formFieldStyle.valueTextColor;
-		formFieldStyle.labelTextAlignment = UITextAlignmentLeft;
-
-		cell.formFieldStyle = formFieldStyle;
 	}
 
-	return cell;
+	return cell_;
 }
 
 - (void)select {
 	if (self.executionBlock != NULL) {
+		self.cell.selected = NO;
 		self.executionBlock();
-		cell.selected = NO;
 	}
 }
 
-- (void)setFormFieldStyle:(IBAFormFieldStyle *)style {
-	// can't set the style of a IBAButtonFormField form field
-}
-
 - (void)updateCellContents {
-	self.cell.label.text = self.title;
+	if (self.cell != nil) {
+		self.cell.label.text = self.title;
+	}
 }
 
 - (BOOL)hasDetailViewController {
-	return (detailViewController != nil);
+	return (detailViewController_ != nil);
 }
 
 - (UIViewController *)detailViewController {
-	return detailViewController;
+	return detailViewController_;
 }
 
 @end

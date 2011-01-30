@@ -18,24 +18,24 @@
 
 
 @interface IBAPickListFormField : IBAInputRequestorFormField <IBAPickListOptionsProvider> {
-	IBATextFormFieldCell *pickListCell;
-	IBAPickListSelectionMode selectionMode;
-	NSArray *pickListOptions;
+	IBATextFormFieldCell *pickListCell_;
+	IBAPickListSelectionMode selectionMode_;
+	NSArray *pickListOptions_;
 }
 
 @property (nonatomic, retain) IBATextFormFieldCell *pickListCell;
 @property (nonatomic, assign) IBAPickListSelectionMode selectionMode;
 @property (nonatomic, copy) NSArray *pickListOptions;
 
-- (id)initWithKeyPath:(NSString *)aKeyPath title:(NSString *)aTitle valueTransformer:(NSValueTransformer *)aValueTransformer
-	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)thePickListOptions;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions;
 
 @end
 
 
 @interface IBAPickListFormOption : NSObject <IBAPickListOption> {
-	NSString *name;
-	UIImage *iconImage;
+	NSString *name_;
+	UIImage *iconImage_;
 }
 
 + (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames;
@@ -45,7 +45,7 @@
 
 
 @interface IBAPickListFormOptionsStringTransformer : NSValueTransformer {
-	NSArray *pickListOptions;
+	NSArray *pickListOptions_;
 }
 
 - (id)initWithPickListOptions:(NSArray *)pickListOptions;

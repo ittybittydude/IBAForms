@@ -20,9 +20,11 @@
 
 		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"text" title:@"Text"] autorelease]];
 		[basicFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKeyPath:@"password" title:@"Password"] autorelease]];
-		[basicFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKeyPath:@"multiLineText" title:nil] autorelease]];
-		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanValue" title:@"Boolean"] autorelease]];
+		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanSwitchValue" title:@"Switch"] autorelease]];
+		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanCheckValue" title:@"Check" type:IBABooleanFormFieldTypeCheck] autorelease]];
+		[basicFieldSection addFormField:[[[IBAMultilineTextFormField alloc] initWithKeyPath:@"multilineTextValue" title:nil] autorelease]];
 
+    
 		// Styled form fields
 		IBAFormSection *styledFieldSection = [self addSectionWithHeaderTitle:@"Styled Fields" footerTitle:nil];
 
@@ -118,6 +120,14 @@
 		// Some examples of how you might use the button form field
 		IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:@"Buttons" footerTitle:nil];
 
+		IBAFormFieldStyle *buttonStyle = [[[IBAFormFieldStyle alloc] init] autorelease];
+		buttonStyle.labelTextColor = [UIColor colorWithRed:0.318 green:0.400 blue:0.569 alpha:1.0];
+		buttonStyle.labelFont = [UIFont boldSystemFontOfSize:14];
+		buttonStyle.labelTextAlignment = UITextAlignmentCenter;
+		buttonStyle.labelFrame = CGRectMake(10, 8, 280, 30);
+		
+		buttonsSection.formFieldStyle = buttonStyle;
+		
 		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Go to Google"
 																			 icon:nil
 																   executionBlock:^{
@@ -135,6 +145,12 @@
     }
 
     return self;
+}
+
+- (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath {
+	[super setModelValue:value forKeyPath:keyPath];
+	
+	NSLog(@"%@", [self.model description]);
 }
 
 @end

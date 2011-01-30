@@ -17,8 +17,8 @@
 #import "IBAInputProvider.h"
 
 @interface IBATextInputProvider : NSObject <IBAInputProvider> {
-	id<IBAInputRequestor> inputRequestor;
-	UIView *view;
+	id<IBAInputRequestor> inputRequestor_;
+	UIView *view_;
 }
 
 @end

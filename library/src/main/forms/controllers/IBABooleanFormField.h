@@ -13,13 +13,26 @@
 //
 
 #import "IBAFormField.h"
-#import "IBABooleanFormFieldCell.h"
+#import "IBABooleanSwitchCell.h"
+#import "IBABooleanCheckCell.h"
+
+typedef enum {
+	IBABooleanFormFieldTypeSwitch = 0,
+	IBABooleanFormFieldTypeCheck,
+} IBABooleanFormFieldType;
+
 
 @interface IBABooleanFormField : IBAFormField {
-	IBABooleanFormFieldCell *booleanFormFieldCell;
+	IBABooleanSwitchCell *switchCell_;
+	IBABooleanCheckCell *checkCell_;
+	IBABooleanFormFieldType booleanFormFieldType_;
 }
 
-@property (nonatomic, retain) IBABooleanFormFieldCell *booleanFormFieldCell;
+@property (nonatomic, readonly) IBABooleanSwitchCell *switchCell;
+@property (nonatomic, readonly) IBABooleanCheckCell *checkCell;
+@property (nonatomic, assign) IBABooleanFormFieldType booleanFormFieldType;
 
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title type:(IBABooleanFormFieldType)booleanFormFieldType;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer type:(IBABooleanFormFieldType)booleanFormFieldType;
 
 @end
