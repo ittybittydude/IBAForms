@@ -50,9 +50,8 @@
 	
 	self.textField.font = self.formFieldStyle.valueFont;
 	self.textField.textColor = self.formFieldStyle.valueTextColor;
-	self.textField.backgroundColor = [UIColor redColor];// self.formFieldStyle.valueBackgroundColor;
+	self.textField.backgroundColor = self.formFieldStyle.valueBackgroundColor;
 	self.textField.textAlignment = self.formFieldStyle.valueTextAlignment;
-//	self.textField.frame = self.formFieldStyle.valueFrame;
 }
 
 @end
