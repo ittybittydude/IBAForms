@@ -18,16 +18,21 @@
 @class IBAFormField;
 
 @interface IBAFormFieldCell : UITableViewCell {
+	UIView *inputView_;
+	UIView *inputAccessoryView_;
 	UIView *cellView_;
 	UILabel *label_;
 	IBAFormFieldStyle *formFieldStyle_;
 	BOOL styleApplied_;
 }
 
+@property (readwrite, retain) UIView *inputView;
+@property (readwrite, retain) UIView *inputAccessoryView;
 @property (nonatomic, retain) UIView *cellView;
 @property (nonatomic, retain) UILabel *label;
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
 @property (nonatomic, assign) BOOL styleApplied;
+
 
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier;
 - (void)activate;

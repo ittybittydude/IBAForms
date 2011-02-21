@@ -68,4 +68,8 @@
 	return nil;
 }
 
+- (IBAFormFieldCell *)responder {
+	return self.cell;
+}
+
 @end

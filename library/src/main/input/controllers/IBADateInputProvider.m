@@ -56,7 +56,8 @@
 		datePickerView_ = [[UIDatePicker alloc] init];
 		datePickerView_.datePickerMode = self.datePickerMode;
 		datePickerView_.minuteInterval = 5;
-		[datePickerView_ addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];		
+		datePickerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+		[datePickerView_ addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];	
 	}
 	
 	return datePickerView_;

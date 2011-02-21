@@ -17,12 +17,16 @@
 
 @implementation IBAFormFieldCell
 
+@synthesize inputView = inputView_;
+@synthesize inputAccessoryView = inputAccessoryView_;
 @synthesize cellView = cellView_;
 @synthesize label = label_;
 @synthesize formFieldStyle = formFieldStyle_;
 @synthesize styleApplied = styleApplied_;
 
 - (void)dealloc {
+	IBA_RELEASE_SAFELY(inputView_);
+	IBA_RELEASE_SAFELY(inputAccessoryView_);
 	IBA_RELEASE_SAFELY(cellView_);
 	IBA_RELEASE_SAFELY(label_);
 	IBA_RELEASE_SAFELY(formFieldStyle_);
@@ -96,6 +100,10 @@
 - (CGSize)sizeThatFits:(CGSize)size
 {
   return [self.cellView bounds].size;
+}
+
+- (BOOL)canBecomeFirstResponder {
+	return YES;
 }
 
 @end

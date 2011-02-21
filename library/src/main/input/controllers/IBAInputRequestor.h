@@ -13,13 +13,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "IBAFormFieldCell.h"
 
 @protocol IBAInputRequestor <NSObject>
 
 @property (nonatomic, readonly) NSString *dataType;
 @property (nonatomic, assign) id inputRequestorValue;
 @property (nonatomic, readonly) id defaultInputRequestorValue;
+@property (nonatomic, readonly) IBAFormFieldCell *responder;
 
 - (void)activate;
 - (BOOL)deactivate;

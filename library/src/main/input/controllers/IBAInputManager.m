@@ -35,7 +35,7 @@
 - (void)inputManagerViewDidHide;
 
 // Visibility management of the input providers
-- (void)displayInputProvider:(id<IBAInputProvider>)inputProvider;
+- (void)displayInputProvider:(id<IBAInputProvider>)inputProvider forInputRequestor:(id<IBAInputRequestor>)requestor;
 
 // Methods called when notification come in
 - (void)keyboardWillShow:(NSNotification *)notification;
@@ -97,9 +97,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		[self registerInputProvider:[[[IBASinglePickListInputProvider alloc] init] autorelease]
 						forDataType:IBAInputDataTypePickListSingle];
 		
-    // Multiple Picklist
-    [self registerInputProvider:[[[IBAMultiplePickListInputProvider alloc] init] autorelease]
-                    forDataType:IBAInputDataTypePickListMultiple];
+		// Multiple Picklist
+		[self registerInputProvider:[[[IBAMultiplePickListInputProvider alloc] init] autorelease]
+						forDataType:IBAInputDataTypePickListMultiple];
     
 		[self registerForNotifications];
 	}
@@ -129,9 +129,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 
 		id<IBAInputProvider>newInputProvider = [self inputProviderForRequestor:activeInputRequestor_];
 		
-		if (newInputProvider != oldInputProvider) {
-			[self displayInputProvider:newInputProvider];
-		}
+//		if (newInputProvider != oldInputProvider) {
+			[self displayInputProvider:newInputProvider forInputRequestor:inputRequestor];
+//		}
 		
 		// NOTE: the input requestor must be activated after the input provider has been displayed because the
 		// act of displaying the input provider may affect the visibility of the input requestor, which needs
@@ -200,6 +200,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 }
 
 - (BOOL)deactivateActiveInputRequestor {
+	[[self.activeInputRequestor responder] resignFirstResponder];
 	return [self setActiveInputRequestor:nil]; // this deactivates the active input requestor
 }
 
@@ -319,9 +320,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 #pragma mark -
 #pragma mark Presenting the input provider
 
-- (void)displayInputProvider:(id<IBAInputProvider>)inputProvider {
-	self.inputManagerView.inputProviderView = inputProvider.view;
-	[self displayInputManagerView];
+- (void)displayInputProvider:(id<IBAInputProvider>)inputProvider forInputRequestor:(id<IBAInputRequestor>)requestor {
+	[[requestor responder] setInputView:inputProvider.view];
+	[[requestor responder] setInputAccessoryView:self.inputManagerView.inputNavigationToolbar];
+	[[requestor responder] becomeFirstResponder];
+	
+//	self.inputManagerView.inputProviderView = inputProvider.view;
+//	[self displayInputManagerView];
 }
 
 

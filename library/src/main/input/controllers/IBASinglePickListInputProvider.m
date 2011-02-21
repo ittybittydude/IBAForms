@@ -44,9 +44,10 @@
 	self = [super init];
 	if (self != nil) {
 		pickerView_ = [[UIPickerView alloc] init];
-    pickerView_.showsSelectionIndicator = YES;
+		pickerView_.showsSelectionIndicator = YES;
 		pickerView_.dataSource = self;
 		pickerView_.delegate = self;
+		pickerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 	}
 	
 	return self;
