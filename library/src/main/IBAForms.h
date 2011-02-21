@@ -40,7 +40,8 @@
 #import <IBAForms/IBALabelFormField.h>
 #import <IBAForms/IBAPasswordFormField.h>
 #import <IBAForms/IBAPickListFormField.h>
-#import <IBAForms/IBAPickListInputProvider.h>
+#import <IBAForms/IBAMultiplePickListInputProvider.h>
+#import <IBAForms/IBASinglePickListInputProvider.h>
 #import <IBAForms/IBAPickListOptionsProvider.h>
 #import <IBAForms/IBATextFormField.h>
 #import <IBAForms/IBATextFormFieldCell.h>

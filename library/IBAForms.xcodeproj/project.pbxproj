@@ -58,9 +58,11 @@
 		148E9418126571F10065EDD1 /* SynthesizeSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E9417126571F10065EDD1 /* SynthesizeSingleton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14BA939A126BAB07005456E6 /* IBAPickListFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BA9398126BAB07005456E6 /* IBAPickListFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14BA939B126BAB07005456E6 /* IBAPickListFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA9399126BAB07005456E6 /* IBAPickListFormField.m */; };
-		14BA9461126BCF03005456E6 /* IBAPickListInputProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BA945F126BCF03005456E6 /* IBAPickListInputProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14BA9462126BCF03005456E6 /* IBAPickListInputProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA9460126BCF03005456E6 /* IBAPickListInputProvider.m */; };
+		14BA9461126BCF03005456E6 /* IBAMultiplePickListInputProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BA945F126BCF03005456E6 /* IBAMultiplePickListInputProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14BA9462126BCF03005456E6 /* IBAMultiplePickListInputProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA9460126BCF03005456E6 /* IBAMultiplePickListInputProvider.m */; };
 		14BA9465126BD257005456E6 /* IBAPickListOptionsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BA9463126BD257005456E6 /* IBAPickListOptionsProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14D2574012DA874F00E228F5 /* IBASinglePickListInputProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 14D2573E12DA874F00E228F5 /* IBASinglePickListInputProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14D2574112DA874F00E228F5 /* IBASinglePickListInputProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D2573F12DA874F00E228F5 /* IBASinglePickListInputProvider.m */; };
 		14E5167C127526BD00396121 /* IBABooleanFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E5167A127526BD00396121 /* IBABooleanFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E5167D127526BD00396121 /* IBABooleanFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5167B127526BD00396121 /* IBABooleanFormField.m */; };
 		14E516841275295100396121 /* IBABooleanSwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E516821275295100396121 /* IBABooleanSwitchCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -121,9 +123,11 @@
 		148E9417126571F10065EDD1 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		14BA9398126BAB07005456E6 /* IBAPickListFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAPickListFormField.h; sourceTree = "<group>"; };
 		14BA9399126BAB07005456E6 /* IBAPickListFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAPickListFormField.m; sourceTree = "<group>"; };
-		14BA945F126BCF03005456E6 /* IBAPickListInputProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAPickListInputProvider.h; sourceTree = "<group>"; };
-		14BA9460126BCF03005456E6 /* IBAPickListInputProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAPickListInputProvider.m; sourceTree = "<group>"; };
+		14BA945F126BCF03005456E6 /* IBAMultiplePickListInputProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAMultiplePickListInputProvider.h; sourceTree = "<group>"; };
+		14BA9460126BCF03005456E6 /* IBAMultiplePickListInputProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAMultiplePickListInputProvider.m; sourceTree = "<group>"; };
 		14BA9463126BD257005456E6 /* IBAPickListOptionsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAPickListOptionsProvider.h; sourceTree = "<group>"; };
+		14D2573E12DA874F00E228F5 /* IBASinglePickListInputProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBASinglePickListInputProvider.h; sourceTree = "<group>"; };
+		14D2573F12DA874F00E228F5 /* IBASinglePickListInputProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBASinglePickListInputProvider.m; sourceTree = "<group>"; };
 		14E5167A127526BD00396121 /* IBABooleanFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBABooleanFormField.h; sourceTree = "<group>"; };
 		14E5167B127526BD00396121 /* IBABooleanFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBABooleanFormField.m; sourceTree = "<group>"; };
 		14E516821275295100396121 /* IBABooleanSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBABooleanSwitchCell.h; sourceTree = "<group>"; };
@@ -289,9 +293,11 @@
 				148E93E512656FF60065EDD1 /* IBAInputProvider.h */,
 				148E93E612656FF60065EDD1 /* IBAInputRequestor.h */,
 				148E93E712656FF60065EDD1 /* IBAInputRequestorDataSource.h */,
-				14BA945F126BCF03005456E6 /* IBAPickListInputProvider.h */,
-				14BA9460126BCF03005456E6 /* IBAPickListInputProvider.m */,
+				14BA945F126BCF03005456E6 /* IBAMultiplePickListInputProvider.h */,
+				14BA9460126BCF03005456E6 /* IBAMultiplePickListInputProvider.m */,
 				14BA9463126BD257005456E6 /* IBAPickListOptionsProvider.h */,
+				14D2573E12DA874F00E228F5 /* IBASinglePickListInputProvider.h */,
+				14D2573F12DA874F00E228F5 /* IBASinglePickListInputProvider.m */,
 				148E93E812656FF60065EDD1 /* IBATextInputProvider.h */,
 				148E93E912656FF60065EDD1 /* IBATextInputProvider.m */,
 			);
@@ -354,11 +360,12 @@
 				148E9414126571D30065EDD1 /* IBACommon.h in Headers */,
 				148E9418126571F10065EDD1 /* SynthesizeSingleton.h in Headers */,
 				14BA939A126BAB07005456E6 /* IBAPickListFormField.h in Headers */,
-				14BA9461126BCF03005456E6 /* IBAPickListInputProvider.h in Headers */,
+				14BA9461126BCF03005456E6 /* IBAMultiplePickListInputProvider.h in Headers */,
 				14BA9465126BD257005456E6 /* IBAPickListOptionsProvider.h in Headers */,
 				14E5167C127526BD00396121 /* IBABooleanFormField.h in Headers */,
 				14E516841275295100396121 /* IBABooleanSwitchCell.h in Headers */,
 				141A929412802272002C3C19 /* IBAForms.h in Headers */,
+				14D2574012DA874F00E228F5 /* IBASinglePickListInputProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,9 +457,10 @@
 				148E93FB12656FF60065EDD1 /* IBAInputManagerView.m in Sources */,
 				148E93FD12656FF60065EDD1 /* IBAInputNavigationToolbar.m in Sources */,
 				14BA939B126BAB07005456E6 /* IBAPickListFormField.m in Sources */,
-				14BA9462126BCF03005456E6 /* IBAPickListInputProvider.m in Sources */,
+				14BA9462126BCF03005456E6 /* IBAMultiplePickListInputProvider.m in Sources */,
 				14E5167D127526BD00396121 /* IBABooleanFormField.m in Sources */,
 				14E516851275295100396121 /* IBABooleanSwitchCell.m in Sources */,
+				14D2574112DA874F00E228F5 /* IBASinglePickListInputProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

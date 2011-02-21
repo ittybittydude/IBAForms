@@ -13,19 +13,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IBAInputProvider.h"
 
-typedef enum {
-	IBAPickListSelectionModeSingle = 0,
-	IBAPickListSelectionModeMultiple,
-} IBAPickListSelectionMode;
+@interface IBASinglePickListInputProvider : NSObject <IBAInputProvider, UIPickerViewDataSource, UIPickerViewDelegate> {
+	id<IBAInputRequestor> inputRequestor_;
+}
 
-@protocol IBAPickListOptionsProvider
-- (NSArray *)pickListOptions;
-- (IBAPickListSelectionMode)selectionMode;
 @end
-
-@protocol IBAPickListOption <NSObject>
-- (UIImage *)iconImage;
-- (NSString *)name;
-@end
-

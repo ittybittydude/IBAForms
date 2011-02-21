@@ -87,7 +87,8 @@
 #pragma mark IBAInputRequestor
 
 - (NSString *)dataType {
-	return IBAInputDataTypePickList;
+	return (self.selectionMode == IBAPickListSelectionModeSingle) ? IBAInputDataTypePickListSingle : 
+           IBAInputDataTypePickListMultiple;
 }
 
 @end
