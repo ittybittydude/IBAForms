@@ -43,8 +43,9 @@
 		pickListTableView_ = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 216) style:UITableViewStyleGrouped];
 		pickListTableView_.dataSource = self;
 		pickListTableView_.delegate = self;
-		pickListTableView_.backgroundColor = [UIColor clearColor];
-		pickListTableView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+		pickListTableView_.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+
+//		pickListTableView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 	}
 	
 	return self;
@@ -76,16 +77,17 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 
-  id<IBAPickListOption> pickListOption = [[self pickListOptions] objectAtIndex:indexPath.row];
-  cell.textLabel.text = pickListOption.name;
+	id<IBAPickListOption> pickListOption = [[self pickListOptions] objectAtIndex:indexPath.row];
+	cell.textLabel.text = pickListOption.name;
 	cell.imageView.image = pickListOption.iconImage;
 	
 	NSArray *selectedOptions = self.inputRequestor.inputRequestorValue;
 	cell.accessoryType = [selectedOptions containsObject:pickListOption] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 
-  return cell;
+	return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
