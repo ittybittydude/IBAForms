@@ -18,6 +18,8 @@
 
 @interface IBASinglePickListInputProvider ()
 @property (nonatomic, readonly) UIPickerView *pickerView;
+@property (nonatomic, readonly) UIView *providerView;
+
 - (NSArray *)pickListOptions;
 - (id<IBAPickListOptionsProvider>)pickListOptionsProvider;
 - (void)setSelectedOptionWithIndex:(NSInteger)optionIndex;
@@ -28,6 +30,7 @@
 
 @implementation IBASinglePickListInputProvider
 
+@synthesize providerView = providerView_;
 @synthesize pickerView = pickerView_;
 @synthesize inputRequestor = inputRequestor_;
 
@@ -36,18 +39,26 @@
 
 - (void)dealloc {	
 	IBA_RELEASE_SAFELY(pickerView_);
-	
+	IBA_RELEASE_SAFELY(providerView_);
+
 	[super dealloc];
 }
 
 - (id)init {
 	self = [super init];
 	if (self != nil) {
-		pickerView_ = [[UIPickerView alloc] init];
+		providerView_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+//		providerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+		providerView_.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+		
+		pickerView_ = [[UIPickerView alloc] initWithFrame:[providerView_ bounds]];
 		pickerView_.showsSelectionIndicator = YES;
 		pickerView_.dataSource = self;
 		pickerView_.delegate = self;
-		pickerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+		pickerView_.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleHeight;
+		[providerView_ sizeToFit];
+
+		[providerView_ addSubview:pickerView_];
 	}
 	
 	return self;
@@ -78,7 +89,7 @@
 #pragma mark IBAInputProvider
 
 - (UIView *)view {
-	return self.pickerView;
+	return self.providerView;
 }
 
 
