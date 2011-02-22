@@ -21,7 +21,7 @@
 - (void)makeFormFieldVisible:(IBAFormField *)formField;
 - (void)registerForNotifications;
 - (void)registerSelector:(SEL)selector withNotification:(NSString *)notificationKey;
-- (void)adjustTableViewHeightForCoveringRect:(CGRect)coveringRect;
+- (void)adjustTableViewHeightForCoveringSize:(CGSize)coveringSize;
 - (void)tableViewResizeDidFinish;
 
 // Notification methods
@@ -64,8 +64,8 @@
 }
 
 - (void)registerForNotifications {
-	[self registerSelector:@selector(inputManagerWillShow:) withNotification:IBAInputManagerWillShowNotification];
-	[self registerSelector:@selector(inputManagerDidHide:) withNotification:IBAInputManagerDidHideNotification];
+	[self registerSelector:@selector(inputManagerWillShow:) withNotification:UIKeyboardWillShowNotification];
+	[self registerSelector:@selector(inputManagerDidHide:) withNotification:UIKeyboardDidHideNotification];
 
 	[self registerSelector:@selector(formFieldActivated:) withNotification:IBAInputRequestorFormFieldActivated];
 	
@@ -185,11 +185,14 @@
 #pragma mark Responses to IBAInputManager notifications
 
 - (void)inputManagerWillShow:(NSNotification *)notification {
-	[self adjustTableViewHeightForCoveringRect:[[[IBAInputManager sharedIBAInputManager] inputManagerView] frame]];
+	NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardBoundsUserInfoKey] CGRectValue].size;
+//	CGRect keyboardFrame = [[[IBAInputManager sharedIBAInputManager] inputManagerView] frame];
+	[self adjustTableViewHeightForCoveringSize:keyboardSize];
 }
 
 - (void)inputManagerDidHide:(NSNotification *)notification {
-	[self adjustTableViewHeightForCoveringRect:CGRectZero];
+	[self adjustTableViewHeightForCoveringSize:CGSizeZero];
 }
 
 - (void)formFieldActivated:(NSNotification *)notification {
@@ -211,16 +214,18 @@
 	[self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
-- (void)adjustTableViewHeightForCoveringRect:(CGRect)coveringRect {
+- (void)adjustTableViewHeightForCoveringSize:(CGSize)coveringSize {
 	CGRect newTableViewFrame = self.tableView.frame;
-	newTableViewFrame.size.height = self.tableViewOriginalFrame.size.height - coveringRect.size.height;
+	newTableViewFrame.size.height = self.tableViewOriginalFrame.size.height - coveringSize.height;
 
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.2];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(tableViewResizeDidFinish)];
 	
-	self.tableView.contentInset = UIEdgeInsetsMake(0,0, coveringRect.size.height, 0);
+	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0,0, coveringSize.height, 0);
+	self.tableView.contentInset = contentInsets;
+	self.tableView.scrollIndicatorInsets = contentInsets;
 	
 	[UIView commitAnimations];
 }
