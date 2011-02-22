@@ -16,6 +16,8 @@
 #import "IBACommon.h"
 
 @interface IBADateInputProvider ()
+@property (nonatomic, readonly) UIView *datePickerView;
+@property (nonatomic, readonly) UIDatePicker *datePicker;
 - (void)datePickerValueChanged;
 @end
 
@@ -24,12 +26,14 @@
 
 @synthesize inputRequestor = inputRequestor_;
 @synthesize datePickerMode = datePickerMode_;
+@synthesize datePicker = datePicker_;
 
 #pragma mark -
 #pragma mark Memory management
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(datePickerView_);
+	IBA_RELEASE_SAFELY(datePicker_);
 	
 	[super dealloc];
 }
@@ -51,13 +55,20 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (UIDatePicker *)datePickerView {
+- (UIView *)datePickerView {
 	if (datePickerView_ == nil) {
-		datePickerView_ = [[UIDatePicker alloc] init];
-		datePickerView_.datePickerMode = self.datePickerMode;
-		datePickerView_.minuteInterval = 5;
-		datePickerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-		[datePickerView_ addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];	
+		datePickerView_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+//		datePickerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+		datePickerView_.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+		
+		datePicker_ = [[UIDatePicker alloc] init];
+		datePicker_.datePickerMode = self.datePickerMode;
+		datePicker_.minuteInterval = 5;
+		datePicker_.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+		[datePicker_ addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];
+		
+		[datePickerView_ addSubview:datePicker_];
+		[datePicker_ sizeToFit];
 	}
 	
 	return datePickerView_;
@@ -76,7 +87,7 @@
 #pragma mark Date value change management
 
 - (void)datePickerValueChanged {
-	inputRequestor_.inputRequestorValue = self.datePickerView.date;
+	inputRequestor_.inputRequestorValue = self.datePicker.date;
 }
 
 
@@ -91,7 +102,7 @@
 			inputRequestor.inputRequestorValue = date;
 		}
 		
-		[self.datePickerView setDate:date animated:YES];
+		[self.datePicker setDate:date animated:YES];
 	}
 }
 

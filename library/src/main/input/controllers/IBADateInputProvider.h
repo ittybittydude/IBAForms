@@ -17,13 +17,13 @@
 
 
 @interface IBADateInputProvider : NSObject <IBAInputProvider> {
+	UIView *datePickerView_;
 	UIDatePickerMode datePickerMode_;
-	UIDatePicker *datePickerView_;
+	UIDatePicker *datePicker_;
 	id<IBAInputRequestor> inputRequestor_;
 }
 
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
-@property (nonatomic, readonly) UIDatePicker *datePickerView;
 
 - (id)initWithDatePickerMode:(UIDatePickerMode)datePickerMode;
 
