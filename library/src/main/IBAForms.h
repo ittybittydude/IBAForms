@@ -13,7 +13,6 @@
 //
 
 #import <IBAForms/IBABooleanFormField.h>
-#import <IBAForms/IBABooleanCheckCell.h>
 #import <IBAForms/IBABooleanSwitchCell.h>
 #import <IBAForms/IBAButtonFormField.h>
 #import <IBAForms/IBACommon.h>
