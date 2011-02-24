@@ -128,20 +128,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		activeInputRequestor_ = [inputRequestor retain];
 
 		id<IBAInputProvider>newInputProvider = [self inputProviderForRequestor:activeInputRequestor_];
-		
-//		if (newInputProvider != oldInputProvider) {
-			[self displayInputProvider:newInputProvider forInputRequestor:inputRequestor];
-//		}
+		[self displayInputProvider:newInputProvider forInputRequestor:inputRequestor];
 		
 		// NOTE: the input requestor must be activated after the input provider has been displayed because the
-		// act of displaying the input provider may affect the visibility of the input requestor, which needs
-		// to be compensated for when the requestor is activated.
+		// act of displaying the input provider may affect the visibility of the input requestor
 		[activeInputRequestor_ activate];
-		
 		newInputProvider.inputRequestor = activeInputRequestor_;
 	} else {
 		// The new input requestor is nil, so hide the input manager's view
-		[self hideInputManagerView];
+		[[activeInputRequestor_ responder] resignFirstResponder];
 		activeInputRequestor_ = nil;
 	}
 	
@@ -200,8 +195,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 }
 
 - (BOOL)deactivateActiveInputRequestor {
-	[[self.activeInputRequestor responder] resignFirstResponder];
-	return [self setActiveInputRequestor:nil]; // this deactivates the active input requestor
+	return [self setActiveInputRequestor:nil];
 }
 
 
