@@ -84,7 +84,6 @@
 	self.label.textAlignment = self.formFieldStyle.labelTextAlignment;
 	self.label.backgroundColor = self.formFieldStyle.labelBackgroundColor;
 	self.backgroundColor = self.formFieldStyle.labelBackgroundColor;
-//	self.label.frame = self.formFieldStyle.labelFrame;
 
 	self.styleApplied = YES;
 }
