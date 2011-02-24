@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		1415F0501314CAC1005EA8E9 /* ShowcaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415F04F1314CAC1005EA8E9 /* ShowcaseController.m */; };
 		1415F0531314CB18005EA8E9 /* ShowcaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415F0521314CB18005EA8E9 /* ShowcaseModel.m */; };
-		1415F0591314CDC8005EA8E9 /* ShowcaseFormDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1415F0581314CDC8005EA8E9 /* ShowcaseFormDataSource.m */; };
-		141A939B12802FFD002C3C19 /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 141A939A12802FFD002C3C19 /* StringToNumberTransformer.m */; };
-		1481F5BF13160871003965CF /* ShowcaseButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481F5BE13160871003965CF /* ShowcaseButtonStyle.m */; };
+		1481F5F613160D3F003965CF /* ShowcaseButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481F5F513160D3F003965CF /* ShowcaseButtonStyle.m */; };
+		1481F5FA13160D4B003965CF /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481F5F913160D4B003965CF /* StringToNumberTransformer.m */; };
+		1481F60013160D51003965CF /* SampleFormDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481F5FD13160D51003965CF /* SampleFormDataSource.m */; };
+		1481F60113160D51003965CF /* ShowcaseFormDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481F5FF13160D51003965CF /* ShowcaseFormDataSource.m */; };
 		14BA8E5812681D03005456E6 /* IBAFormsShowcaseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA8E5312681D03005456E6 /* IBAFormsShowcaseAppDelegate.m */; };
 		14BA8E5D12681F3D005456E6 /* SampleFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA8E5C12681F3D005456E6 /* SampleFormController.m */; };
 		14BA8E7112682042005456E6 /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BA8E6612681FC9005456E6 /* libIBAForms.a */; };
-		14BA900E1269A839005456E6 /* SampleFormDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA900D1269A839005456E6 /* SampleFormDataSource.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -44,19 +44,19 @@
 		1415F04F1314CAC1005EA8E9 /* ShowcaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseController.m; sourceTree = "<group>"; };
 		1415F0511314CB18005EA8E9 /* ShowcaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowcaseModel.h; sourceTree = "<group>"; };
 		1415F0521314CB18005EA8E9 /* ShowcaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseModel.m; sourceTree = "<group>"; };
-		1415F0571314CDC8005EA8E9 /* ShowcaseFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowcaseFormDataSource.h; sourceTree = "<group>"; };
-		1415F0581314CDC8005EA8E9 /* ShowcaseFormDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseFormDataSource.m; sourceTree = "<group>"; };
-		141A939912802FFD002C3C19 /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
-		141A939A12802FFD002C3C19 /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
-		1481F5BD13160871003965CF /* ShowcaseButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowcaseButtonStyle.h; sourceTree = "<group>"; };
-		1481F5BE13160871003965CF /* ShowcaseButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseButtonStyle.m; sourceTree = "<group>"; };
+		1481F5F413160D3F003965CF /* ShowcaseButtonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowcaseButtonStyle.h; sourceTree = "<group>"; };
+		1481F5F513160D3F003965CF /* ShowcaseButtonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseButtonStyle.m; sourceTree = "<group>"; };
+		1481F5F813160D4B003965CF /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
+		1481F5F913160D4B003965CF /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
+		1481F5FC13160D51003965CF /* SampleFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleFormDataSource.h; sourceTree = "<group>"; };
+		1481F5FD13160D51003965CF /* SampleFormDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleFormDataSource.m; sourceTree = "<group>"; };
+		1481F5FE13160D51003965CF /* ShowcaseFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowcaseFormDataSource.h; sourceTree = "<group>"; };
+		1481F5FF13160D51003965CF /* ShowcaseFormDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseFormDataSource.m; sourceTree = "<group>"; };
 		14BA8E5212681D03005456E6 /* IBAFormsShowcaseAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAFormsShowcaseAppDelegate.h; sourceTree = "<group>"; };
 		14BA8E5312681D03005456E6 /* IBAFormsShowcaseAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAFormsShowcaseAppDelegate.m; sourceTree = "<group>"; };
 		14BA8E5B12681F3D005456E6 /* SampleFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleFormController.h; sourceTree = "<group>"; };
 		14BA8E5C12681F3D005456E6 /* SampleFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleFormController.m; sourceTree = "<group>"; };
 		14BA8E5E12681FC9005456E6 /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = ../../library/IBAForms.xcodeproj; sourceTree = SOURCE_ROOT; };
-		14BA900C1269A839005456E6 /* SampleFormDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleFormDataSource.h; sourceTree = "<group>"; };
-		14BA900D1269A839005456E6 /* SampleFormDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleFormDataSource.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* IBAFormsShowcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBAFormsShowcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -81,11 +81,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1481F5F313160D3F003965CF /* styles */ = {
+			isa = PBXGroup;
+			children = (
+				1481F5F413160D3F003965CF /* ShowcaseButtonStyle.h */,
+				1481F5F513160D3F003965CF /* ShowcaseButtonStyle.m */,
+			);
+			path = styles;
+			sourceTree = "<group>";
+		};
+		1481F5F713160D4B003965CF /* transformers */ = {
+			isa = PBXGroup;
+			children = (
+				1481F5F813160D4B003965CF /* StringToNumberTransformer.h */,
+				1481F5F913160D4B003965CF /* StringToNumberTransformer.m */,
+			);
+			path = transformers;
+			sourceTree = "<group>";
+		};
+		1481F5FB13160D51003965CF /* datasources */ = {
+			isa = PBXGroup;
+			children = (
+				1481F5FC13160D51003965CF /* SampleFormDataSource.h */,
+				1481F5FD13160D51003965CF /* SampleFormDataSource.m */,
+				1481F5FE13160D51003965CF /* ShowcaseFormDataSource.h */,
+				1481F5FF13160D51003965CF /* ShowcaseFormDataSource.m */,
+			);
+			path = datasources;
+			sourceTree = "<group>";
+		};
 		14BA8E5012681D03005456E6 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				1481F5FB13160D51003965CF /* datasources */,
 				14BA8E5112681D03005456E6 /* controllers */,
 				14BA8E5612681D03005456E6 /* models */,
+				1481F5F313160D3F003965CF /* styles */,
+				1481F5F713160D4B003965CF /* transformers */,
 				14BA8E5212681D03005456E6 /* IBAFormsShowcaseAppDelegate.h */,
 				14BA8E5312681D03005456E6 /* IBAFormsShowcaseAppDelegate.m */,
 			);
@@ -106,16 +138,8 @@
 		14BA8E5612681D03005456E6 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				14BA900C1269A839005456E6 /* SampleFormDataSource.h */,
-				14BA900D1269A839005456E6 /* SampleFormDataSource.m */,
-				1481F5BD13160871003965CF /* ShowcaseButtonStyle.h */,
-				1481F5BE13160871003965CF /* ShowcaseButtonStyle.m */,
-				1415F0571314CDC8005EA8E9 /* ShowcaseFormDataSource.h */,
-				1415F0581314CDC8005EA8E9 /* ShowcaseFormDataSource.m */,
 				1415F0511314CB18005EA8E9 /* ShowcaseModel.h */,
 				1415F0521314CB18005EA8E9 /* ShowcaseModel.m */,
-				141A939912802FFD002C3C19 /* StringToNumberTransformer.h */,
-				141A939A12802FFD002C3C19 /* StringToNumberTransformer.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -255,12 +279,12 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				14BA8E5812681D03005456E6 /* IBAFormsShowcaseAppDelegate.m in Sources */,
 				14BA8E5D12681F3D005456E6 /* SampleFormController.m in Sources */,
-				14BA900E1269A839005456E6 /* SampleFormDataSource.m in Sources */,
-				141A939B12802FFD002C3C19 /* StringToNumberTransformer.m in Sources */,
 				1415F0501314CAC1005EA8E9 /* ShowcaseController.m in Sources */,
 				1415F0531314CB18005EA8E9 /* ShowcaseModel.m in Sources */,
-				1415F0591314CDC8005EA8E9 /* ShowcaseFormDataSource.m in Sources */,
-				1481F5BF13160871003965CF /* ShowcaseButtonStyle.m in Sources */,
+				1481F5F613160D3F003965CF /* ShowcaseButtonStyle.m in Sources */,
+				1481F5FA13160D4B003965CF /* StringToNumberTransformer.m in Sources */,
+				1481F60013160D51003965CF /* SampleFormDataSource.m in Sources */,
+				1481F60113160D51003965CF /* ShowcaseFormDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

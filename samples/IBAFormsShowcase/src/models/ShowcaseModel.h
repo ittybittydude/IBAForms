@@ -16,13 +16,13 @@
 
 @interface ShowcaseModel : NSObject {
 	BOOL shouldAutoRotate_;
-	UITableViewStyle tableViewStyle_;
+	BOOL tableViewStyleGrouped_;
 	BOOL modalPresentation_;
 	UIModalPresentationStyle modalPresentationStyle_;
 }
 
 @property (nonatomic, assign) BOOL shouldAutoRotate;
-@property (nonatomic, assign) UITableViewStyle tableViewStyle;
+@property (nonatomic, assign) BOOL tableViewStyleGrouped;
 @property (nonatomic, assign) BOOL modalPresentation;
 @property (nonatomic, assign) UIModalPresentationStyle modalPresentationStyle;
 

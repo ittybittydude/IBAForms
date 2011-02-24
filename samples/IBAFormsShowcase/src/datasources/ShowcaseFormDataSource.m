@@ -48,23 +48,11 @@
 		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"shouldAutoRotate" 
 																				title:@"Autorotate"] autorelease]];
 		
-		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"modalPresentation" title:@"Modal"] autorelease]];
-
+		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"tableViewStyleGrouped" 
+																					title:@"Group"] autorelease]];
 		
-		
-		NSArray *tableViewStyleOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
-																						   @"Plain", 
-																						   @"Grouped", 
-																						   nil]];
-		
-		IBASingleIndexTransformer *tableViewStyleTransformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:tableViewStyleOptions] autorelease];
-		
-		[displayOptionsSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"tableViewStyle"
-																			   title:@"Table Style"
-																	valueTransformer:tableViewStyleTransformer
-																	   selectionMode:IBAPickListSelectionModeSingle
-																			 options:tableViewStyleOptions] autorelease]];
-
+		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"modalPresentation" 
+																					title:@"Modal"] autorelease]];
 		
 		NSArray *modalPresentationStyleOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
 																									@"Full Screen", 
@@ -106,7 +94,7 @@
 	SampleFormController *sampleFormController = [[[SampleFormController alloc] initWithNibName:nil bundle:nil formDataSource:sampleFormDataSource] autorelease];
 	sampleFormController.title = @"Sample Form";
 	sampleFormController.shouldAutoRotate = showcaseModel.shouldAutoRotate;
-	sampleFormController.tableViewStyle = showcaseModel.tableViewStyle;
+	sampleFormController.tableViewStyle = showcaseModel.tableViewStyleGrouped ? UITableViewStyleGrouped : UITableViewStylePlain;
 	
 	UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
 	if (showcaseModel.modalPresentation) {
