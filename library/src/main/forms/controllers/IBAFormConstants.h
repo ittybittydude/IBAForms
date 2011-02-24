@@ -36,15 +36,13 @@
 #define IBAFormFieldLabelTextColor [UIColor grayColor]
 #define IBAFormFieldLabelTextAlignment UITextAlignmentRight
 #define IBAFormFieldLabelBackgroundColor [UIColor whiteColor]
-//#define IBAFormFieldLabelEdgeInsets UIEdgeInsetsMake(5, 10, 5, )
 
 // Form field value style
 #define IBAFormFieldValueX 75
 #define IBAFormFieldValueY 10
-#define IBAFormFieldValueWidth 210
+#define IBAFormFieldValueWidth 235
 #define IBAFormFieldValueHeight 26
 #define IBAFormFieldValueFont [UIFont systemFontOfSize:16]
 #define IBAFormFieldValueTextColor [UIColor blackColor]
 #define IBAFormFieldValueTextAlignment UITextAlignmentLeft
 #define IBAFormFieldValueBackgroundColor [UIColor whiteColor]
-//#define IBAFormFieldValueEdgeInsets UIEdgeInsetsMake(5, 75, 5, 10)

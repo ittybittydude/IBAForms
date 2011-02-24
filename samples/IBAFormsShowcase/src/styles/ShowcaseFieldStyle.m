@@ -12,18 +12,22 @@
 // permissions and limitations under the License.
 //
 
-#import "ShowcaseButtonStyle.h"
+#import <IBAForms/IBAFormConstants.h>
+#import "ShowcaseFieldStyle.h"
 
 
-@implementation ShowcaseButtonStyle
+@implementation ShowcaseFieldStyle
 
 - (id)init {
 	if (self = [super init]) {
-		self.labelTextColor = [UIColor colorWithRed:0.318 green:0.400 blue:0.569 alpha:1.0];
-		self.labelFont = [UIFont boldSystemFontOfSize:14];
-		self.labelFrame = CGRectMake(10, 8, 300, 30);
-		self.labelTextAlignment = UITextAlignmentCenter;
-		self.labelAutoresizingMask = UIViewAutoresizingFlexibleWidth;
+		self.labelTextColor = [UIColor blackColor];
+		self.labelFont = [UIFont boldSystemFontOfSize:18];
+		self.labelTextAlignment = UITextAlignmentLeft;
+		self.labelFrame = CGRectMake(IBAFormFieldLabelX, 8, 140, IBAFormFieldLabelHeight);
+		self.valueTextAlignment = UITextAlignmentRight;
+		self.valueTextColor = [UIColor colorWithRed:0.220 green:0.329 blue:0.529 alpha:1.0];
+		self.valueFont = [UIFont systemFontOfSize:16];
+		self.valueFrame = CGRectMake(160, 13, 150, IBAFormFieldValueHeight);
 	}
 	
 	return self;

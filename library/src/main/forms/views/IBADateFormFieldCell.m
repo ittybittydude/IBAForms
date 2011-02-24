@@ -32,7 +32,6 @@ static UIImage *clearImage_ = nil;
 	[super dealloc];
 }
 
-
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
 		UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];

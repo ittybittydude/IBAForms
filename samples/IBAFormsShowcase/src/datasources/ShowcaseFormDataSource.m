@@ -18,6 +18,7 @@
 #import "SampleFormController.h"
 #import "ShowcaseModel.h"
 #import "ShowcaseButtonStyle.h"
+#import "ShowcaseFieldStyle.h"
 
 @interface ShowcaseFormDataSource()
 - (void)displaySampleForm;
@@ -28,41 +29,21 @@
 @implementation ShowcaseFormDataSource
 
 - (id)initWithModel:(id)aModel {
-	self = [super initWithModel:aModel];
-	if (self != nil) {
-		// Some basic form fields that accept text input
+	if (self = [super initWithModel:aModel]) {
 		IBAFormSection *displayOptionsSection = [self addSectionWithHeaderTitle:@"Display Options" footerTitle:nil];
+		displayOptionsSection.formFieldStyle = [[[ShowcaseFieldStyle alloc] init] autorelease];
 		
-		IBAFormFieldStyle *style = [[[IBAFormFieldStyle alloc] init] autorelease];
-		style.labelTextColor = [UIColor blackColor];
-		style.labelFont = [UIFont boldSystemFontOfSize:18];
-		style.labelTextAlignment = UITextAlignmentLeft;
-		style.labelFrame = CGRectMake(IBAFormFieldLabelX, 8, 140, IBAFormFieldLabelHeight);
-		style.valueTextAlignment = UITextAlignmentRight;
-		style.valueTextColor = [UIColor colorWithRed:0.220 green:0.329 blue:0.529 alpha:1.0];
-		style.valueFont = [UIFont systemFontOfSize:16];
-		style.valueFrame = CGRectMake(160, 13, 150, IBAFormFieldValueHeight);
-		displayOptionsSection.formFieldStyle = style;
-		
-		
-		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"shouldAutoRotate" 
-																				title:@"Autorotate"] autorelease]];
-		
-		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"tableViewStyleGrouped" 
-																					title:@"Group"] autorelease]];
-		
-		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"modalPresentation" 
-																					title:@"Modal"] autorelease]];
+		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"shouldAutoRotate" title:@"Autorotate"] autorelease]];
+		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"tableViewStyleGrouped" title:@"Group"] autorelease]];
+		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"modalPresentation" title:@"Modal"] autorelease]];
 		
 		NSArray *modalPresentationStyleOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
 																									@"Full Screen", 
 																									@"Page Sheet",
 																									@"Form Sheet", 
 																									@"Current Context",
-																									nil]];
-		
+																									nil]];	
 		IBASingleIndexTransformer *modalPresentationStyleTransformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:modalPresentationStyleOptions] autorelease];
-		
 		[displayOptionsSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"modalPresentationStyle"
 																					 title:@"Modal Style"
 																		  valueTransformer:modalPresentationStyleTransformer
@@ -72,15 +53,11 @@
 		
 		IBAFormSection *buttonSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
 		buttonSection.formFieldStyle = [[[ShowcaseButtonStyle alloc] init] autorelease];;
-		
-		IBAButtonFormField *buttonField = [[[IBAButtonFormField alloc] initWithTitle:@"Show Sample Form"
+		[buttonSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Show Sample Form"
 																		  icon:nil
 																executionBlock:^{
 																	[self displaySampleForm];
-																}] autorelease];
-		
-		[buttonSection addFormField:buttonField];
-		buttonField.cell.label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+																}] autorelease]];
     }
 	
     return self;

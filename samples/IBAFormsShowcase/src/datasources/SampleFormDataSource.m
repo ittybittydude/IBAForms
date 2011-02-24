@@ -20,8 +20,7 @@
 @implementation SampleFormDataSource
 
 - (id)initWithModel:(id)aModel {
-	self = [super initWithModel:aModel];
-	if (self != nil) {
+	if (self = [super initWithModel:aModel]) {
 		// Some basic form fields that accept text input
 		IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:@"Basic Form Fields" footerTitle:nil];
 
