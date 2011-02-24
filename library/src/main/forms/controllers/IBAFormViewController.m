@@ -186,6 +186,7 @@
 
 - (void)inputManagerWillShow:(NSNotification *)notification {
 	NSDictionary* info = [notification userInfo];
+	//TODO fix this, UIKeyboardBoundsUserInfoKey is deprecated
     CGSize keyboardSize = [[info objectForKey:UIKeyboardBoundsUserInfoKey] CGRectValue].size;
 //	CGRect keyboardFrame = [[[IBAInputManager sharedIBAInputManager] inputManagerView] frame];
 	[self adjustTableViewHeightForCoveringSize:keyboardSize];
