@@ -24,24 +24,8 @@
 #import "IBASinglePickListInputProvider.h"
 
 @interface IBAInputManager ()
-- (void)registerForNotifications;
-- (void)registerSelector:(SEL)selector withNotification:(NSString *)notificationKey;
 - (void)nextPreviousButtonSelected;
-
-// Presenting the input manager view
-- (void)displayInputManagerView;
-- (void)hideInputManagerView;
-- (void)inputManagerViewDidDisplay;
-- (void)inputManagerViewDidHide;
-
-// Visibility management of the input providers
 - (void)displayInputProvider:(id<IBAInputProvider>)inputProvider forInputRequestor:(id<IBAInputRequestor>)requestor;
-
-// Methods called when notification come in
-- (void)keyboardWillShow:(NSNotification *)notification;
-- (void)keyboardDidShow:(NSNotification *)notification;
-- (void)keyboardWillHide:(NSNotification *)notification;
-- (void)keyboardDidHide:(NSNotification *)notification;
 @end
 
 
@@ -50,7 +34,7 @@
 SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 
 @synthesize inputRequestorDataSource = inputRequestorDataSource_;
-@synthesize inputManagerView = inputManagerView_;
+@synthesize inputNavigationToolbar = inputNavigationToolbar_;
 
 #pragma mark -
 #pragma mark Memory management
@@ -59,9 +43,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 	IBA_RELEASE_SAFELY(inputProviders_);
 	IBA_RELEASE_SAFELY(inputRequestorDataSource_);
 	IBA_RELEASE_SAFELY(activeInputRequestor_);
-	IBA_RELEASE_SAFELY(inputManagerView_);
-	
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	IBA_RELEASE_SAFELY(inputNavigationToolbar_);
 	
 	[super dealloc];
 }
@@ -71,10 +53,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 	if (self != nil) {
 		inputProviders_ = [[NSMutableDictionary alloc] init];
 		
-		inputManagerView_ = [[IBAInputManagerView alloc] initWithFrame:CGRectMake(0, 0, 320, 260)];	
-		inputManagerView_.inputNavigationToolbar.doneButton.target = self;
-		inputManagerView_.inputNavigationToolbar.doneButton.action = @selector(deactivateActiveInputRequestor);
-		[inputManagerView_.inputNavigationToolbar.nextPreviousButton addTarget:self action:@selector(nextPreviousButtonSelected) 
+		inputNavigationToolbar_ = [[IBAInputNavigationToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];   
+		inputNavigationToolbar_.doneButton.target = self;
+		inputNavigationToolbar_.doneButton.action = @selector(deactivateActiveInputRequestor);
+		[inputNavigationToolbar_.nextPreviousButton addTarget:self action:@selector(nextPreviousButtonSelected) 
 			forControlEvents:UIControlEventValueChanged];
 		
 		// Setup some default input providers
@@ -101,7 +83,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		[self registerInputProvider:[[[IBAMultiplePickListInputProvider alloc] init] autorelease]
 						forDataType:IBAInputDataTypePickListMultiple];
     
-		[self registerForNotifications];
 	}
 	
 	return self;
@@ -147,20 +128,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 	return activeInputRequestor_;
 }
 
-#pragma mark -
-#pragma mark Notification registration
-
-- (void)registerForNotifications {
-	[self registerSelector:@selector(keyboardWillShow:) withNotification:UIKeyboardWillShowNotification];
-	[self registerSelector:@selector(keyboardDidShow:) withNotification:UIKeyboardDidShowNotification];
-	[self registerSelector:@selector(keyboardWillHide:) withNotification:UIKeyboardWillHideNotification];
-	[self registerSelector:@selector(keyboardDidHide:) withNotification:UIKeyboardDidHideNotification];
-}
-
-- (void)registerSelector:(SEL)selector withNotification:(NSString *)notificationKey {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:selector name:notificationKey object:nil];
-}
-
 
 #pragma mark -
 #pragma mark Input Provider Registration/Deregistration
@@ -182,7 +149,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 #pragma mark Input navigation toolbar actions
 
 - (void)nextPreviousButtonSelected {
-	switch (self.inputManagerView.inputNavigationToolbar.nextPreviousButton.selectedSegmentIndex) {
+	switch (self.inputNavigationToolbar.nextPreviousButton.selectedSegmentIndex) {
 		case IBAInputNavigationToolbarActionPrevious:
 			[self activatePreviousInputRequestor];
 			break;
@@ -238,115 +205,24 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 	return [self inputProviderForRequestor:self.activeInputRequestor];
 }
 
-
-#pragma mark -
-#pragma mark Presenting the input manager view
-- (void)displayInputManagerView {
-	if (self.inputManagerView.superview == nil) {	
-		// size up the input provider view to our screen and compute the start/end frame origin for our slide up animation
-		// compute the start frame
-		CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-		CGSize inputManagerViewSize = [self.inputManagerView sizeThatFits:CGSizeZero];
-		CGRect startRect = CGRectMake(0.0, screenRect.origin.y + screenRect.size.height, 
-									  inputManagerViewSize.width, 
-									  inputManagerViewSize.height);
-		self.inputManagerView.frame = startRect;
-		
-		// TODO should add userInfo
-		[[NSNotificationCenter defaultCenter] postNotificationName:IBAInputManagerWillShowNotification object:self userInfo:nil];
-		
-		[[[UIApplication sharedApplication] keyWindow] addSubview:self.inputManagerView];
-
-		// compute the end frame
-		CGRect endRect = CGRectMake(0.0, screenRect.origin.y + screenRect.size.height - inputManagerViewSize.height, 
-									inputManagerViewSize.width, inputManagerViewSize.height);
-		
-		// start the slide up animation
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.3];
-		[UIView setAnimationDidStopSelector:@selector(inputManagerViewDidDisplay)];
-		
-		// we need to perform some post operations after the animation is complete
-		[UIView setAnimationDelegate:self];
-		
-		self.inputManagerView.frame = endRect;
-		
-		[UIView commitAnimations];
-	}
-}
-
-- (void)inputManagerViewDidDisplay {
-	// TODO should add userInfo
-	[[NSNotificationCenter defaultCenter] postNotificationName:IBAInputManagerDidShowNotification object:self userInfo:nil];
-}
-
-
-- (void)hideInputManagerView {
-	if (self.inputManagerView.superview != nil) {
-		// TODO should add userInfo
-		[[NSNotificationCenter defaultCenter] postNotificationName:IBAInputManagerWillHideNotification object:self userInfo:nil];
-
-		CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
-		CGRect inputManagerViewEndFrame= self.inputManagerView.frame;
-		inputManagerViewEndFrame.origin.y = screenRect.origin.y + screenRect.size.height;
-
-		// start the slide down animation
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.3];
-		
-		// we need to perform some post operations after the animation is complete
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDidStopSelector:@selector(inputManagerViewDidHide)];
-		
-		self.inputManagerView.frame = inputManagerViewEndFrame;
-		
-		[UIView commitAnimations];
-	}
-}
-
-- (void)inputManagerViewDidHide {
-	[self.inputManagerView removeFromSuperview];
-	// TODO should add userInfo
-	[[NSNotificationCenter defaultCenter] postNotificationName:IBAInputManagerDidHideNotification object:self userInfo:nil];
-}
-
-
 #pragma mark -
 #pragma mark Presenting the input provider
 
 - (void)displayInputProvider:(id<IBAInputProvider>)inputProvider forInputRequestor:(id<IBAInputRequestor>)requestor {
 	[[requestor responder] setInputView:inputProvider.view];
-	[[requestor responder] setInputAccessoryView:self.inputManagerView.inputNavigationToolbar];
+	[[requestor responder] setInputAccessoryView:self.inputNavigationToolbar];
 	[[requestor responder] becomeFirstResponder];
-	
-//	self.inputManagerView.inputProviderView = inputProvider.view;
-//	[self displayInputManagerView];
 }
 
-
-#pragma mark -
-#pragma mark Keyboard management
-
-- (void)keyboardWillShow:(NSNotification *)notification {
-}
-
-- (void)keyboardDidShow:(NSNotification *)notification {
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-}
-
-- (void)keyboardDidHide:(NSNotification *)notification {
-}
 
 #pragma mark -
 #pragma mark Enablement of the input navigation toolbar
 - (BOOL)inputNavigationToolbarEnabled {
-	return self.inputManagerView.inputNavigationToolbarEnabled;
+	return self.inputNavigationToolbarEnabled;
 }
 
 - (void)setInputNavigationToolbarEnabled:(BOOL)enabled {
-	self.inputManagerView.inputNavigationToolbarEnabled = enabled;
+	self.inputNavigationToolbarEnabled = enabled;
 }
 
 @end

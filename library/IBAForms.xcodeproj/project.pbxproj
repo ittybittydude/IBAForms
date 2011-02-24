@@ -50,8 +50,6 @@
 		148E93F712656FF60065EDD1 /* IBATextInputProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93E812656FF60065EDD1 /* IBATextInputProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		148E93F812656FF60065EDD1 /* IBATextInputProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93E912656FF60065EDD1 /* IBATextInputProvider.m */; };
 		148E93F912656FF60065EDD1 /* IBAInputCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93EA12656FF60065EDD1 /* IBAInputCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		148E93FA12656FF60065EDD1 /* IBAInputManagerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93EC12656FF60065EDD1 /* IBAInputManagerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		148E93FB12656FF60065EDD1 /* IBAInputManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93ED12656FF60065EDD1 /* IBAInputManagerView.m */; };
 		148E93FC12656FF60065EDD1 /* IBAInputNavigationToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E93EE12656FF60065EDD1 /* IBAInputNavigationToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		148E93FD12656FF60065EDD1 /* IBAInputNavigationToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 148E93EF12656FF60065EDD1 /* IBAInputNavigationToolbar.m */; };
 		148E9414126571D30065EDD1 /* IBACommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 148E9413126571D30065EDD1 /* IBACommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -115,8 +113,6 @@
 		148E93E812656FF60065EDD1 /* IBATextInputProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATextInputProvider.h; sourceTree = "<group>"; };
 		148E93E912656FF60065EDD1 /* IBATextInputProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBATextInputProvider.m; sourceTree = "<group>"; };
 		148E93EA12656FF60065EDD1 /* IBAInputCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputCommon.h; sourceTree = "<group>"; };
-		148E93EC12656FF60065EDD1 /* IBAInputManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputManagerView.h; sourceTree = "<group>"; };
-		148E93ED12656FF60065EDD1 /* IBAInputManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputManagerView.m; sourceTree = "<group>"; };
 		148E93EE12656FF60065EDD1 /* IBAInputNavigationToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputNavigationToolbar.h; sourceTree = "<group>"; };
 		148E93EF12656FF60065EDD1 /* IBAInputNavigationToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputNavigationToolbar.m; sourceTree = "<group>"; };
 		148E9413126571D30065EDD1 /* IBACommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBACommon.h; sourceTree = "<group>"; };
@@ -307,8 +303,6 @@
 		148E93EB12656FF60065EDD1 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				148E93EC12656FF60065EDD1 /* IBAInputManagerView.h */,
-				148E93ED12656FF60065EDD1 /* IBAInputManagerView.m */,
 				148E93EE12656FF60065EDD1 /* IBAInputNavigationToolbar.h */,
 				148E93EF12656FF60065EDD1 /* IBAInputNavigationToolbar.m */,
 			);
@@ -355,7 +349,6 @@
 				148E93F612656FF60065EDD1 /* IBAInputRequestorDataSource.h in Headers */,
 				148E93F712656FF60065EDD1 /* IBATextInputProvider.h in Headers */,
 				148E93F912656FF60065EDD1 /* IBAInputCommon.h in Headers */,
-				148E93FA12656FF60065EDD1 /* IBAInputManagerView.h in Headers */,
 				148E93FC12656FF60065EDD1 /* IBAInputNavigationToolbar.h in Headers */,
 				148E9414126571D30065EDD1 /* IBACommon.h in Headers */,
 				148E9418126571F10065EDD1 /* SynthesizeSingleton.h in Headers */,
@@ -454,7 +447,6 @@
 				148E93F112656FF60065EDD1 /* IBADateInputProvider.m in Sources */,
 				148E93F312656FF60065EDD1 /* IBAInputManager.m in Sources */,
 				148E93F812656FF60065EDD1 /* IBATextInputProvider.m in Sources */,
-				148E93FB12656FF60065EDD1 /* IBAInputManagerView.m in Sources */,
 				148E93FD12656FF60065EDD1 /* IBAInputNavigationToolbar.m in Sources */,
 				14BA939B126BAB07005456E6 /* IBAPickListFormField.m in Sources */,
 				14BA9462126BCF03005456E6 /* IBAMultiplePickListInputProvider.m in Sources */,

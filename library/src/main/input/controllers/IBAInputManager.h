@@ -16,24 +16,19 @@
 #import "IBAInputProvider.h"
 #import "IBAInputRequestorDataSource.h"
 #import "IBAInputRequestor.h"
-#import "IBAInputManagerView.h"
+#import "IBAInputNavigationToolbar.h"
 
-// Notifications
-#define IBAInputManagerWillShowNotification @"IBAInputManagerWillShowNotification"
-#define IBAInputManagerDidShowNotification @"IBAInputManagerDidShowNotification"
-#define IBAInputManagerWillHideNotification @"IBAInputManagerWillHideNotification"
-#define IBAInputManagerDidHideNotification @"IBAInputManagerDidHideNotification"
 
 @interface IBAInputManager : NSObject {
 	NSMutableDictionary *inputProviders_;
 	id<IBAInputRequestorDataSource> inputRequestorDataSource_;
 	id<IBAInputRequestor> activeInputRequestor_;
-	IBAInputManagerView *inputManagerView_;
+	IBAInputNavigationToolbar *inputNavigationToolbar_;
 }
 
 
 @property (nonatomic, retain) id<IBAInputRequestorDataSource> inputRequestorDataSource;
-@property (nonatomic, retain) IBAInputManagerView *inputManagerView;
+@property (nonatomic, retain) IBAInputNavigationToolbar *inputNavigationToolbar;
 @property (nonatomic, assign) BOOL inputNavigationToolbarEnabled;
 
 + (IBAInputManager *)sharedIBAInputManager;
