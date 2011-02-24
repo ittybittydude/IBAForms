@@ -30,7 +30,7 @@
     if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
 		// Create the text field for data entry
 		self.textField = [[[UITextField alloc] initWithFrame:style.valueFrame] autorelease];
-		self.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		self.textField.autoresizingMask = style.valueAutoresizingMask;
 		self.textField.returnKeyType = UIReturnKeyNext;
 		[self.cellView addSubview:self.textField];
 	}

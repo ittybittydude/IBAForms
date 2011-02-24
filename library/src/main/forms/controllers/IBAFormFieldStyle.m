@@ -22,11 +22,13 @@
 @synthesize labelBackgroundColor = labelBackgroundColor_;
 @synthesize labelFont = labelFont_;
 @synthesize labelFrame = labelFrame_;
+@synthesize labelAutoresizingMask = labelAutoresizingMask_;
 @synthesize valueTextColor = valueTextColor_;
 @synthesize valueBackgroundColor = valueBackgroundColor_;
 @synthesize valueFont = valueFont_;
 @synthesize valueFrame = valueFrame_;
 @synthesize valueTextAlignment = valueTextAlignment_;
+@synthesize valueAutoresizingMask = valueAutoresizingMask_;
 @synthesize activeColor = activeColor_;
 
 - (void)dealloc {
@@ -52,12 +54,14 @@
 		self.labelFont = IBAFormFieldLabelFont;
 		self.labelFrame = CGRectMake(IBAFormFieldLabelX, IBAFormFieldLabelY, IBAFormFieldLabelWidth, IBAFormFieldLabelHeight);
 		self.labelTextAlignment = IBAFormFieldLabelTextAlignment;
-		
+		self.labelAutoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+
 		self.valueTextColor = IBAFormFieldValueTextColor;
 		self.valueBackgroundColor = IBAFormFieldValueBackgroundColor;
 		self.valueFont = IBAFormFieldValueFont;
 		self.valueFrame = CGRectMake(IBAFormFieldValueX, IBAFormFieldValueY, IBAFormFieldValueWidth, IBAFormFieldValueHeight);
 		self.valueTextAlignment = IBAFormFieldValueTextAlignment;
+		self.valueAutoresizingMask = UIViewAutoresizingFlexibleWidth;
 
 		self.activeColor = IBAFormFieldActiveColor;
 	}

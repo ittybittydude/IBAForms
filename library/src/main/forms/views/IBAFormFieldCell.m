@@ -45,6 +45,7 @@
 
 		// Create a label
 		self.label = [[[UILabel alloc] initWithFrame:style.labelFrame] autorelease];
+		self.label.autoresizingMask = style.labelAutoresizingMask;
 		self.label.adjustsFontSizeToFitWidth = YES;
 		self.label.minimumFontSize = 10;
 		[self.cellView addSubview:self.label];
