@@ -151,7 +151,7 @@
 
 @implementation IBAPickListFormOptionsStringTransformer
 
-@synthesize pickListOptions;
+@synthesize pickListOptions = pickListOptions_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(pickListOptions_);
@@ -159,10 +159,10 @@
 	[super dealloc];
 }
 
-- (id)initWithPickListOptions:(NSArray *)thePickListOptions {
+- (id)initWithPickListOptions:(NSArray *)pickListOptions {
 	self = [super init];
 	if (self != nil) {
-		self.pickListOptions = thePickListOptions;
+		self.pickListOptions = pickListOptions;
 	}
 
 	return self;
@@ -203,6 +203,63 @@
 - (IBAPickListFormOption *)optionWithName:(NSString *)optionName {
 	NSArray *filteredOptions = [self.pickListOptions filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name == %@", optionName]];
 	return (filteredOptions.count > 0) ? [filteredOptions lastObject] : nil;
+}
+
+@end
+
+
+#pragma mark -
+#pragma mark IBASingleIndexTransformer
+
+@implementation IBASingleIndexTransformer
+
+@synthesize pickListOptions = pickListOptions_;
+
+- (void)dealloc {
+	IBA_RELEASE_SAFELY(pickListOptions_);
+	
+	[super dealloc];
+}
+
+- (id)initWithPickListOptions:(NSArray *)pickListOptions {
+	self = [super init];
+	if (self != nil) {
+		self.pickListOptions = pickListOptions;
+	}
+	
+	return self;
+}
+
++ (Class)transformedValueClass {
+	return [NSNumber class];
+}
+
++ (BOOL)allowsReverseTransformation {
+	return YES;
+}
+
+- (id)transformedValue:(id)value {
+	// Assume we're given a set with a single IBAPickListFormOption and convert it to an NSNumber representing the option
+	// index in to pickListOptions
+	IBAPickListFormOption *option = [value anyObject];
+	NSNumber *index = [NSNumber numberWithInt:[self.pickListOptions indexOfObject:option]];
+	
+	return index;
+}
+
+- (id)reverseTransformedValue:(id)value {
+	// Assume we're given an NSNumber representing an index in to pickListOptions and convert it to a set with a 
+	// single IBAPickListFormOption
+	NSMutableSet *options = [[[NSMutableSet alloc] init] autorelease];
+	int index = [(NSNumber *)value intValue];
+	if ((index >= 0) && (index < [self.pickListOptions count])) {
+		IBAPickListFormOption *option = [self.pickListOptions objectAtIndex:index];
+		if (option != nil) {
+			[options addObject:option];
+		}
+	}
+	
+	return options;
 }
 
 @end

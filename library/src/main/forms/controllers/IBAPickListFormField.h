@@ -51,3 +51,13 @@
 - (id)initWithPickListOptions:(NSArray *)pickListOptions;
 @property (nonatomic, copy) NSArray *pickListOptions;
 @end
+
+
+@interface IBASingleIndexTransformer : NSValueTransformer {
+	NSArray *pickListOptions_;
+}
+
+- (id)initWithPickListOptions:(NSArray *)pickListOptions;
+@property (nonatomic, copy) NSArray *pickListOptions;
+@end
+
