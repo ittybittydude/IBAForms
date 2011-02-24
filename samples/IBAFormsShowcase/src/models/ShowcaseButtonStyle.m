@@ -12,13 +12,21 @@
 // permissions and limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import "ShowcaseButtonStyle.h"
 
 
-@interface StringToNumberTransformer : NSObject {
+@implementation ShowcaseButtonStyle
 
+- (id)init {
+	self = [super init];
+	if (self != nil) {
+		self.labelTextColor = [UIColor colorWithRed:0.318 green:0.400 blue:0.569 alpha:1.0];
+		self.labelFont = [UIFont boldSystemFontOfSize:14];
+		self.labelFrame = CGRectMake(10, 8, 300, 30);
+		self.labelTextAlignment = UITextAlignmentCenter;
+	}
+	
+	return self;
 }
-
-+ (id)instance;
 
 @end

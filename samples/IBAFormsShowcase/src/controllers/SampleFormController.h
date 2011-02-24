@@ -12,13 +12,15 @@
 // permissions and limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <IBAForms/IBAFormViewController.h>
 
 
-@interface StringToNumberTransformer : NSObject {
-
+@interface SampleFormController : IBAFormViewController {
+	BOOL shouldAutoRotate_;
+	UITableViewStyle tableViewStyle_;
 }
 
-+ (id)instance;
+@property (nonatomic, assign) BOOL shouldAutoRotate;
+@property (nonatomic, assign) UITableViewStyle tableViewStyle;
 
 @end

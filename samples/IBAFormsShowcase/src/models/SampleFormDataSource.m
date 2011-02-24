@@ -1,16 +1,23 @@
 //
-//  FormDataSource.m
-//  IBAFormsShowcase
-//
-//  Created by sean on 16/10/10.
-//  Copyright 2010 Itty Bitty Apps Pty Ltd. All rights reserved.
+// Copyright 2010 Itty Bitty Apps Pty Ltd
+// 
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
+// file except in compliance with the License. You may obtain a copy of the License at 
+// 
+// http://www.apache.org/licenses/LICENSE-2.0 
+// 
+// Unless required by applicable law or agreed to in writing, software distributed under
+// the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+// ANY KIND, either express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
 //
 
 #import <IBAForms/IBAForms.h>
-#import "FormDataSource.h"
+#import "SampleFormDataSource.h"
 #import "StringToNumberTransformer.h"
+#import "ShowcaseButtonStyle.h"
 
-@implementation FormDataSource
+@implementation SampleFormDataSource
 
 - (id)initWithModel:(id)aModel {
 	self = [super initWithModel:aModel];
@@ -117,14 +124,7 @@
 
 		// Some examples of how you might use the button form field
 		IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:@"Buttons" footerTitle:nil];
-
-		IBAFormFieldStyle *buttonStyle = [[[IBAFormFieldStyle alloc] init] autorelease];
-		buttonStyle.labelTextColor = [UIColor colorWithRed:0.318 green:0.400 blue:0.569 alpha:1.0];
-		buttonStyle.labelFont = [UIFont boldSystemFontOfSize:14];
-		buttonStyle.labelTextAlignment = UITextAlignmentCenter;
-		buttonStyle.labelFrame = CGRectMake(10, 8, 280, 30);
-		
-		buttonsSection.formFieldStyle = buttonStyle;
+		buttonsSection.formFieldStyle = [[[ShowcaseButtonStyle alloc] init] autorelease];
 		
 		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Go to Google"
 																			 icon:nil

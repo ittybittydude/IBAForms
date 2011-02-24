@@ -14,11 +14,16 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface StringToNumberTransformer : NSObject {
-
+@interface ShowcaseModel : NSObject {
+	BOOL shouldAutoRotate_;
+	UITableViewStyle tableViewStyle_;
+	BOOL modalPresentation_;
+	UIModalPresentationStyle modalPresentationStyle_;
 }
 
-+ (id)instance;
+@property (nonatomic, assign) BOOL shouldAutoRotate;
+@property (nonatomic, assign) UITableViewStyle tableViewStyle;
+@property (nonatomic, assign) BOOL modalPresentation;
+@property (nonatomic, assign) UIModalPresentationStyle modalPresentationStyle;
 
 @end

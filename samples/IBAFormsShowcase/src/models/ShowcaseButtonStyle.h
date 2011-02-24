@@ -12,13 +12,11 @@
 // permissions and limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <IBAForms/IBAFormFieldStyle.h>
 
 
-@interface StringToNumberTransformer : NSObject {
+@interface ShowcaseButtonStyle : IBAFormFieldStyle {
 
 }
-
-+ (id)instance;
 
 @end
