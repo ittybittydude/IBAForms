@@ -28,9 +28,7 @@ static UIImage *clearImage_ = nil;
 @synthesize clearButton = clearButton_;
 @synthesize nullable = nullable_;
 
-- (void)dealloc {
-	IBA_RELEASE_SAFELY(clearButton_);
-	
+- (void)dealloc {	
 	[super dealloc];
 }
 
