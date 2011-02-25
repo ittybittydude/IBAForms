@@ -26,6 +26,7 @@
 @interface IBAInputManager ()
 - (void)nextPreviousButtonSelected;
 - (void)displayInputProvider:(id<IBAInputProvider>)inputProvider forInputRequestor:(id<IBAInputRequestor>)requestor;
+- (BOOL)activateInputRequestor:(id<IBAInputRequestor>)inputRequestor;
 @end
 
 
@@ -115,12 +116,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		// act of displaying the input provider may affect the visibility of the input requestor
 		[activeInputRequestor_ activate];
 		newInputProvider.inputRequestor = activeInputRequestor_;
-		[self.inputNavigationToolbar setDisplayNextPreviousButton:YES];
 	} else {
 		// The new input requestor is nil, so hide the input manager's view
 		[[activeInputRequestor_ responder] resignFirstResponder];
 		activeInputRequestor_ = nil;
-		[self.inputNavigationToolbar setDisplayNextPreviousButton:NO];
 	}
 	
 	return YES;
@@ -173,14 +172,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 
 - (BOOL)activateNextInputRequestor {
 	NSAssert(self.inputRequestorDataSource != nil, @"inputRequestorDataSource has not been set");
-	id<IBAInputRequestor> inputRequestor = [self.inputRequestorDataSource nextInputRequestor:self.activeInputRequestor];
-	return [self setActiveInputRequestor:inputRequestor];
+	return [self activateInputRequestor:[self.inputRequestorDataSource nextInputRequestor:self.activeInputRequestor]];
 }
 
 - (BOOL)activatePreviousInputRequestor {
 	NSAssert(self.inputRequestorDataSource != nil, @"inputRequestorDataSource has not been set");
-	id<IBAInputRequestor> inputRequestor = [self.inputRequestorDataSource previousInputRequestor:self.activeInputRequestor];	
-	return [self setActiveInputRequestor:inputRequestor];
+	return [self activateInputRequestor:[self.inputRequestorDataSource previousInputRequestor:self.activeInputRequestor]];
+}
+
+- (BOOL)activateInputRequestor:(id<IBAInputRequestor>)inputRequestor {
+	return ((inputRequestor != nil && [self setActiveInputRequestor:inputRequestor]));
 }
 
 
