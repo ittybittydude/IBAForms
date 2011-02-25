@@ -115,10 +115,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		// act of displaying the input provider may affect the visibility of the input requestor
 		[activeInputRequestor_ activate];
 		newInputProvider.inputRequestor = activeInputRequestor_;
+		[self.inputNavigationToolbar setDisplayNextPreviousButton:YES];
 	} else {
 		// The new input requestor is nil, so hide the input manager's view
 		[[activeInputRequestor_ responder] resignFirstResponder];
 		activeInputRequestor_ = nil;
+		[self.inputNavigationToolbar setDisplayNextPreviousButton:NO];
 	}
 	
 	return YES;

@@ -20,6 +20,7 @@
 
 @interface IBAInputNavigationToolbar ()
 @property (nonatomic, retain) UIBarButtonItem *nextPreviousBarButtonItem;
+- (void)updateButtons;
 @end
 
 @implementation IBAInputNavigationToolbar
@@ -27,6 +28,9 @@
 @synthesize doneButton = doneButton_;
 @synthesize nextPreviousButton = nextPreviousButton_;
 @synthesize nextPreviousBarButtonItem = nextPreviousBarButtonItem_;
+@synthesize displayDoneButton = displayDoneButton_;
+@synthesize displayNextPreviousButton = displayNextPreviousButton_;
+
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(doneButton_);
@@ -53,22 +57,34 @@
 		
 		nextPreviousBarButtonItem_ = [[UIBarButtonItem alloc] initWithCustomView:self.nextPreviousButton];
 		
-		[self displayDoneButton:YES previousNextButton:YES];
+		displayDoneButton_ = YES;
+		displayNextPreviousButton_ = YES;
+		[self updateButtons];
 	}
 	
     return self;
 }
 
 
-- (void)displayDoneButton:(BOOL)displayDoneButton previousNextButton:(BOOL)displayPreviousNextButton {
+- (void)setDisplayDoneButton:(BOOL)display {
+	displayDoneButton_ = display;
+	[self updateButtons];
+}
+
+- (void)setDisplayNextPreviousButton:(BOOL)display {
+	displayNextPreviousButton_ = display;
+	[self updateButtons];
+}
+
+- (void)updateButtons {
 	NSMutableArray *barItems = [NSMutableArray array];
-	if (displayDoneButton) {
+	if (self.displayDoneButton) {
 		[barItems addObject:doneButton_];
 	}
 	
 	[barItems addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
 
-	if (displayPreviousNextButton) {
+	if (self.displayNextPreviousButton) {
 		[barItems addObject:nextPreviousBarButtonItem_];
 	}
 	

@@ -24,11 +24,13 @@ typedef enum {
 	UIBarButtonItem *doneButton_;
 	UISegmentedControl *nextPreviousButton_;
 	UIBarButtonItem *nextPreviousBarButtonItem_;
+	BOOL displayDoneButton_;
+	BOOL displayNextPreviousButton_;
 }
 
 @property (nonatomic, retain) UIBarButtonItem *doneButton;
 @property (nonatomic, retain) UISegmentedControl *nextPreviousButton;
-
-- (void)displayDoneButton:(BOOL)displayDoneButton previousNextButton:(BOOL)displayPreviousNextButton;
+@property (nonatomic, assign) BOOL displayDoneButton;
+@property (nonatomic, assign) BOOL displayNextPreviousButton;
 
 @end

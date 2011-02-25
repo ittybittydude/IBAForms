@@ -114,8 +114,7 @@
 		displayDoneButton &= (self.navigationController.modalPresentationStyle != UIModalPresentationFormSheet);
 	}
 	
-	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] displayDoneButton:displayDoneButton
-																	 previousNextButton:YES];
+	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setDisplayDoneButton:displayDoneButton];
 		
 	[self.tableView reloadData];
 }
@@ -125,8 +124,7 @@
 
 	[[IBAInputManager sharedIBAInputManager] deactivateActiveInputRequestor];
 	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:nil];
-	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] displayDoneButton:YES 
-																	 previousNextButton:YES];
+	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setDisplayDoneButton:YES];
 }
 
 #pragma mark -
