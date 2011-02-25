@@ -105,7 +105,18 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:self];
+	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:self];	
+	
+	// There is a bug with UIModalPresentationFormSheet where the keyboard won't dismiss even when there is
+	// no first responder, so we remove the 'Done' button when UIModalPresentationFormSheet is used.
+	BOOL displayDoneButton = (self.modalPresentationStyle != UIModalPresentationFormSheet);
+	if (self.navigationController != nil) {
+		displayDoneButton &= (self.navigationController.modalPresentationStyle != UIModalPresentationFormSheet);
+	}
+	
+	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] displayDoneButton:displayDoneButton
+																	 previousNextButton:YES];
+		
 	[self.tableView reloadData];
 }
 
@@ -114,6 +125,8 @@
 
 	[[IBAInputManager sharedIBAInputManager] deactivateActiveInputRequestor];
 	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:nil];
+	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] displayDoneButton:YES 
+																	 previousNextButton:YES];
 }
 
 #pragma mark -

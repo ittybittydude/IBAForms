@@ -18,14 +18,20 @@
 #define IBAInputNavigationToolbarNextTitle @"Next"
 #define IBAInputNavigationToolbarPreviousTitle @"Previous"
 
+@interface IBAInputNavigationToolbar ()
+@property (nonatomic, retain) UIBarButtonItem *nextPreviousBarButtonItem;
+@end
+
 @implementation IBAInputNavigationToolbar
 
 @synthesize doneButton = doneButton_;
 @synthesize nextPreviousButton = nextPreviousButton_;
+@synthesize nextPreviousBarButtonItem = nextPreviousBarButtonItem_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(doneButton_);
 	IBA_RELEASE_SAFELY(nextPreviousButton_);
+	IBA_RELEASE_SAFELY(nextPreviousBarButtonItem_);
 	
 	[super dealloc];
 }
@@ -45,17 +51,28 @@
 		nextPreviousButton_.tintColor = [UIColor blackColor];
 		nextPreviousButton_.momentary = YES;
 		
-		UIBarButtonItem *nextPreviousBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.nextPreviousButton];
+		nextPreviousBarButtonItem_ = [[UIBarButtonItem alloc] initWithCustomView:self.nextPreviousButton];
 		
-		UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		
-		[self setItems:[NSArray arrayWithObjects:doneButton_, flexibleSpace, nextPreviousBarButtonItem, nil] animated:YES];
-		[flexibleSpace release];
-		[nextPreviousBarButtonItem release];
+		[self displayDoneButton:YES previousNextButton:YES];
 	}
 	
     return self;
 }
 
+
+- (void)displayDoneButton:(BOOL)displayDoneButton previousNextButton:(BOOL)displayPreviousNextButton {
+	NSMutableArray *barItems = [NSMutableArray array];
+	if (displayDoneButton) {
+		[barItems addObject:doneButton_];
+	}
+	
+	[barItems addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+
+	if (displayPreviousNextButton) {
+		[barItems addObject:nextPreviousBarButtonItem_];
+	}
+	
+	[self setItems:barItems animated:YES];
+}
 
 @end
