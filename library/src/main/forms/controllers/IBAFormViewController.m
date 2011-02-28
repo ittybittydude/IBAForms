@@ -233,7 +233,7 @@
 	[UIView animateWithDuration:0.2 
 					 animations: ^(void){
 						UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame)), 0);
-						 NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
+						// NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
 						self.tableView.contentInset = contentInsets;
 						self.tableView.scrollIndicatorInsets = contentInsets;
 					 }
