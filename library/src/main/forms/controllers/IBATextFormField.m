@@ -16,6 +16,7 @@
 #import "IBAFormConstants.h"
 #import "IBAInputCommon.h"
 #import "IBAInputManager.h"
+#import "IBAInputManager.h"
 
 @implementation IBATextFormField
 
@@ -71,6 +72,7 @@
 	[super activate];
 	
 	self.textFormFieldCell.textField.enabled = YES;
+	self.textFormFieldCell.textField.inputAccessoryView = [[IBAInputManager sharedIBAInputManager] inputNavigationToolbar];
 	[self.textFormFieldCell.textField becomeFirstResponder];
 }
 
