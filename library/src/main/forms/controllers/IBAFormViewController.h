@@ -20,14 +20,12 @@
 @interface IBAFormViewController : UIViewController  <UITableViewDelegate, IBAInputRequestorDataSource> {
 	UITableView *tableView_;
 	CGRect tableViewOriginalFrame_;
-	IBAFormField *editingFormField_; // The form field currently being edited
 	IBAFormDataSource *formDataSource_;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, readonly) CGRect tableViewOriginalFrame;
 @property (nonatomic, retain) IBAFormDataSource *formDataSource;
-@property (nonatomic, assign) IBAFormField *editingFormField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 	   formDataSource:(IBAFormDataSource *)formDataSource;

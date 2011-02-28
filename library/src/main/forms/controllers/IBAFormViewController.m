@@ -36,7 +36,6 @@
 @synthesize tableView = tableView_;
 @synthesize tableViewOriginalFrame = tableViewOriginalFrame_;
 @synthesize formDataSource = formDataSource_;
-@synthesize editingFormField = editingFormField_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
@@ -127,6 +126,12 @@
 	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setDisplayDoneButton:YES];
 	if ([[IBAInputManager sharedIBAInputManager] inputRequestorDataSource] == self) {
 		[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:nil];
+	}
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	if ([[IBAInputManager sharedIBAInputManager] activeInputRequestor] != nil) {
+		[self makeFormFieldVisible:[[IBAInputManager sharedIBAInputManager] activeInputRequestor]];
 	}
 }
 
