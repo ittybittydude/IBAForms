@@ -21,13 +21,14 @@
 - (void)makeFormFieldVisible:(IBAFormField *)formField;
 - (void)registerForNotifications;
 - (void)registerSelector:(SEL)selector withNotification:(NSString *)notificationKey;
-- (void)adjustTableViewHeightForCoveringSize:(CGSize)coveringSize;
-- (void)tableViewResizeDidFinish;
+- (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame;
+- (CGRect)rectForOrientationFrame:(CGRect)frame;
 
 // Notification methods
 - (void)pushViewController:(NSNotification *)notification;
 - (void)presentModalViewController:(NSNotification *)notification;
 - (void)dismissModalViewController:(NSNotification *)notification;
+
 @end
 
 @implementation IBAFormViewController
@@ -144,7 +145,6 @@
 	}
 }
 
-
 #pragma mark -
 #pragma mark UITableViewDelegate
 
@@ -199,14 +199,13 @@
 
 - (void)inputManagerWillShow:(NSNotification *)notification {
 	NSDictionary* info = [notification userInfo];
-	//TODO fix this, UIKeyboardBoundsUserInfoKey is deprecated
-    CGSize keyboardSize = [[info objectForKey:UIKeyboardBoundsUserInfoKey] CGRectValue].size;
-//	CGRect keyboardFrame = [[[IBAInputManager sharedIBAInputManager] inputManagerView] frame];
-	[self adjustTableViewHeightForCoveringSize:keyboardSize];
+	CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+	[self adjustTableViewHeightForCoveringFrame:[self rectForOrientationFrame:keyboardFrame]];
 }
 
 - (void)inputManagerDidHide:(NSNotification *)notification {
-	[self adjustTableViewHeightForCoveringSize:CGSizeZero];
+	[self adjustTableViewHeightForCoveringFrame:CGRectZero];
+	self.keyboardVisible = NO;
 }
 
 - (void)formFieldActivated:(NSNotification *)notification {
@@ -228,26 +227,23 @@
 	[self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
-- (void)adjustTableViewHeightForCoveringSize:(CGSize)coveringSize {
-	CGRect newTableViewFrame = self.tableView.frame;
-	newTableViewFrame.size.height = self.tableViewOriginalFrame.size.height - coveringSize.height;
-
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:0.2];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(tableViewResizeDidFinish)];
-	
-	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0,0, coveringSize.height, 0);
-	self.tableView.contentInset = contentInsets;
-	self.tableView.scrollIndicatorInsets = contentInsets;
-	
-	[UIView commitAnimations];
+- (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame {
+	CGRect normalisedWindowBounds = [self rectForOrientationFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
+	CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView convertRect:self.tableView.bounds 
+																						 toView:self.tableView.window]];
+	[UIView animateWithDuration:0.2 
+					 animations: ^(void){
+						UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame)), 0);
+						 NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
+						self.tableView.contentInset = contentInsets;
+						self.tableView.scrollIndicatorInsets = contentInsets;
+					 }
+					 completion: ^(BOOL finished){
+						 self.tableView.scrollEnabled = YES;
+						 [self.tableView flashScrollIndicators];
+					 }];
 }
 
-- (void)tableViewResizeDidFinish {
-	self.tableView.scrollEnabled = YES;
-	[self.tableView flashScrollIndicators];
-}
 
 #pragma mark -
 #pragma mark Push view controller requests
@@ -281,6 +277,16 @@
 	UITableViewCell *cell = [self.formDataSource tableView:aTableView cellForRowAtIndexPath:indexPath];
 	[cell sizeToFit];
 	return cell.bounds.size.height;
+}
+
+- (CGRect)rectForOrientationFrame:(CGRect)frame {
+	if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+		return frame;
+	}
+	else
+	{
+		return CGRectMake(frame.origin.y, frame.origin.x, frame.size.height, frame.size.width);
+	}	
 }
 
 @end
