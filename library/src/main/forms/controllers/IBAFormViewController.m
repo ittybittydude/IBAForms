@@ -205,7 +205,6 @@
 
 - (void)inputManagerDidHide:(NSNotification *)notification {
 	[self adjustTableViewHeightForCoveringFrame:CGRectZero];
-	self.keyboardVisible = NO;
 }
 
 - (void)formFieldActivated:(NSNotification *)notification {
