@@ -45,7 +45,7 @@
 		pickListTableView_.delegate = self;
 		pickListTableView_.backgroundColor = [UIColor viewFlipsideBackgroundColor];
 
-//		pickListTableView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+		pickListTableView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 	}
 	
 	return self;

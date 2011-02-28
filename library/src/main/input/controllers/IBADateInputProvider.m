@@ -58,7 +58,7 @@
 - (UIView *)datePickerView {
 	if (datePickerView_ == nil) {
 		datePickerView_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
-//		datePickerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+		datePickerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		datePickerView_.backgroundColor = [UIColor viewFlipsideBackgroundColor];
 		
 		datePicker_ = [[UIDatePicker alloc] init];
