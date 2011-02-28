@@ -29,7 +29,6 @@
 #import <IBAForms/IBAFormViewController.h>
 #import <IBAForms/IBAInputCommon.h>
 #import <IBAForms/IBAInputManager.h>
-#import <IBAForms/IBAInputManagerView.h>
 #import <IBAForms/IBAInputNavigationToolbar.h>
 #import <IBAForms/IBAInputProvider.h>
 #import <IBAForms/IBAInputRequestor.h>
