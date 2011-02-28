@@ -112,8 +112,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		id<IBAInputProvider>newInputProvider = [self inputProviderForRequestor:activeInputRequestor_];
 		[self displayInputProvider:newInputProvider forInputRequestor:inputRequestor];
 		
-		// NOTE: the input requestor must be activated after the input provider has been displayed because the
-		// act of displaying the input provider may affect the visibility of the input requestor
 		[activeInputRequestor_ activate];
 		newInputProvider.inputRequestor = activeInputRequestor_;
 	} else {
