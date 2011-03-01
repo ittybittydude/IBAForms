@@ -28,6 +28,8 @@
 }
 
 - (void)activate {
+	[[self responder] becomeFirstResponder];
+
 	NSDictionary *userInfo = [[NSMutableDictionary alloc] init];
 	[userInfo setValue:self forKey:IBAFormFieldKey];
 
@@ -42,8 +44,6 @@
 		// Give the cell a chance to change it's visual state to show that it has been activated
 		[self.cell activate];		
 	}
-	
-	[[self responder] becomeFirstResponder];
 }
 
 - (BOOL)deactivate {
