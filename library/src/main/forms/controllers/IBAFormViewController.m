@@ -233,18 +233,17 @@
 
 - (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame {
 	CGRect normalisedWindowBounds = [self rectForOrientationFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
-	CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView convertRect:self.tableView.bounds 
-																						 toView:self.tableView.window]];
+	CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView.superview convertRect:self.tableView.frame 
+																						 toView:[[UIApplication sharedApplication] keyWindow]]];
 	[UIView animateWithDuration:0.2 
 					 animations: ^(void){
 						UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame)), 0);
-						// NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
+//						 NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
 						self.tableView.contentInset = contentInsets;
 						self.tableView.scrollIndicatorInsets = contentInsets;
 					 }
 					 completion: ^(BOOL finished){
 						 self.tableView.scrollEnabled = YES;
-						 [self.tableView flashScrollIndicators];
 					 }];
 }
 
