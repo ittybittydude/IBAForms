@@ -18,7 +18,6 @@
 
 @interface IBATextInputProvider : NSObject <IBAInputProvider> {
 	id<IBAInputRequestor> inputRequestor_;
-	UIView *view_;
 }
 
 @end
