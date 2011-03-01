@@ -20,7 +20,7 @@
 @property (nonatomic, readonly) NSString *dataType;
 @property (nonatomic, assign) id inputRequestorValue;
 @property (nonatomic, readonly) id defaultInputRequestorValue;
-@property (nonatomic, readonly) IBAFormFieldCell *responder;
+@property (nonatomic, readonly) UIResponder *responder;
 
 - (void)activate;
 - (BOOL)deactivate;

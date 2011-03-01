@@ -23,6 +23,12 @@
 #import "IBAMultiplePickListInputProvider.h"
 #import "IBASinglePickListInputProvider.h"
 
+@interface UIResponder (InputViews)
+- (void)setInputView:(UIView *)inputView;
+- (void)setInputAccessoryView:(UIView *)accessoryView;
+@end
+
+
 @interface IBAInputManager ()
 - (void)nextPreviousButtonSelected;
 - (void)displayInputProvider:(id<IBAInputProvider>)inputProvider forInputRequestor:(id<IBAInputRequestor>)requestor;
@@ -210,9 +216,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 #pragma mark Presenting the input provider
 
 - (void)displayInputProvider:(id<IBAInputProvider>)inputProvider forInputRequestor:(id<IBAInputRequestor>)requestor {
-	[[requestor responder] setInputView:inputProvider.view];
+	if (inputProvider.view != nil) {
+		[[requestor responder] setInputView:inputProvider.view];
+	}
+	
 	[[requestor responder] setInputAccessoryView:self.inputNavigationToolbar];
-	[[requestor responder] becomeFirstResponder];
 }
 
 
@@ -225,5 +233,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 - (void)setInputNavigationToolbarEnabled:(BOOL)enabled {
 	self.inputNavigationToolbarEnabled = enabled;
 }
+
+
+
 
 @end

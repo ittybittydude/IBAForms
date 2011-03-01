@@ -42,6 +42,8 @@
 		// Give the cell a chance to change it's visual state to show that it has been activated
 		[self.cell activate];		
 	}
+	
+	[[self responder] becomeFirstResponder];
 }
 
 - (BOOL)deactivate {
@@ -68,7 +70,7 @@
 	return nil;
 }
 
-- (IBAFormFieldCell *)responder {
+- (UIResponder *)responder {
 	return self.cell;
 }
 

@@ -69,11 +69,8 @@
 }
 
 - (void)activate {
-	[super activate];
-	
 	self.textFormFieldCell.textField.enabled = YES;
-	self.textFormFieldCell.textField.inputAccessoryView = [[IBAInputManager sharedIBAInputManager] inputNavigationToolbar];
-	[self.textFormFieldCell.textField becomeFirstResponder];
+	[super activate];
 }
 
 - (BOOL)deactivate {
@@ -85,6 +82,10 @@
 	}
 	
 	return deactivated;
+}
+
+- (UIResponder *)responder {
+	return self.textFormFieldCell.textField;
 }
 
 @end
