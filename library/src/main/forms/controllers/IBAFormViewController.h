@@ -21,6 +21,7 @@
 	UITableView *tableView_;
 	CGRect tableViewOriginalFrame_;
 	IBAFormDataSource *formDataSource_;
+	CGRect keyboardFrame_;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;

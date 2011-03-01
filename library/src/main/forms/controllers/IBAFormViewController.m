@@ -17,6 +17,7 @@
 #import "IBAInputManager.h"
 
 @interface IBAFormViewController ()
+@property (nonatomic, assign) CGRect keyboardFrame;
 - (void)releaseViews;
 - (void)makeFormFieldVisible:(IBAFormField *)formField;
 - (void)registerForNotifications;
@@ -36,6 +37,7 @@
 @synthesize tableView = tableView_;
 @synthesize tableViewOriginalFrame = tableViewOriginalFrame_;
 @synthesize formDataSource = formDataSource_;
+@synthesize keyboardFrame = keyboardFrame_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
@@ -232,19 +234,25 @@
 }
 
 - (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame {
-	CGRect normalisedWindowBounds = [self rectForOrientationFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
-	CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView.superview convertRect:self.tableView.frame 
-																						 toView:[[UIApplication sharedApplication] keyWindow]]];
-	[UIView animateWithDuration:0.2 
-					 animations: ^(void){
-						UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame)), 0);
-//						 NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
-						self.tableView.contentInset = contentInsets;
-						self.tableView.scrollIndicatorInsets = contentInsets;
-					 }
-					 completion: ^(BOOL finished){
-						 self.tableView.scrollEnabled = YES;
-					 }];
+	if (!CGRectEqualToRect(coveringFrame, self.keyboardFrame)) {
+		self.keyboardFrame = coveringFrame;
+		CGRect normalisedWindowBounds = [self rectForOrientationFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
+		CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView.superview convertRect:self.tableView.frame 
+																							 toView:[[UIApplication sharedApplication] keyWindow]]];
+		[UIView animateWithDuration:0.2 
+						 animations: ^(void){
+							 CGFloat height = (CGRectEqualToRect(coveringFrame, CGRectZero)) ? 0 : 
+								coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame));
+							 UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, height, 0);
+							 //NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
+							 self.tableView.contentInset = contentInsets;
+							 self.tableView.scrollIndicatorInsets = contentInsets;
+						 }
+						 completion: ^(BOOL finished){
+							 self.tableView.scrollEnabled = YES;
+						 }];
+	}
+	
 }
 
 
