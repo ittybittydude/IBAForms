@@ -76,7 +76,6 @@
 - (BOOL)deactivate {
 	BOOL deactivated = [self setFormFieldValue:self.textFormFieldCell.textField.text];
 	if (deactivated) {
-		[self.textFormFieldCell.textField resignFirstResponder];
 		self.textFormFieldCell.textField.enabled = NO;
 		deactivated = [super deactivate];
 	}
