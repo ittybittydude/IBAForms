@@ -19,6 +19,8 @@
 	NSString *headerTitle_;
 	NSString *footerTitle_;
 	NSMutableArray *formFields_;
+  UIView *headerView_;
+  UIView *footerView_;
 	id<IBAFormModelManager> modelManager_;
 	IBAFormFieldStyle *formFieldStyle_;
 }
@@ -28,6 +30,9 @@
 @property (nonatomic, readonly) NSMutableArray *formFields;
 @property (nonatomic, assign) id<IBAFormModelManager> modelManager;
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
+
+@property (nonatomic, retain) UIView *headerView;
+@property (nonatomic, retain) UIView *footerView;
 
 - (id)initWithHeaderTitle:(NSString *)header footerTitle:(NSString *)footer;
 
