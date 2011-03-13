@@ -23,12 +23,18 @@
 @synthesize modelManager = modelManager_;
 @synthesize formFieldStyle = formFieldStyle_;
 
+@synthesize headerView = headerView_;
+@synthesize footerView = footerView_;
+
 - (void)dealloc {
+	IBA_RELEASE_SAFELY(headerView_);
+  IBA_RELEASE_SAFELY(footerView_);
+  
 	IBA_RELEASE_SAFELY(headerTitle_);
 	IBA_RELEASE_SAFELY(footerTitle_);
 	IBA_RELEASE_SAFELY(formFields_);
 	IBA_RELEASE_SAFELY(formFieldStyle_);
-
+  
 	[super dealloc];
 }
 
@@ -38,8 +44,10 @@
 		self.headerTitle = header;
 		self.footerTitle = footer;
 		formFields_ = [[NSMutableArray alloc] init];
+    headerView_ = nil;
+    footerView_ = nil;
 	}
-
+  
 	return self;
 }
 
@@ -55,12 +63,11 @@
 }
 
 - (UIView *)headerView {
-	return nil;
+	return headerView_;
 }
 
 - (UIView *)footerView {
-	return nil;
+	return footerView_;
 }
-
 
 @end
