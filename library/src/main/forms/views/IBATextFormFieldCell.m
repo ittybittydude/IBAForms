@@ -34,20 +34,20 @@
 		self.textField.returnKeyType = UIReturnKeyNext;
 		[self.cellView addSubview:self.textField];
 	}
-	
-    return self;
+
+	return self;
 }
 
 - (void)activate {
 	[super activate];
-	
+
 	self.textField.backgroundColor = [UIColor clearColor];
 }
 
 
 - (void)applyFormFieldStyle {
 	[super applyFormFieldStyle];
-	
+
 	self.textField.font = self.formFieldStyle.valueFont;
 	self.textField.textColor = self.formFieldStyle.valueTextColor;
 	self.textField.backgroundColor = self.formFieldStyle.valueBackgroundColor;

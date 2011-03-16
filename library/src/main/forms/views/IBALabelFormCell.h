@@ -16,6 +16,9 @@
 
 
 @interface IBALabelFormCell : IBAFormFieldCell {
+	UILabel *valueLabel_;
 }
+
+@property (nonatomic, retain) UILabel *valueLabel;
 
 @end

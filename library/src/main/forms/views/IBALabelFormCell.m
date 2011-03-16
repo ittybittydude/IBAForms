@@ -17,12 +17,35 @@
 
 @implementation IBALabelFormCell
 
+@synthesize valueLabel = valueLabel_;
+
+- (void)dealloc {
+	IBA_RELEASE_SAFELY(valueLabel_);
+
+	[super dealloc];
+}
+
+
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
 		self.label.adjustsFontSizeToFitWidth = YES;
+
+		// Create the value label for rendering readonly data.
+		self.valueLabel = [[[UILabel alloc] initWithFrame:style.valueFrame] autorelease];
+		self.valueLabel.autoresizingMask = style.valueAutoresizingMask;
+		[self.cellView addSubview:self.valueLabel];
 	}
-	
-    return self;
+
+	return self;
+}
+
+- (void)applyFormFieldStyle {
+	[super applyFormFieldStyle];
+
+	self.valueLabel.font = self.formFieldStyle.valueFont;
+	self.valueLabel.textColor = self.formFieldStyle.valueTextColor;
+	self.valueLabel.backgroundColor = self.formFieldStyle.valueBackgroundColor;
+	self.valueLabel.textAlignment = self.formFieldStyle.valueTextAlignment;
 }
 
 @end

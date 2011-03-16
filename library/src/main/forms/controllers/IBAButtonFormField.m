@@ -58,6 +58,7 @@
 	if (cell_ == nil) {
 		cell_ = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
 		cell_.selectionStyle = UITableViewCellSelectionStyleGray;
+		[cell_.valueLabel setHidden:YES];
 
 		if (self.iconImage != nil) {
 			UIImageView *imageView = [[UIImageView alloc] initWithImage:self.iconImage];

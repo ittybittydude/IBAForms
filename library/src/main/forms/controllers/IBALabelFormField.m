@@ -17,16 +17,34 @@
 
 @implementation IBALabelFormField
 
+@synthesize labelFormCell = labelFormCell_;
+
+- (void)dealloc {
+	IBA_RELEASE_SAFELY(labelFormCell_);
+
+	[super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Cell management
+
 - (IBAFormFieldCell *)cell {
-	if (cell_ == nil) {
-		cell_ = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+	return [self labelFormCell];
+}
+
+
+- (IBALabelFormCell *)labelFormCell {
+	if (labelFormCell_ == nil) {
+		labelFormCell_ = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
 	}
-	
-	return cell_;
+
+	return labelFormCell_;
 }
 
 - (void)updateCellContents {
-	self.cell.label.text = [self formFieldValue];
+	self.labelFormCell.label.text = [self title];
+	self.labelFormCell.valueLabel.text = [self formFieldValue];
 }
 
 @end

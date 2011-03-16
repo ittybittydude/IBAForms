@@ -17,7 +17,9 @@
 
 
 @interface IBALabelFormField : IBAFormField {
-	IBALabelFormCell *cell_;
+	IBALabelFormCell *labelFormCell_;
 }
 
+@property (nonatomic, retain) IBALabelFormCell *labelFormCell;
 @end
+
