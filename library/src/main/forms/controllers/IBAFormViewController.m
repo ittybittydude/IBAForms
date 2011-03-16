@@ -159,7 +159,7 @@
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section{
   UIView *view = [self.formDataSource viewForHeaderInSection:section];
 
-  return view ? view.frame.size.height + 2 : 0;
+  return view ? view.frame.size.height : 0;
 }
 
 
