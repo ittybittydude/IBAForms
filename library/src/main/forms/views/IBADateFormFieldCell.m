@@ -54,12 +54,12 @@ static UIImage *clearImage_ = nil;
 	}
 }
 
-- (BOOL)deactivate {
+- (void)deactivate {
 	if ([self isNullable]) {
 		[self.clearButton removeFromSuperview];
 	}
 	
-	return [super deactivate];
+	[super deactivate];
 }
 
 + (UIImage *)clearImage {

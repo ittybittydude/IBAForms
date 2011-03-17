@@ -24,6 +24,7 @@
 	UILabel *label_;
 	IBAFormFieldStyle *formFieldStyle_;
 	BOOL styleApplied_;
+	BOOL active_;
 }
 
 @property (readwrite, retain) UIView *inputView;
@@ -36,7 +37,7 @@
 
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier;
 - (void)activate;
-- (BOOL)deactivate;
+- (void)deactivate;
 
 - (void)applyFormFieldStyle;
 

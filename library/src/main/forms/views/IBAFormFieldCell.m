@@ -15,6 +15,10 @@
 #import "IBAFormFieldCell.h"
 #import "IBAFormConstants.h"
 
+@interface IBAFormFieldCell ()
+@property (nonatomic, assign, getter=isActive) BOOL active;
+@end
+
 @implementation IBAFormFieldCell
 
 @synthesize inputView = inputView_;
@@ -23,6 +27,7 @@
 @synthesize label = label_;
 @synthesize formFieldStyle = formFieldStyle_;
 @synthesize styleApplied = styleApplied_;
+@synthesize active = active_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(inputView_);
@@ -60,13 +65,13 @@
 - (void)activate {
 	self.label.backgroundColor = self.formFieldStyle.activeColor;
 	self.backgroundColor = self.formFieldStyle.activeColor;
+	self.active = YES;
 }
 
 
-- (BOOL)deactivate {
+- (void)deactivate {
 	[self applyFormFieldStyle];
-
-	return YES;
+	self.active = NO;
 }
 
 - (void)setFormFieldStyle:(IBAFormFieldStyle *)style {
@@ -104,6 +109,12 @@
 
 - (BOOL)canBecomeFirstResponder {
 	return YES;
+}
+
+- (void)didMoveToWindow {
+	if ((self.window != nil) && [self isActive] && (![self isFirstResponder]) && [self canBecomeFirstResponder]) {
+		[self becomeFirstResponder];
+	}
 }
 
 @end
