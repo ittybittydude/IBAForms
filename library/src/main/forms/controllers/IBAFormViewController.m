@@ -156,12 +156,6 @@
 	return [self.formDataSource viewForHeaderInSection:section];
 }
 
--(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section{
-  UIView *view = [self.formDataSource viewForHeaderInSection:section];
-
-  return view ? view.frame.size.height : 0;
-}
-
 
 #pragma mark -
 #pragma mark IBAInputRequestorDataSource

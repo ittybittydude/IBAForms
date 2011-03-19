@@ -17,24 +17,22 @@
 
 @implementation IBAFormSection
 
-@synthesize headerTitle = headerTitle_;
-@synthesize footerTitle = footerTitle_;
 @synthesize formFields = formFields_;
 @synthesize modelManager = modelManager_;
 @synthesize formFieldStyle = formFieldStyle_;
-
+@synthesize headerTitle = headerTitle_;
+@synthesize footerTitle = footerTitle_;
 @synthesize headerView = headerView_;
 @synthesize footerView = footerView_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(headerView_);
-  IBA_RELEASE_SAFELY(footerView_);
-  
-	IBA_RELEASE_SAFELY(headerTitle_);
-	IBA_RELEASE_SAFELY(footerTitle_);
 	IBA_RELEASE_SAFELY(formFields_);
 	IBA_RELEASE_SAFELY(formFieldStyle_);
-  
+	IBA_RELEASE_SAFELY(headerTitle_);
+	IBA_RELEASE_SAFELY(footerTitle_);
+	IBA_RELEASE_SAFELY(headerView_);
+	IBA_RELEASE_SAFELY(footerView_);
+	
 	[super dealloc];
 }
 
@@ -44,8 +42,8 @@
 		self.headerTitle = header;
 		self.footerTitle = footer;
 		formFields_ = [[NSMutableArray alloc] init];
-    headerView_ = nil;
-    footerView_ = nil;
+		headerView_ = nil;
+		footerView_ = nil;
 	}
   
 	return self;
@@ -55,19 +53,10 @@
 	return [self initWithHeaderTitle:nil footerTitle:nil];
 }
 
-
 - (void)addFormField:(IBAFormField *)newFormField {
 	newFormField.formFieldStyle = self.formFieldStyle;
 	newFormField.modelManager = self.modelManager;
 	[self.formFields addObject:newFormField];
-}
-
-- (UIView *)headerView {
-	return headerView_;
-}
-
-- (UIView *)footerView {
-	return footerView_;
 }
 
 @end
