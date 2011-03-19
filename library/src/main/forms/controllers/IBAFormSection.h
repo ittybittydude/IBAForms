@@ -16,24 +16,25 @@
 #import "IBAFormModelManager.h"
 
 @interface IBAFormSection : NSObject {
-	NSString *headerTitle_;
-	NSString *footerTitle_;
 	NSMutableArray *formFields_;
 	id<IBAFormModelManager> modelManager_;
 	IBAFormFieldStyle *formFieldStyle_;
+	NSString *headerTitle_;
+	NSString *footerTitle_;	
+	UIView *headerView_;
+	UIView *footerView_;
 }
 
-@property (nonatomic, copy) NSString *headerTitle;
-@property (nonatomic, copy) NSString *footerTitle;
 @property (nonatomic, readonly) NSMutableArray *formFields;
 @property (nonatomic, assign) id<IBAFormModelManager> modelManager;
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
+@property (nonatomic, copy) NSString *headerTitle;
+@property (nonatomic, copy) NSString *footerTitle;
+@property (nonatomic, retain) UIView *headerView;
+@property (nonatomic, retain) UIView *footerView;
 
 - (id)initWithHeaderTitle:(NSString *)header footerTitle:(NSString *)footer;
 
 - (void)addFormField:(IBAFormField *)formField;
-
-- (UIView *)headerView;
-- (UIView *)footerView;
 
 @end
