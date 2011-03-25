@@ -97,26 +97,40 @@
 #pragma mark UIPickerViewDataSource
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-  return 1; 
+	return 1; 
 }
 
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-  return self.pickListOptions.count;
+	return self.pickListOptions.count;
 }
 
 
 #pragma mark -
 #pragma mark UIPickerViewDelegate
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-  id<IBAPickListOption> pickListOption = [self.pickListOptions objectAtIndex:row];
-  return pickListOption.name;
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+	UILabel *label = nil;
+	
+	if ((view != nil) && ([view isKindOfClass:[UILabel class]])){
+		label = (UILabel *)view;
+	} else {
+		label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.bounds.size.width - 40, 44)];
+		label.backgroundColor = [UIColor clearColor];
+		label.shadowColor = [UIColor whiteColor];
+		label.shadowOffset = CGSizeMake(0, 1);
+	}
+	
+	id<IBAPickListOption> pickListOption = [self.pickListOptions objectAtIndex:row];
+
+	label.text = pickListOption.name;
+	label.font = pickListOption.font;
+	
+	return label;
 }
 
-
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-  [self setSelectedOptionWithIndex:row];
+	[self setSelectedOptionWithIndex:row];
 }
 
 
@@ -124,24 +138,24 @@
 #pragma mark Selection helpers
 
 - (void)setSelectedOptionWithIndex:(NSInteger)optionIndex {
-  id<IBAPickListOption> selectedOption = [self.pickListOptions objectAtIndex:optionIndex];
-  [self setSelectedOption:selectedOption];
+	id<IBAPickListOption> selectedOption = [self.pickListOptions objectAtIndex:optionIndex];
+	[self setSelectedOption:selectedOption];
 }
 
 
 - (void)setSelectedOption:(id<IBAPickListOption>)selectedOption {
-  self.inputRequestor.inputRequestorValue = [NSSet setWithObject:selectedOption]; 
+	self.inputRequestor.inputRequestorValue = [NSSet setWithObject:selectedOption]; 
 }
 
 - (void)updateSelectedOption {
-  // Updates the UI to display the selected option, or defaults to the first option if none are already selected
-  id<IBAPickListOption> selectedPickListOption = [self.inputRequestor.inputRequestorValue anyObject];
-  if (nil != selectedPickListOption) {
-    NSInteger selectedRow = [self.pickListOptions indexOfObject:selectedPickListOption];
-    [self.pickerView selectRow:selectedRow inComponent:0 animated:YES];
-  } else {
-    [self setSelectedOptionWithIndex:0];
-  } 
+	// Updates the UI to display the selected option, or defaults to the first option if none are already selected
+	id<IBAPickListOption> selectedPickListOption = [self.inputRequestor.inputRequestorValue anyObject];
+	if (nil != selectedPickListOption) {
+		NSInteger selectedRow = [self.pickListOptions indexOfObject:selectedPickListOption];
+		[self.pickerView selectRow:selectedRow inComponent:0 animated:YES];
+	} else {
+		[self setSelectedOptionWithIndex:0];
+	} 
 }
 
 @end

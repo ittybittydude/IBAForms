@@ -100,6 +100,7 @@
 @interface IBAPickListFormOption ()
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, retain) UIImage *iconImage;
+@property (nonatomic, retain) UIFont *font;
 
 @end
 
@@ -107,30 +108,37 @@
 
 @synthesize name = name_;
 @synthesize iconImage = iconImage_;
+@synthesize font = font_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(name_);
 	IBA_RELEASE_SAFELY(iconImage_);
-
+	IBA_RELEASE_SAFELY(font_);
+	
 	[super dealloc];
 }
 
-- (id)initWithName:(NSString *)name iconImage:(UIImage *)iconImage {
+- (id)initWithName:(NSString *)name iconImage:(UIImage *)iconImage font:(UIFont *)font {
 	self = [super init];
 	if (self != nil) {
 		self.name = name;
 		self.iconImage = iconImage;
+		self.font = font;
 	}
 
 	return self;
 }
 
 + (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames {
+	return [[self class] pickListOptionsForStrings:optionNames font:[UIFont systemFontOfSize:16]];
+}
+
++ (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames font:(UIFont *)font {
 	NSMutableArray *options = [NSMutableArray array];
 	for (NSString *optionName in optionNames) {
-		[options addObject:[[[IBAPickListFormOption alloc] initWithName:optionName iconImage:nil] autorelease]];
+		[options addObject:[[[IBAPickListFormOption alloc] initWithName:optionName iconImage:nil font:font] autorelease]];
 	}
-
+	
 	return options;
 }
 

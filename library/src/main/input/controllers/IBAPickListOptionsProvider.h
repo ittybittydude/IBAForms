@@ -27,5 +27,6 @@ typedef enum {
 @protocol IBAPickListOption <NSObject>
 - (UIImage *)iconImage;
 - (NSString *)name;
+- (UIFont *)font;
 @end
 
