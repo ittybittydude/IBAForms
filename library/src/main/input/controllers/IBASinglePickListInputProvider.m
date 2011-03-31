@@ -115,7 +115,7 @@
 	if ((view != nil) && ([view isKindOfClass:[UILabel class]])){
 		label = (UILabel *)view;
 	} else {
-		label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.bounds.size.width - 40, 44)];
+		label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.bounds.size.width - 40, 44)] autorelease];
 		label.backgroundColor = [UIColor clearColor];
 		label.shadowColor = [UIColor whiteColor];
 		label.shadowOffset = CGSizeMake(0, 1);
