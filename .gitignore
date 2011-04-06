@@ -1,9 +1,20 @@
 build/
-.DS_Store
 *.mode*
 *.pbxuser
 .svn
 *.orig
+*.perspective
 *.perspectivev3
 *.trace
 *project.xcworkspace/
+*.xcuserdatad
+
+# OSX Noise
+.DS_Store
+
+# Git Noise
+*.orig
+*.BACKUP.*
+*.REMOTE.*
+*.LOCAL.*
+*.BASE.*
