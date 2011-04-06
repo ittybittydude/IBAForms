@@ -333,6 +333,7 @@
 				GCC_PREFIX_HEADER = IBAFormsShowcase_Prefix.pch;
 				INFOPLIST_FILE = "IBAFormsShowcase-Info.plist";
 				PRODUCT_NAME = IBAFormsShowcase;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
