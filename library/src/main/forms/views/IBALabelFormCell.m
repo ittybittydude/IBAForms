@@ -18,7 +18,7 @@
 @implementation IBALabelFormCell
 
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
 		self.label.adjustsFontSizeToFitWidth = YES;
 	}
 	

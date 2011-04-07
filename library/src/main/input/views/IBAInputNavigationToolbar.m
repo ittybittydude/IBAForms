@@ -42,7 +42,7 @@
 
 
 - (id)initWithFrame:(CGRect)aRect {
-	if (self = [super initWithFrame:(CGRect)aRect]) {
+	if ((self = [super initWithFrame:(CGRect)aRect])) {
 		self.barStyle = UIBarStyleBlack;
 		
 		doneButton_ = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
