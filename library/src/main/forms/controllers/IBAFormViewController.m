@@ -55,7 +55,7 @@
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		self.formDataSource = formDataSource;
 		self.hidesBottomBarWhenPushed = YES;
 		
@@ -133,7 +133,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	if ([[IBAInputManager sharedIBAInputManager] activeInputRequestor] != nil) {
-		[self makeFormFieldVisible:[[IBAInputManager sharedIBAInputManager] activeInputRequestor]];
+		[self makeFormFieldVisible:(IBAFormField *)[[IBAInputManager sharedIBAInputManager] activeInputRequestor]];
 	}
 }
 
@@ -182,7 +182,7 @@
 
 - (id<IBAInputRequestor>)nextInputRequestor:(id<IBAInputRequestor>)currentInputRequestor {
 	// Return the next form field that supports inline editing
-	IBAFormField *nextField = [self.formDataSource formFieldAfter:currentInputRequestor];
+	IBAFormField *nextField = [self.formDataSource formFieldAfter:(IBAFormField *)currentInputRequestor];
 	while ((nextField != nil) && (![nextField conformsToProtocol:@protocol(IBAInputRequestor)])) {
 		nextField = [self.formDataSource formFieldAfter:nextField];
 	}
@@ -193,7 +193,7 @@
 
 - (id<IBAInputRequestor>)previousInputRequestor:(id<IBAInputRequestor>)currentInputRequestor {
 	// Return the previous form field that supports inline editing
-	IBAFormField *previousField = [self.formDataSource formFieldBefore:currentInputRequestor];
+	IBAFormField *previousField = [self.formDataSource formFieldBefore:(IBAFormField *)currentInputRequestor];
 	while ((previousField != nil) && (![previousField conformsToProtocol:@protocol(IBAInputRequestor)])) {
 		previousField = [self.formDataSource formFieldBefore:previousField];
 	}
