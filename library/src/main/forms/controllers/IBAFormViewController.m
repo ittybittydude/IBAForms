@@ -176,6 +176,17 @@
 	return [self.formDataSource viewForHeaderInSection:section];
 }
 
+- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(IBAFormField *)formField atIndexPath:(NSIndexPath *)indexPath {
+    // NO-OP; subclasses to override
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(IBAFormFieldCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self respondsToSelector:@selector(willDisplayCell:forFormField:atIndexPath:)]) {
+        IBAFormField *formField = [formDataSource_ formFieldAtIndexPath:indexPath];
+        [self willDisplayCell:cell forFormField:formField atIndexPath:indexPath];
+    }
+}
+
 
 #pragma mark -
 #pragma mark IBAInputRequestorDataSource
