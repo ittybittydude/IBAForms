@@ -176,10 +176,6 @@
 	return [self.formDataSource viewForHeaderInSection:section];
 }
 
-- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(IBAFormField *)formField atIndexPath:(NSIndexPath *)indexPath {
-    // NO-OP; subclasses to override
-}
-
 - (void)tableView:(UITableView *)tableView willDisplayCell:(IBAFormFieldCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self respondsToSelector:@selector(willDisplayCell:forFormField:atIndexPath:)]) {
         IBAFormField *formField = [formDataSource_ formFieldAtIndexPath:indexPath];
@@ -241,8 +237,10 @@
 #pragma mark Size and visibility accommodations for the input manager view
 
 - (void)makeFormFieldVisible:(IBAFormField *)formField {
-	NSIndexPath *formFieldIndexPath = [self.formDataSource indexPathForFormField:formField];
-	[self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    if ([self shouldAutoScrollTableToActiveField]) {
+        NSIndexPath *formFieldIndexPath = [self.formDataSource indexPathForFormField:formField];
+        [self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }
 }
 
 - (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame {
@@ -310,6 +308,20 @@
 	{
 		return CGRectMake(frame.origin.y, frame.origin.x, frame.size.height, frame.size.width);
 	}	
+}
+
+#pragma mark -
+#pragma mark Methods for subclasses to customise behaviour
+
+- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(IBAFormField *)formField atIndexPath:(NSIndexPath *)indexPath {
+    // NO-OP; subclasses to override
+}
+
+- (BOOL)shouldAutoScrollTableToActiveField {
+    // Return YES if the table view should be automatically scrolled to the active field
+    // Defaults to YES
+    
+    return YES;
 }
 
 @end
