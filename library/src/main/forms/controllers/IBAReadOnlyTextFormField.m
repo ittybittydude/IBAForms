@@ -39,6 +39,7 @@
 	if (textFormFieldCell_ == nil) {
 		textFormFieldCell_ = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
 		textFormFieldCell_.textField.enabled = NO;
+		textFormFieldCell_.textField.userInteractionEnabled = NO;	// read only
 	}
 	
 	return textFormFieldCell_;
