@@ -1,9 +1,33 @@
-build/
-.DS_Store
-*.mode*
+
+# See http://shanesbrain.net/2008/7/9/using-xcode-with-git
+
+# Xcode Noise
+build
+*.xcclassmodel/*
 *.pbxuser
-.svn
-*.orig
+*.mode1v3
+*.mode2v3
+*.perspective
 *.perspectivev3
-*.trace
 *project.xcworkspace/
+*.trace
+
+# Old School
+.svn
+_svn
+
+# Mac OS X Noise
+.DS_Store
+profile
+
+# Windows Noise
+Thumbs.db
+
+# Temporary NIB Files & Swap Files
+*~.nib
+*.swp
+*.tmp
+
+# Textmate Build Errors
+*.tm_build_errors
+

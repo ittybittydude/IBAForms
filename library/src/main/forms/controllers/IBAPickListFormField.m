@@ -138,6 +138,21 @@
 	return self.name;
 }
 
+- (BOOL)isEqual:(id)object {
+	if ([object isKindOfClass:[self class]]) {
+		IBAPickListFormOption *pickListFormOption = (IBAPickListFormOption *)object;
+		BOOL isNameEqual = ([pickListFormOption name] == [self name]) || [[pickListFormOption name] isEqualToString:[self name]];
+		BOOL isIconImageEqual = ([pickListFormOption iconImage] == [self iconImage]) || [[pickListFormOption iconImage] isEqual:[self iconImage]];
+		return isNameEqual && isIconImageEqual;
+	}
+	else {
+		return NO;
+	}
+}
+
+- (NSUInteger)hash {
+	return [[self name] hash];
+}
 @end
 
 
