@@ -120,18 +120,22 @@
 		[textInputTraitsSection addFormField:[numberField autorelease]];
 		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
 
-
+		
+		// Read-only fields
+		IBAFormFieldStyle *readonlyFieldStyle = [[[IBAFormFieldStyle alloc] init] autorelease];
+		readonlyFieldStyle.labelFrame = CGRectMake(IBAFormFieldLabelX, IBAFormFieldLabelY, IBAFormFieldLabelWidth + 100, IBAFormFieldLabelHeight);
+		readonlyFieldStyle.labelTextAlignment = UITextAlignmentLeft;
+    
+		IBAFormSection *readonlyFieldSection = [self addSectionWithHeaderTitle:@"Read-Only Fields" footerTitle:nil];
+		
+		[readonlyFieldSection addFormField:[[[IBAReadOnlyTextFormField alloc] initWithKeyPath:@"readOnlyText" title:@"Read Only"] autorelease]];
+		
 		// IBALabelFormField displays only the value the field is bound to as the field label. Note that the title is ignored (not displayed).
-		IBAFormFieldStyle *labelFieldStyle = [[[IBAFormFieldStyle alloc] init] autorelease];
-		labelFieldStyle.labelFrame = CGRectMake(IBAFormFieldLabelX, IBAFormFieldLabelY, IBAFormFieldLabelWidth + 100, IBAFormFieldLabelHeight);
-		labelFieldStyle.labelTextAlignment = UITextAlignmentLeft;
-    
-		IBAFormSection *labelSection = [self addSectionWithHeaderTitle:@"Labels" footerTitle:nil];
-		IBALabelFormField *labelField = [[[IBALabelFormField alloc] initWithKeyPath:@"labelText" title:@"Title is ignored"] autorelease];
-		labelField.formFieldStyle = labelFieldStyle;
-		[labelSection addFormField:labelField];
-    
+		IBALabelFormField *labelField = [[[IBALabelFormField alloc] initWithKeyPath:@"readOnlyText" title:@"Title is ignored"] autorelease];
+		labelField.formFieldStyle = readonlyFieldStyle;
+		[readonlyFieldSection addFormField:labelField];
 
+		
     
 		// Some examples of how you might use the button form field
 		IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:@"Buttons" footerTitle:nil];

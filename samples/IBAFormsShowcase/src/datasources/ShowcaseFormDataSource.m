@@ -68,8 +68,8 @@
 	
 	NSMutableDictionary *sampleFormModel = [[[NSMutableDictionary alloc] init] autorelease];
   
-	// Set some values on the model. These values will be refleced in the form fields that are bound to the model.
-	[sampleFormModel setObject:@"A value contained in the model" forKey:@"labelText"];
+	// Values set on the model will be reflected in the form fields.
+	[sampleFormModel setObject:@"A value contained in the model" forKey:@"readOnlyText"];
   
 	SampleFormDataSource *sampleFormDataSource = [[[SampleFormDataSource alloc] initWithModel:sampleFormModel] autorelease];
 	SampleFormController *sampleFormController = [[[SampleFormController alloc] initWithNibName:nil bundle:nil formDataSource:sampleFormDataSource] autorelease];
