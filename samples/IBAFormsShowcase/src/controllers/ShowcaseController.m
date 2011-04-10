@@ -19,8 +19,7 @@
 
 @implementation ShowcaseController
 
-- (void)loadView;
-{
+- (void)loadView {
 	[super loadView];
 	
 	UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] initWithTitle:@"Back"
@@ -36,8 +35,7 @@
 	[self setView:showcaseTableView];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return (interfaceOrientation == UIInterfaceOrientationPortrait) || [((ShowcaseModel *)self.formDataSource.model) shouldAutoRotate];
 }
 

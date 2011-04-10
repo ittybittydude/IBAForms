@@ -20,8 +20,7 @@
 @synthesize shouldAutoRotate = shouldAutoRotate_;
 @synthesize tableViewStyle = tableViewStyle_;
 
-- (void)loadView;
-{
+- (void)loadView {
 	[super loadView];
 
 	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:self.tableViewStyle] autorelease];
@@ -31,8 +30,7 @@
 	[self setView:formTableView];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return self.shouldAutoRotate;
 }
 
