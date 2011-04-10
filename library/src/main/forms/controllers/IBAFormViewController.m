@@ -55,7 +55,7 @@
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		self.formDataSource = formDataSource;
 		self.hidesBottomBarWhenPushed = YES;
 		
@@ -133,7 +133,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	if ([[IBAInputManager sharedIBAInputManager] activeInputRequestor] != nil) {
-		[self makeFormFieldVisible:[[IBAInputManager sharedIBAInputManager] activeInputRequestor]];
+		[self makeFormFieldVisible:(IBAFormField *)[[IBAInputManager sharedIBAInputManager] activeInputRequestor]];
 	}
 }
 
@@ -176,13 +176,20 @@
 	return [self.formDataSource viewForHeaderInSection:section];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(IBAFormFieldCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self respondsToSelector:@selector(willDisplayCell:forFormField:atIndexPath:)]) {
+        IBAFormField *formField = [formDataSource_ formFieldAtIndexPath:indexPath];
+        [self willDisplayCell:cell forFormField:formField atIndexPath:indexPath];
+    }
+}
+
 
 #pragma mark -
 #pragma mark IBAInputRequestorDataSource
 
 - (id<IBAInputRequestor>)nextInputRequestor:(id<IBAInputRequestor>)currentInputRequestor {
 	// Return the next form field that supports inline editing
-	IBAFormField *nextField = [self.formDataSource formFieldAfter:currentInputRequestor];
+	IBAFormField *nextField = [self.formDataSource formFieldAfter:(IBAFormField *)currentInputRequestor];
 	while ((nextField != nil) && (![nextField conformsToProtocol:@protocol(IBAInputRequestor)])) {
 		nextField = [self.formDataSource formFieldAfter:nextField];
 	}
@@ -193,7 +200,7 @@
 
 - (id<IBAInputRequestor>)previousInputRequestor:(id<IBAInputRequestor>)currentInputRequestor {
 	// Return the previous form field that supports inline editing
-	IBAFormField *previousField = [self.formDataSource formFieldBefore:currentInputRequestor];
+	IBAFormField *previousField = [self.formDataSource formFieldBefore:(IBAFormField *)currentInputRequestor];
 	while ((previousField != nil) && (![previousField conformsToProtocol:@protocol(IBAInputRequestor)])) {
 		previousField = [self.formDataSource formFieldBefore:previousField];
 	}
@@ -230,8 +237,10 @@
 #pragma mark Size and visibility accommodations for the input manager view
 
 - (void)makeFormFieldVisible:(IBAFormField *)formField {
-	NSIndexPath *formFieldIndexPath = [self.formDataSource indexPathForFormField:formField];
-	[self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    if ([self shouldAutoScrollTableToActiveField]) {
+        NSIndexPath *formFieldIndexPath = [self.formDataSource indexPathForFormField:formField];
+        [self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }
 }
 
 - (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame {
@@ -299,6 +308,20 @@
 	{
 		return CGRectMake(frame.origin.y, frame.origin.x, frame.size.height, frame.size.width);
 	}	
+}
+
+#pragma mark -
+#pragma mark Methods for subclasses to customise behaviour
+
+- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(IBAFormField *)formField atIndexPath:(NSIndexPath *)indexPath {
+    // NO-OP; subclasses to override
+}
+
+- (BOOL)shouldAutoScrollTableToActiveField {
+    // Return YES if the table view should be automatically scrolled to the active field
+    // Defaults to YES
+    
+    return YES;
 }
 
 @end

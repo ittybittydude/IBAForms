@@ -33,7 +33,7 @@ static UIImage *clearImage_ = nil;
 }
 
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
 		UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[clearButton setImage:[IBADateFormFieldCell clearImage] forState:UIControlStateNormal];
 		clearButton.contentMode = UIViewContentModeCenter;

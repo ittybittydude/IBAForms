@@ -27,7 +27,7 @@
 
 
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
 		switchControl_ = [[UISwitch alloc] initWithFrame:CGRectZero];
 		[self.cellView addSubview:switchControl_];
 		switchControl_.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;

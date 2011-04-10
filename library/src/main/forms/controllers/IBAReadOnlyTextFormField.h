@@ -1,6 +1,7 @@
 //
-// Copyright 2010 Itty Bitty Apps Pty Ltd
-// 
+//  Created by Chris Miles on 7/04/11.
+//  Copyright 2011 Chris Miles. All rights reserved.
+//
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
 // file except in compliance with the License. You may obtain a copy of the License at 
 // 
@@ -12,17 +13,14 @@
 // permissions and limitations under the License.
 //
 
-#import "IBALabelFormCell.h"
-#import "IBAFormConstants.h"
+#import "IBAFormField.h"
+#import "IBATextFormFieldCell.h"
 
-@implementation IBALabelFormCell
 
-- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
-		self.label.adjustsFontSizeToFitWidth = YES;
-	}
-	
-    return self;
+@interface IBAReadOnlyTextFormField : IBAFormField {
+	IBATextFormFieldCell *textFormFieldCell_;
 }
+
+@property (nonatomic, retain) IBATextFormFieldCell *textFormFieldCell;
 
 @end

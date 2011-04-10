@@ -41,6 +41,7 @@
 #import <IBAForms/IBAMultiplePickListInputProvider.h>
 #import <IBAForms/IBASinglePickListInputProvider.h>
 #import <IBAForms/IBAPickListOptionsProvider.h>
+#import <IBAForms/IBAReadOnlyTextFormField.h>
 #import <IBAForms/IBATextFormField.h>
 #import <IBAForms/IBATextFormFieldCell.h>
 #import <IBAForms/IBATextInputProvider.h>

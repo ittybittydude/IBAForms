@@ -65,6 +65,8 @@
 		14E5167D127526BD00396121 /* IBABooleanFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5167B127526BD00396121 /* IBABooleanFormField.m */; };
 		14E516841275295100396121 /* IBABooleanSwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E516821275295100396121 /* IBABooleanSwitchCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E516851275295100396121 /* IBABooleanSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E516831275295100396121 /* IBABooleanSwitchCell.m */; };
+		83089AF3134DA2E6004B24CF /* IBAReadOnlyTextFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 83089AF1134DA2E2004B24CF /* IBAReadOnlyTextFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83089AF4134DA2E6004B24CF /* IBAReadOnlyTextFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83089AF2134DA2E4004B24CF /* IBAReadOnlyTextFormField.m */; };
 		AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -128,6 +130,8 @@
 		14E5167B127526BD00396121 /* IBABooleanFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBABooleanFormField.m; sourceTree = "<group>"; };
 		14E516821275295100396121 /* IBABooleanSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBABooleanSwitchCell.h; sourceTree = "<group>"; };
 		14E516831275295100396121 /* IBABooleanSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBABooleanSwitchCell.m; sourceTree = "<group>"; };
+		83089AF1134DA2E2004B24CF /* IBAReadOnlyTextFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAReadOnlyTextFormField.h; sourceTree = "<group>"; };
+		83089AF2134DA2E4004B24CF /* IBAReadOnlyTextFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAReadOnlyTextFormField.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAForms_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libIBAForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIBAForms.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +262,8 @@
 				14BA9399126BAB07005456E6 /* IBAPickListFormField.m */,
 				148E93A712656FEC0065EDD1 /* IBATextFormField.h */,
 				148E93A812656FEC0065EDD1 /* IBATextFormField.m */,
+				83089AF1134DA2E2004B24CF /* IBAReadOnlyTextFormField.h */,
+				83089AF2134DA2E4004B24CF /* IBAReadOnlyTextFormField.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 				148E93C812656FEC0065EDD1 /* IBALabelFormField.h in Headers */,
 				148E93D012656FEC0065EDD1 /* IBAPasswordFormField.h in Headers */,
 				148E93D212656FEC0065EDD1 /* IBATextFormField.h in Headers */,
+				83089AF3134DA2E6004B24CF /* IBAReadOnlyTextFormField.h in Headers */,
 				148E93D612656FEC0065EDD1 /* IBADateFormFieldCell.h in Headers */,
 				148E93D812656FEC0065EDD1 /* IBAFormFieldCell.h in Headers */,
 				148E93DA12656FEC0065EDD1 /* IBALabelFormCell.h in Headers */,
@@ -453,6 +460,7 @@
 				14E5167D127526BD00396121 /* IBABooleanFormField.m in Sources */,
 				14E516851275295100396121 /* IBABooleanSwitchCell.m in Sources */,
 				14D2574112DA874F00E228F5 /* IBASinglePickListInputProvider.m in Sources */,
+				83089AF4134DA2E6004B24CF /* IBAReadOnlyTextFormField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
