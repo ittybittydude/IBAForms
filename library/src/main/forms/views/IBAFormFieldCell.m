@@ -62,8 +62,17 @@
     return self;
 }
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+  [super setBackgroundColor:backgroundColor];
+
+  if (self.backgroundView) {
+    self.backgroundView.backgroundColor = backgroundColor;
+  }
+
+  self.label.backgroundColor = backgroundColor;
+}
+
 - (void)activate {
-	self.label.backgroundColor = self.formFieldStyle.activeColor;
 	self.backgroundColor = self.formFieldStyle.activeColor;
 	self.active = YES;
 }
@@ -88,7 +97,6 @@
 	self.label.font = self.formFieldStyle.labelFont;
 	self.label.textColor = self.formFieldStyle.labelTextColor;
 	self.label.textAlignment = self.formFieldStyle.labelTextAlignment;
-	self.label.backgroundColor = self.formFieldStyle.labelBackgroundColor;
 	self.backgroundColor = self.formFieldStyle.labelBackgroundColor;
 
 	self.styleApplied = YES;
