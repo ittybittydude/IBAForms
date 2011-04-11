@@ -41,7 +41,7 @@
 - (void)activate {
 	[super activate];
 	
-	self.textField.backgroundColor = [UIColor clearColor];
+	self.textField.backgroundColor = self.formFieldStyle.activeColor;
 }
 
 
