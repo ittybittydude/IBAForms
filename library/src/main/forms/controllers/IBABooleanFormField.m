@@ -81,9 +81,9 @@
 	return switchCell_;
 }
 
-- (IBABooleanCheckCell *)checkCell {
+- (IBAFormFieldCell *)checkCell {
 	if (checkCell_ == nil) {
-		checkCell_ = [[IBABooleanCheckCell alloc] initWithFormFieldStyle:self.formFieldStyle 
+		checkCell_ = [[IBAFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle 
 														   reuseIdentifier:@"IBABooleanCheckCell"];
 	}
 	

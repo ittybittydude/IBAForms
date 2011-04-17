@@ -1,6 +1,7 @@
 //
-// Copyright 2010 Itty Bitty Apps Pty Ltd
-// 
+//  Created by Chris Miles on 7/04/11.
+//  Copyright 2011 Chris Miles. All rights reserved.
+//
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
 // file except in compliance with the License. You may obtain a copy of the License at 
 // 
@@ -12,13 +13,10 @@
 // permissions and limitations under the License.
 //
 
-#import "IBATextFormField.h"
-#import "IBAFormConstants.h"
-#import "IBAInputCommon.h"
-#import "IBAInputManager.h"
-#import "IBAInputManager.h"
+#import "IBAReadOnlyTextFormField.h"
 
-@implementation IBATextFormField
+
+@implementation IBAReadOnlyTextFormField
 
 @synthesize textFormFieldCell = textFormFieldCell_;
 
@@ -40,8 +38,8 @@
 - (IBATextFormFieldCell *)textFormFieldCell {
 	if (textFormFieldCell_ == nil) {
 		textFormFieldCell_ = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
-		textFormFieldCell_.textField.delegate = self;
 		textFormFieldCell_.textField.enabled = NO;
+		textFormFieldCell_.textField.userInteractionEnabled = NO;	// read only
 	}
 	
 	return textFormFieldCell_;
@@ -52,39 +50,5 @@
 	self.textFormFieldCell.textField.text = [self formFieldStringValue];
 }
 
-
-#pragma mark -
-#pragma mark UITextFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	return [[IBAInputManager sharedIBAInputManager] activateNextInputRequestor];;
-}
-
-
-#pragma mark -
-#pragma mark IBAInputRequestor
-
-- (NSString *)dataType {
-	return IBAInputDataTypeText;
-}
-
-- (void)activate {
-	self.textFormFieldCell.textField.enabled = YES;
-	[super activate];
-}
-
-- (BOOL)deactivate {
-	BOOL deactivated = [self setFormFieldValue:self.textFormFieldCell.textField.text];
-	if (deactivated) {
-		self.textFormFieldCell.textField.enabled = NO;
-		deactivated = [super deactivate];
-	}
-	
-	return deactivated;
-}
-
-- (UIResponder *)responder {
-	return self.textFormFieldCell.textField;
-}
 
 @end

@@ -28,6 +28,8 @@
 }
 
 - (void)activate {
+	[[self responder] becomeFirstResponder];
+
 	NSDictionary *userInfo = [[NSMutableDictionary alloc] init];
 	[userInfo setValue:self forKey:IBAFormFieldKey];
 
@@ -66,6 +68,10 @@
 
 - (id)defaultInputRequestorValue {
 	return nil;
+}
+
+- (UIResponder *)responder {
+	return self.cell;
 }
 
 @end

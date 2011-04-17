@@ -20,16 +20,29 @@
 @interface IBAFormViewController : UIViewController  <UITableViewDelegate, IBAInputRequestorDataSource> {
 	UITableView *tableView_;
 	CGRect tableViewOriginalFrame_;
-	IBAFormField *editingFormField_; // The form field currently being edited
 	IBAFormDataSource *formDataSource_;
+	CGRect keyboardFrame_;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, readonly) CGRect tableViewOriginalFrame;
 @property (nonatomic, retain) IBAFormDataSource *formDataSource;
-@property (nonatomic, assign) IBAFormField *editingFormField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 	   formDataSource:(IBAFormDataSource *)formDataSource;
+
+/* Methods for subclasses to customise behaviour */
+
+/*
+ * Called before a cell is about to be displayed by the table view.
+ * Does not need to call the super method.
+ */
+- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(IBAFormField *)formField atIndexPath:(NSIndexPath *)indexPath;
+
+/*
+ * Return YES if the table view should be automatically scrolled to the active field.
+ * Defaults to YES.
+ */
+- (BOOL)shouldAutoScrollTableToActiveField;
 
 @end

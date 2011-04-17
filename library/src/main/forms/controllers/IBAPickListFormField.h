@@ -34,12 +34,14 @@
 
 
 @interface IBAPickListFormOption : NSObject <IBAPickListOption> {
+	UIFont *font_;
 	NSString *name_;
 	UIImage *iconImage_;
 }
 
 + (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames;
-- (id)initWithName:(NSString *)name iconImage:(UIImage *)iconImage;
++ (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames font:(UIFont *)font;
+- (id)initWithName:(NSString *)name iconImage:(UIImage *)iconImage font:(UIFont *)font;
 
 @end
 
@@ -51,3 +53,13 @@
 - (id)initWithPickListOptions:(NSArray *)pickListOptions;
 @property (nonatomic, copy) NSArray *pickListOptions;
 @end
+
+
+@interface IBASingleIndexTransformer : NSValueTransformer {
+	NSArray *pickListOptions_;
+}
+
+- (id)initWithPickListOptions:(NSArray *)pickListOptions;
+@property (nonatomic, copy) NSArray *pickListOptions;
+@end
+

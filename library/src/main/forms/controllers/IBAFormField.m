@@ -41,7 +41,7 @@
 	self = [super init];
 	if (self != nil) {
 		self.keyPath = keyPath;
-		self.title = title;
+		title_ = [title copy];
 		self.nullable = YES;
 		self.valueTransformer = valueTransformer;
 	}

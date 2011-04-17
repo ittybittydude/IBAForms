@@ -17,17 +17,19 @@
 #import "IBAInputManager.h"
 
 @interface IBAFormViewController ()
+@property (nonatomic, assign) CGRect keyboardFrame;
 - (void)releaseViews;
 - (void)makeFormFieldVisible:(IBAFormField *)formField;
 - (void)registerForNotifications;
 - (void)registerSelector:(SEL)selector withNotification:(NSString *)notificationKey;
-- (void)adjustTableViewHeightForCoveringRect:(CGRect)coveringRect;
-- (void)tableViewResizeDidFinish;
+- (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame;
+- (CGRect)rectForOrientationFrame:(CGRect)frame;
 
 // Notification methods
 - (void)pushViewController:(NSNotification *)notification;
 - (void)presentModalViewController:(NSNotification *)notification;
 - (void)dismissModalViewController:(NSNotification *)notification;
+
 @end
 
 @implementation IBAFormViewController
@@ -35,7 +37,7 @@
 @synthesize tableView = tableView_;
 @synthesize tableViewOriginalFrame = tableViewOriginalFrame_;
 @synthesize formDataSource = formDataSource_;
-@synthesize editingFormField = editingFormField_;
+@synthesize keyboardFrame = keyboardFrame_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
@@ -53,7 +55,7 @@
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		self.formDataSource = formDataSource;
 		self.hidesBottomBarWhenPushed = YES;
 		
@@ -64,8 +66,8 @@
 }
 
 - (void)registerForNotifications {
-	[self registerSelector:@selector(inputManagerWillShow:) withNotification:IBAInputManagerWillShowNotification];
-	[self registerSelector:@selector(inputManagerDidHide:) withNotification:IBAInputManagerDidHideNotification];
+	[self registerSelector:@selector(inputManagerWillShow:) withNotification:UIKeyboardWillShowNotification];
+	[self registerSelector:@selector(inputManagerDidHide:) withNotification:UIKeyboardDidHideNotification];
 
 	[self registerSelector:@selector(formFieldActivated:) withNotification:IBAInputRequestorFormFieldActivated];
 	
@@ -105,7 +107,17 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:self];
+	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:self];	
+	
+	// There is a bug with UIModalPresentationFormSheet where the keyboard won't dismiss even when there is
+	// no first responder, so we remove the 'Done' button when UIModalPresentationFormSheet is used.
+	BOOL displayDoneButton = (self.modalPresentationStyle != UIModalPresentationFormSheet);
+	if (self.navigationController != nil) {
+		displayDoneButton &= (self.navigationController.modalPresentationStyle != UIModalPresentationFormSheet);
+	}
+	
+	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setDisplayDoneButton:displayDoneButton];
+		
 	[self.tableView reloadData];
 }
 
@@ -113,7 +125,16 @@
 	[super viewWillDisappear:animated];
 
 	[[IBAInputManager sharedIBAInputManager] deactivateActiveInputRequestor];
-	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:nil];
+	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setDisplayDoneButton:YES];
+	if ([[IBAInputManager sharedIBAInputManager] inputRequestorDataSource] == self) {
+		[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:nil];
+	}
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	if ([[IBAInputManager sharedIBAInputManager] activeInputRequestor] != nil) {
+		[self makeFormFieldVisible:(IBAFormField *)[[IBAInputManager sharedIBAInputManager] activeInputRequestor]];
+	}
 }
 
 #pragma mark -
@@ -130,7 +151,6 @@
 		[self.tableView reloadData];
 	}
 }
-
 
 #pragma mark -
 #pragma mark UITableViewDelegate
@@ -156,10 +176,11 @@
 	return [self.formDataSource viewForHeaderInSection:section];
 }
 
--(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section{
-  UIView *view = [self.formDataSource viewForHeaderInSection:section];
-
-  return view ? view.frame.size.height : 0;
+- (void)tableView:(UITableView *)tableView willDisplayCell:(IBAFormFieldCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self respondsToSelector:@selector(willDisplayCell:forFormField:atIndexPath:)]) {
+        IBAFormField *formField = [formDataSource_ formFieldAtIndexPath:indexPath];
+        [self willDisplayCell:cell forFormField:formField atIndexPath:indexPath];
+    }
 }
 
 
@@ -168,7 +189,7 @@
 
 - (id<IBAInputRequestor>)nextInputRequestor:(id<IBAInputRequestor>)currentInputRequestor {
 	// Return the next form field that supports inline editing
-	IBAFormField *nextField = [self.formDataSource formFieldAfter:currentInputRequestor];
+	IBAFormField *nextField = [self.formDataSource formFieldAfter:(IBAFormField *)currentInputRequestor];
 	while ((nextField != nil) && (![nextField conformsToProtocol:@protocol(IBAInputRequestor)])) {
 		nextField = [self.formDataSource formFieldAfter:nextField];
 	}
@@ -179,7 +200,7 @@
 
 - (id<IBAInputRequestor>)previousInputRequestor:(id<IBAInputRequestor>)currentInputRequestor {
 	// Return the previous form field that supports inline editing
-	IBAFormField *previousField = [self.formDataSource formFieldBefore:currentInputRequestor];
+	IBAFormField *previousField = [self.formDataSource formFieldBefore:(IBAFormField *)currentInputRequestor];
 	while ((previousField != nil) && (![previousField conformsToProtocol:@protocol(IBAInputRequestor)])) {
 		previousField = [self.formDataSource formFieldBefore:previousField];
 	}
@@ -192,11 +213,13 @@
 #pragma mark Responses to IBAInputManager notifications
 
 - (void)inputManagerWillShow:(NSNotification *)notification {
-	[self adjustTableViewHeightForCoveringRect:[[[IBAInputManager sharedIBAInputManager] inputManagerView] frame]];
+	NSDictionary* info = [notification userInfo];
+	CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+	[self adjustTableViewHeightForCoveringFrame:[self rectForOrientationFrame:keyboardFrame]];
 }
 
 - (void)inputManagerDidHide:(NSNotification *)notification {
-	[self adjustTableViewHeightForCoveringRect:CGRectZero];
+	[self adjustTableViewHeightForCoveringFrame:CGRectZero];
 }
 
 - (void)formFieldActivated:(NSNotification *)notification {
@@ -214,28 +237,34 @@
 #pragma mark Size and visibility accommodations for the input manager view
 
 - (void)makeFormFieldVisible:(IBAFormField *)formField {
-	NSIndexPath *formFieldIndexPath = [self.formDataSource indexPathForFormField:formField];
-	[self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    if ([self shouldAutoScrollTableToActiveField]) {
+        NSIndexPath *formFieldIndexPath = [self.formDataSource indexPathForFormField:formField];
+        [self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }
 }
 
-- (void)adjustTableViewHeightForCoveringRect:(CGRect)coveringRect {
-	CGRect newTableViewFrame = self.tableView.frame;
-	newTableViewFrame.size.height = self.tableViewOriginalFrame.size.height - coveringRect.size.height;
-
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:0.2];
-	[UIView setAnimationDelegate:self];
-	[UIView setAnimationDidStopSelector:@selector(tableViewResizeDidFinish)];
+- (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame {
+	if (!CGRectEqualToRect(coveringFrame, self.keyboardFrame)) {
+		self.keyboardFrame = coveringFrame;
+		CGRect normalisedWindowBounds = [self rectForOrientationFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
+		CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView.superview convertRect:self.tableView.frame 
+																							 toView:[[UIApplication sharedApplication] keyWindow]]];
+		[UIView animateWithDuration:0.2 
+						 animations: ^(void){
+							 CGFloat height = (CGRectEqualToRect(coveringFrame, CGRectZero)) ? 0 : 
+								coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame));
+							 UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, height, 0);
+							 //NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
+							 self.tableView.contentInset = contentInsets;
+							 self.tableView.scrollIndicatorInsets = contentInsets;
+						 }
+						 completion: ^(BOOL finished){
+							 self.tableView.scrollEnabled = YES;
+						 }];
+	}
 	
-	self.tableView.contentInset = UIEdgeInsetsMake(0,0, coveringRect.size.height, 0);
-	
-	[UIView commitAnimations];
 }
 
-- (void)tableViewResizeDidFinish {
-	self.tableView.scrollEnabled = YES;
-	[self.tableView flashScrollIndicators];
-}
 
 #pragma mark -
 #pragma mark Push view controller requests
@@ -269,6 +298,30 @@
 	UITableViewCell *cell = [self.formDataSource tableView:aTableView cellForRowAtIndexPath:indexPath];
 	[cell sizeToFit];
 	return cell.bounds.size.height;
+}
+
+- (CGRect)rectForOrientationFrame:(CGRect)frame {
+	if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+		return frame;
+	}
+	else
+	{
+		return CGRectMake(frame.origin.y, frame.origin.x, frame.size.height, frame.size.width);
+	}	
+}
+
+#pragma mark -
+#pragma mark Methods for subclasses to customise behaviour
+
+- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(IBAFormField *)formField atIndexPath:(NSIndexPath *)indexPath {
+    // NO-OP; subclasses to override
+}
+
+- (BOOL)shouldAutoScrollTableToActiveField {
+    // Return YES if the table view should be automatically scrolled to the active field
+    // Defaults to YES
+    
+    return YES;
 }
 
 @end

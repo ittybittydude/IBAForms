@@ -37,11 +37,10 @@
 #define IBAFormFieldLabelTextAlignment UITextAlignmentRight
 #define IBAFormFieldLabelBackgroundColor [UIColor whiteColor]
 
-
 // Form field value style
 #define IBAFormFieldValueX 75
 #define IBAFormFieldValueY 10
-#define IBAFormFieldValueWidth 210
+#define IBAFormFieldValueWidth 235
 #define IBAFormFieldValueHeight 26
 #define IBAFormFieldValueFont [UIFont systemFontOfSize:16]
 #define IBAFormFieldValueTextColor [UIColor blackColor]
