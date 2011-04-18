@@ -28,7 +28,8 @@
 }
 
 - (void)activate {
-	[[self responder] becomeFirstResponder];
+	UIResponder *responder = [self responder];
+	[responder becomeFirstResponder];
 
 	NSDictionary *userInfo = [[NSMutableDictionary alloc] init];
 	[userInfo setValue:self forKey:IBAFormFieldKey];

@@ -65,6 +65,10 @@
 		14E5167D127526BD00396121 /* IBABooleanFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E5167B127526BD00396121 /* IBABooleanFormField.m */; };
 		14E516841275295100396121 /* IBABooleanSwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E516821275295100396121 /* IBABooleanSwitchCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E516851275295100396121 /* IBABooleanSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E516831275295100396121 /* IBABooleanSwitchCell.m */; };
+		75B48502135BC304006EF7ED /* IBAMultilineTextFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 75B48500135BC304006EF7ED /* IBAMultilineTextFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75B48503135BC304006EF7ED /* IBAMultilineTextFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B48501135BC304006EF7ED /* IBAMultilineTextFormField.m */; };
+		75B48506135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75B48504135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75B48507135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B48505135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.m */; };
 		83089AF3134DA2E6004B24CF /* IBAReadOnlyTextFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 83089AF1134DA2E2004B24CF /* IBAReadOnlyTextFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83089AF4134DA2E6004B24CF /* IBAReadOnlyTextFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83089AF2134DA2E4004B24CF /* IBAReadOnlyTextFormField.m */; };
 		AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -130,6 +134,10 @@
 		14E5167B127526BD00396121 /* IBABooleanFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBABooleanFormField.m; sourceTree = "<group>"; };
 		14E516821275295100396121 /* IBABooleanSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBABooleanSwitchCell.h; sourceTree = "<group>"; };
 		14E516831275295100396121 /* IBABooleanSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBABooleanSwitchCell.m; sourceTree = "<group>"; };
+		75B48500135BC304006EF7ED /* IBAMultilineTextFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAMultilineTextFormField.h; sourceTree = "<group>"; };
+		75B48501135BC304006EF7ED /* IBAMultilineTextFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAMultilineTextFormField.m; sourceTree = "<group>"; };
+		75B48504135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAMultilineTextFormFieldCell.h; sourceTree = "<group>"; };
+		75B48505135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAMultilineTextFormFieldCell.m; sourceTree = "<group>"; };
 		83089AF1134DA2E2004B24CF /* IBAReadOnlyTextFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAReadOnlyTextFormField.h; sourceTree = "<group>"; };
 		83089AF2134DA2E4004B24CF /* IBAReadOnlyTextFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAReadOnlyTextFormField.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAForms_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -256,6 +264,8 @@
 				148E939C12656FEC0065EDD1 /* IBAInputRequestorFormField.m */,
 				148E939D12656FEC0065EDD1 /* IBALabelFormField.h */,
 				148E939E12656FEC0065EDD1 /* IBALabelFormField.m */,
+				75B48500135BC304006EF7ED /* IBAMultilineTextFormField.h */,
+				75B48501135BC304006EF7ED /* IBAMultilineTextFormField.m */,
 				148E93A512656FEC0065EDD1 /* IBAPasswordFormField.h */,
 				148E93A612656FEC0065EDD1 /* IBAPasswordFormField.m */,
 				14BA9398126BAB07005456E6 /* IBAPickListFormField.h */,
@@ -279,6 +289,8 @@
 				148E93AF12656FEC0065EDD1 /* IBAFormFieldCell.m */,
 				148E93B012656FEC0065EDD1 /* IBALabelFormCell.h */,
 				148E93B112656FEC0065EDD1 /* IBALabelFormCell.m */,
+				75B48504135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.h */,
+				75B48505135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.m */,
 				148E93B412656FEC0065EDD1 /* IBATextFormFieldCell.h */,
 				148E93B512656FEC0065EDD1 /* IBATextFormFieldCell.m */,
 			);
@@ -360,6 +372,8 @@
 				148E9414126571D30065EDD1 /* IBACommon.h in Headers */,
 				148E9418126571F10065EDD1 /* SynthesizeSingleton.h in Headers */,
 				14BA939A126BAB07005456E6 /* IBAPickListFormField.h in Headers */,
+				75B48506135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.h in Headers */,
+				75B48502135BC304006EF7ED /* IBAMultilineTextFormField.h in Headers */,
 				14BA9461126BCF03005456E6 /* IBAMultiplePickListInputProvider.h in Headers */,
 				14BA9465126BD257005456E6 /* IBAPickListOptionsProvider.h in Headers */,
 				14E5167C127526BD00396121 /* IBABooleanFormField.h in Headers */,
@@ -461,6 +475,8 @@
 				14E516851275295100396121 /* IBABooleanSwitchCell.m in Sources */,
 				14D2574112DA874F00E228F5 /* IBASinglePickListInputProvider.m in Sources */,
 				83089AF4134DA2E6004B24CF /* IBAReadOnlyTextFormField.m in Sources */,
+				75B48503135BC304006EF7ED /* IBAMultilineTextFormField.m in Sources */,
+				75B48507135BC31D006EF7ED /* IBAMultilineTextFormFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

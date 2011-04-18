@@ -62,10 +62,12 @@
 	return (section != nil) ? [section.formFields count] : 0;
 }
 
-- (UITableViewCell *)cellForFormFieldAtIndexPath:(NSIndexPath *)indexPath {
-	// We make the form field update its contents before handing it back its cell
+- (UITableViewCell *)cellForFormFieldAtIndexPath:(NSIndexPath *)indexPath {	
 	IBAFormField *formField = [self formFieldAtIndexPath:indexPath];
-	[formField updateCellContents];
+	
+// FIXME: why the hell do we do this again? It seems to bust multiline text field because it causes the UI to be updated when calculating the height of the cell (BAD)
+// We make the form field update its contents before handing it back its cell
+//	[formField updateCellContents];
 	
 	return [formField cell];
 }

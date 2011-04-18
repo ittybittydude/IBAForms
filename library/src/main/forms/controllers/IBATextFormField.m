@@ -23,6 +23,7 @@
 @synthesize textFormFieldCell = textFormFieldCell_;
 
 - (void)dealloc {
+	textFormFieldCell_.textField.delegate = nil;
 	IBA_RELEASE_SAFELY(textFormFieldCell_);
 	
 	[super dealloc];

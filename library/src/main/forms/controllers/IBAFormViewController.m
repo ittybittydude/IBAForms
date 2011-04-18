@@ -29,6 +29,7 @@
 - (void)pushViewController:(NSNotification *)notification;
 - (void)presentModalViewController:(NSNotification *)notification;
 - (void)dismissModalViewController:(NSNotification *)notification;
+- (void)formFieldResized:(NSNotification *)notification;
 
 @end
 
@@ -70,7 +71,8 @@
 	[self registerSelector:@selector(inputManagerDidHide:) withNotification:UIKeyboardDidHideNotification];
 
 	[self registerSelector:@selector(formFieldActivated:) withNotification:IBAInputRequestorFormFieldActivated];
-	
+	[self registerSelector:@selector(formFieldResized:) withNotification:IBAFormFieldResized];
+
 	[self registerSelector:@selector(pushViewController:) withNotification:IBAPushViewController];
 	[self registerSelector:@selector(presentModalViewController:) withNotification:IBAPresentModalViewController];
 	[self registerSelector:@selector(dismissModalViewController:) withNotification:IBADismissModalViewController];
@@ -291,13 +293,27 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
+
+#pragma mark -
+#pragma mark Field size management
+
+- (void)formFieldResized:(NSNotification *)notification {
+	BOOL animationsEnabled = [UIView areAnimationsEnabled];
+	[UIView setAnimationsEnabled:NO];
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
+	[UIView setAnimationsEnabled:animationsEnabled];
+}
+
+
 #pragma mark -
 #pragma mark Misc
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [self.formDataSource tableView:aTableView cellForRowAtIndexPath:indexPath];
-	[cell sizeToFit];
-	return cell.bounds.size.height;
+//	[cell sizeToFit];
+	CGSize cellSize = [cell sizeThatFits:cell.bounds.size];
+	return cellSize.height; //cell.bounds.size.height;
 }
 
 - (CGRect)rectForOrientationFrame:(CGRect)frame {
