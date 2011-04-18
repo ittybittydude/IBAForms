@@ -29,7 +29,7 @@
 @implementation ShowcaseFormDataSource
 
 - (id)initWithModel:(id)aModel {
-	if (self = [super initWithModel:aModel]) {
+	if ((self = [super initWithModel:aModel])) {
 		IBAFormSection *displayOptionsSection = [self addSectionWithHeaderTitle:@"Display Options" footerTitle:nil];
 		displayOptionsSection.formFieldStyle = [[[ShowcaseFieldStyle alloc] init] autorelease];
 		
