@@ -14,19 +14,6 @@ IBAForms:
  *  Provides extension points for creating your own custom form fields.
 
 
-Installation
-============
-
-IBAForms is distributed as an XCode static library project that you can include as a dependency in your own projects. To add IBAForms to your project:
-
- *  Clone the IBAForms git repository: 'git clone git@github.com:ittybittydude/IBAForms.git'
- *  Drag the library/IBAForms.xcodeproj file to the 'Frameworks' folder of your XCode project
- *  When the dialog appears, make sure you uncheck the 'Copy items into destination group's folder (if needed)' checkbox and 'Reference Type:' is 'Relative to Project'
- *  To link with the static library click the IBAForms.xcodeproj 
- *  
- *  
-
-
 About
 ============
 
