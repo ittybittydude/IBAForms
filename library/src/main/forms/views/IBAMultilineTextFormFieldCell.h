@@ -14,10 +14,8 @@
 
 #import "IBAFormFieldCell.h"
 
-@class IBAMultilineTextView;
-
 @interface IBAMultilineTextFormFieldCell : IBAFormFieldCell {
-	IBAMultilineTextView *textView;
+	UITextView *textView_;
 }
 
 @property (nonatomic, retain) UITextView *textView;

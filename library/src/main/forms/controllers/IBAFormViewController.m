@@ -298,11 +298,11 @@
 #pragma mark Field size management
 
 - (void)formFieldResized:(NSNotification *)notification {
-	BOOL animationsEnabled = [UIView areAnimationsEnabled];
-	[UIView setAnimationsEnabled:NO];
+	//BOOL animationsEnabled = [UIView areAnimationsEnabled];
+	//[UIView setAnimationsEnabled:NO];
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
-	[UIView setAnimationsEnabled:animationsEnabled];
+	//[UIView setAnimationsEnabled:animationsEnabled];
 }
 
 
@@ -311,9 +311,8 @@
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [self.formDataSource tableView:aTableView cellForRowAtIndexPath:indexPath];
-//	[cell sizeToFit];
 	CGSize cellSize = [cell sizeThatFits:cell.bounds.size];
-	return cellSize.height; //cell.bounds.size.height;
+	return cellSize.height;
 }
 
 - (CGRect)rectForOrientationFrame:(CGRect)frame {

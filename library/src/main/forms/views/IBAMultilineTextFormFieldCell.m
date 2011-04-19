@@ -18,9 +18,6 @@
 
 static const CGFloat kTextViewPadding = 8.;
 
-@interface IBAMultilineTextView : UITextView
-@end
-
 @interface IBAMultilineTextFormFieldCell ()
 - (CGRect)textViewFrame:(CGSize)size;
 @end
@@ -28,29 +25,28 @@ static const CGFloat kTextViewPadding = 8.;
 
 @implementation IBAMultilineTextFormFieldCell
 
-@synthesize textView;
+@synthesize textView = textView_;
 
 - (void)dealloc {
-	IBA_RELEASE_SAFELY(textView);
+	IBA_RELEASE_SAFELY(textView_);
 
 	[super dealloc];
 }
 
 
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier]) {
+    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
 		// Create the text view for data entry
-		textView = [[IBAMultilineTextView alloc] initWithFrame:CGRectZero];
-//		textView.contentInset = UIEdgeInsetsZero;
-		textView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-		textView.scrollEnabled = NO;
-		textView.font = [UIFont systemFontOfSize:16];
-		textView.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-		textView.autocorrectionType = UITextAutocorrectionTypeDefault;
-		textView.dataDetectorTypes = UIDataDetectorTypeAll;
-		textView.keyboardType =UIKeyboardTypeASCIICapable;
+		textView_ = [[UITextView alloc] initWithFrame:CGRectZero];
+		textView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+		textView_.scrollEnabled = NO;
+		textView_.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+		textView_.autocorrectionType = UITextAutocorrectionTypeDefault;
+		textView_.dataDetectorTypes = UIDataDetectorTypeAll;
+		textView_.keyboardType = UIKeyboardTypeASCIICapable;
+		textView_.font = style.valueFont;
 
-		[self.cellView addSubview:self.textView];
+		[self.cellView addSubview:textView_];
 	}
 
     return self;
@@ -66,45 +62,29 @@ static const CGFloat kTextViewPadding = 8.;
 - (void)applyFormFieldStyle {
 	[super applyFormFieldStyle];
 
-//	self.textView.contentInset = UIEdgeInsetsZero;
 	self.backgroundColor = [UIColor blueColor];
-	self.textView.font = self.formFieldStyle.valueFont;
 	self.textView.textColor = [UIColor blackColor]; //self.formFieldStyle.valueTextColor;
 	self.textView.backgroundColor = [UIColor redColor]; //self.formFieldStyle.valueBackgroundColor;
-														//	self.textView.backgroundColor = [UIColor yellowColor]; //self.formFieldStyle.valueBackgroundColor;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-//	CGSize viewSize = CGRectInset([self textViewFrame:size], (kTextViewPadding * -1), (kTextViewPadding * -1)).size;
 	CGSize viewSize = [self textViewFrame:size].size;
-
+	
 	return viewSize;
 }
 
 - (void)layoutSubviews {
-	textView.frame = [self textViewFrame:[self bounds].size];
+	self.textView.frame = [self textViewFrame:[self bounds].size];
+	IBALogRect(self.textView.frame);
 }
 
-- (CGRect)textViewFrame:(CGSize)size {
-	CGSize newTextViewSize = [self.textView.text sizeWithFont:self.formFieldStyle.valueFont
-											constrainedToSize:CGSizeMake(size.width, 1000) lineBreakMode:UILineBreakModeWordWrap];
-
-	CGSize suggestedTextViewSize = [self.textView sizeThatFits:size];
+- (CGRect)textViewFrame:(CGSize)size {					   	
+	CGFloat insetAdjustment = self.textView.contentInset.bottom + self.textView.contentInset.top;
+	insetAdjustment = ([self.textView isFirstResponder]) ?  insetAdjustment : 0;
+//	CGFloat contentSizeHeight = ([self.textView hasText]) ? self.textView.contentSize.height : textSize.height;
 	
-	newTextViewSize.height = MAX(newTextViewSize.height, size.height);
-	newTextViewSize.width = MAX(newTextViewSize.width, size.width);
-
-	CGRect newTextViewFrame = CGRectMake(0, 0, newTextViewSize.width, newTextViewSize.height);
+	CGRect newTextViewFrame = CGRectMake(0, 0, size.width, MAX(self.textView.contentSize.height + insetAdjustment,  44.));
 	return newTextViewFrame;
-}
-
-@end
-
-
-@implementation IBAMultilineTextView
-
-- (UIEdgeInsets) contentInset {
-	return UIEdgeInsetsZero; 
 }
 
 @end

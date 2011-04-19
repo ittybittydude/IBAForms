@@ -18,7 +18,7 @@
 #import "IBAInputCommon.h"
 
 @interface IBAMultilineTextFormField ()
-- (void)postResizeNotification;
+- (void)resizeFormField;
 @end
 
 
@@ -90,15 +90,21 @@
 #pragma mark UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView {
-//	[[NSNotificationCenter defaultCenter] postNotificationName:IBAFormFieldResized object:self userInfo:nil];
-
-	[self.multilineTextFormFieldCell.textView setNeedsLayout];
-	[self performSelector:@selector(postResizeNotification) withObject:nil afterDelay:0];
+	[self resizeFormField];
 }
 
-- (void)postResizeNotification {
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+	[self resizeFormField];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+	[self resizeFormField];
+}
+
+- (void)resizeFormField {
+	[[self cell] sizeToFit];
+	
 	[[NSNotificationCenter defaultCenter] postNotificationName:IBAFormFieldResized object:self userInfo:nil];
 }
-
 
 @end
