@@ -34,11 +34,10 @@
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
 @property (nonatomic, assign) BOOL styleApplied;
 
-
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier;
 - (void)activate;
 - (void)deactivate;
-
+- (BOOL)isActive;
 - (void)applyFormFieldStyle;
-
+- (void)applyActiveStyle;
 @end
