@@ -63,6 +63,16 @@
     return self;
 }
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+  [super setBackgroundColor:backgroundColor];
+
+  if (self.backgroundView) {
+    self.backgroundView.backgroundColor = backgroundColor;
+  }
+
+  self.label.backgroundColor = backgroundColor;
+}
+
 - (void)activate {
 	[self applyActiveStyle];
 	self.active = YES;
