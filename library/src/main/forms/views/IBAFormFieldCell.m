@@ -17,6 +17,7 @@
 
 @interface IBAFormFieldCell ()
 @property (nonatomic, assign, getter=isActive) BOOL active;
+- (void)applyActiveStyle;
 @end
 
 @implementation IBAFormFieldCell
@@ -62,18 +63,8 @@
     return self;
 }
 
-- (void)setBackgroundColor:(UIColor *)backgroundColor {
-  [super setBackgroundColor:backgroundColor];
-
-  if (self.backgroundView) {
-    self.backgroundView.backgroundColor = backgroundColor;
-  }
-
-  self.label.backgroundColor = backgroundColor;
-}
-
 - (void)activate {
-	self.backgroundColor = self.formFieldStyle.activeColor;
+	[self applyActiveStyle];
 	self.active = YES;
 }
 
@@ -97,9 +88,15 @@
 	self.label.font = self.formFieldStyle.labelFont;
 	self.label.textColor = self.formFieldStyle.labelTextColor;
 	self.label.textAlignment = self.formFieldStyle.labelTextAlignment;
+	self.label.backgroundColor = self.formFieldStyle.labelBackgroundColor;
 	self.backgroundColor = self.formFieldStyle.labelBackgroundColor;
 
 	self.styleApplied = YES;
+}
+
+- (void)applyActiveStyle {
+	self.label.backgroundColor = self.formFieldStyle.activeColor;
+	self.backgroundColor = self.formFieldStyle.activeColor;
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -121,6 +118,10 @@
 
 - (void)didMoveToWindow {
 	if ((self.window != nil) && [self isActive] && (![self isFirstResponder]) && [self canBecomeFirstResponder]) {
+		// We need to reapply the active style because the tableview has a nasty habbit of resetting the cell background 
+		// when the cell is reattached to the view hierarchy.
+		[self applyActiveStyle]; 
+		
 		[self becomeFirstResponder];
 	}
 }
