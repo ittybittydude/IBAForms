@@ -97,6 +97,10 @@
 - (void)applyActiveStyle {
 	self.label.backgroundColor = self.formFieldStyle.activeColor;
 	self.backgroundColor = self.formFieldStyle.activeColor;
+
+  if (self.backgroundView) {
+    self.backgroundView.backgroundColor = self.backgroundColor;
+  }
 }
 
 - (void)drawRect:(CGRect)rect {
