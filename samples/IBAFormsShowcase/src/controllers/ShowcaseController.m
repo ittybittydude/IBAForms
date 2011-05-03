@@ -28,11 +28,15 @@
 																   action:nil] autorelease];
 	self.navigationItem.backBarButtonItem = backButton;
 	
-	UITableView *showcaseTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
+	UIView *view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+	[view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+	
+	UITableView *showcaseTableView = [[[UITableView alloc] initWithFrame:[view bounds] style:UITableViewStyleGrouped] autorelease];
 	[showcaseTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-
 	[self setTableView:showcaseTableView];
-	[self setView:showcaseTableView];
+	
+	[view addSubview:showcaseTableView];
+	[self setView:view];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

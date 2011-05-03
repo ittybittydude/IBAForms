@@ -17,13 +17,17 @@
 #import "IBAInputManager.h"
 
 @interface IBAFormViewController ()
+
 @property (nonatomic, assign) CGRect keyboardFrame;
+@property (nonatomic, retain) UIView *hiddenCellCache;
+
 - (void)releaseViews;
-- (void)makeFormFieldVisible:(IBAFormField *)formField;
 - (void)registerForNotifications;
 - (void)registerSelector:(SEL)selector withNotification:(NSString *)notificationKey;
 - (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame;
 - (CGRect)rectForOrientationFrame:(CGRect)frame;
+- (void)makeActiveFormFieldVisibleWithAnimation:(BOOL)animate;
+- (void)makeFormFieldVisible:(IBAFormField *)formField animated:(BOOL)animate;
 
 // Notification methods
 - (void)pushViewController:(NSNotification *)notification;
@@ -38,6 +42,7 @@
 @synthesize tableViewOriginalFrame = tableViewOriginalFrame_;
 @synthesize formDataSource = formDataSource_;
 @synthesize keyboardFrame = keyboardFrame_;
+@synthesize hiddenCellCache = hiddenCellCache_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
@@ -52,6 +57,7 @@
 
 - (void)releaseViews {
 	IBA_RELEASE_SAFELY(tableView_);
+	IBA_RELEASE_SAFELY(hiddenCellCache_);
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
@@ -95,6 +101,11 @@
 	self.tableView.dataSource = self.formDataSource;
 	self.tableView.delegate = self;
 	
+	hiddenCellCache_ = [[UIView alloc] initWithFrame:CGRectZero];
+	[hiddenCellCache_ setAutoresizingMask:UIViewAutoresizingNone];
+	[hiddenCellCache_ setHidden:YES];
+	[hiddenCellCache_ setClipsToBounds:YES];
+	
 	tableViewOriginalFrame_ = self.tableView.frame;
 }
 
@@ -109,7 +120,7 @@
 	
 	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:self];	
 	
-	// There is a bug with UIModalPresentationFormSheet where the keyboard won't dismiss even when there is
+	// SW. There is a bug with UIModalPresentationFormSheet where the keyboard won't dismiss even when there is
 	// no first responder, so we remove the 'Done' button when UIModalPresentationFormSheet is used.
 	BOOL displayDoneButton = (self.modalPresentationStyle != UIModalPresentationFormSheet);
 	if (self.navigationController != nil) {
@@ -118,6 +129,15 @@
 	
 	[[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setDisplayDoneButton:displayDoneButton];
 		
+	// Make sure the hidden cell cache is attached to the view hierarchy
+	if ([self.hiddenCellCache window] == nil) {
+		if ([self.view isKindOfClass:[UITableView class]]) {
+			NSLog(@"Hidden cell cache will be added to a UITableView. This will generate log messages when cells that are in the cache are made the first reponder. To avoid these messages, ensure that the IBAFormViewController's view is not a UITableView.");
+		}
+		
+		[self.view addSubview:self.hiddenCellCache];
+	}
+	
 	[self.tableView reloadData];
 }
 
@@ -133,7 +153,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	if ([[IBAInputManager sharedIBAInputManager] activeInputRequestor] != nil) {
-		[self makeFormFieldVisible:(IBAFormField *)[[IBAInputManager sharedIBAInputManager] activeInputRequestor]];
+		[self makeActiveFormFieldVisibleWithAnimation:YES];
 	}
 }
 
@@ -177,6 +197,23 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(IBAFormFieldCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	// SW. So, what's all this business about setting the cell's hidden cell cache? Well, let me tell you a little story
+	// about UIResponders. If you call becomeFirstResponder on a UIResponder that is not in the view hierarchy, it doesn't
+	// become the first responder. 'So what', you might ask. Well, when cells in a UITableView scroll out of view, they
+	// are removed from the view hierarchy. If you select a cell, then scroll it up out of view, when you press the 'Previous'
+	// button in the toolbar, the forms framework tries to activate the previous cell and make it the first responder.
+	// The previous cell won't be in the view hierarchy, and the becomeFirstResponder call will fail. We tried all sorts
+	// of workarounds, but the one that seems to work is to put the cells into a hidden view when they are removed from the
+	// UITableView, so that they are still in the view hierarchy. We ended up making this hidden view a subview of the 
+	// UIViewController's view. 
+	[cell setHiddenCellCache:self.hiddenCellCache];
+	
+	if ([cell isActive]) {
+		// We need to reapply the active style because the tableview has a nasty habbit of resetting the cell background 
+		// when the cell is reattached to the view hierarchy.
+		[cell applyActiveStyle]; 
+	}
+	
     if ([self respondsToSelector:@selector(willDisplayCell:forFormField:atIndexPath:)]) {
         IBAFormField *formField = [formDataSource_ formFieldAtIndexPath:indexPath];
         [self willDisplayCell:cell forFormField:formField atIndexPath:indexPath];
@@ -225,7 +262,7 @@
 - (void)formFieldActivated:(NSNotification *)notification {
 	IBAFormField *formField = [[notification userInfo] objectForKey:IBAFormFieldKey];
 	if (formField != nil) {
-		[self makeFormFieldVisible:formField];
+		[self makeFormFieldVisible:formField animated:YES];
 		if ([formField hasDetailViewController]) {
 			// The form field has a detail view controller that we should push on to the navigation stack
 			[[self navigationController] pushViewController:[formField detailViewController] animated:YES];
@@ -236,10 +273,16 @@
 #pragma mark -
 #pragma mark Size and visibility accommodations for the input manager view
 
-- (void)makeFormFieldVisible:(IBAFormField *)formField {
+- (void)makeActiveFormFieldVisibleWithAnimation:(BOOL)animate {
+	if ([[IBAInputManager sharedIBAInputManager] activeInputRequestor] != nil) {
+		[self makeFormFieldVisible:(IBAFormField *)[[IBAInputManager sharedIBAInputManager] activeInputRequestor] animated:animate];
+	}
+}
+
+- (void)makeFormFieldVisible:(IBAFormField *)formField animated:(BOOL)animate {
     if ([self shouldAutoScrollTableToActiveField]) {
         NSIndexPath *formFieldIndexPath = [self.formDataSource indexPathForFormField:formField];
-        [self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+        [self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:animate];
     }
 }
 

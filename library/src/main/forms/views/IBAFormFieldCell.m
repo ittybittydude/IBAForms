@@ -20,6 +20,7 @@
 - (void)applyActiveStyle;
 @end
 
+
 @implementation IBAFormFieldCell
 
 @synthesize inputView = inputView_;
@@ -29,6 +30,7 @@
 @synthesize formFieldStyle = formFieldStyle_;
 @synthesize styleApplied = styleApplied_;
 @synthesize active = active_;
+@synthesize hiddenCellCache = hiddenCellCache_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(inputView_);
@@ -36,7 +38,8 @@
 	IBA_RELEASE_SAFELY(cellView_);
 	IBA_RELEASE_SAFELY(label_);
 	IBA_RELEASE_SAFELY(formFieldStyle_);
-
+	hiddenCellCache_ = nil;
+	
 	[super dealloc];
 }
 
@@ -116,14 +119,26 @@
 	return YES;
 }
 
+
+#pragma mark - 
+#pragma mark Dirty laundry
+
+// SW. So, what's all this dirty laundry business then? Well, let me tell you a little story
+// about UIResponders. If you call becomeFirstResponder on a UIResponder that is not in the view hierarchy, it doesn't
+// become the first responder. 'So what', you might ask. Well, when cells in a UITableView scroll out of view, they
+// are removed from the view hierarchy. If you select a cell, then scroll it up out of view, when you press the 'Previous'
+// button in the toolbar, the forms framework tries to activate the previous cell and make it the first responder.
+// The previous cell won't be in the view hierarchy, and the becomeFirstResponder call will fail. We tried all sorts
+// of workarounds, but the one that seems to work is to put the cells into a hidden view when they are removed from the
+// UITableView, so that they are still in the view hierarchy. We ended up making this hidden view a subview of the 
+// UIViewController's view. 
+
 - (void)didMoveToWindow {
-	if ((self.window != nil) && [self isActive] && (![self isFirstResponder]) && [self canBecomeFirstResponder]) {
-		// We need to reapply the active style because the tableview has a nasty habbit of resetting the cell background 
-		// when the cell is reattached to the view hierarchy.
-		[self applyActiveStyle]; 
-		
-		[self becomeFirstResponder];
+	if (self.window == nil) {
+		NSAssert((self.hiddenCellCache != nil), @"Hidden cell cache should not be nil");
+		[self.hiddenCellCache addSubview:self];
 	}
 }
+
 
 @end
