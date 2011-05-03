@@ -22,6 +22,9 @@
 	CGRect tableViewOriginalFrame_;
 	IBAFormDataSource *formDataSource_;
 	CGRect keyboardFrame_;
+	
+	@private
+	UIView *hiddenCellCache_;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
