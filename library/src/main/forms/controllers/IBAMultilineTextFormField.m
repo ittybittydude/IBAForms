@@ -17,6 +17,9 @@
 #import "IBAMultilineTextFormFieldCell.h"
 #import "IBAInputCommon.h"
 
+
+static NSString *kZeroSpaceString = @"\xE2\x80\x8B";
+
 @interface IBAMultilineTextFormField ()
 - (void)resizeFormField;
 @end
@@ -43,7 +46,8 @@
 
 - (IBAMultilineTextFormFieldCell *)multilineTextFormFieldCell {
 	if (multilineTextFormFieldCell_ == nil) {
-		multilineTextFormFieldCell_ = [[IBAMultilineTextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+		multilineTextFormFieldCell_ = [[IBAMultilineTextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle 
+																					reuseIdentifier:@"IBAMultilineTextFormFieldCell"];
 		multilineTextFormFieldCell_.textView.delegate = self;
 		multilineTextFormFieldCell_.textView.userInteractionEnabled = NO;
 	}
@@ -85,6 +89,27 @@
 	return self.multilineTextFormFieldCell.textView;
 }
 
+
+#pragma mark -
+#pragma mark Getting and setting the form field value
+//- (id)formFieldValue {
+//	NSString *text = [super formFieldValue];
+//	text = (text == nil) ? kZeroSpaceString : text;
+//	if (![text hasPrefix:kZeroSpaceString]) {
+//		text = [kZeroSpaceString stringByAppendingString:text];
+//	}
+//	
+//	return text;
+//}
+//
+//- (BOOL)setFormFieldValue:(id)formVieldValue {
+//	NSString *text = formVieldValue;
+//	if ([text hasPrefix:kZeroSpaceString]) {
+//		text = [text substringFromIndex:1];
+//	}
+//	
+//	return [super setFormFieldValue:text];
+//}
 
 #pragma mark -
 #pragma mark UITextViewDelegate
