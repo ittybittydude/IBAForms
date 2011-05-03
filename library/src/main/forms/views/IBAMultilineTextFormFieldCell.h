@@ -14,11 +14,20 @@
 
 #import "IBAFormFieldCell.h"
 
+@class IBAMultilineTextView;
+
 @interface IBAMultilineTextFormFieldCell : IBAFormFieldCell {
-	UITextView *textView_;
+	IBAMultilineTextView *textView_;
 }
 
-@property (nonatomic, retain) UITextView *textView;
+@property (nonatomic, retain) IBAMultilineTextView *textView;
 
 @end
 
+
+@interface IBAMultilineTextView : UITextView {
+	BOOL active_;
+}
+@property (nonatomic, assign, getter=isActive) BOOL active;
+
+@end

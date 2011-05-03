@@ -18,6 +18,7 @@
 
 static const CGFloat kTextViewPadding = 8.;
 
+
 @interface IBAMultilineTextFormFieldCell ()
 - (CGRect)textViewFrame:(CGSize)size;
 @end
@@ -37,7 +38,7 @@ static const CGFloat kTextViewPadding = 8.;
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
 		// Create the text view for data entry
-		textView_ = [[UITextView alloc] initWithFrame:CGRectZero];
+		textView_ = [[IBAMultilineTextView alloc] initWithFrame:CGRectZero];
 		textView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		textView_.scrollEnabled = NO;
 		textView_.autocapitalizationType = UITextAutocapitalizationTypeSentences;
@@ -58,6 +59,10 @@ static const CGFloat kTextViewPadding = 8.;
 //	self.textView.backgroundColor = [UIColor clearColor];
 }
 
+- (void)setActive:(BOOL)active {
+	active_ = active;
+	self.textView.active = active;
+}
 
 - (void)applyFormFieldStyle {
 	[super applyFormFieldStyle];
@@ -89,3 +94,16 @@ static const CGFloat kTextViewPadding = 8.;
 
 @end
 
+
+@implementation IBAMultilineTextView
+
+@synthesize active = active_;
+
+- (BOOL)becomeFirstResponder {
+	// Only become the first responder if the text view is meant to be active
+	// SW. I was finding that the UITextView was becoming the first responser when coming in to view when it wasn't 
+	// supposed to. This guards against that case.
+	return ([self isActive]) ? [super becomeFirstResponder] : NO;
+}
+
+@end
