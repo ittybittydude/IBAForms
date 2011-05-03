@@ -298,11 +298,11 @@
 #pragma mark Field size management
 
 - (void)formFieldResized:(NSNotification *)notification {
-	//BOOL animationsEnabled = [UIView areAnimationsEnabled];
-	//[UIView setAnimationsEnabled:NO];
+	BOOL animationsEnabled = [UIView areAnimationsEnabled];
+	[UIView setAnimationsEnabled:NO];
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
-	//[UIView setAnimationsEnabled:animationsEnabled];
+	[UIView setAnimationsEnabled:animationsEnabled];
 }
 
 
