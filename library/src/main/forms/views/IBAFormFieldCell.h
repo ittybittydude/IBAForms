@@ -38,7 +38,9 @@
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier;
 - (void)activate;
 - (void)deactivate;
+- (BOOL)isActive;
 
 - (void)applyFormFieldStyle;
+- (void)applyActiveStyle;
 
 @end
