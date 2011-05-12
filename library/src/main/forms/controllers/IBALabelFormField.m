@@ -44,7 +44,7 @@
 
 - (void)updateCellContents {
 	self.labelFormCell.label.text = [self title];
-	self.labelFormCell.valueLabel.text = [self formFieldValue];
+	self.labelFormCell.valueLabel.text = [[self formFieldValue] description];
 }
 
 @end
