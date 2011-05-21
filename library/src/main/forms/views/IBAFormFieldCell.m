@@ -17,7 +17,6 @@
 
 @interface IBAFormFieldCell ()
 @property (nonatomic, assign, getter=isActive) BOOL active;
-- (void)applyActiveStyle;
 @end
 
 
@@ -66,6 +65,16 @@
     return self;
 }
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+  [super setBackgroundColor:backgroundColor];
+
+  if (self.backgroundView) {
+    self.backgroundView.backgroundColor = backgroundColor;
+  }
+
+  self.label.backgroundColor = backgroundColor;
+}
+
 - (void)activate {
 	[self applyActiveStyle];
 	self.active = YES;
@@ -98,8 +107,8 @@
 }
 
 - (void)applyActiveStyle {
-	self.label.backgroundColor = self.formFieldStyle.activeColor;
 	self.backgroundColor = self.formFieldStyle.activeColor;
+
 }
 
 - (void)drawRect:(CGRect)rect {
