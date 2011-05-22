@@ -19,7 +19,7 @@ Screenshots
 These screenshots are form the showcase application in the samples directory. They demonstrate the various fields that come with IBAForms out of the box.
 
 ### Text Entry
-![Text Field](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/simple-text-entry.jpg)
+![Text Field](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/simple-text-entry.jpg "")
 
 ### Field Styles
 ![Field Styling](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/styled-fields.jpg)
