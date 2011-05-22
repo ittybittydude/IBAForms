@@ -19,34 +19,34 @@ Screenshots
 These screenshots are form the showcase application in the samples directory. They demonstrate the various fields that come with IBAForms out of the box.
 
 ### Text Entry
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/simple-text-entry.jpg "Text Field")
+![Text Field](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/simple-text-entry.jpg)
 
 ### Field Styles
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/styled-fields.jpg "Field Styling")
+![Field Styling](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/styled-fields.jpg)
 
 ### Date Fields
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/date-time-field.jpg "Date Time Field")
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/date-field.jpg "Date Field")
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/time-field.jpg "Time Field")
+![Date Time Field](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/date-time-field.jpg)
+![Date Field](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/date-field.jpg)
+![Time Field](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/time-field.jpg)
 
 ### Boolean Fields
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/boolean-fields.jpg "Boolean Fields")
+![Boolean Fields](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/boolean-fields.jpg)
 
 ### Picklist Fields
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/single-picklist.jpg "Single Picklist Field")
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/multi-picklist.jpg "Multi-Picklist Field")
+![Single Picklist Field](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/single-picklist.jpg)
+![Multi-Picklist Field](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/multi-picklist.jpg)
 
 ### Button Fields
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/buttons.jpg "Button Fields")
+![Button Fields](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/buttons.jpg)
 
 ### Readonly Fields
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/readonly-fields.jpg "Read Only Fields")
+![Read Only Fields](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/readonly-fields.jpg)
 
 ### Traits & Transformations
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/traits-transformations.jpg "Traits & Transformations")
+![Traits & Transformations](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/traits-transformations.jpg)
 
 ### Showcase
-(https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/showcase.jpg "Showcase form")
+![Showcase Form](https://github.com/ittybittydude/IBAForms/blob/master/doc/screenshots/showcase.jpg)
 When you run the showcase application you'll be presented with a form that allows you to specify how you'd like the sample form to be presented. You can use this to test out the various ways in which a form may be presented (e.g. grouped or ungrouped tableview, etc).
 
 
