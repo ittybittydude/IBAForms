@@ -13,6 +13,42 @@ IBAForms:
  *  Provides basic styling capabilities at the form, section and field level.
  *  Provides extension points for creating your own custom form fields.
 
+Screenshots
+============
+
+These screenshots are form the showcase application in the samples directory. They demonstrate the various fields that come with IBAForms out of the box.
+
+### Text Entry
+![Text](https://github.com/ittybittydude/IBAForms/doc/screenshots/simple-text-entry.jpg "Text Field")
+
+### Field Styles
+![Styles](https://github.com/ittybittydude/IBAForms/doc/screenshots/styled-fields.jpg "Field Styling")
+
+### Date Fields
+![Date Time](https://github.com/ittybittydude/IBAForms/doc/screenshots/date-time-field.jpg "Date Time Field")
+![Date](https://github.com/ittybittydude/IBAForms/doc/screenshots/date-field.jpg "Date Field")
+![Time](https://github.com/ittybittydude/IBAForms/doc/screenshots/time-field.jpg "Time Field")
+
+### Boolean Fields
+![Boolean](https://github.com/ittybittydude/IBAForms/doc/screenshots/boolean-fields.jpg "Boolean Fields")
+
+### Picklist Fields
+![Single](https://github.com/ittybittydude/IBAForms/doc/screenshots/single-picklist.jpg "Single Picklist Field")
+![Multi](https://github.com/ittybittydude/IBAForms/doc/screenshots/multi-picklist.jpg "Multi-Picklist Field")
+
+### Button Fields
+![Buttons](https://github.com/ittybittydude/IBAForms/doc/screenshots/buttons.jpg "Button Fields")
+
+### Readonly Fields
+![Readonly](https://github.com/ittybittydude/IBAForms/doc/screenshots/readonly-fields.jpg "Read Only Fields")
+
+### Traits & Transformations
+![Traits and Transformations](https://github.com/ittybittydude/IBAForms/doc/screenshots/traits-transformations.jpg "Traits & Transformations")
+
+### Showcase
+![Showcase](https://github.com/ittybittydude/IBAForms/doc/screenshots/showcase.jpg "Showcase form")
+When you run the showcase application you'll be presented with a form that allows you to specify how you'd like the sample form to be presented. You can use this to test out the various ways in which a form may be presented (e.g. grouped or ungrouped tableview, etc).
+
 
 About
 ============
