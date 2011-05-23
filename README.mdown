@@ -16,36 +16,16 @@ IBAForms:
 Screenshots
 ============
 
-These screenshots are form the showcase application in the samples directory. They demonstrate the various fields that come with IBAForms out of the box.
+These screenshots are form the showcase application in the samples directory. They demonstrate the various out-of-the-box features of IBAForms.
 
-### Text Entry
-![Text Field](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/simple-text-entry.jpg)
+![Basic Fields](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/BasicFields.jpg)
 
-### Field Styles
-![Field Styling](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/styled-fields.jpg)
-
-### Date Fields
-![Date Time Field](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/date-time-field.jpg) ![Date Field](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/date-field.jpg) ![Time Field](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/time-field.jpg)
-
-### Boolean Fields
-![Boolean Fields](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/boolean-fields.jpg)
-
-### Picklist Fields
-![Single Picklist Field](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/single-picklist.jpg) ![Multi-Picklist Field](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/multi-picklist.jpg)
-
-### Button Fields
-![Button Fields](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/buttons.jpg)
-
-### Readonly Fields
-![Read Only Fields](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/readonly-fields.jpg)
-
-### Traits & Transformations
-![Traits & Transformations](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/traits-transformations.jpg)
+![Advanced Fields](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/DateTimePicklists.jpg)
 
 ### Showcase
 ![Showcase Form](https://github.com/ittybittydude/IBAForms/raw/master/doc/screenshots/showcase.jpg)
 
-When you run the showcase application you'll be presented with a form that allows you to specify how you'd like the sample form to be presented. You can use this to test out the various ways in which a form may be presented (e.g. grouped or ungrouped tableview, etc).
+When you run the showcase application you'll be presented with a form that allows you to specify how you'd like the sample form to run. You can use this to test out the various ways in which a form may be presented (e.g. grouped or ungrouped tableview, etc).
 
 
 About
