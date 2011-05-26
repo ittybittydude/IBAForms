@@ -208,11 +208,7 @@
 	// UIViewController's view. 
 	[cell setHiddenCellCache:self.hiddenCellCache];
 	
-	if ([cell isActive]) {
-		// We need to reapply the active style because the tableview has a nasty habbit of resetting the cell background 
-		// when the cell is reattached to the view hierarchy.
-		[cell applyActiveStyle]; 
-	}
+    [cell updateActiveStyle];
 	
     if ([self respondsToSelector:@selector(willDisplayCell:forFormField:atIndexPath:)]) {
         IBAFormField *formField = [formDataSource_ formFieldAtIndexPath:indexPath];

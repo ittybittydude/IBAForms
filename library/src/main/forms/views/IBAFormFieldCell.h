@@ -44,5 +44,6 @@
 - (void)deactivate;
 
 - (void)applyFormFieldStyle;
+- (void)updateActiveStyle;
 
 @end
