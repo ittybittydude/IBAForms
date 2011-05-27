@@ -42,6 +42,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 
 @synthesize inputRequestorDataSource = inputRequestorDataSource_;
 @synthesize inputNavigationToolbar = inputNavigationToolbar_;
+@synthesize inputNavigationToolbarEnabled = inputNavigationToolbarEnabled_;
 
 #pragma mark -
 #pragma mark Memory management
@@ -227,11 +228,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 #pragma mark -
 #pragma mark Enablement of the input navigation toolbar
 - (BOOL)inputNavigationToolbarEnabled {
-	return self.inputNavigationToolbarEnabled;
+	return inputNavigationToolbarEnabled_;
 }
 
 - (void)setInputNavigationToolbarEnabled:(BOOL)enabled {
-	self.inputNavigationToolbarEnabled = enabled;
+	if (enabled) {
+		self.inputNavigationToolbar.hidden = NO;
+		self.inputNavigationToolbar.frame = CGRectMake(0, 0, 320, 44);
+	} else {
+		// Instead of updating every responder's accessoryView, hide inputNavigationToolbar
+		self.inputNavigationToolbar.hidden = YES;
+		self.inputNavigationToolbar.frame = CGRectMake(0, 0, 320, 0);
+	}
+	inputNavigationToolbarEnabled_ = enabled;
 }
 
 
