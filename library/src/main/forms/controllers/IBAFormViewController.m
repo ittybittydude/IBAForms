@@ -282,7 +282,7 @@
 - (void)makeFormFieldVisible:(IBAFormField *)formField animated:(BOOL)animate {
     if ([self shouldAutoScrollTableToActiveField]) {
         NSIndexPath *formFieldIndexPath = [self.formDataSource indexPathForFormField:formField];
-        [self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:animate];
+        [self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:animate];
     }
 }
 
