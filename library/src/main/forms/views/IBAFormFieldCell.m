@@ -47,6 +47,9 @@
     if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 
+		// Update accessoryType before setting cellView's bounds
+		self.accessoryType = style.accessoryType;
+
 		self.cellView = [[[UIView alloc] initWithFrame:self.contentView.bounds] autorelease];
 		self.cellView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.cellView.userInteractionEnabled = YES;

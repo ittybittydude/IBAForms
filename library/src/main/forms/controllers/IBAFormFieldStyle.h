@@ -29,6 +29,8 @@
 	UITextAlignment valueTextAlignment_;
 	UIViewAutoresizing valueAutoresizingMask_;
 
+	UITableViewCellAccessoryType accessoryType_;
+
 	UIColor *activeColor_;
 }
 
@@ -45,6 +47,8 @@
 @property (nonatomic, assign) CGRect valueFrame;
 @property (nonatomic, assign) UITextAlignment valueTextAlignment;
 @property (nonatomic, assign) UIViewAutoresizing valueAutoresizingMask;
+
+@property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
 
 @property (nonatomic, retain) UIColor *activeColor;
 
