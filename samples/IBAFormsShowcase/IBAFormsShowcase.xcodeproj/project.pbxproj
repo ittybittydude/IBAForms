@@ -21,6 +21,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		758082D1139A746700A42A36 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 758082D0139A746700A42A36 /* Icon@2x.png */; };
+		758082D3139A747F00A42A36 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 758082D2139A747F00A42A36 /* Icon.png */; };
+		758082D5139A750C00A42A36 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 758082D4139A750C00A42A36 /* Icon-72.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,9 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* IBAFormsShowcase_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAFormsShowcase_Prefix.pch; sourceTree = "<group>"; };
+		758082D0139A746700A42A36 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		758082D2139A747F00A42A36 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		758082D4139A750C00A42A36 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* IBAFormsShowcase-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IBAFormsShowcase-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +195,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				758082D4139A750C00A42A36 /* Icon-72.png */,
+				758082D2139A747F00A42A36 /* Icon.png */,
+				758082D0139A746700A42A36 /* Icon@2x.png */,
 				8D1107310486CEB800E47090 /* IBAFormsShowcase-Info.plist */,
 			);
 			name = Resources;
@@ -271,6 +280,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				758082D1139A746700A42A36 /* Icon@2x.png in Resources */,
+				758082D3139A747F00A42A36 /* Icon.png in Resources */,
+				758082D5139A750C00A42A36 /* Icon-72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,8 +327,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = IBAFormsShowcase_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					../../library/build/headers,
-					"$(BUILT_PRODUCTS_DIR)/../headers",
+					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
+					"$(BUILT_PRODUCTS_DIR)/../../InstallationBuildProductsLocation/usr/local/include/**",
 				);
 				INFOPLIST_FILE = "IBAFormsShowcase-Info.plist";
 				OTHER_LDFLAGS = (
@@ -335,12 +347,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = IBAFormsShowcase_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					../../library/build/headers,
-					"$(BUILT_PRODUCTS_DIR)/../headers",
+					"$(BUILT_PRODUCTS_DIR)/usr/local/include/**",
+					"$(BUILT_PRODUCTS_DIR)/../../InstallationBuildProductsLocation/usr/local/include/**",
 				);
 				INFOPLIST_FILE = "IBAFormsShowcase-Info.plist";
 				PRODUCT_NAME = IBAFormsShowcase;
-				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -369,7 +381,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

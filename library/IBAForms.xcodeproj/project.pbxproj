@@ -67,7 +67,7 @@
 		14E516851275295100396121 /* IBABooleanSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E516831275295100396121 /* IBABooleanSwitchCell.m */; };
 		83089AF3134DA2E6004B24CF /* IBAReadOnlyTextFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 83089AF1134DA2E2004B24CF /* IBAReadOnlyTextFormField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83089AF4134DA2E6004B24CF /* IBAReadOnlyTextFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 83089AF2134DA2E4004B24CF /* IBAReadOnlyTextFormField.m */; };
-		AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */; settings = {ATTRIBUTES = (); }; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -330,7 +330,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */,
 				148E93B612656FEC0065EDD1 /* IBAButtonFormField.h in Headers */,
 				148E93B812656FEC0065EDD1 /* IBADateFormField.h in Headers */,
 				148E93BA12656FEC0065EDD1 /* IBAFormConstants.h in Headers */,
@@ -366,6 +365,7 @@
 				14E516841275295100396121 /* IBABooleanSwitchCell.h in Headers */,
 				141A929412802272002C3C19 /* IBAForms.h in Headers */,
 				14D2574012DA874F00E228F5 /* IBASinglePickListInputProvider.h in Headers */,
+				AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +379,6 @@
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
-				141A91A512801A23002C3C19 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -414,22 +413,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		141A91A512801A23002C3C19 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "rm -rf \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\nmkdir -p \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"\ncp -rf \"$BUILT_PRODUCTS_DIR\"/usr/local/include/* \"${CONFIGURATION_BUILD_DIR}/../headers/IBAForms\"";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {
@@ -483,6 +466,7 @@
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = IBAForms;
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/IBAForms;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -499,7 +483,9 @@
 				INSTALL_PATH = /usr/local/lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = IBAForms;
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include/IBAForms;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
