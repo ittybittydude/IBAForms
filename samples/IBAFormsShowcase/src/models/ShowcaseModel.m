@@ -20,6 +20,7 @@
 @synthesize shouldAutoRotate = shouldAutoRotate_;
 @synthesize tableViewStyleGrouped = tableViewStyleGrouped_;
 @synthesize modalPresentation = modalPresentation_;
+@synthesize displayNavigationToolbar = displayNavigationToolbar_;
 @synthesize modalPresentationStyle = modalPresentationStyle_;
 
 @end

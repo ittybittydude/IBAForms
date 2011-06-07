@@ -36,7 +36,8 @@
 		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"shouldAutoRotate" title:@"Autorotate"] autorelease]];
 		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"tableViewStyleGrouped" title:@"Group"] autorelease]];
 		[displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"modalPresentation" title:@"Modal"] autorelease]];
-		
+        [displayOptionsSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"displayNavigationToolbar" title:@"Nav Toolbar"] autorelease]];
+
 		NSArray *modalPresentationStyleOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
 																									@"Full Screen", 
 																									@"Page Sheet",
@@ -87,7 +88,7 @@
 		formNavigationController.modalPresentationStyle = showcaseModel.modalPresentationStyle;
 		[rootViewController presentModalViewController:formNavigationController animated:YES];
 	} else {
-		if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        if ([rootViewController isKindOfClass:[UINavigationController class]]) {
 			[(UINavigationController *)rootViewController pushViewController:sampleFormController animated:YES];
 		}
 	}

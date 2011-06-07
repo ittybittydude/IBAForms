@@ -18,12 +18,14 @@
 	BOOL shouldAutoRotate_;
 	BOOL tableViewStyleGrouped_;
 	BOOL modalPresentation_;
+    BOOL displayNavigationToolbar_;
 	UIModalPresentationStyle modalPresentationStyle_;
 }
 
 @property (nonatomic, assign) BOOL shouldAutoRotate;
 @property (nonatomic, assign) BOOL tableViewStyleGrouped;
 @property (nonatomic, assign) BOOL modalPresentation;
+@property (nonatomic, assign) BOOL displayNavigationToolbar;
 @property (nonatomic, assign) UIModalPresentationStyle modalPresentationStyle;
 
 @end
