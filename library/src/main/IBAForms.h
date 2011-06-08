@@ -37,6 +37,7 @@
 #import <IBAForms/IBALabelFormCell.h>
 #import <IBAForms/IBALabelFormField.h>
 #import <IBAForms/IBAPasswordFormField.h>
+#import <IBAForms/IBAEmailFormField.h>
 #import <IBAForms/IBAPickListFormField.h>
 #import <IBAForms/IBAMultiplePickListInputProvider.h>
 #import <IBAForms/IBASinglePickListInputProvider.h>
