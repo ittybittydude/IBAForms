@@ -72,6 +72,17 @@
 		758082D0139A746700A42A36 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		758082D2139A747F00A42A36 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		758082D4139A750C00A42A36 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		75E11E7A13A87876009FC6AB /* Showcase-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Showcase-Info.plist"; sourceTree = "<group>"; };
+		75E11E7C13A87876009FC6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		75E11E7E13A87876009FC6AB /* Showcase-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Showcase-Prefix.pch"; sourceTree = "<group>"; };
+		75E11E7F13A87876009FC6AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		75E11E8113A87876009FC6AB /* ShowcaseAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowcaseAppDelegate.h; sourceTree = "<group>"; };
+		75E11E8213A87876009FC6AB /* ShowcaseAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowcaseAppDelegate.m; sourceTree = "<group>"; };
+		75E11E8513A87876009FC6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		75E11E8713A87876009FC6AB /* ShowcaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowcaseViewController.h; sourceTree = "<group>"; };
+		75E11E8813A87876009FC6AB /* ShowcaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowcaseViewController.m; sourceTree = "<group>"; };
+		75E11E8B13A87876009FC6AB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ShowcaseViewController.xib; sourceTree = "<group>"; };
+		75E11E9213A87893009FC6AB /* libIBAForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIBAForms.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D1107310486CEB800E47090 /* IBAFormsShowcase-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IBAFormsShowcase-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,9 +185,11 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				75E11E9213A87893009FC6AB /* libIBAForms.a */,
 				14BA8E5012681D03005456E6 /* src */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				75E11E7813A87876009FC6AB /* Showcase */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -214,6 +227,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		75E11E7813A87876009FC6AB /* Showcase */ = {
+			isa = PBXGroup;
+			children = (
+				75E11E8113A87876009FC6AB /* ShowcaseAppDelegate.h */,
+				75E11E8213A87876009FC6AB /* ShowcaseAppDelegate.m */,
+				75E11E8413A87876009FC6AB /* MainWindow.xib */,
+				75E11E8713A87876009FC6AB /* ShowcaseViewController.h */,
+				75E11E8813A87876009FC6AB /* ShowcaseViewController.m */,
+				75E11E8A13A87876009FC6AB /* ShowcaseViewController.xib */,
+				75E11E7913A87876009FC6AB /* Supporting Files */,
+			);
+			path = Showcase;
+			sourceTree = "<group>";
+		};
+		75E11E7913A87876009FC6AB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				75E11E7A13A87876009FC6AB /* Showcase-Info.plist */,
+				75E11E7B13A87876009FC6AB /* InfoPlist.strings */,
+				75E11E7E13A87876009FC6AB /* Showcase-Prefix.pch */,
+				75E11E7F13A87876009FC6AB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -249,6 +287,7 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -316,6 +355,33 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		75E11E7B13A87876009FC6AB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75E11E7C13A87876009FC6AB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		75E11E8413A87876009FC6AB /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75E11E8513A87876009FC6AB /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		75E11E8A13A87876009FC6AB /* ShowcaseViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75E11E8B13A87876009FC6AB /* en */,
+			);
+			name = ShowcaseViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -331,11 +397,13 @@
 					"$(BUILT_PRODUCTS_DIR)/../../InstallationBuildProductsLocation/usr/local/include/**",
 				);
 				INFOPLIST_FILE = "IBAFormsShowcase-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = IBAFormsShowcase;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -351,8 +419,14 @@
 					"$(BUILT_PRODUCTS_DIR)/../../InstallationBuildProductsLocation/usr/local/include/**",
 				);
 				INFOPLIST_FILE = "IBAFormsShowcase-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = IBAFormsShowcase;
 				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -361,11 +435,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				PRODUCT_NAME = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -375,12 +452,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				PRODUCT_NAME = "";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
