@@ -24,6 +24,7 @@
 	id<IBAInputRequestorDataSource> inputRequestorDataSource_;
 	id<IBAInputRequestor> activeInputRequestor_;
 	IBAInputNavigationToolbar *inputNavigationToolbar_;
+    BOOL inputNavigationToolbarEnabled_;
 }
 
 

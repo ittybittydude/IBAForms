@@ -29,7 +29,7 @@
 @implementation ShowcaseFormDataSource
 
 - (id)initWithModel:(id)aModel {
-	if (self = [super initWithModel:aModel]) {
+	if ((self = [super initWithModel:aModel])) {
 		IBAFormSection *displayOptionsSection = [self addSectionWithHeaderTitle:@"Display Options" footerTitle:nil];
 		displayOptionsSection.formFieldStyle = [[[ShowcaseFieldStyle alloc] init] autorelease];
 		
@@ -78,6 +78,8 @@
 	sampleFormController.shouldAutoRotate = showcaseModel.shouldAutoRotate;
 	sampleFormController.tableViewStyle = showcaseModel.tableViewStyleGrouped ? UITableViewStyleGrouped : UITableViewStylePlain;
 	
+    [[IBAInputManager sharedIBAInputManager] setInputNavigationToolbarEnabled:showcaseModel.displayNavigationToolbar];
+    
 	UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
 	if (showcaseModel.modalPresentation) {
 		UIBarButtonItem *doneButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 

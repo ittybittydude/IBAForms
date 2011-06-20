@@ -33,7 +33,6 @@
 - (void)nextPreviousButtonSelected;
 - (void)displayInputProvider:(id<IBAInputProvider>)inputProvider forInputRequestor:(id<IBAInputRequestor>)requestor;
 - (BOOL)activateInputRequestor:(id<IBAInputRequestor>)inputRequestor;
-- (UIView *)accessoryView;
 - (void)updateInputNavigationToolbarVisibility;
 @end
 
@@ -44,6 +43,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 
 @synthesize inputRequestorDataSource = inputRequestorDataSource_;
 @synthesize inputNavigationToolbar = inputNavigationToolbar_;
+@synthesize inputNavigationToolbarEnabled = inputNavigationToolbarEnabled_;
 
 #pragma mark -
 #pragma mark Memory management
@@ -67,6 +67,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		inputNavigationToolbar_.doneButton.action = @selector(deactivateActiveInputRequestor);
 		[inputNavigationToolbar_.nextPreviousButton addTarget:self action:@selector(nextPreviousButtonSelected) 
 			forControlEvents:UIControlEventValueChanged];
+        
+        inputNavigationToolbarEnabled_ = YES;
 		
 		// Setup some default input providers
 		
@@ -133,11 +135,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 
 - (id<IBAInputRequestor>)activeInputRequestor {
 	return activeInputRequestor_;
-}
-
-- (UIView *)accessoryView
-{
-    return [self isInputNavigationToolbarEnabled] ? self.inputNavigationToolbar : nil;
 }
 
 
@@ -219,6 +216,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 	return [self inputProviderForRequestor:self.activeInputRequestor];
 }
 
+
 #pragma mark -
 #pragma mark Presenting the input provider
 
@@ -226,8 +224,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 	if (inputProvider.view != nil) {
 		[[requestor responder] setInputView:inputProvider.view];
 	}
-	
-//    [self updateInputNavigationToolbarVisibility];
+    
+    [self updateInputNavigationToolbarVisibility];
 }
 
 
@@ -235,14 +233,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 #pragma mark Enablement of the input navigation toolbar
 
 - (void)setInputNavigationToolbarEnabled:(BOOL)enabled {
-	self.inputNavigationToolbarEnabled = enabled;
+	inputNavigationToolbarEnabled_ = enabled;
     
     [self updateInputNavigationToolbarVisibility];
 }
 
 - (void)updateInputNavigationToolbarVisibility
 {
-    [[[self activeInputRequestor] responder] setInputAccessoryView:[self accessoryView]];
+    UIResponder *responder = [[self activeInputRequestor] responder];
+    responder.inputAccessoryView = ([self isInputNavigationToolbarEnabled] ? self.inputNavigationToolbar : nil);
 }
 
 
