@@ -33,6 +33,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 
 	ShowcaseModel *showcaseModel = [[[ShowcaseModel alloc] init] autorelease];
+    showcaseModel.shouldAutoRotate = YES;
+    showcaseModel.tableViewStyleGrouped = YES;
+    showcaseModel.displayNavigationToolbar = YES;
+    
 	ShowcaseFormDataSource *showcaseDataSource = [[[ShowcaseFormDataSource alloc] initWithModel:showcaseModel] autorelease];
 	ShowcaseController *showcaseController = [[[ShowcaseController alloc] initWithNibName:nil bundle:nil formDataSource:showcaseDataSource] autorelease];
 	[showcaseController setTitle:@"IBAForms Showcase"];
