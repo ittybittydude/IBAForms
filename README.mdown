@@ -27,6 +27,15 @@ These screenshots are form the showcase application in the samples directory. Th
 
 When you run the showcase application you'll be presented with a form that allows you to specify how you'd like the sample form to run. You can use this to test out the various ways in which a form may be presented (e.g. grouped or ungrouped tableview, etc).
 
+Adding IBAForms to your project
+============
+1. Drag the IBAForms.xcodeproj project in to your XCode 4 project. You might want to drag it in to the *Frameworks* directory to keep it out of the way. Leave the default options 'Create groups for any added folders' and 'Add to targets (Your Project)' selected and press *Finish*.
+2. Select your project from the XCode sidebar and then the target you want to add IBAForms to.
+3. Select the Build Phases tab.
+4. Under the Target Dependencies group, click the plus button, select the IBAForms static library target and press *Add*.
+5. Under the Link Binary Libraries group, click the plus button, select *libIBAForms.a* and press *Add*.
+6. Add IBAForms/library/headers to the target's Header Search path. This will need to be a relative path based on where the IBAForms repository is located relative to your project. For the IBAFormsShowcase example this path is $(SOURCE_ROOT)/../../library/headers.
+7. Add *-all_load* and *-ObjC* to *Other Linker Flags*.
 
 About
 ============
