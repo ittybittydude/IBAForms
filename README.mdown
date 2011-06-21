@@ -27,6 +27,14 @@ These screenshots are form the showcase application in the samples directory. Th
 
 When you run the showcase application you'll be presented with a form that allows you to specify how you'd like the sample form to run. You can use this to test out the various ways in which a form may be presented (e.g. grouped or ungrouped tableview, etc).
 
+Discussion Forum
+============
+
+Check out the discussions at the IBAForms Google Group:
+
+http://groups.google.com/group/ibaforms
+
+
 Adding IBAForms to your project
 ============
 1. Drag the IBAForms.xcodeproj project in to your XCode 4 project. You might want to drag it in to the *Frameworks* directory to keep it out of the way. Leave the default options 'Create groups for any added folders' and 'Add to targets (Your Project)' selected and press *Finish*.
