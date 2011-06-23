@@ -43,8 +43,7 @@
 }
 
 - (id)initWithDatePickerMode:(UIDatePickerMode)datePickerMode {
-	self = [super init];
-	if (self != nil) {
+	if ((self = [super init])) {
 		self.datePickerMode = datePickerMode;
 	}
 	

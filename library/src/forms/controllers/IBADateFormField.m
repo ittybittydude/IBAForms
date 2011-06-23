@@ -33,8 +33,7 @@
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
 		 dateFormatter:(NSDateFormatter *)dateFormatter {
-	self = [super initWithKeyPath:keyPath title:title valueTransformer:nil];
-	if (self != nil) {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:nil])) {
 		self.dateFormFieldType = dateFieldType;
 		self.defaultValue = date;
 

@@ -38,8 +38,7 @@
 }
 
 - (id)initWithKeyPath:(NSString*)keyPath title:(NSString*)title valueTransformer:(NSValueTransformer *)valueTransformer {
-	self = [super init];
-	if (self != nil) {
+	if ((self = [super init])) {
 		self.keyPath = keyPath;
 		title_ = [title copy];
 		self.nullable = YES;

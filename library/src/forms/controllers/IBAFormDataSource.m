@@ -35,8 +35,7 @@
 }
 
 - (id)initWithModel:(id)model {
-	self = [super init];
-	if (self != nil) {
+	if ((self = [super init])) {
 		model_ = [model retain];
 		sections_ = [[NSMutableArray alloc] init];
 		formFieldStyle_ = [[IBAFormFieldStyle alloc] init];

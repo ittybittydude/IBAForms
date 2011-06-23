@@ -37,8 +37,7 @@
 }
 
 - (id)initWithHeaderTitle:(NSString *)header footerTitle:(NSString *)footer {
-	self = [super init];
-	if (self != nil) {
+	if ((self = [super init])) {
 		self.headerTitle = header;
 		self.footerTitle = footer;
 		formFields_ = [[NSMutableArray alloc] init];

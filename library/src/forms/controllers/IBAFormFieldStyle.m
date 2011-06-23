@@ -47,8 +47,7 @@
 
 
 - (id)init {
-	self = [super init];
-	if (self != nil) {
+	if ((self = [super init])) {
 		self.labelTextColor = IBAFormFieldLabelTextColor;
 		self.labelBackgroundColor = IBAFormFieldLabelBackgroundColor;
 		self.labelFont = IBAFormFieldLabelFont;

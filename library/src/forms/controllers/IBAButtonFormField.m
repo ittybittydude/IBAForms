@@ -44,8 +44,7 @@
 }
 
 - (id)initWithTitle:(NSString*)aTitle icon:(UIImage *)anIconImage executionBlock:(IBAButtonFormFieldBlock)aBlock detailViewController:(UIViewController *)viewController {
-	self = [super initWithKeyPath:nil title:aTitle];
-	if (self != nil) {
+	if ((self = [super initWithKeyPath:nil title:aTitle])) {
 		self.iconImage = anIconImage;
 		self.executionBlock = aBlock;
 		detailViewController_ = [viewController retain];

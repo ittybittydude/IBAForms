@@ -58,8 +58,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 }
 
 - (id)init {
-	self = [super init];
-	if (self != nil) {
+	if ((self = [super init])) {
 		inputProviders_ = [[NSMutableDictionary alloc] init];
 		
 		inputNavigationToolbar_ = [[IBAInputNavigationToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];   

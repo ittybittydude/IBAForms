@@ -33,8 +33,7 @@
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
 	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions {
-	self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer];
-	if (self != nil) {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
 		self.selectionMode = selectionMode;
 		self.pickListOptions = pickListOptions;
 	}
@@ -119,8 +118,7 @@
 }
 
 - (id)initWithName:(NSString *)name iconImage:(UIImage *)iconImage font:(UIFont *)font {
-	self = [super init];
-	if (self != nil) {
+	if ((self = [super init])) {
 		self.name = name;
 		self.iconImage = iconImage;
 		self.font = font;
@@ -168,8 +166,7 @@
 }
 
 - (id)initWithPickListOptions:(NSArray *)pickListOptions {
-	self = [super init];
-	if (self != nil) {
+	if ((self = [super init])) {
 		self.pickListOptions = pickListOptions;
 	}
 
@@ -230,8 +227,7 @@
 }
 
 - (id)initWithPickListOptions:(NSArray *)pickListOptions {
-	self = [super init];
-	if (self != nil) {
+	if ((self = [super init])) {
 		self.pickListOptions = pickListOptions;
 	}
 	

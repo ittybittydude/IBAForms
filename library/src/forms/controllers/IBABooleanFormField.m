@@ -35,8 +35,7 @@
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer 
 				 type:(IBABooleanFormFieldType)booleanFormFieldType {
-	self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer];
-	if (self != nil) {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
 		self.booleanFormFieldType = booleanFormFieldType;
 	}
 	
