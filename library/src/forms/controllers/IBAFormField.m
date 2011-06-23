@@ -53,6 +53,14 @@
 	return [self initWithKeyPath:keyPath title:title valueTransformer:nil];
 }
 
+- (id)initWithKeyPath:(NSString*)keyPath {
+	return [self initWithKeyPath:keyPath title:nil valueTransformer:nil];
+}
+
+- (id)initWithTitle:(NSString*)title {
+	return [self initWithKeyPath:nil title:title valueTransformer:nil];
+}
+
 - (id)init {
 	return [self initWithKeyPath:nil title:nil];
 }

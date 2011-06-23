@@ -67,6 +67,8 @@
 		751240FD13A8F6CF007BF2B5 /* IBATextFormFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 751240DA13A8F6CF007BF2B5 /* IBATextFormFieldCell.h */; };
 		751240FE13A8F6CF007BF2B5 /* IBATextInputProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 751240DB13A8F6CF007BF2B5 /* IBATextInputProvider.h */; };
 		751240FF13A8F6CF007BF2B5 /* SynthesizeSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 751240DC13A8F6CF007BF2B5 /* SynthesizeSingleton.h */; };
+		753A7EFC13B36BCF003931DA /* IBATitleFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 753A7EFA13B36BCF003931DA /* IBATitleFormField.h */; };
+		753A7EFD13B36BCF003931DA /* IBATitleFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A7EFB13B36BCF003931DA /* IBATitleFormField.m */; };
 		AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */; settings = {ATTRIBUTES = (); }; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -132,6 +134,8 @@
 		751240DA13A8F6CF007BF2B5 /* IBATextFormFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATextFormFieldCell.h; sourceTree = "<group>"; };
 		751240DB13A8F6CF007BF2B5 /* IBATextInputProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATextInputProvider.h; sourceTree = "<group>"; };
 		751240DC13A8F6CF007BF2B5 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		753A7EFA13B36BCF003931DA /* IBATitleFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATitleFormField.h; sourceTree = "<group>"; };
+		753A7EFB13B36BCF003931DA /* IBATitleFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBATitleFormField.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAForms_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libIBAForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIBAForms.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +224,7 @@
 				7512408D13A8F6BE007BF2B5 /* IBAPickListFormField.m */,
 				7512408E13A8F6BE007BF2B5 /* IBAReadOnlyTextFormField.m */,
 				7512408F13A8F6BE007BF2B5 /* IBATextFormField.m */,
+				753A7EFB13B36BCF003931DA /* IBATitleFormField.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				751240D913A8F6CF007BF2B5 /* IBATextFormField.h */,
 				751240DA13A8F6CF007BF2B5 /* IBATextFormFieldCell.h */,
 				751240DB13A8F6CF007BF2B5 /* IBATextInputProvider.h */,
+				753A7EFA13B36BCF003931DA /* IBATitleFormField.h */,
 				751240DC13A8F6CF007BF2B5 /* SynthesizeSingleton.h */,
 			);
 			path = IBAForms;
@@ -358,6 +364,7 @@
 				751240FD13A8F6CF007BF2B5 /* IBATextFormFieldCell.h in Headers */,
 				751240FE13A8F6CF007BF2B5 /* IBATextInputProvider.h in Headers */,
 				751240FF13A8F6CF007BF2B5 /* SynthesizeSingleton.h in Headers */,
+				753A7EFC13B36BCF003931DA /* IBATitleFormField.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +443,7 @@
 				751240B513A8F6BE007BF2B5 /* IBASinglePickListInputProvider.m in Sources */,
 				751240B613A8F6BE007BF2B5 /* IBATextInputProvider.m in Sources */,
 				751240B713A8F6BE007BF2B5 /* IBAInputNavigationToolbar.m in Sources */,
+				753A7EFD13B36BCF003931DA /* IBATitleFormField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

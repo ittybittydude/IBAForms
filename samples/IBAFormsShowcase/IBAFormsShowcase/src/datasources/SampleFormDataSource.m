@@ -128,10 +128,14 @@
     
 		IBAFormSection *readonlyFieldSection = [self addSectionWithHeaderTitle:@"Read-Only Fields" footerTitle:nil];
 		
+        // IBAReadOnlyTextFormField displays the value the field is bound in a read-only text view. The title is displayed as the field's label.
 		[readonlyFieldSection addFormField:[[[IBAReadOnlyTextFormField alloc] initWithKeyPath:@"readOnlyText" title:@"Read Only"] autorelease]];
 		
-		// IBALabelFormField displays only the value the field is bound to as the field label. Note that the title is ignored (not displayed).
-		IBALabelFormField *labelField = [[[IBALabelFormField alloc] initWithKeyPath:@"readOnlyText" title:@"Title is ignored"] autorelease];
+        // IBATitleFormField displays the provided title in the field's label. No value is displayed for the field.
+		[readonlyFieldSection addFormField:[[[IBATitleFormField alloc] initWithTitle:@"A title"] autorelease]];
+        
+		// IBALabelFormField displays the value the field is bound to as the field's label.
+		IBALabelFormField *labelField = [[[IBALabelFormField alloc] initWithKeyPath:@"readOnlyText"] autorelease];
 		labelField.formFieldStyle = readonlyFieldStyle;
 		[readonlyFieldSection addFormField:labelField];
 

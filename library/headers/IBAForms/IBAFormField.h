@@ -41,6 +41,8 @@
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title;
+- (id)initWithKeyPath:(NSString*)keyPath;
+- (id)initWithTitle:(NSString*)title;
 
 - (void)updateCellContents;
 
