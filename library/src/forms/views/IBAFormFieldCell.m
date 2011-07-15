@@ -17,7 +17,6 @@
 
 @interface IBAFormFieldCell ()
 @property (nonatomic, assign, getter=isActive) BOOL active;
-- (void)applyActiveStyle;
 @end
 
 
