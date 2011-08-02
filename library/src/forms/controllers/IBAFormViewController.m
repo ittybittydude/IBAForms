@@ -50,7 +50,6 @@
 - (void)dealloc {
 	[self releaseViews];
 	IBA_RELEASE_SAFELY(formDataSource_);
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
     [super dealloc];
 }
@@ -62,10 +61,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-		self.formDataSource = formDataSource;
-		self.hidesBottomBarWhenPushed = YES;
-		
-		[self registerForNotifications];
+		self.formDataSource = formDataSource;		
 	}
 	
     return self;
@@ -117,7 +113,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
+
+    [self registerForNotifications];
+
 	[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:self];	
 	
 	// SW. There is a bug with UIModalPresentationFormSheet where the keyboard won't dismiss even when there is
@@ -149,6 +147,8 @@
 	if ([[IBAInputManager sharedIBAInputManager] inputRequestorDataSource] == self) {
 		[[IBAInputManager sharedIBAInputManager] setInputRequestorDataSource:nil];
 	}
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
