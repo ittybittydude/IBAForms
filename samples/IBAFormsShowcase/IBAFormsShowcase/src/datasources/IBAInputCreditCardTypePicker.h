@@ -11,20 +11,15 @@
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
+//
+//  Created by Sébastien HOUZE on 19/08/11.
+//  Copyright (c) 2011 RezZza. All rights reserved.
+//
 
-#import <Foundation/Foundation.h>
-#import "IBAFormFieldCell.h"
+#import <UIKit/UIKit.h>
+#import <IBAForms/IBAForms.h>
 
-@protocol IBAInputRequestor <NSObject>
 
-@property (nonatomic, readonly) NSString *dataType;
-@property (nonatomic, assign) id inputRequestorValue;
-@property (nonatomic, readonly) id defaultInputRequestorValue;
-@property (nonatomic, readonly) UIResponder *responder;
-
-- (void)activate;
-- (BOOL)deactivate;
-- (NSString *)getPicklistClass;
-- (BOOL)getIsCircular;
+@interface IBAInputCreditCardTypePicker : IBAInputGenericPickerView
 
 @end

@@ -23,6 +23,8 @@
 @synthesize pickListCell = pickListCell_;
 @synthesize selectionMode = selectionMode_;
 @synthesize pickListOptions = pickListOptions_;
+@synthesize picklistClass;
+@synthesize isCircular;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(pickListCell_);
@@ -31,33 +33,71 @@
 	[super dealloc];
 }
 
+
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
 	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions {
 	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
 		self.selectionMode = selectionMode;
 		self.pickListOptions = pickListOptions;
+        self.picklistClass = @"IBAInputPickerView";
+        self.isCircular = NO;
 	}
 
 	return self;
 }
 
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions isCircular:(BOOL)isPickListCircular{
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
+		self.selectionMode = selectionMode;
+		self.pickListOptions = pickListOptions;
+        self.picklistClass = @"IBAInputPickerView";
+        self.isCircular = isPickListCircular;
+	}
+    
+	return self;
+}
 
+
+
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass{
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
+        self.picklistClass = pickListClass;
+		self.selectionMode = selectionMode;
+		self.pickListOptions = pickListOptions;
+        self.isCircular = NO;
+	}
+    
+	return self;
+}
+
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass isCircular:(BOOL)isPickListCircular{
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
+        self.picklistClass = pickListClass;
+		self.selectionMode = selectionMode;
+		self.pickListOptions = pickListOptions;
+        self.isCircular = isPickListCircular;
+	}
+    
+	return self;
+}
+
+// Retourne une NSString qui sera la valeur affiche dans le formulaire
 - (NSString *)formFieldStringValue {
 	NSString *value = nil;
-	
-	if (self.formFieldValue != nil) {
-		NSMutableArray *itemNames = [[[NSMutableArray alloc] init] autorelease];
+    if (self.formFieldValue != nil) {
+        NSMutableArray *itemNames = [[[NSMutableArray alloc] init] autorelease];
 
-		for (id<IBAPickListOption> item in [self pickListOptions]) {
-			NSString *itemName = [item name];
-			if (([[self formFieldValue] containsObject:item]) && (itemName.length > 0)) {
-				[itemNames addObject:itemName];
-			}
-		}
-		
-		value = [itemNames componentsJoinedByString:@", "];
-	}
-
+        for (id<IBAPickListOption> item in [self pickListOptions]) {
+            NSString *itemName = [item name];
+            if (([[self formFieldValue] containsObject:item]) && (itemName.length > 0)) {
+                [itemNames addObject:itemName];
+            }
+        }
+        value = [itemNames componentsJoinedByString:@", "];
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 	return value;
 }
 
@@ -85,9 +125,18 @@
 #pragma mark -
 #pragma mark IBAInputRequestor
 
+- (NSString *)getPicklistClass {
+    return self.picklistClass;
+}
+
+- (BOOL)getIsCircular {
+    return self.isCircular;
+}
+
 - (NSString *)dataType {
-	return (self.selectionMode == IBAPickListSelectionModeSingle) ? IBAInputDataTypePickListSingle : 
-           IBAInputDataTypePickListMultiple;
+	return (self.selectionMode == IBAPickListSelectionModeSingle) ?
+                            IBAInputDataTypePickListSingle : 
+                            IBAInputDataTypePickListMultiple;
 }
 
 @end
@@ -128,7 +177,15 @@
 }
 
 + (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames {
-	return [[self class] pickListOptionsForStrings:optionNames font:[UIFont systemFontOfSize:16]];
+    return [[self class] pickListOptionsForStrings:optionNames font:[UIFont systemFontOfSize:16]];
+}
+
++ (NSArray *)pickListOptionsForArray:(NSArray *)options {
+    NSMutableArray *optionArray = [NSMutableArray array];
+	for (IBAPickListFormOption *option in options) {
+		[optionArray addObject:option];
+	}
+	return optionArray;
 }
 
 + (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames font:(UIFont *)font {
@@ -136,7 +193,6 @@
 	for (NSString *optionName in optionNames) {
 		[options addObject:[[[IBAPickListFormOption alloc] initWithName:optionName iconImage:nil font:font] autorelease]];
 	}
-	
 	return options;
 }
 

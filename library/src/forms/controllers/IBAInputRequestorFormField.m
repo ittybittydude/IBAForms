@@ -27,6 +27,14 @@
 	return nil;
 }
 
+- (NSString *)getPicklistClass {
+    return nil;
+}
+
+- (BOOL)getIsCircular {
+    return NO;
+}
+
 - (void)activate {
 	[[self responder] becomeFirstResponder];
 

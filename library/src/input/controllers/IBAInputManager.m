@@ -78,17 +78,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		[self registerInputProvider:[[[IBADateInputProvider alloc] init] autorelease]
 						forDataType:IBAInputDataTypeDate];
 		// Time
-		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:UIDatePickerModeTime] autorelease] 
+		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:IBADatePickerModeTime] autorelease] 
 						forDataType:IBAInputDataTypeTime];
 		
 		// Date & Time
-		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:UIDatePickerModeDateAndTime] autorelease]
+		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:IBADatePickerModeDateAndTime] autorelease]
 						forDataType:IBAInputDataTypeDateTime];
+        
+        // Month & Year
+		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:IBADatePickerModeMonthAndYear] autorelease]
+						forDataType:IBAInputDataTypeMonthYear];
 		
 		// Single Picklist
 		[self registerInputProvider:[[[IBASinglePickListInputProvider alloc] init] autorelease]
 						forDataType:IBAInputDataTypePickListSingle];
-		
+
+        
 		// Multiple Picklist
 		[self registerInputProvider:[[[IBAMultiplePickListInputProvider alloc] init] autorelease]
 						forDataType:IBAInputDataTypePickListMultiple];

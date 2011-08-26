@@ -47,5 +47,6 @@
 #import <IBAForms/IBATextInputProvider.h>
 #import <IBAForms/IBATitleFormField.h>
 #import <IBAForms/SynthesizeSingleton.h>
-
-
+#import <IBAForms/IBAInputPickerView.h>
+#import <IBAForms/IBAInputGenericPickerView.h>
+#import <IBAForms/IBAInputCreditCardExpiryDatePicker.h>

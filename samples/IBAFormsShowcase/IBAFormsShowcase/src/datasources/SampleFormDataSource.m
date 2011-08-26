@@ -16,6 +16,7 @@
 #import "SampleFormDataSource.h"
 #import "StringToNumberTransformer.h"
 #import "ShowcaseButtonStyle.h"
+#import "IBAInputCreditCardTypePicker.h" // Header to add to use new custom picker
 
 @implementation SampleFormDataSource
 
@@ -49,6 +50,11 @@
 		// Date fields
 		IBAFormSection *dateFieldSection = [self addSectionWithHeaderTitle:@"Dates" footerTitle:nil];
 
+        NSDateFormatter *monthYearFormatter = [[[NSDateFormatter alloc] init] autorelease];
+		[monthYearFormatter setDateStyle:NSDateFormatterShortStyle];
+		[monthYearFormatter setTimeStyle:NSDateFormatterNoStyle];
+		[monthYearFormatter setDateFormat:@"MM yyyy"];
+        
 		NSDateFormatter *dateTimeFormatter = [[[NSDateFormatter alloc] init] autorelease];
 		[dateTimeFormatter setDateStyle:NSDateFormatterShortStyle];
 		[dateTimeFormatter setTimeStyle:NSDateFormatterNoStyle];
@@ -82,7 +88,13 @@
 																		 type:IBADateFormFieldTypeTime
 																dateFormatter:timeFormatter] autorelease]];
 
-		// Picklists
+        [dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKeyPath:@"monthYear"
+                                                                    title:@"Month&Year"
+                                                             defaultValue:[NSDate date]
+                                                                     type:IBADateFormFieldTypeMonthYear
+                                                            dateFormatter:monthYearFormatter] autorelease]];
+	
+        // Picklists
 		IBAFormSection *pickListSection = [self addSectionWithHeaderTitle:@"Pick Lists" footerTitle:nil];
 
 		NSArray *pickListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:@"Apples",
@@ -90,7 +102,8 @@
 																					 @"Oranges",
 																					 @"Lemons",
 																					 nil]];
-
+        
+        // You can now choose if your default picker will be circular or not (it's not circular by default) by using initWithKeyPath:title:valueTransformer:selectionMode:options:isCircular: method
 		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"singlePickListItem"
 																		   title:@"Single"
 																valueTransformer:nil
@@ -112,6 +125,26 @@
 																   selectionMode:IBAPickListSelectionModeMultiple
 																		 options:carListOptions] autorelease]];
 
+        UIFont *ccTypeFont = [UIFont fontWithName:@"Helvetica" size:17.0];
+        NSArray *modalPresentationStyleOptions = [IBAPickListFormOption pickListOptionsForArray:[NSArray arrayWithObjects:
+                                                                                                 [[[IBAPickListFormOption alloc] initWithName:@"Visa" iconImage:[UIImage imageNamed:@"cc-type_visa"] font:ccTypeFont] autorelease],
+                                                                                                 [[[IBAPickListFormOption alloc] initWithName:@"China Union Pay" iconImage:[UIImage imageNamed:@"cc-type_chinaUnionPay"] font:ccTypeFont] autorelease],
+                                                                                                 [[[IBAPickListFormOption alloc] initWithName:@"Maestro" iconImage:[UIImage imageNamed:@"cc-type_maestro"] font:ccTypeFont] autorelease],
+                                                                                                 nil]];
+        
+        IBASingleIndexTransformer *modalPresentationStyleTransformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:modalPresentationStyleOptions] autorelease];
+        // You can now initialize your picker with an array of IBAPickListFormOption in order to use a custom picker with an image and/or a specific font
+        // You can choose which custom picker you would like to instanciate by using initWithKeyPath:title:valueTransformer:selectionMode:options:picklistClass: method
+        // Also, there is a initWithKeyPath:title:valueTransformer:selectionMode:options:picklistClass:isCircular: method if you want to choose if your custom picker will be circular or not
+        [pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"modalPresentationStyle"
+                                                                        title:@"Card type"
+                                                             valueTransformer:modalPresentationStyleTransformer
+                                                                selectionMode:IBAPickListSelectionModeSingle
+                                                                      options:modalPresentationStyleOptions 
+                                                                picklistClass:@"IBAInputCreditCardTypePicker"
+                                                                   isCircular:YES] autorelease]];
+        
+        
 		// An example of modifying the UITextInputTraits of an IBATextFormField and using an NSValueTransformer
 		IBAFormSection *textInputTraitsSection = [self addSectionWithHeaderTitle:@"Traits & Transformations" footerTitle:nil];
 		IBATextFormField *numberField = [[IBATextFormField alloc] initWithKeyPath:@"number"

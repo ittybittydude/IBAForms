@@ -58,6 +58,7 @@
 }
 
 - (NSString *)formFieldStringValue {
+    //Retourne ce que l'on voit dans le form. Trouver formFieldValue !
 	return [self.dateFormatter stringFromDate:[self formFieldValue]];
 }
 
@@ -105,6 +106,9 @@
 			break;
 		case IBADateFormFieldTypeDateTime:
 			dataType = IBAInputDataTypeDateTime;
+			break;
+        case IBADateFormFieldTypeMonthYear:
+			dataType = IBAInputDataTypeMonthYear;
 			break;
 		default:
 			break;
