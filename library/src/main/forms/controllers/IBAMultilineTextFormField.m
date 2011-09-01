@@ -18,7 +18,7 @@
 #import "IBAInputCommon.h"
 
 
-static NSString *kZeroSpaceString = @"\xE2\x80\x8B";
+//static NSString *kZeroSpaceString = @"\xE2\x80\x8B";
 
 @interface IBAMultilineTextFormField ()
 - (void)resizeFormField;

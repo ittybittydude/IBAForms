@@ -16,11 +16,11 @@
 		1481F61C13161901003965CF /* ShowcaseFieldStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1481F61B13161901003965CF /* ShowcaseFieldStyle.m */; };
 		14BA8E5812681D03005456E6 /* IBAFormsShowcaseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA8E5312681D03005456E6 /* IBAFormsShowcaseAppDelegate.m */; };
 		14BA8E5D12681F3D005456E6 /* SampleFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BA8E5C12681F3D005456E6 /* SampleFormController.m */; };
-		14BA8E7112682042005456E6 /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BA8E6612681FC9005456E6 /* libIBAForms.a */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		7586F7B1140FDBFE00B73C68 /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BA8E6612681FC9005456E6 /* libIBAForms.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +31,7 @@
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = IBAForms;
 		};
-		14BA8E6712681FDC005456E6 /* PBXContainerItemProxy */ = {
+		75780FEA13B8CC4600558024 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14BA8E5E12681FC9005456E6 /* IBAForms.xcodeproj */;
 			proxyType = 1;
@@ -74,10 +74,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7586F7B1140FDBFE00B73C68 /* libIBAForms.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
-				14BA8E7112682042005456E6 /* libIBAForms.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +219,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				14BA8E6812681FDC005456E6 /* PBXTargetDependency */,
+				75780FEB13B8CC4600558024 /* PBXTargetDependency */,
 			);
 			name = IBAFormsShowcase;
 			productName = IBAFormsShowcase;
@@ -297,10 +297,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		14BA8E6812681FDC005456E6 /* PBXTargetDependency */ = {
+		75780FEB13B8CC4600558024 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = IBAForms;
-			targetProxy = 14BA8E6712681FDC005456E6 /* PBXContainerItemProxy */;
+			targetProxy = 75780FEA13B8CC4600558024 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -28,6 +28,15 @@
 }
 
 - (void)activate {
+  if ([self hasDetailViewController]) {
+		// If the form field has a detailViewController, then it should be displayed, and the form field should
+		// be unselected when the detailViewController is popped back of the navigation stack
+		[self deactivate];
+	} else {
+		// Give the cell a chance to change it's visual state to show that it has been activated
+		[self.cell activate];		
+	}
+  
 	UIResponder *responder = [self responder];
 	[responder becomeFirstResponder];
 
@@ -36,15 +45,6 @@
 
 	[[NSNotificationCenter defaultCenter] postNotificationName:IBAInputRequestorFormFieldActivated object:self userInfo:userInfo];
 	[userInfo release];
-	
-	if ([self hasDetailViewController]) {
-		// If the form field has a detailViewController, then it should be displayed, and the form field should
-		// be unselected when the detailViewController is popped back of the navigation stack
-		[self deactivate];
-	} else {
-		// Give the cell a chance to change it's visual state to show that it has been activated
-		[self.cell activate];		
-	}
 }
 
 - (BOOL)deactivate {
