@@ -19,6 +19,8 @@
 #import <UIKit/UIKit.h>
 #import <IBAForms/IBAForms.h>
 
+#define IBAInputCreditCardTypePickerLabelTag 77
+#define IBAInputCreditCardTypePickerImageViewTag 78
 
 @interface IBAInputCreditCardTypePicker : IBAInputGenericPickerView
 

@@ -296,6 +296,7 @@
 		751240B913A8F6CF007BF2B5 /* IBAForms */ = {
 			isa = PBXGroup;
 			children = (
+				BE93C40A1403DE9700F90E84 /* IBAInputGenericPickerView.h */,
 				751240C113A8F6CF007BF2B5 /* IBAFormConstants.h */,
 				751240C313A8F6CF007BF2B5 /* IBAFormField.h */,
 				751240BE13A8F6CF007BF2B5 /* IBADateFormField.h */,
@@ -305,7 +306,6 @@
 				751240BF13A8F6CF007BF2B5 /* IBADateFormFieldCell.h */,
 				751240C613A8F6CF007BF2B5 /* IBAFormModelManager.h */,
 				BE93C42D1404170200F90E84 /* IBAInputCreditCardExpiryDatePicker.h */,
-				BE93C40A1403DE9700F90E84 /* IBAInputGenericPickerView.h */,
 				BEACE85E1402B87A001F454B /* IBAInputPickerView.h */,
 				751240D813A8F6CF007BF2B5 /* IBASinglePickListInputProvider.h */,
 				751240C013A8F6CF007BF2B5 /* IBADateInputProvider.h */,

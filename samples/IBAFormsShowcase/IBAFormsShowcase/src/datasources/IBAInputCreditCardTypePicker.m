@@ -23,20 +23,29 @@
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    [self.translation replaceObjectAtIndex:component withObject:[NSNumber numberWithInt:(row / [self.pickListOptions count])]];
+    [self.translation replaceObjectAtIndex:component withObject:[NSNumber numberWithInt:(row / [self.pickListOptions count])]];    
+    id<IBAPickListOption> pickListOption = [self.pickListOptions objectAtIndex:(row - [[translation objectAtIndex:component] intValue] * [self.pickListOptions count])];
     UIView *rowView = nil;
+    UIImageView *cardImageView;
+    UILabel *lbl;
     
     if (view != nil)
     {
+        cardImageView = (UIImageView *)[view viewWithTag:IBAInputCreditCardTypePickerImageViewTag];
+        lbl = (UILabel *)[view viewWithTag:IBAInputCreditCardTypePickerLabelTag];
+        lbl.text = pickListOption.name;
+        lbl.font = pickListOption.font;
+        cardImageView.frame = CGRectMake(cardImageView.frame.origin.x, cardImageView.frame.origin.y,
+                                         pickListOption.iconImage.size.width, pickListOption.iconImage.size.height);
+        cardImageView.image = pickListOption.iconImage;
         rowView = view;
     }
     else
     {
         rowView = [[[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, [pickerView rowSizeForComponent:component].width, [pickerView rowSizeForComponent:component].height)] autorelease];
-        id<IBAPickListOption> pickListOption = [self.pickListOptions objectAtIndex:(row - [[translation objectAtIndex:component] intValue] * [self.pickListOptions count])];
         
         // Label & Font
-        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(122.0f, 0.0f, [pickerView rowSizeForComponent:component].width, [pickerView rowSizeForComponent:component].height)];
+        lbl = [[UILabel alloc] initWithFrame:CGRectMake(122.0f, 0.0f, [pickerView rowSizeForComponent:component].width, [pickerView rowSizeForComponent:component].height)];
         lbl.enabled                   = YES;
         lbl.text                      = pickListOption.name;
         lbl.adjustsFontSizeToFitWidth = YES;
@@ -44,12 +53,14 @@
         lbl.font                      = pickListOption.font;
         lbl.opaque                    = NO;
         lbl.backgroundColor           = [UIColor clearColor];
+        lbl.tag = IBAInputCreditCardTypePickerLabelTag;
         [rowView addSubview:lbl];
         [lbl release];
         
         // Image
         UIImage *cardImage = pickListOption.iconImage;
-        UIImageView *cardImageView = [[UIImageView alloc] initWithImage:cardImage];
+        cardImageView = [[UIImageView alloc] initWithImage:cardImage];
+        cardImageView.tag = IBAInputCreditCardTypePickerImageViewTag;
         CGRect frame = cardImageView.frame;
         cardImageView.frame = CGRectMake(frame.origin.x + 5, frame.origin.y + 7, frame.size.width, frame.size.height);
         [rowView addSubview:cardImageView];
