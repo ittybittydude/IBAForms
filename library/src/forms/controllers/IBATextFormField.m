@@ -28,6 +28,9 @@
 	[super dealloc];
 }
 
+- (void)clear:(id)sender {
+	[self setFormFieldValue:nil];
+}
 
 #pragma mark -
 #pragma mark Cell management
@@ -40,6 +43,8 @@
 - (IBATextFormFieldCell *)textFormFieldCell {
 	if (textFormFieldCell_ == nil) {
 		textFormFieldCell_ = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+        textFormFieldCell_.nullable = self.nullable;
+        [textFormFieldCell_.clearButton addTarget:self action:@selector(clear:) forControlEvents:UIControlEventTouchUpInside];
 		textFormFieldCell_.textField.delegate = self;
 		textFormFieldCell_.textField.enabled = NO;
 	}

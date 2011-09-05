@@ -22,5 +22,7 @@
 @synthesize modalPresentation = modalPresentation_;
 @synthesize displayNavigationToolbar = displayNavigationToolbar_;
 @synthesize modalPresentationStyle = modalPresentationStyle_;
+@synthesize behavior = behavior_;
+@synthesize cancel = cancel_;
 
 @end

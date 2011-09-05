@@ -15,6 +15,8 @@
 #import "IBAFormFieldCell.h"
 #import "IBAFormConstants.h"
 
+static UIImage *clearImage_ = nil;
+
 @interface IBAFormFieldCell ()
 @property (nonatomic, assign, getter=isActive) BOOL active;
 - (void)applyActiveStyle;
@@ -31,6 +33,8 @@
 @synthesize styleApplied = styleApplied_;
 @synthesize active = active_;
 @synthesize hiddenCellCache = hiddenCellCache_;
+@synthesize clearButton = clearButton_;
+@synthesize nullable = nullable_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(inputView_);
@@ -61,19 +65,19 @@
 
 		// set the style after the views have been created
 		self.formFieldStyle = style;
-	}
+    }
 
     return self;
 }
 
 - (void)activate {
-	[self applyActiveStyle];
+    [self applyActiveStyle];
 	self.active = YES;
 }
 
 
 - (void)deactivate {
-	[self applyFormFieldStyle];
+    [self applyFormFieldStyle];
 	self.active = NO;
 }
 
@@ -87,6 +91,7 @@
 	}
 }
 
+//LABEL NON ACTIVE
 - (void)applyFormFieldStyle {
 	self.label.font = self.formFieldStyle.labelFont;
 	self.label.textColor = self.formFieldStyle.labelTextColor;
@@ -94,12 +99,23 @@
 	self.label.backgroundColor = self.formFieldStyle.labelBackgroundColor;
 	self.backgroundColor = self.formFieldStyle.labelBackgroundColor;
 
+    if(self.formFieldStyle.behavior == IBAFormFieldBehaviorPlaceHolder)
+    {
+        self.label.frame = CGRectMake(IBAFormFieldLabelX, IBAFormFieldLabelY, IBAFormFieldValueWidth, IBAFormFieldLabelHeight);
+        self.label.textAlignment   = UITextAlignmentLeft;
+    }
+
+
 	self.styleApplied = YES;
 }
 
+//LABEL ACTIVE
 - (void)applyActiveStyle {
-	self.label.backgroundColor = self.formFieldStyle.activeColor;
-	self.backgroundColor = self.formFieldStyle.activeColor;
+//    if((self.formFieldStyle.behavior | IBAFormFieldBehaviorClassic) == self.formFieldStyle.behavior)
+//    {
+    self.label.backgroundColor = self.formFieldStyle.activeColor;
+    self.backgroundColor = self.formFieldStyle.activeColor;
+//    }
 }
 
 - (void)updateActiveStyle {
@@ -117,6 +133,54 @@
 
 	[super drawRect:rect];
 }
+
+-(void)initButton
+{
+    UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [clearButton setImage:[IBAFormFieldCell clearImage] forState:UIControlStateNormal];
+    clearButton.contentMode = UIViewContentModeCenter;
+    clearButton.center = CGPointMake(278, CGRectGetMidY(self.cellView.bounds));
+    clearButton.frame = CGRectInset(clearButton.frame, -20, -20);
+    self.clearButton = clearButton;
+}
+
++ (UIImage *)clearImage {
+	if (clearImage_ == nil) {
+		CGFloat size = 19;
+		CGFloat strokeInset = 5;
+		CGFloat lineWidth = 2;
+		
+		UIGraphicsBeginImageContextWithOptions(CGSizeMake(size, size), NO, [[UIScreen mainScreen] scale]);
+		UIBezierPath* circle = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, size, size)];	
+		
+		[[UIColor colorWithRed:0.698 green:0.698 blue:0.698 alpha:1.0] setFill];
+		[circle fill];
+        
+		UIBezierPath *stroke1 = [UIBezierPath bezierPath];
+		stroke1.lineWidth = lineWidth;
+		stroke1.lineCapStyle = kCGLineCapRound;
+		[stroke1 moveToPoint:CGPointMake(strokeInset, strokeInset)];
+		[stroke1 addLineToPoint:CGPointMake(size - strokeInset, size - strokeInset)];
+		[stroke1 closePath];
+		
+		[[UIColor whiteColor] setStroke];
+		[stroke1 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
+		
+		UIBezierPath *stroke2 = [UIBezierPath bezierPath];
+		stroke2.lineWidth = lineWidth;
+		stroke2.lineCapStyle = kCGLineCapRound;
+		[stroke2 moveToPoint:CGPointMake(size - strokeInset, strokeInset)];
+		[stroke2 addLineToPoint:CGPointMake(strokeInset, size - strokeInset)];
+		[stroke2 closePath];
+		[stroke2 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
+		
+		clearImage_ = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+	}
+	
+	return clearImage_;
+}
+
 
 - (CGSize)sizeThatFits:(CGSize)size
 {

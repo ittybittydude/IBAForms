@@ -39,9 +39,15 @@
 
 // Form field value style
 #define IBAFormFieldValueX 75
+#define IBAFormFieldValueXAdjustement 1
 #define IBAFormFieldValueY 10
+#define IBAFormFieldValueYAdjustement 5
 #define IBAFormFieldValueWidth 235
 #define IBAFormFieldValueHeight 26
+#define IBAFormFieldValueMargin 4
+#define IBAFormFieldValueMarginCancel (IBAFormFieldValueMargin + 28)
+#define IBAFormFieldValueMarginPlaceHolder 11
+#define IBAFormFieldValueMarginPlaceHolderCancel (IBAFormFieldValueMarginPlaceHolder + 28)
 #define IBAFormFieldValueFont [UIFont systemFontOfSize:16]
 #define IBAFormFieldValueTextColor [UIColor blackColor]
 #define IBAFormFieldValueTextAlignment UITextAlignmentLeft

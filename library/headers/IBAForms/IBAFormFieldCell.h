@@ -25,7 +25,9 @@
 	IBAFormFieldStyle *formFieldStyle_;
 	BOOL styleApplied_;
 	BOOL active_;
-	
+    UIButton *clearButton_;
+	BOOL nullable_;
+
 	@private
 	UIView *hiddenCellCache_;
 }
@@ -37,11 +39,15 @@
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
 @property (nonatomic, assign) BOOL styleApplied;
 @property (nonatomic, assign) UIView *hiddenCellCache;
+@property (nonatomic, retain) UIButton *clearButton;
+@property (nonatomic, assign, getter=isNullable) BOOL nullable;
 
 
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier;
 - (void)activate;
 - (void)deactivate;
++ (UIImage *)clearImage;
+-(void)initButton;
 
 - (void)applyFormFieldStyle;
 - (void)updateActiveStyle;

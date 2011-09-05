@@ -50,7 +50,29 @@
 																		  valueTransformer:modalPresentationStyleTransformer
 																			 selectionMode:IBAPickListSelectionModeSingle
 																				   options:modalPresentationStyleOptions] autorelease]];	
-		
+
+        NSArray *styleOptionsBehavior = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
+                                                                                                   @"Classic behavior", 
+                                                                                                   @"Placeholder behavior",
+                                                                                                   nil]];
+        IBASingleIndexTransformer *styleTransformerBehavior = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:styleOptionsBehavior] autorelease];
+        [displayOptionsSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"behavior"
+																					 title:@"Behavior"
+																		  valueTransformer:styleTransformerBehavior
+																			 selectionMode:IBAPickListSelectionModeSingle
+																				   options:styleOptionsBehavior] autorelease]];	
+
+        NSArray *styleOptionsCancel = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:
+                                                                                                   @"Default", 
+                                                                                                   @"Cancel",
+                                                                                                   @"No cancel", 
+                                                                                                   nil]];	
+		IBASingleIndexTransformer *styleTransformerCancel = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:styleOptionsCancel] autorelease];
+		[displayOptionsSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"cancel"
+																					 title:@"isCancel"
+																		  valueTransformer:styleTransformerCancel
+																			 selectionMode:IBAPickListSelectionModeSingle
+																				   options:styleOptionsCancel] autorelease]];	
 		
 		IBAFormSection *buttonSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
 		buttonSection.formFieldStyle = [[[ShowcaseButtonStyle alloc] init] autorelease];;
@@ -68,11 +90,15 @@
 	ShowcaseModel *showcaseModel = [self model];
 	
 	NSMutableDictionary *sampleFormModel = [[[NSMutableDictionary alloc] init] autorelease];
-  
+    
 	// Values set on the model will be reflected in the form fields.
 	[sampleFormModel setObject:@"A value contained in the model" forKey:@"readOnlyText"];
-  
-	SampleFormDataSource *sampleFormDataSource = [[[SampleFormDataSource alloc] initWithModel:sampleFormModel] autorelease];
+    
+    NSArray *behavior = [NSArray arrayWithObjects:[NSNumber numberWithInt:IBAFormFieldBehaviorClassic], [NSNumber numberWithInt:IBAFormFieldBehaviorPlaceHolder], nil];
+    NSArray *cancel = [NSArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:IBAFormFieldBehaviorCancel], [NSNumber numberWithInt:IBAFormFieldBehaviorNoCancel], nil];
+    
+	SampleFormDataSource *sampleFormDataSource = [[[SampleFormDataSource alloc] initWithModel:sampleFormModel
+                                                                                  andBehavior:(([[behavior objectAtIndex:showcaseModel.behavior] intValue]) | ([[cancel objectAtIndex:showcaseModel.cancel] intValue]))] autorelease];
 	SampleFormController *sampleFormController = [[[SampleFormController alloc] initWithNibName:nil bundle:nil formDataSource:sampleFormDataSource] autorelease];
 	sampleFormController.title = @"Sample Form";
 	sampleFormController.shouldAutoRotate = showcaseModel.shouldAutoRotate;
