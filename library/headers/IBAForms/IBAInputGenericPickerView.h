@@ -34,13 +34,11 @@
 {
     BOOL isCircular;
     NSMutableArray *translation;
-    BOOL isFirstTime;
     NSArray *pickListOptions;
 }
 
 @property (nonatomic, retain) NSArray *pickListOptions;
 @property (nonatomic) BOOL isCircular;
-@property (nonatomic) BOOL isFirstTime;
 @property (nonatomic, retain) NSMutableArray *translation;
 
 @end

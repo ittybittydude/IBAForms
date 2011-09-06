@@ -139,7 +139,7 @@
                                                                                                  [[[IBAPickListFormOption alloc] initWithName:@"Maestro" iconImage:[UIImage imageNamed:@"cc-type_maestro"] font:ccTypeFont] autorelease],
                                                                                                  nil]];
         
-        IBASingleIndexTransformer *modalPresentationStyleTransformer = [[[IBASingleIndexTransformer alloc] initWithPickListOptions:modalPresentationStyleOptions] autorelease];
+        IBAPickListFormOptionsStringTransformer *modalPresentationStyleTransformer = [[[IBAPickListFormOptionsStringTransformer alloc] initWithPickListOptions:modalPresentationStyleOptions] autorelease];
         // You can now initialize your picker with an array of IBAPickListFormOption in order to use a custom picker with an image and/or a specific font
         // You can choose which custom picker you would like to instanciate by using initWithKeyPath:title:valueTransformer:selectionMode:options:picklistClass: method
         // Also, there is a initWithKeyPath:title:valueTransformer:selectionMode:options:picklistClass:isCircular: method if you want to choose if your custom picker will be circular or not

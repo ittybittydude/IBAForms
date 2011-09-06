@@ -223,8 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				BE3356251407996E007B35FB /* ressources */,
-				BE3356221407986F007B35FB /* IBAInputCreditCardTypePicker.m */,
 				BE3356231407986F007B35FB /* IBAInputCreditCardTypePicker.h */,
+				BE3356221407986F007B35FB /* IBAInputCreditCardTypePicker.m */,
 			);
 			name = "Custom Picker";
 			sourceTree = "<group>";

@@ -24,7 +24,7 @@
 @implementation IBAInputGenericPickerView
 
 @synthesize isCircular, pickListOptions;
-@synthesize translation, isFirstTime;
+@synthesize translation;
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -37,8 +37,6 @@
 
         self.isCircular = NO;
         self.translation = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:0],nil];
-
-        self.isFirstTime = YES;
     }
     
     return self;
@@ -54,8 +52,8 @@
 
         self.isCircular = NO;
         self.translation = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:0],nil];
-        self.isFirstTime = YES;
 	}
+
 	return self;
 }
 
@@ -95,7 +93,6 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     [self.translation replaceObjectAtIndex:component withObject:[NSNumber numberWithInt:(row / [self.pickListOptions count])]];
-    self.isFirstTime = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:IBAInputPickerViewRowUpdated object:self userInfo:
     [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:
                                                                 [NSNumber numberWithInt:(row - [[translation objectAtIndex:component] intValue] * [self.pickListOptions count])],

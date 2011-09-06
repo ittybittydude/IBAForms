@@ -106,28 +106,24 @@
 }
 
 - (void)updateSelectedOption {
-    if (((IBAInputGenericPickerView *)self.pickerView).isFirstTime)
-    {
-        if (((IBAInputGenericPickerView *)self.pickerView).isCircular)
-        {
-            for (int i = 0; i < [((IBAInputGenericPickerView *)self.pickerView).translation count]; i++) {
-                [((IBAInputGenericPickerView *)self.pickerView).translation replaceObjectAtIndex:i withObject:[NSNumber numberWithInt:(IBAPickListRowsMax / [self.pickListOptions count] / 2)]];
-            }
-        }
-        id<IBAPickListOption> selectedPickListOption = [self.inputRequestor.inputRequestorValue anyObject];
+    id<IBAPickListOption> selectedPickListOption = [self.inputRequestor.inputRequestorValue anyObject];
+    NSInteger selectedRow;
     
-        NSInteger selectedRow;
-        if (nil != selectedPickListOption) {
-            for (int i = 0; i < [((IBAInputGenericPickerView *)self.pickerView).translation count]; i++) {
-                selectedRow = [((IBAInputGenericPickerView *)self.pickerView).pickListOptions count] * [[((IBAInputGenericPickerView *)self.pickerView).translation objectAtIndex:i] intValue];
-                [self.pickerView selectRow:selectedRow inComponent:i animated:NO];
-            }
-        } else {
-            for (int i = 0; i < [((IBAInputGenericPickerView *)self.pickerView).translation count]; i++) {
-                [self.pickerView selectRow:0 inComponent:i animated:NO];
-                [self setSelectedOptionWithIndex:0];
-            }
+    if (((IBAInputGenericPickerView *)self.pickerView).isCircular)
+    {
+        for (int i = 0; i < [((IBAInputGenericPickerView *)self.pickerView).translation count]; i++)
+        {
+            [((IBAInputGenericPickerView *)self.pickerView).translation replaceObjectAtIndex:i withObject:[NSNumber numberWithInt:(IBAPickListRowsMax / [self.pickListOptions count] / 2)]];
         }
+    }
+    
+    for (int i = 0; i < [((IBAInputGenericPickerView *)self.pickerView).translation count]; i++)
+    {
+        selectedRow = [((IBAInputGenericPickerView *)self.pickerView).pickListOptions count] * [[((IBAInputGenericPickerView *)self.pickerView).translation objectAtIndex:i] intValue] +
+        (selectedPickListOption == nil ? 0 : [((IBAInputGenericPickerView *)self.pickerView).pickListOptions indexOfObject:selectedPickListOption]);
+
+        [(IBAInputGenericPickerView *)self.pickerView pickerView:self.pickerView didSelectRow:selectedRow inComponent:i];
+        [self.pickerView selectRow:selectedRow inComponent:i animated:NO];
     }
 }
 

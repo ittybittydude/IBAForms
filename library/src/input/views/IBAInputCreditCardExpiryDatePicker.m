@@ -51,7 +51,6 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
 {
-    NSLog(@"==%ld==", IBAPickListRowsMax);
 	return NB_COMPONENT_CCEDP;
 }
 
