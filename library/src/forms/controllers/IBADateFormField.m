@@ -30,6 +30,23 @@
 	[super dealloc];
 }
 
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
+        dateFormatter:(NSDateFormatter *)dateFormatter validator:(IBAInputValidatorGeneric *)valueValidator {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:nil validator:valueValidator])) {
+		self.dateFormFieldType = dateFieldType;
+		self.defaultValue = date;
+        
+		self.dateFormatter = dateFormatter;
+		if (self.dateFormatter == nil) {
+			self.dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+			[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+			[self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+			[dateFormatter setDateFormat:@"EEE d MMM yyyy"];
+		}
+	}
+    
+    return self;
+}
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
 		 dateFormatter:(NSDateFormatter *)dateFormatter {
@@ -46,7 +63,7 @@
 		}
 	}
 
-	return self;
+	return [self initWithKeyPath:keyPath title:title defaultValue:date type:dateFieldType dateFormatter:dateFormatter validator:nil];
 }
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType {
@@ -76,7 +93,7 @@
 
 - (IBADateFormFieldCell *)dateFormFieldCell {
 	if (dateFormFieldCell_ == nil) {
-		dateFormFieldCell_ = [[IBADateFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+		dateFormFieldCell_ = [[IBADateFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell" validator:self.validator];
 		dateFormFieldCell_.nullable = self.nullable;
 		[dateFormFieldCell_.clearButton addTarget:self action:@selector(clear:) forControlEvents:UIControlEventTouchUpInside];
 	}

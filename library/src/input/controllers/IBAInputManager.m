@@ -64,7 +64,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
 		inputNavigationToolbar_ = [[IBAInputNavigationToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];   
 		inputNavigationToolbar_.doneButton.target = self;
 		inputNavigationToolbar_.doneButton.action = @selector(deactivateActiveInputRequestor);
-		[inputNavigationToolbar_.nextPreviousButton addTarget:self action:@selector(nextPreviousButtonSelected) 
+        [inputNavigationToolbar_.nextPreviousButton addTarget:self action:@selector(nextPreviousButtonSelected) 
 			forControlEvents:UIControlEventValueChanged];
         
         inputNavigationToolbarEnabled_ = YES;

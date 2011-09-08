@@ -17,12 +17,19 @@
 
 @implementation IBALabelFormCell
 
-- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier validator:(IBAInputValidatorGeneric *)valueValidator
+{
+    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:valueValidator])) {
 		self.label.adjustsFontSizeToFitWidth = YES;
+        self.validator = valueValidator;
 	}
 	
     return self;
+
+}
+
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
+    return [self initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:nil];
 }
 
 @end

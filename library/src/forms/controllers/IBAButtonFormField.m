@@ -55,7 +55,7 @@
 
 - (IBAFormFieldCell *)cell {
 	if (cell_ == nil) {
-		cell_ = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+		cell_ = [[IBALabelFormCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell" validator:self.validator];
 		cell_.selectionStyle = UITableViewCellSelectionStyleGray;
 
 		if (self.iconImage != nil) {

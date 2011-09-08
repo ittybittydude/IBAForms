@@ -50,6 +50,48 @@
 
 
 #pragma mark -
+#pragma mark Validation
+
+- (BOOL)checkAllFields
+{
+    BOOL returnValue = YES;
+
+    for (NSInteger i = 0; i < [self.sections count]; i++)
+        for (NSInteger i2 = 0; i2 < [((IBAFormSection *)[self.sections objectAtIndex:i]).formFields count]; i2++)
+        {
+            if ([[((IBAFormSection *)[self.sections objectAtIndex:i]).formFields objectAtIndex:i2] checkField])
+                returnValue = NO;
+        }
+    return returnValue;
+}
+
+-(NSArray *)getErrors
+{
+    NSMutableArray *errors = [NSMutableArray new];
+    
+    for (NSInteger section = 0; section < [self.sections count]; section++)
+    {
+        IBAFormSection * currentSection = [self.sections objectAtIndex:section];
+        
+        for (NSInteger field = 0; field < [currentSection.formFields count]; field++)
+        {
+            IBAFormField* currentField = [currentSection.formFields objectAtIndex:field];
+            
+            [currentField checkField];
+            NSString *error = [NSString stringWithString:currentField.cell.validator.error];
+            
+            if ([error length])
+            {
+                error = [NSString stringWithFormat:error, currentField.cell.label.text];
+                [errors addObject:error];
+            }
+        }
+    }
+    
+    return (NSArray *)errors;
+}
+
+#pragma mark -
 #pragma mark Section and field management
 
 - (NSInteger)sectionCount {

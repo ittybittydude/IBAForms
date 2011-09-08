@@ -38,6 +38,7 @@ typedef enum {
 	UITextAlignment valueTextAlignment_;
 	UIViewAutoresizing valueAutoresizingMask_;
 
+    UIColor *errorColor_;
 	UIColor *activeColor_;
 }
 
@@ -58,5 +59,6 @@ typedef enum {
 @property (nonatomic, assign) UIViewAutoresizing valueAutoresizingMask;
 
 @property (nonatomic, retain) UIColor *activeColor;
+@property (nonatomic, retain) UIColor *errorColor;
 
 @end

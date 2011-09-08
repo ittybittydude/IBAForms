@@ -30,14 +30,19 @@
 @property(nonatomic, retain) NSString *picklistClass;
 @property(nonatomic) BOOL isCircular;
 
+-(BOOL)checkField;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
 	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
-        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass;
-- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
         selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions isCircular:(BOOL)isPickListCircular;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
         selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass isCircular:(BOOL)isPickListCircular;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions isCircular:(BOOL)isPickListCircular validator:(IBAInputValidatorGeneric *)valueValidator;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass isCircular:(BOOL)isPickListCircular validator:(IBAInputValidatorGeneric *)valueValidator;
 
 @end
 

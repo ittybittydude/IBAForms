@@ -50,3 +50,6 @@
 #import <IBAForms/IBAInputPickerView.h>
 #import <IBAForms/IBAInputGenericPickerView.h>
 #import <IBAForms/IBAInputCreditCardExpiryDatePicker.h>
+#import <IBAForms/IBAInputValidatorGeneric.h>
+#import <IBAForms/IBAInputValidatorRegex.h>
+#import <IBAForms/IBAInputValidatorEmail.h>

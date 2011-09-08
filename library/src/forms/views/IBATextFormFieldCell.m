@@ -25,9 +25,9 @@
 	[super dealloc];
 }
 
-
-- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier validator:(IBAInputValidatorGeneric *)valueValidator
+{
+    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:valueValidator])) {
 		// Create the text field for data entry
         
         if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorClassic) == self.formFieldStyle.behavior)
@@ -40,7 +40,7 @@
                 initFrame.size.width -= IBAFormFieldValueMargin;
             self.textField = [[[UITextField alloc] initWithFrame:initFrame] autorelease];
         }
-            else if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorPlaceHolder) == self.formFieldStyle.behavior)
+        else if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorPlaceHolder) == self.formFieldStyle.behavior)
             self.textField = [[[UITextField alloc] init] autorelease];
         
         self.textField.autoresizingMask = style.valueAutoresizingMask;
@@ -50,9 +50,14 @@
         {
             [self initButton];
         }
+        self.validator = valueValidator;
 	}
 	
     return self;
+}
+
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
+    return [self initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:nil];
 }
 
 - (void)activate {
@@ -67,12 +72,26 @@
 	}
 }
 
+-(BOOL)checkField
+{
+    BOOL returnValue = NO;
+    
+    if ([self.validator isNotValid:self.textField.text])
+    {
+        self.label.backgroundColor = self.formFieldStyle.errorColor;
+        self.backgroundColor = self.formFieldStyle.errorColor;
+        self.textField.backgroundColor = self.formFieldStyle.errorColor;
+        returnValue = YES;
+    }
+    return returnValue;
+}
+
 - (void)deactivate {
 	if ([self isNullable]) {
 		[self.clearButton removeFromSuperview];
 	}
-	
 	[super deactivate];
+    [self checkField];
 }
 
 - (void)applyFormFieldStyle {

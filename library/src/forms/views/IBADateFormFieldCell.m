@@ -26,16 +26,22 @@
 	[super dealloc];
 }
 
-- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier validator:(IBAInputValidatorGeneric *)valueValidator
+{
+    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:valueValidator])) {
         if (!((self.formFieldStyle.behavior | IBAFormFieldBehaviorNoCancel) == self.formFieldStyle.behavior))
         {
             [self initButton];
         }
         self.textField.enabled = NO;
+        self.validator = valueValidator;
 	}
 	
     return self;
+}
+
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
+    return [self initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier];
 }
 
 - (void)activate {

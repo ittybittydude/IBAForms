@@ -47,4 +47,7 @@
 - (IBAFormField *)formFieldBefore:(IBAFormField *)field;
 - (NSIndexPath *)indexPathForFormField:(IBAFormField *)formField;
 
+- (BOOL)checkAllFields;
+- (NSArray *)getErrors;
+
 @end

@@ -24,10 +24,10 @@
 - (void)releaseViews;
 - (void)registerForNotifications;
 - (void)registerSelector:(SEL)selector withNotification:(NSString *)notificationKey;
-- (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame;
 - (CGRect)rectForOrientationFrame:(CGRect)frame;
 - (void)makeActiveFormFieldVisibleWithAnimation:(BOOL)animate;
 - (void)makeFormFieldVisible:(IBAFormField *)formField animated:(BOOL)animate;
+- (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame;
 
 // Notification methods
 - (void)pushViewController:(NSNotification *)notification;
@@ -61,10 +61,15 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-		self.formDataSource = formDataSource;		
+		self.formDataSource = formDataSource;
 	}
 	
     return self;
+}
+
+- (void)isNavigationToolbarTranslucent:(BOOL)translucent
+{
+    [[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setTranslucent:translucent];
 }
 
 - (void)registerForNotifications {

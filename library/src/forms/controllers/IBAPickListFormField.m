@@ -33,10 +33,34 @@
 	[super dealloc];
 }
 
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass isCircular:(BOOL)isPickListCircular validator:(IBAInputValidatorGeneric *)valueValidator {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer validator:valueValidator])) {
+        self.picklistClass = pickListClass;
+		self.selectionMode = selectionMode;
+		self.pickListOptions = pickListOptions;
+        self.isCircular = isPickListCircular;
+    }
+    
+	return self;
+}
+
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions isCircular:(BOOL)isPickListCircular validator:(IBAInputValidatorGeneric *)valueValidator {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer validator:valueValidator])) {
+		self.selectionMode = selectionMode;
+		self.pickListOptions = pickListOptions;
+        self.picklistClass = @"IBAInputPickerView";
+        self.isCircular = isPickListCircular;
+
+	}
+    
+	return self;
+}
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
 	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions {
-	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer validator:nil])) {
 		self.selectionMode = selectionMode;
 		self.pickListOptions = pickListOptions;
         self.picklistClass = @"IBAInputPickerView";
@@ -48,7 +72,7 @@
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
         selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions isCircular:(BOOL)isPickListCircular{
-	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer validator:nil])) {
 		self.selectionMode = selectionMode;
 		self.pickListOptions = pickListOptions;
         self.picklistClass = @"IBAInputPickerView";
@@ -58,11 +82,9 @@
 	return self;
 }
 
-
-
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
         selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass{
-	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer validator:nil])) {
         self.picklistClass = pickListClass;
 		self.selectionMode = selectionMode;
 		self.pickListOptions = pickListOptions;
@@ -74,7 +96,7 @@
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
         selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass isCircular:(BOOL)isPickListCircular{
-	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer])) {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:valueTransformer validator:nil])) {
         self.picklistClass = pickListClass;
 		self.selectionMode = selectionMode;
 		self.pickListOptions = pickListOptions;
@@ -97,17 +119,29 @@
             }
         }
         value = [itemNames componentsJoinedByString:@", "];
-    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    }
 	return value;
 }
 
+-(BOOL)checkField
+{
+    BOOL returnValue = NO;
+    
+    if ([self.pickListCell checkField])
+    {
+        self.pickListCell.textField.backgroundColor = self.formFieldStyle.errorColor;
+        returnValue = YES;
+    }
+
+    return returnValue;
+}
 
 #pragma mark -
 #pragma mark Cell management
 
 - (IBAFormFieldCell *)cell {
 	if (pickListCell_ == nil) {
-		pickListCell_ = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+		pickListCell_ = [[IBATextFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell" validator:self.validator];
 		pickListCell_.textField.enabled = NO;
 	}
 

@@ -35,6 +35,8 @@ static UIImage *clearImage_ = nil;
 @synthesize hiddenCellCache = hiddenCellCache_;
 @synthesize clearButton = clearButton_;
 @synthesize nullable = nullable_;
+@synthesize validator = validator_;
+
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(inputView_);
@@ -47,27 +49,31 @@ static UIImage *clearImage_ = nil;
 	[super dealloc];
 }
 
-- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier validator:(IBAInputValidatorGeneric *)valueValidator {
     if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        
 		self.cellView = [[[UIView alloc] initWithFrame:self.contentView.bounds] autorelease];
 		self.cellView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.cellView.userInteractionEnabled = YES;
 		[self.contentView addSubview:self.cellView];
-
+        
 		// Create a label
 		self.label = [[[UILabel alloc] initWithFrame:style.labelFrame] autorelease];
 		self.label.autoresizingMask = style.labelAutoresizingMask;
 		self.label.adjustsFontSizeToFitWidth = YES;
 		self.label.minimumFontSize = 10;
 		[self.cellView addSubview:self.label];
-
+        
 		// set the style after the views have been created
 		self.formFieldStyle = style;
+        self.validator = valueValidator;
     }
-
     return self;
+}
+
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
+    return [self initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:nil];
 }
 
 - (void)activate {
@@ -75,10 +81,14 @@ static UIImage *clearImage_ = nil;
 	self.active = YES;
 }
 
+-(BOOL)checkField
+{
+    return NO;
+}
 
 - (void)deactivate {
     [self applyFormFieldStyle];
-	self.active = NO;
+    self.active = NO;
 }
 
 - (void)setFormFieldStyle:(IBAFormFieldStyle *)style {

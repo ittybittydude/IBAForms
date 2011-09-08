@@ -31,6 +31,9 @@
 @property (nonatomic, readonly) CGRect tableViewOriginalFrame;
 @property (nonatomic, retain) IBAFormDataSource *formDataSource;
 
+- (void)isNavigationToolbarTranslucent:(BOOL)translucent;
+- (void)viewWillDisappear:(BOOL)animated;
+- (void)inputManagerDidHide:(NSNotification *)notification;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 	   formDataSource:(IBAFormDataSource *)formDataSource;
 

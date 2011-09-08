@@ -48,13 +48,11 @@
 		doneButton_ = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
 																   target:nil 
 																   action:nil];
-		
 		nextPreviousButton_ = [[UISegmentedControl alloc] initWithItems:[NSArray 
 					arrayWithObjects:IBAInputNavigationToolbarPreviousTitle, IBAInputNavigationToolbarNextTitle, nil]];
 		nextPreviousButton_.segmentedControlStyle = UISegmentedControlStyleBar;
 		nextPreviousButton_.tintColor = [UIColor blackColor];
 		nextPreviousButton_.momentary = YES;
-		
 		nextPreviousBarButtonItem_ = [[UIBarButtonItem alloc] initWithCustomView:self.nextPreviousButton];
 		
 		displayDoneButton_ = YES;

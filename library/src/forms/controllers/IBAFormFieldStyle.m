@@ -30,6 +30,7 @@
 @synthesize valueTextAlignment = valueTextAlignment_;
 @synthesize valueAutoresizingMask = valueAutoresizingMask_;
 @synthesize activeColor = activeColor_;
+@synthesize errorColor = errorColor_;
 @synthesize behavior = behavior_;
 
 - (void)dealloc {
@@ -66,6 +67,7 @@
 		self.valueAutoresizingMask = UIViewAutoresizingFlexibleWidth;
 
 		self.activeColor = IBAFormFieldActiveColor;
+        self.errorColor = IBAFormFieldErrorColor;
 	}
 	
 	return self;
