@@ -17,7 +17,7 @@
 @implementation StringToNumberTransformer
 
 + (id)instance {
-    return [[[[self class] alloc] init] autorelease];
+	return [[[[self class] alloc] init] autorelease];
 }
 
 + (BOOL)allowsReverseTransformation {
