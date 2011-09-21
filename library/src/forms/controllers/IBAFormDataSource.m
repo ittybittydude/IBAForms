@@ -67,7 +67,7 @@
 
 -(NSArray *)getErrors
 {
-    NSMutableArray *errors = [NSMutableArray new];
+    NSMutableArray *errors = [[NSMutableArray new] autorelease];
     
     for (NSInteger section = 0; section < [self.sections count]; section++)
     {
