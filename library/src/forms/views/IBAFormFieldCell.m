@@ -101,7 +101,6 @@ static UIImage *clearImage_ = nil;
 	}
 }
 
-//LABEL NON ACTIVE
 - (void)applyFormFieldStyle {
 	self.label.font = self.formFieldStyle.labelFont;
 	self.label.textColor = self.formFieldStyle.labelTextColor;
@@ -119,7 +118,6 @@ static UIImage *clearImage_ = nil;
 	self.styleApplied = YES;
 }
 
-//LABEL ACTIVE
 - (void)applyActiveStyle {
 //    if((self.formFieldStyle.behavior | IBAFormFieldBehaviorClassic) == self.formFieldStyle.behavior)
 //    {

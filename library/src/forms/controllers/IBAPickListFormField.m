@@ -106,7 +106,6 @@
 	return self;
 }
 
-// Retourne une NSString qui sera la valeur affiche dans le formulaire
 - (NSString *)formFieldStringValue {
 	NSString *value = nil;
     if (self.formFieldValue != nil) {
