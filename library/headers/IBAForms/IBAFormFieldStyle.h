@@ -28,7 +28,8 @@ typedef enum {
 	CGRect labelFrame_;
 	UITextAlignment labelTextAlignment_;
 	UIViewAutoresizing labelAutoresizingMask_;
-	
+	UITextAutocapitalizationType capitalizationType_;
+
     IBAFormFieldBehavior behavior;
     
 	UIColor *valueTextColor_;
@@ -48,6 +49,7 @@ typedef enum {
 @property (nonatomic, assign) CGRect labelFrame;
 @property (nonatomic, assign) UITextAlignment labelTextAlignment;
 @property (nonatomic, assign) UIViewAutoresizing labelAutoresizingMask;
+@property (nonatomic, assign) UITextAutocapitalizationType capitalizationType;
 
 @property (nonatomic) IBAFormFieldBehavior behavior;
 

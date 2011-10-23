@@ -44,6 +44,8 @@
             self.textField = [[[UITextField alloc] init] autorelease];
         
         self.textField.autoresizingMask = style.valueAutoresizingMask;
+        self.textField.autocapitalizationType = style.capitalizationType;
+
         self.textField.returnKeyType = UIReturnKeyNext;
         [self.cellView addSubview:self.textField];
         if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorCancel) == self.formFieldStyle.behavior)

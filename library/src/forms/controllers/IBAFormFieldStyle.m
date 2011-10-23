@@ -23,6 +23,7 @@
 @synthesize labelFont = labelFont_;
 @synthesize labelFrame = labelFrame_;
 @synthesize labelAutoresizingMask = labelAutoresizingMask_;
+@synthesize capitalizationType = capitalizationType_;
 @synthesize valueTextColor = valueTextColor_;
 @synthesize valueBackgroundColor = valueBackgroundColor_;
 @synthesize valueFont = valueFont_;
@@ -32,6 +33,7 @@
 @synthesize activeColor = activeColor_;
 @synthesize errorColor = errorColor_;
 @synthesize behavior = behavior_;
+
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(labelTextColor_);
