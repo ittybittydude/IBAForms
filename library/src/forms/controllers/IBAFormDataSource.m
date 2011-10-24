@@ -49,6 +49,16 @@
 }
 
 
+- (void)clear
+{
+    for (NSInteger i = 0; i < [self.sections count]; i++) {
+        for (NSInteger i2 = 0; i2 < [((IBAFormSection *)[self.sections objectAtIndex:i]).formFields count]; i2++) {
+            [(IBAFormField*)[((IBAFormSection *)[self.sections objectAtIndex:i]).formFields objectAtIndex:i2] clear];
+        }
+    }
+}
+
+
 #pragma mark -
 #pragma mark Validation
 

@@ -53,6 +53,11 @@
 	return self;
 }
 
+-(void)clear
+{
+    [self setFormFieldValue:@""];
+}
+
 -(BOOL)checkField
 {
     return [self.cell checkField];

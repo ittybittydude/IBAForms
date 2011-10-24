@@ -41,6 +41,7 @@
 @property (nonatomic, retain) NSValueTransformer *valueTransformer;
 @property (nonatomic, retain) IBAInputValidatorGeneric *validator;
 
+- (void)clear;
 - (BOOL)checkField;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer validator:(IBAInputValidatorGeneric *)validator;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer;
