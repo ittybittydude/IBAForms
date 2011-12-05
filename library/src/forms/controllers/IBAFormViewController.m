@@ -67,6 +67,15 @@
     return self;
 }
 
+- (void)deleteNavigationToolbar:(BOOL)delete
+{
+    if (delete)
+    {
+        [[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setFrame:CGRectMake(0, 0, 0, 0)];
+        [[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setHidden:YES];
+    }
+}
+
 - (void)isNavigationToolbarTranslucent:(BOOL)translucent
 {
     [[[IBAInputManager sharedIBAInputManager] inputNavigationToolbar] setTranslucent:translucent];
