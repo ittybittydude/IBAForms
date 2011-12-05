@@ -29,6 +29,7 @@
 }
 
 - (void)clear:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:IBAClearFieldNotification object:nil];
 	[self setFormFieldValue:nil];
 }
 

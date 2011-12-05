@@ -28,6 +28,7 @@
 #define IBAInputRequestorFormFieldActivated @"IBAInputRequestorFormFieldActivated"
 #define IBAInputRequestorFormFieldDeactivated @"IBAInputRequestorFormFieldDeactivated"
 #define IBAFormFieldKey @"IBAFormFieldKey"
+#define IBAClearFieldNotification @"IBAClearFieldNotification"
 
 // Form field label style
 #define IBAFormFieldLabelX 10
