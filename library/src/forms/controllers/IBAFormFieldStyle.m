@@ -23,6 +23,7 @@
 @synthesize labelFont = labelFont_;
 @synthesize labelFrame = labelFrame_;
 @synthesize labelAutoresizingMask = labelAutoresizingMask_;
+@synthesize capitalizationType = capitalizationType_;
 @synthesize valueTextColor = valueTextColor_;
 @synthesize valueBackgroundColor = valueBackgroundColor_;
 @synthesize valueFont = valueFont_;
@@ -30,6 +31,9 @@
 @synthesize valueTextAlignment = valueTextAlignment_;
 @synthesize valueAutoresizingMask = valueAutoresizingMask_;
 @synthesize activeColor = activeColor_;
+@synthesize errorColor = errorColor_;
+@synthesize behavior = behavior_;
+
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(labelTextColor_);
@@ -55,6 +59,8 @@
 		self.labelTextAlignment = IBAFormFieldLabelTextAlignment;
 		self.labelAutoresizingMask = UIViewAutoresizingFlexibleRightMargin;
 
+        self.behavior = IBAFormFieldBehaviorClassic;
+        
 		self.valueTextColor = IBAFormFieldValueTextColor;
 		self.valueBackgroundColor = IBAFormFieldValueBackgroundColor;
 		self.valueFont = IBAFormFieldValueFont;
@@ -63,6 +69,7 @@
 		self.valueAutoresizingMask = UIViewAutoresizingFlexibleWidth;
 
 		self.activeColor = IBAFormFieldActiveColor;
+        self.errorColor = IBAFormFieldErrorColor;
 	}
 	
 	return self;

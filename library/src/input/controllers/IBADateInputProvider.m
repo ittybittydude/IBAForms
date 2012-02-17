@@ -14,10 +14,11 @@
 
 #import "IBADateInputProvider.h"
 #import "IBACommon.h"
+#import "IBAInputCreditCardExpiryDatePicker.h"
 
 @interface IBADateInputProvider ()
 @property (nonatomic, readonly) UIView *datePickerView;
-@property (nonatomic, readonly) UIDatePicker *datePicker;
+@property (nonatomic, readonly) UIView *datePicker;
 - (void)datePickerValueChanged;
 @end
 
@@ -39,10 +40,10 @@
 }
 
 - (id)init {
-	return [self initWithDatePickerMode:UIDatePickerModeDate];
+	return [self initWithDatePickerMode:IBADatePickerModeDate];
 }
 
-- (id)initWithDatePickerMode:(UIDatePickerMode)datePickerMode {
+- (id)initWithDatePickerMode:(IBADatePickerMode)datePickerMode {
 	if ((self = [super init])) {
 		self.datePickerMode = datePickerMode;
 	}
@@ -59,17 +60,30 @@
 		datePickerView_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
 		datePickerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		datePickerView_.backgroundColor = [UIColor viewFlipsideBackgroundColor];
-		
-		datePicker_ = [[UIDatePicker alloc] init];
-		datePicker_.datePickerMode = self.datePickerMode;
-		datePicker_.minuteInterval = 5;
-		datePicker_.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-		[datePicker_ addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];
-		
-		[datePickerView_ addSubview:datePicker_];
-		[datePicker_ sizeToFit];
-	}
-	
+
+        if(self.datePickerMode == IBADatePickerModeMonthAndYear)
+        {
+            datePicker_ = [[IBAInputCreditCardExpiryDatePicker alloc] init];
+            
+            datePicker_.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(datePickerValueChanged) name:IBAInputDatePickerViewRowUpdated object:((IBAInputCreditCardExpiryDatePicker *)datePicker_)];
+
+            [datePickerView_ addSubview:datePicker_];
+            [datePicker_ sizeToFit];
+
+        }
+        else
+        {
+            datePicker_ = [[UIDatePicker alloc] init];
+            ((UIDatePicker *)datePicker_).datePickerMode = (UIDatePickerMode)self.datePickerMode;
+            ((UIDatePicker *)datePicker_).minuteInterval = 5;
+            datePicker_.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+            [((UIDatePicker *)datePicker_) addTarget:self action:@selector(datePickerValueChanged) forControlEvents:UIControlEventValueChanged];
+            
+            [datePickerView_ addSubview:datePicker_];
+            [datePicker_ sizeToFit];
+        }
+    }
 	return datePickerView_;
 }
 
@@ -86,7 +100,7 @@
 #pragma mark Date value change management
 
 - (void)datePickerValueChanged {
-	inputRequestor_.inputRequestorValue = self.datePicker.date;
+	inputRequestor_.inputRequestorValue = ((UIDatePicker *)self.datePicker).date;
 }
 
 
@@ -100,8 +114,12 @@
 			date = inputRequestor.defaultInputRequestorValue;
 			inputRequestor.inputRequestorValue = date;
 		}
-		
-		[self.datePicker setDate:date animated:YES];
+        if(self.datePickerMode == IBADatePickerModeMonthAndYear)
+        {
+            
+        }
+        else
+            [((UIDatePicker *)self.datePicker) setDate:date animated:YES];
 	}
 }
 

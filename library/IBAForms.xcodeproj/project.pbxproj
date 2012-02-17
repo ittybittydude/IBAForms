@@ -70,6 +70,18 @@
 		753A7EFD13B36BCF003931DA /* IBATitleFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A7EFB13B36BCF003931DA /* IBATitleFormField.m */; };
 		AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */; settings = {ATTRIBUTES = (); }; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		BE8D9A5D14165855009EBDEB /* IBAInputValidatorGeneric.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8D9A5B14165855009EBDEB /* IBAInputValidatorGeneric.m */; };
+		BE8D9A6D14167869009EBDEB /* IBAInputValidatorGeneric.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8D9A6C14167868009EBDEB /* IBAInputValidatorGeneric.h */; };
+		BE8D9A711417B289009EBDEB /* IBAInputValidatorRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8D9A6F1417B287009EBDEB /* IBAInputValidatorRegex.m */; };
+		BE8D9A771417BCEE009EBDEB /* IBAInputValidatorEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8D9A751417BCED009EBDEB /* IBAInputValidatorEmail.m */; };
+		BE8D9A791417BD33009EBDEB /* IBAInputValidatorEmail.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8D9A781417BD31009EBDEB /* IBAInputValidatorEmail.h */; };
+		BE8D9A7B1417BD66009EBDEB /* IBAInputValidatorRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = BE8D9A7A1417BD65009EBDEB /* IBAInputValidatorRegex.h */; };
+		BE93C40C1403DE9800F90E84 /* IBAInputGenericPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE93C40A1403DE9700F90E84 /* IBAInputGenericPickerView.h */; };
+		BE93C4101403DEDC00F90E84 /* IBAInputGenericPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE93C40F1403DEDC00F90E84 /* IBAInputGenericPickerView.m */; };
+		BE93C42C140416D700F90E84 /* IBAInputCreditCardExpiryDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BE93C42B140416D600F90E84 /* IBAInputCreditCardExpiryDatePicker.m */; };
+		BE93C42E1404170200F90E84 /* IBAInputCreditCardExpiryDatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = BE93C42D1404170200F90E84 /* IBAInputCreditCardExpiryDatePicker.h */; };
+		BEACE85814028C78001F454B /* IBAInputPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEACE85614028C78001F454B /* IBAInputPickerView.m */; };
+		BEACE85F1402B87A001F454B /* IBAInputPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = BEACE85E1402B87A001F454B /* IBAInputPickerView.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +148,18 @@
 		753A7EFB13B36BCF003931DA /* IBATitleFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBATitleFormField.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAForms_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BE8D9A5B14165855009EBDEB /* IBAInputValidatorGeneric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputValidatorGeneric.m; sourceTree = "<group>"; };
+		BE8D9A6C14167868009EBDEB /* IBAInputValidatorGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputValidatorGeneric.h; sourceTree = "<group>"; };
+		BE8D9A6F1417B287009EBDEB /* IBAInputValidatorRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputValidatorRegex.m; sourceTree = "<group>"; };
+		BE8D9A751417BCED009EBDEB /* IBAInputValidatorEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputValidatorEmail.m; sourceTree = "<group>"; };
+		BE8D9A781417BD31009EBDEB /* IBAInputValidatorEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputValidatorEmail.h; sourceTree = "<group>"; };
+		BE8D9A7A1417BD65009EBDEB /* IBAInputValidatorRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputValidatorRegex.h; sourceTree = "<group>"; };
+		BE93C40A1403DE9700F90E84 /* IBAInputGenericPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputGenericPickerView.h; sourceTree = "<group>"; };
+		BE93C40F1403DEDC00F90E84 /* IBAInputGenericPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputGenericPickerView.m; sourceTree = "<group>"; };
+		BE93C42B140416D600F90E84 /* IBAInputCreditCardExpiryDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputCreditCardExpiryDatePicker.m; sourceTree = "<group>"; };
+		BE93C42D1404170200F90E84 /* IBAInputCreditCardExpiryDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputCreditCardExpiryDatePicker.h; sourceTree = "<group>"; };
+		BEACE85614028C78001F454B /* IBAInputPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputPickerView.m; sourceTree = "<group>"; };
+		BEACE85E1402B87A001F454B /* IBAInputPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputPickerView.h; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB518D /* libIBAForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIBAForms.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -210,19 +234,19 @@
 			children = (
 				7512408213A8F6BE007BF2B5 /* IBABooleanFormField.m */,
 				7512408313A8F6BE007BF2B5 /* IBAButtonFormField.m */,
-				7512408413A8F6BE007BF2B5 /* IBADateFormField.m */,
 				7512408513A8F6BE007BF2B5 /* IBAFormDataSource.m */,
-				7512408613A8F6BE007BF2B5 /* IBAFormField.m */,
-				7512408713A8F6BE007BF2B5 /* IBAFormFieldStyle.m */,
 				7512408813A8F6BE007BF2B5 /* IBAFormSection.m */,
 				7512408913A8F6BE007BF2B5 /* IBAFormViewController.m */,
 				7512408A13A8F6BE007BF2B5 /* IBAInputRequestorFormField.m */,
 				7512408B13A8F6BE007BF2B5 /* IBALabelFormField.m */,
 				7512408C13A8F6BE007BF2B5 /* IBAPasswordFormField.m */,
-				7512408D13A8F6BE007BF2B5 /* IBAPickListFormField.m */,
 				7512408E13A8F6BE007BF2B5 /* IBAReadOnlyTextFormField.m */,
-				7512408F13A8F6BE007BF2B5 /* IBATextFormField.m */,
 				753A7EFB13B36BCF003931DA /* IBATitleFormField.m */,
+				7512408D13A8F6BE007BF2B5 /* IBAPickListFormField.m */,
+				7512408713A8F6BE007BF2B5 /* IBAFormFieldStyle.m */,
+				7512408F13A8F6BE007BF2B5 /* IBATextFormField.m */,
+				7512408413A8F6BE007BF2B5 /* IBADateFormField.m */,
+				7512408613A8F6BE007BF2B5 /* IBAFormField.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -232,9 +256,9 @@
 			children = (
 				7512409113A8F6BE007BF2B5 /* IBABooleanSwitchCell.m */,
 				7512409213A8F6BE007BF2B5 /* IBADateFormFieldCell.m */,
-				7512409313A8F6BE007BF2B5 /* IBAFormFieldCell.m */,
 				7512409413A8F6BE007BF2B5 /* IBALabelFormCell.m */,
 				7512409513A8F6BE007BF2B5 /* IBATextFormFieldCell.m */,
+				7512409313A8F6BE007BF2B5 /* IBAFormFieldCell.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -251,10 +275,10 @@
 		7512409713A8F6BE007BF2B5 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7512409813A8F6BE007BF2B5 /* IBADateInputProvider.m */,
 				7512409913A8F6BE007BF2B5 /* IBAInputManager.m */,
-				7512409A13A8F6BE007BF2B5 /* IBAMultiplePickListInputProvider.m */,
+				7512409813A8F6BE007BF2B5 /* IBADateInputProvider.m */,
 				7512409B13A8F6BE007BF2B5 /* IBASinglePickListInputProvider.m */,
+				7512409A13A8F6BE007BF2B5 /* IBAMultiplePickListInputProvider.m */,
 				7512409C13A8F6BE007BF2B5 /* IBATextInputProvider.m */,
 			);
 			path = controllers;
@@ -264,6 +288,12 @@
 			isa = PBXGroup;
 			children = (
 				7512409E13A8F6BE007BF2B5 /* IBAInputNavigationToolbar.m */,
+				BE93C42B140416D600F90E84 /* IBAInputCreditCardExpiryDatePicker.m */,
+				BE93C40F1403DEDC00F90E84 /* IBAInputGenericPickerView.m */,
+				BEACE85614028C78001F454B /* IBAInputPickerView.m */,
+				BE8D9A5B14165855009EBDEB /* IBAInputValidatorGeneric.m */,
+				BE8D9A6F1417B287009EBDEB /* IBAInputValidatorRegex.m */,
+				BE8D9A751417BCED009EBDEB /* IBAInputValidatorEmail.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -279,19 +309,28 @@
 		751240B913A8F6CF007BF2B5 /* IBAForms */ = {
 			isa = PBXGroup;
 			children = (
+				BE8D9A781417BD31009EBDEB /* IBAInputValidatorEmail.h */,
+				BE8D9A7A1417BD65009EBDEB /* IBAInputValidatorRegex.h */,
+				BE8D9A6C14167868009EBDEB /* IBAInputValidatorGeneric.h */,
+				BE93C40A1403DE9700F90E84 /* IBAInputGenericPickerView.h */,
+				751240C113A8F6CF007BF2B5 /* IBAFormConstants.h */,
+				751240C313A8F6CF007BF2B5 /* IBAFormField.h */,
+				751240BE13A8F6CF007BF2B5 /* IBADateFormField.h */,
+				751240D913A8F6CF007BF2B5 /* IBATextFormField.h */,
+				751240C413A8F6CF007BF2B5 /* IBAFormFieldCell.h */,
+				751240C513A8F6CF007BF2B5 /* IBAFormFieldStyle.h */,
+				751240BF13A8F6CF007BF2B5 /* IBADateFormFieldCell.h */,
+				751240C613A8F6CF007BF2B5 /* IBAFormModelManager.h */,
+				BE93C42D1404170200F90E84 /* IBAInputCreditCardExpiryDatePicker.h */,
+				BEACE85E1402B87A001F454B /* IBAInputPickerView.h */,
+				751240D813A8F6CF007BF2B5 /* IBASinglePickListInputProvider.h */,
+				751240C013A8F6CF007BF2B5 /* IBADateInputProvider.h */,
+				751240D513A8F6CF007BF2B5 /* IBAPickListFormField.h */,
 				751240BA13A8F6CF007BF2B5 /* IBABooleanFormField.h */,
 				751240BB13A8F6CF007BF2B5 /* IBABooleanSwitchCell.h */,
 				751240BC13A8F6CF007BF2B5 /* IBAButtonFormField.h */,
 				751240BD13A8F6CF007BF2B5 /* IBACommon.h */,
-				751240BE13A8F6CF007BF2B5 /* IBADateFormField.h */,
-				751240BF13A8F6CF007BF2B5 /* IBADateFormFieldCell.h */,
-				751240C013A8F6CF007BF2B5 /* IBADateInputProvider.h */,
-				751240C113A8F6CF007BF2B5 /* IBAFormConstants.h */,
 				751240C213A8F6CF007BF2B5 /* IBAFormDataSource.h */,
-				751240C313A8F6CF007BF2B5 /* IBAFormField.h */,
-				751240C413A8F6CF007BF2B5 /* IBAFormFieldCell.h */,
-				751240C513A8F6CF007BF2B5 /* IBAFormFieldStyle.h */,
-				751240C613A8F6CF007BF2B5 /* IBAFormModelManager.h */,
 				751240C713A8F6CF007BF2B5 /* IBAForms.h */,
 				751240C813A8F6CF007BF2B5 /* IBAFormSection.h */,
 				751240C913A8F6CF007BF2B5 /* IBAFormViewController.h */,
@@ -306,11 +345,8 @@
 				751240D213A8F6CF007BF2B5 /* IBALabelFormField.h */,
 				751240D313A8F6CF007BF2B5 /* IBAMultiplePickListInputProvider.h */,
 				751240D413A8F6CF007BF2B5 /* IBAPasswordFormField.h */,
-				751240D513A8F6CF007BF2B5 /* IBAPickListFormField.h */,
 				751240D613A8F6CF007BF2B5 /* IBAPickListOptionsProvider.h */,
 				751240D713A8F6CF007BF2B5 /* IBAReadOnlyTextFormField.h */,
-				751240D813A8F6CF007BF2B5 /* IBASinglePickListInputProvider.h */,
-				751240D913A8F6CF007BF2B5 /* IBATextFormField.h */,
 				751240DA13A8F6CF007BF2B5 /* IBATextFormFieldCell.h */,
 				751240DB13A8F6CF007BF2B5 /* IBATextInputProvider.h */,
 				753A7EFA13B36BCF003931DA /* IBATitleFormField.h */,
@@ -361,6 +397,12 @@
 				751240FD13A8F6CF007BF2B5 /* IBATextFormFieldCell.h in Headers */,
 				751240FE13A8F6CF007BF2B5 /* IBATextInputProvider.h in Headers */,
 				753A7EFC13B36BCF003931DA /* IBATitleFormField.h in Headers */,
+				BEACE85F1402B87A001F454B /* IBAInputPickerView.h in Headers */,
+				BE93C40C1403DE9800F90E84 /* IBAInputGenericPickerView.h in Headers */,
+				BE93C42E1404170200F90E84 /* IBAInputCreditCardExpiryDatePicker.h in Headers */,
+				BE8D9A6D14167869009EBDEB /* IBAInputValidatorGeneric.h in Headers */,
+				BE8D9A791417BD33009EBDEB /* IBAInputValidatorEmail.h in Headers */,
+				BE8D9A7B1417BD66009EBDEB /* IBAInputValidatorRegex.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +485,12 @@
 				751240B613A8F6BE007BF2B5 /* IBATextInputProvider.m in Sources */,
 				751240B713A8F6BE007BF2B5 /* IBAInputNavigationToolbar.m in Sources */,
 				753A7EFD13B36BCF003931DA /* IBATitleFormField.m in Sources */,
+				BEACE85814028C78001F454B /* IBAInputPickerView.m in Sources */,
+				BE93C4101403DEDC00F90E84 /* IBAInputGenericPickerView.m in Sources */,
+				BE93C42C140416D700F90E84 /* IBAInputCreditCardExpiryDatePicker.m in Sources */,
+				BE8D9A5D14165855009EBDEB /* IBAInputValidatorGeneric.m in Sources */,
+				BE8D9A711417B289009EBDEB /* IBAInputValidatorRegex.m in Sources */,
+				BE8D9A771417BCEE009EBDEB /* IBAInputValidatorEmail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

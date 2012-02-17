@@ -16,6 +16,7 @@
 #import "IBAFormFieldCell.h"
 #import "IBAFormModelManager.h"
 #import "IBACommon.h"
+#import "IBAInputValidatorGeneric.h"
 
 @protocol IBAFormFieldDelegate;
 
@@ -27,6 +28,7 @@
 	IBAFormFieldStyle *formFieldStyle_;
 	BOOL nullable_;
 	NSValueTransformer *valueTransformer_;
+    IBAInputValidatorGeneric *validator;
 }
 
 @property (nonatomic, copy) NSString *keyPath;
@@ -37,8 +39,11 @@
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
 @property (nonatomic, assign, getter=isNullable) BOOL nullable;
 @property (nonatomic, retain) NSValueTransformer *valueTransformer;
+@property (nonatomic, retain) IBAInputValidatorGeneric *validator;
 
-
+- (void)clear;
+- (BOOL)checkField;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer validator:(IBAInputValidatorGeneric *)validator;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title;
 - (id)initWithKeyPath:(NSString*)keyPath;

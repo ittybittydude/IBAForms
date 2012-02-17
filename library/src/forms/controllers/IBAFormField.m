@@ -14,7 +14,6 @@
 
 #import "IBAFormField.h"
 
-
 @implementation IBAFormField
 
 @synthesize keyPath = keyPath_;
@@ -24,6 +23,7 @@
 @synthesize formFieldStyle = formFieldStyle_;
 @synthesize nullable = nullable_;
 @synthesize valueTransformer = valueTransformer_;
+@synthesize validator = validator_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
@@ -37,15 +37,34 @@
 	[super dealloc];
 }
 
-- (id)initWithKeyPath:(NSString*)keyPath title:(NSString*)title valueTransformer:(NSValueTransformer *)valueTransformer {
-	if ((self = [super init])) {
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer validator:(IBAInputValidatorGeneric *)valueValidator
+{
+    if ((self = [super init])) {
 		self.keyPath = keyPath;
 		title_ = [title copy];
 		self.nullable = YES;
 		self.valueTransformer = valueTransformer;
+        if (valueValidator == nil) {
+            valueValidator = [[IBAInputValidatorGeneric new] autorelease];
+        }
+        self.validator = valueValidator;
 	}
-
+    
 	return self;
+}
+
+-(void)clear
+{
+    [self setFormFieldValue:@""];
+}
+
+-(BOOL)checkField
+{
+    return [self.cell checkField];
+}
+
+- (id)initWithKeyPath:(NSString*)keyPath title:(NSString*)title valueTransformer:(NSValueTransformer *)valueTransformer {
+	return [self initWithKeyPath:keyPath title:title valueTransformer:valueTransformer validator:nil];
 }
 
 - (id)initWithKeyPath:(NSString*)keyPath title:(NSString*)title {

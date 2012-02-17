@@ -17,6 +17,8 @@
 #define IBAFormFieldCellTextColor [UIColor colorWithRed:0.464 green:0.750 blue:0.775 alpha:1.000]
 #define IBAFormFieldCellBackgoundColor [UIColor whiteColor]
 #define IBAFormFieldActiveColor [UIColor colorWithRed:0.893 green:0.976 blue:0.976 alpha:1.000]
+#define IBAFormFieldErrorColor [UIColor colorWithRed:0.976 green:0.893 blue:0.893 alpha:1.000]
+
 
 // Notifications
 #define IBAPushViewController @"IBAPushViewController"
@@ -39,9 +41,15 @@
 
 // Form field value style
 #define IBAFormFieldValueX 75
+#define IBAFormFieldValueXAdjustement 1
 #define IBAFormFieldValueY 10
+#define IBAFormFieldValueYAdjustement 5
 #define IBAFormFieldValueWidth 235
 #define IBAFormFieldValueHeight 26
+#define IBAFormFieldValueMargin 4
+#define IBAFormFieldValueMarginCancel (IBAFormFieldValueMargin + 28)
+#define IBAFormFieldValueMarginPlaceHolder 11
+#define IBAFormFieldValueMarginPlaceHolderCancel (IBAFormFieldValueMarginPlaceHolder + 28)
 #define IBAFormFieldValueFont [UIFont systemFontOfSize:16]
 #define IBAFormFieldValueTextColor [UIColor blackColor]
 #define IBAFormFieldValueTextAlignment UITextAlignmentLeft

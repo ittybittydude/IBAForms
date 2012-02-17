@@ -19,9 +19,13 @@
 	BOOL tableViewStyleGrouped_;
 	BOOL modalPresentation_;
     BOOL displayNavigationToolbar_;
+    int behavior;
+    int cancel;
 	UIModalPresentationStyle modalPresentationStyle_;
 }
 
+@property (nonatomic) int behavior;
+@property (nonatomic) int cancel;
 @property (nonatomic, assign) BOOL shouldAutoRotate;
 @property (nonatomic, assign) BOOL tableViewStyleGrouped;
 @property (nonatomic, assign) BOOL modalPresentation;

@@ -22,6 +22,10 @@
 		756A424413A8863A0093279E /* ShowcaseButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 756A423813A8863A0093279E /* ShowcaseButtonStyle.m */; };
 		756A424513A8863A0093279E /* ShowcaseFieldStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 756A423A13A8863A0093279E /* ShowcaseFieldStyle.m */; };
 		756A424613A8863A0093279E /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 756A423D13A8863A0093279E /* StringToNumberTransformer.m */; };
+		BE3356241407986F007B35FB /* IBAInputCreditCardTypePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3356221407986F007B35FB /* IBAInputCreditCardTypePicker.m */; };
+		BE33562714079995007B35FB /* cc-type_maestro.png in Resources */ = {isa = PBXBuildFile; fileRef = BE33562614079995007B35FB /* cc-type_maestro.png */; };
+		BE335629140799A3007B35FB /* cc-type_chinaUnionPay.png in Resources */ = {isa = PBXBuildFile; fileRef = BE335628140799A3007B35FB /* cc-type_chinaUnionPay.png */; };
+		BE33562B140799AD007B35FB /* cc-type_visa.png in Resources */ = {isa = PBXBuildFile; fileRef = BE33562A140799AD007B35FB /* cc-type_visa.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +74,11 @@
 		756A423A13A8863A0093279E /* ShowcaseFieldStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseFieldStyle.m; sourceTree = "<group>"; };
 		756A423C13A8863A0093279E /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
 		756A423D13A8863A0093279E /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
+		BE3356221407986F007B35FB /* IBAInputCreditCardTypePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBAInputCreditCardTypePicker.m; sourceTree = "<group>"; };
+		BE3356231407986F007B35FB /* IBAInputCreditCardTypePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAInputCreditCardTypePicker.h; sourceTree = "<group>"; };
+		BE33562614079995007B35FB /* cc-type_maestro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cc-type_maestro.png"; sourceTree = "<group>"; };
+		BE335628140799A3007B35FB /* cc-type_chinaUnionPay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cc-type_chinaUnionPay.png"; sourceTree = "<group>"; };
+		BE33562A140799AD007B35FB /* cc-type_visa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cc-type_visa.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +181,7 @@
 		756A422C13A8863A0093279E /* datasources */ = {
 			isa = PBXGroup;
 			children = (
+				BE33562114079854007B35FB /* Custom Picker */,
 				756A422D13A8863A0093279E /* SampleFormDataSource.h */,
 				756A422E13A8863A0093279E /* SampleFormDataSource.m */,
 				756A422F13A8863A0093279E /* ShowcaseFormDataSource.h */,
@@ -209,6 +219,26 @@
 			path = transformers;
 			sourceTree = "<group>";
 		};
+		BE33562114079854007B35FB /* Custom Picker */ = {
+			isa = PBXGroup;
+			children = (
+				BE3356251407996E007B35FB /* ressources */,
+				BE3356231407986F007B35FB /* IBAInputCreditCardTypePicker.h */,
+				BE3356221407986F007B35FB /* IBAInputCreditCardTypePicker.m */,
+			);
+			name = "Custom Picker";
+			sourceTree = "<group>";
+		};
+		BE3356251407996E007B35FB /* ressources */ = {
+			isa = PBXGroup;
+			children = (
+				BE33562A140799AD007B35FB /* cc-type_visa.png */,
+				BE335628140799A3007B35FB /* cc-type_chinaUnionPay.png */,
+				BE33562614079995007B35FB /* cc-type_maestro.png */,
+			);
+			name = ressources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -236,6 +266,7 @@
 		756A41E813A884E30093279E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Itty Bitty Apps";
 			};
 			buildConfigurationList = 756A41EB13A884E30093279E /* Build configuration list for PBXProject "IBAFormsShowcase" */;
@@ -277,6 +308,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				756A420013A884E30093279E /* InfoPlist.strings in Resources */,
+				BE33562714079995007B35FB /* cc-type_maestro.png in Resources */,
+				BE335629140799A3007B35FB /* cc-type_chinaUnionPay.png in Resources */,
+				BE33562B140799AD007B35FB /* cc-type_visa.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +331,7 @@
 				756A424413A8863A0093279E /* ShowcaseButtonStyle.m in Sources */,
 				756A424513A8863A0093279E /* ShowcaseFieldStyle.m in Sources */,
 				756A424613A8863A0093279E /* StringToNumberTransformer.m in Sources */,
+				BE3356241407986F007B35FB /* IBAInputCreditCardTypePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,116 +45,86 @@
 }
 
 - (id)init {
-	if ((self = [super init])) {
-		providerView_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
+    if ((self = [super init])) {
+        providerView_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
 		providerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 		providerView_.backgroundColor = [UIColor viewFlipsideBackgroundColor];
-		
-		pickerView_ = [[UIPickerView alloc] initWithFrame:[providerView_ bounds]];
-		pickerView_.showsSelectionIndicator = YES;
-		pickerView_.dataSource = self;
-		pickerView_.delegate = self;
-		pickerView_.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-		[providerView_ sizeToFit];
+    }
 
-		[providerView_ addSubview:pickerView_];
-	}
-	
 	return self;
 }
 
-
 - (void)setInputRequestor:(id<IBAInputRequestor>)inputRequestor {
 	inputRequestor_ = inputRequestor;
-	
+    
 	if (inputRequestor != nil) {
+        NSString *picklistClass = [inputRequestor_  getPicklistClass];
+        BOOL isCircular = [inputRequestor_ getIsCircular];
+        pickerView_ = [[NSClassFromString(picklistClass) alloc] initWithFrame:[providerView_ bounds]];
+        ((IBAInputGenericPickerView *)self.pickerView).isCircular = isCircular;
+		[providerView_ sizeToFit];
+		[providerView_ addSubview:self.pickerView];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify:) name:IBAInputPickerViewRowUpdated object:self.pickerView];
+        
+        ((IBAInputGenericPickerView *)self.pickerView).pickListOptions = self.pickListOptions;
 		[self.pickerView reloadAllComponents];
-    [self updateSelectedOption];
+        [self updateSelectedOption];
 	}
 }
 
+- (void)notify:(NSNotification *)notification {
+	id notificationUserInfo = [notification userInfo];
+    [self setSelectedOptionWithIndex:[[[notificationUserInfo objectForKey:@"selectedRow"] objectAtIndex:0] intValue]];
+}
 
 - (id<IBAPickListOptionsProvider>)pickListOptionsProvider {
 	return ((id<IBAPickListOptionsProvider>)self.inputRequestor);
 }
 
-
 - (NSArray *)pickListOptions {
 	return [self.pickListOptionsProvider pickListOptions];
 }
-
 
 #pragma mark -
 #pragma mark IBAInputProvider
 
 - (UIView *)view {
-	return self.providerView;
+    return self.providerView;
 }
-
-
-#pragma mark -
-#pragma mark UIPickerViewDataSource
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-	return 1; 
-}
-
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-	return self.pickListOptions.count;
-}
-
-
-#pragma mark -
-#pragma mark UIPickerViewDelegate
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-	UILabel *label = nil;
-	
-	if ((view != nil) && ([view isKindOfClass:[UILabel class]])){
-		label = (UILabel *)view;
-	} else {
-		label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.bounds.size.width - 40, 44)] autorelease];
-		label.backgroundColor = [UIColor clearColor];
-		label.shadowColor = [UIColor whiteColor];
-		label.shadowOffset = CGSizeMake(0, 1);
-	}
-	
-	id<IBAPickListOption> pickListOption = [self.pickListOptions objectAtIndex:row];
-
-	label.text = pickListOption.name;
-	label.font = pickListOption.font;
-	
-	return label;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	[self setSelectedOptionWithIndex:row];
-}
-
 
 #pragma mark -
 #pragma mark Selection helpers
 
 - (void)setSelectedOptionWithIndex:(NSInteger)optionIndex {
-	id<IBAPickListOption> selectedOption = [self.pickListOptions objectAtIndex:optionIndex];
+    
+	id<IBAPickListOption> selectedOption = [((IBAInputGenericPickerView *)self.pickerView).pickListOptions objectAtIndex:optionIndex];
 	[self setSelectedOption:selectedOption];
 }
 
-
 - (void)setSelectedOption:(id<IBAPickListOption>)selectedOption {
-	self.inputRequestor.inputRequestorValue = [NSSet setWithObject:selectedOption]; 
+	self.inputRequestor.inputRequestorValue = [NSSet setWithObject:selectedOption];     
 }
 
 - (void)updateSelectedOption {
-	// Updates the UI to display the selected option, or defaults to the first option if none are already selected
-	id<IBAPickListOption> selectedPickListOption = [self.inputRequestor.inputRequestorValue anyObject];
-	if (nil != selectedPickListOption) {
-		NSInteger selectedRow = [self.pickListOptions indexOfObject:selectedPickListOption];
-		[self.pickerView selectRow:selectedRow inComponent:0 animated:YES];
-	} else {
-		[self setSelectedOptionWithIndex:0];
-	} 
+    id<IBAPickListOption> selectedPickListOption = [self.inputRequestor.inputRequestorValue anyObject];
+    NSInteger selectedRow;
+    
+    if (((IBAInputGenericPickerView *)self.pickerView).isCircular)
+    {
+        for (int i = 0; i < [((IBAInputGenericPickerView *)self.pickerView).translation count]; i++)
+        {
+            [((IBAInputGenericPickerView *)self.pickerView).translation replaceObjectAtIndex:i withObject:[NSNumber numberWithInt:(IBAPickListRowsMax / [self.pickListOptions count] / 2)]];
+        }
+    }
+    
+    for (int i = 0; i < [((IBAInputGenericPickerView *)self.pickerView).translation count]; i++)
+    {
+        selectedRow = [((IBAInputGenericPickerView *)self.pickerView).pickListOptions count] * [[((IBAInputGenericPickerView *)self.pickerView).translation objectAtIndex:i] intValue] +
+        (selectedPickListOption == nil ? 0 : [((IBAInputGenericPickerView *)self.pickerView).pickListOptions indexOfObject:selectedPickListOption]);
+
+        [(IBAInputGenericPickerView *)self.pickerView pickerView:self.pickerView didSelectRow:selectedRow inComponent:i];
+        [self.pickerView selectRow:selectedRow inComponent:i animated:NO];
+    }
 }
 
 @end

@@ -15,16 +15,24 @@
 #import <Foundation/Foundation.h>
 #import "IBAInputProvider.h"
 
+typedef enum {
+    IBADatePickerModeTime = UIDatePickerModeTime,           // Displays hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. 6 | 53 | PM)
+    IBADatePickerModeDate = UIDatePickerModeDate,           // Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
+    IBADatePickerModeDateAndTime = UIDatePickerModeDateAndTime,    // Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
+    IBADatePickerModeCountDownTimer = UIDatePickerModeCountDownTimer,  // Displays hour and minute (e.g. 1 | 53)
+    IBADatePickerModeMonthAndYear =
+    UIDatePickerModeCountDownTimer + 1
+}  IBADatePickerMode;
 
 @interface IBADateInputProvider : NSObject <IBAInputProvider> {
 	UIView *datePickerView_;
-	UIDatePickerMode datePickerMode_;
-	UIDatePicker *datePicker_;
+	IBADatePickerMode datePickerMode_;
+	UIView *datePicker_;
 	id<IBAInputRequestor> inputRequestor_;
 }
 
-@property (nonatomic, assign) UIDatePickerMode datePickerMode;
+@property (nonatomic, assign) IBADatePickerMode datePickerMode;
 
-- (id)initWithDatePickerMode:(UIDatePickerMode)datePickerMode;
+- (id)initWithDatePickerMode:(IBADatePickerMode)datePickerMode;
 
 @end

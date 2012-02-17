@@ -73,7 +73,7 @@
 		inputNavigationToolbar_ = [[IBAInputNavigationToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];   
 		inputNavigationToolbar_.doneButton.target = self;
 		inputNavigationToolbar_.doneButton.action = @selector(deactivateActiveInputRequestor);
-		[inputNavigationToolbar_.nextPreviousButton addTarget:self action:@selector(nextPreviousButtonSelected) 
+        [inputNavigationToolbar_.nextPreviousButton addTarget:self action:@selector(nextPreviousButtonSelected) 
 			forControlEvents:UIControlEventValueChanged];
         
         inputNavigationToolbarEnabled_ = YES;
@@ -87,17 +87,22 @@
 		[self registerInputProvider:[[[IBADateInputProvider alloc] init] autorelease]
 						forDataType:IBAInputDataTypeDate];
 		// Time
-		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:UIDatePickerModeTime] autorelease] 
+		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:IBADatePickerModeTime] autorelease] 
 						forDataType:IBAInputDataTypeTime];
 		
 		// Date & Time
-		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:UIDatePickerModeDateAndTime] autorelease]
+		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:IBADatePickerModeDateAndTime] autorelease]
 						forDataType:IBAInputDataTypeDateTime];
+        
+        // Month & Year
+		[self registerInputProvider:[[[IBADateInputProvider alloc] initWithDatePickerMode:IBADatePickerModeMonthAndYear] autorelease]
+						forDataType:IBAInputDataTypeMonthYear];
 		
 		// Single Picklist
 		[self registerInputProvider:[[[IBASinglePickListInputProvider alloc] init] autorelease]
 						forDataType:IBAInputDataTypePickListSingle];
-		
+
+        
 		// Multiple Picklist
 		[self registerInputProvider:[[[IBAMultiplePickListInputProvider alloc] init] autorelease]
 						forDataType:IBAInputDataTypePickListMultiple];

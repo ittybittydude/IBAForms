@@ -14,6 +14,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    IBAFormFieldBehaviorClassic = 1,
+    IBAFormFieldBehaviorPlaceHolder = 2,
+    IBAFormFieldBehaviorCancel = 4,
+    IBAFormFieldBehaviorNoCancel = 8,
+}   IBAFormFieldBehavior;
+
 @interface IBAFormFieldStyle : NSObject {
 	UIColor *labelTextColor_;
 	UIColor *labelBackgroundColor_;
@@ -21,7 +28,10 @@
 	CGRect labelFrame_;
 	UITextAlignment labelTextAlignment_;
 	UIViewAutoresizing labelAutoresizingMask_;
-	
+	UITextAutocapitalizationType capitalizationType_;
+
+    IBAFormFieldBehavior behavior;
+    
 	UIColor *valueTextColor_;
 	UIColor *valueBackgroundColor_;
 	UIFont *valueFont_;
@@ -29,6 +39,7 @@
 	UITextAlignment valueTextAlignment_;
 	UIViewAutoresizing valueAutoresizingMask_;
 
+    UIColor *errorColor_;
 	UIColor *activeColor_;
 }
 
@@ -38,6 +49,9 @@
 @property (nonatomic, assign) CGRect labelFrame;
 @property (nonatomic, assign) UITextAlignment labelTextAlignment;
 @property (nonatomic, assign) UIViewAutoresizing labelAutoresizingMask;
+@property (nonatomic, assign) UITextAutocapitalizationType capitalizationType;
+
+@property (nonatomic) IBAFormFieldBehavior behavior;
 
 @property (nonatomic, retain) UIColor *valueTextColor;
 @property (nonatomic, retain) UIColor *valueBackgroundColor;
@@ -47,5 +61,6 @@
 @property (nonatomic, assign) UIViewAutoresizing valueAutoresizingMask;
 
 @property (nonatomic, retain) UIColor *activeColor;
+@property (nonatomic, retain) UIColor *errorColor;
 
 @end
