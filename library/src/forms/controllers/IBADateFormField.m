@@ -31,6 +31,23 @@
 	[super dealloc];
 }
 
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
+        dateFormatter:(NSDateFormatter *)dateFormatter validator:(IBAInputValidatorGeneric *)valueValidator {
+	if ((self = [super initWithKeyPath:keyPath title:title valueTransformer:nil validator:valueValidator])) {
+		self.dateFormFieldType = dateFieldType;
+		self.defaultValue = date;
+        
+		self.dateFormatter = dateFormatter;
+		if (self.dateFormatter == nil) {
+			self.dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+			[self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+			[self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+			[dateFormatter setDateFormat:@"EEE d MMM yyyy"];
+		}
+	}
+    
+    return self;
+}
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
 		 dateFormatter:(NSDateFormatter *)dateFormatter {
@@ -47,7 +64,7 @@
 		}
 	}
 
-	return self;
+	return [self initWithKeyPath:keyPath title:title defaultValue:date type:dateFieldType dateFormatter:dateFormatter validator:nil];
 }
 
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType {
@@ -59,10 +76,12 @@
 }
 
 - (NSString *)formFieldStringValue {
+    //Retourne ce que l'on voit dans le form. Trouver formFieldValue !
 	return [self.dateFormatter stringFromDate:[self formFieldValue]];
 }
 
 - (void)clear:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:IBAClearFieldNotification object:nil];
 	[self setFormFieldValue:nil];
 }
 
@@ -76,7 +95,7 @@
 
 - (IBADateFormFieldCell *)dateFormFieldCell {
 	if (dateFormFieldCell_ == nil) {
-		dateFormFieldCell_ = [[IBADateFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell"];
+		dateFormFieldCell_ = [[IBADateFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle reuseIdentifier:@"Cell" validator:self.validator];
 		dateFormFieldCell_.nullable = self.nullable;
 		[dateFormFieldCell_.clearButton addTarget:self action:@selector(clear:) forControlEvents:UIControlEventTouchUpInside];
 	}
@@ -106,6 +125,9 @@
 			break;
 		case IBADateFormFieldTypeDateTime:
 			dataType = IBAInputDataTypeDateTime;
+			break;
+        case IBADateFormFieldTypeMonthYear:
+			dataType = IBAInputDataTypeMonthYear;
 			break;
 		default:
 			break;

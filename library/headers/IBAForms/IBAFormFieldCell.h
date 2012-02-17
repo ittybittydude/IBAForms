@@ -14,6 +14,7 @@
 
 #import <UIKit/UIKit.h>
 #import "IBAFormFieldStyle.h"
+#import "IBAInputValidatorGeneric.h"
 
 @class IBAFormField;
 
@@ -25,9 +26,12 @@
 	IBAFormFieldStyle *formFieldStyle_;
 	BOOL styleApplied_;
 	BOOL active_;
-	
+    UIButton *clearButton_;
+	BOOL nullable_;
+
 	@private
 	UIView *hiddenCellCache_;
+    IBAInputValidatorGeneric *validator;
 }
 
 @property (readwrite, retain) UIView *inputView;
@@ -35,13 +39,19 @@
 @property (nonatomic, retain) UIView *cellView;
 @property (nonatomic, retain) UILabel *label;
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
+@property (nonatomic, retain) IBAInputValidatorGeneric *validator;
 @property (nonatomic, assign) BOOL styleApplied;
 @property (nonatomic, assign) UIView *hiddenCellCache;
+@property (nonatomic, retain) UIButton *clearButton;
+@property (nonatomic, assign, getter=isNullable) BOOL nullable;
 
-
+- (BOOL)checkField;
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier validator:(IBAInputValidatorGeneric *)valueValidator;
 - (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier;
 - (void)activate;
 - (void)deactivate;
++ (UIImage *)clearImage;
+-(void)initButton;
 
 - (void)applyFormFieldStyle;
 - (void)updateActiveStyle;

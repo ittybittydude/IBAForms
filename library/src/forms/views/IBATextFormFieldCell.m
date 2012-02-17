@@ -25,25 +25,74 @@
 	[super dealloc];
 }
 
-
-- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier validator:(IBAInputValidatorGeneric *)valueValidator
+{
+    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:valueValidator])) {
 		// Create the text field for data entry
-		self.textField = [[[UITextField alloc] initWithFrame:style.valueFrame] autorelease];
-		self.textField.autoresizingMask = style.valueAutoresizingMask;
-		self.textField.returnKeyType = UIReturnKeyNext;
-		[self.cellView addSubview:self.textField];
+        
+        if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorClassic) == self.formFieldStyle.behavior)
+        {
+            CGRect initFrame;
+            initFrame = style.valueFrame;
+            if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorCancel) == self.formFieldStyle.behavior)
+                initFrame.size.width -= IBAFormFieldValueMarginCancel;
+            else
+                initFrame.size.width -= IBAFormFieldValueMargin;
+            self.textField = [[[UITextField alloc] initWithFrame:initFrame] autorelease];
+        }
+        else if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorPlaceHolder) == self.formFieldStyle.behavior)
+            self.textField = [[[UITextField alloc] init] autorelease];
+        
+        self.textField.autoresizingMask = style.valueAutoresizingMask;
+        self.textField.returnKeyType = UIReturnKeyNext;
+        [self.cellView addSubview:self.textField];
+        if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorCancel) == self.formFieldStyle.behavior)
+        {
+            [self initButton];
+        }
+        self.validator = valueValidator;
 	}
 	
     return self;
+}
+
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
+    return [self initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:nil];
 }
 
 - (void)activate {
 	[super activate];
 	
 	self.textField.backgroundColor = [UIColor clearColor];
+
+    if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorPlaceHolder) == self.formFieldStyle.behavior)
+        self.label.hidden = YES;
+    if ([self isNullable]) {
+		[self.cellView addSubview:self.clearButton];
+	}
 }
 
+-(BOOL)checkField
+{
+    BOOL returnValue = NO;
+    
+    if ([self.validator isNotValid:self.textField.text])
+    {
+        self.label.backgroundColor = self.formFieldStyle.errorColor;
+        self.backgroundColor = self.formFieldStyle.errorColor;
+        self.textField.backgroundColor = self.formFieldStyle.errorColor;
+        returnValue = YES;
+    }
+    return returnValue;
+}
+
+- (void)deactivate {
+	if ([self isNullable]) {
+		[self.clearButton removeFromSuperview];
+	}
+	[super deactivate];
+    [self checkField];
+}
 
 - (void)applyFormFieldStyle {
 	[super applyFormFieldStyle];
@@ -52,6 +101,16 @@
 	self.textField.textColor = self.formFieldStyle.valueTextColor;
 	self.textField.backgroundColor = self.formFieldStyle.valueBackgroundColor;
 	self.textField.textAlignment = self.formFieldStyle.valueTextAlignment;
+
+    if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorPlaceHolder) == self.formFieldStyle.behavior)
+    {
+        if ((self.formFieldStyle.behavior | IBAFormFieldBehaviorCancel) == self.formFieldStyle.behavior)
+            self.textField.frame = CGRectMake(IBAFormFieldLabelX + IBAFormFieldValueXAdjustement, IBAFormFieldLabelY+IBAFormFieldValueYAdjustement, IBAFormFieldValueWidth + IBAFormFieldValueMarginPlaceHolder, IBAFormFieldLabelHeight-IBAFormFieldValueYAdjustement);
+        else
+            self.textField.frame = CGRectMake(IBAFormFieldLabelX + IBAFormFieldValueXAdjustement, IBAFormFieldLabelY+IBAFormFieldValueYAdjustement, IBAFormFieldValueWidth + IBAFormFieldValueMarginPlaceHolderCancel, IBAFormFieldLabelHeight-IBAFormFieldValueYAdjustement);
+        self.textField.placeholder = self.label.text;
+        self.label.hidden = YES;
+    }
 }
 
 @end

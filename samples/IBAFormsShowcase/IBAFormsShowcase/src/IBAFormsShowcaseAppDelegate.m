@@ -19,7 +19,7 @@
 
 
 @interface IBAFormsShowcaseAppDelegate ()
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+//@property (nonatomic, retain) IBOutlet UIWindow *window;
 @end
 
 
@@ -36,7 +36,7 @@
     showcaseModel.shouldAutoRotate = YES;
     showcaseModel.tableViewStyleGrouped = YES;
     showcaseModel.displayNavigationToolbar = YES;
-    
+    showcaseModel.behavior = 0;
 	ShowcaseFormDataSource *showcaseDataSource = [[[ShowcaseFormDataSource alloc] initWithModel:showcaseModel] autorelease];
 	ShowcaseController *showcaseController = [[[ShowcaseController alloc] initWithNibName:nil bundle:nil formDataSource:showcaseDataSource] autorelease];
 	[showcaseController setTitle:@"IBAForms Showcase"];

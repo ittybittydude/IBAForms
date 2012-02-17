@@ -19,6 +19,7 @@ typedef enum {
 	IBADateFormFieldTypeDate = 0,
 	IBADateFormFieldTypeTime,
 	IBADateFormFieldTypeDateTime,
+    IBADateFormFieldTypeMonthYear,
 } IBADateFormFieldType;
 
 
@@ -34,6 +35,8 @@ typedef enum {
 @property (nonatomic, assign) IBADateFormFieldType dateFormFieldType;
 @property (nonatomic, retain) NSDate *defaultValue;
 
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType
+        dateFormatter:(NSDateFormatter *)dateFormatter validator:(IBAInputValidatorGeneric *)valueValidator;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title defaultValue:(NSDate *)date type:(IBADateFormFieldType)dateFieldType

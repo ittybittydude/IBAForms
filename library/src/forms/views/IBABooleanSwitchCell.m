@@ -25,9 +25,9 @@
 	[super dealloc];
 }
 
-
-- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier])) {
+-(id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier validator:(IBAInputValidatorGeneric *)valueValidator
+{
+    if ((self = [super initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:valueValidator])) {
 		switchControl_ = [[UISwitch alloc] initWithFrame:CGRectZero];
 		[self.cellView addSubview:switchControl_];
 		switchControl_.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
@@ -35,9 +35,14 @@
 										  ceil((self.bounds.size.height - switchControl_.bounds.size.height)/2),
 										  switchControl_.bounds.size.width,
 										  switchControl_.bounds.size.height);
+        self.validator = valueValidator;
 	}
-
+    
     return self;
+}
+
+- (id)initWithFormFieldStyle:(IBAFormFieldStyle *)style reuseIdentifier:(NSString *)reuseIdentifier {
+    return [self initWithFormFieldStyle:style reuseIdentifier:reuseIdentifier validator:nil];
 }
 
 @end

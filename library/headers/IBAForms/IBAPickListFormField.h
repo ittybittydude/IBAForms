@@ -16,22 +16,35 @@
 #import "IBATextFormFieldCell.h"
 #import "IBAPickListOptionsProvider.h"
 
-
 @interface IBAPickListFormField : IBAInputRequestorFormField <IBAPickListOptionsProvider> {
 	IBATextFormFieldCell *pickListCell_;
 	IBAPickListSelectionMode selectionMode_;
 	NSArray *pickListOptions_;
+    NSString *picklistClass;
+    BOOL isCircular;
 }
 
 @property (nonatomic, retain) IBATextFormFieldCell *pickListCell;
 @property (nonatomic, assign) IBAPickListSelectionMode selectionMode;
 @property (nonatomic, copy) NSArray *pickListOptions;
+@property(nonatomic, retain) NSString *picklistClass;
+@property(nonatomic) BOOL isCircular;
 
+-(BOOL)checkField;
 - (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
 	selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions isCircular:(BOOL)isPickListCircular;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass isCircular:(BOOL)isPickListCircular;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions isCircular:(BOOL)isPickListCircular validator:(IBAInputValidatorGeneric *)valueValidator;
+- (id)initWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer
+        selectionMode:(IBAPickListSelectionMode)selectionMode options:(NSArray *)pickListOptions picklistClass:(NSString *)pickListClass isCircular:(BOOL)isPickListCircular validator:(IBAInputValidatorGeneric *)valueValidator;
 
 @end
-
 
 @interface IBAPickListFormOption : NSObject <IBAPickListOption> {
 	UIFont *font_;
@@ -40,6 +53,7 @@
 }
 
 + (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames;
++ (NSArray *)pickListOptionsForArray:(NSArray *)options;
 + (NSArray *)pickListOptionsForStrings:(NSArray *)optionNames font:(UIFont *)font;
 - (id)initWithName:(NSString *)name iconImage:(UIImage *)iconImage font:(UIFont *)font;
 

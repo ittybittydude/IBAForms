@@ -18,4 +18,6 @@
 	
 }
 
+- (id)initWithModel:(id)aModel andBehavior:(int)behavior;
+
 @end

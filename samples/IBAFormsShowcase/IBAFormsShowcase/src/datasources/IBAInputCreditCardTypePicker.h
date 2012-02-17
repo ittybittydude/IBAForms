@@ -11,18 +11,17 @@
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
+//
+//  Created by Sébastien HOUZE on 19/08/11.
+//  Copyright (c) 2011 RezZza. All rights reserved.
+//
 
-#import "ShowcaseModel.h"
+#import <UIKit/UIKit.h>
+#import <IBAForms/IBAForms.h>
 
+#define IBAInputCreditCardTypePickerLabelTag 77
+#define IBAInputCreditCardTypePickerImageViewTag 78
 
-@implementation ShowcaseModel
-
-@synthesize shouldAutoRotate = shouldAutoRotate_;
-@synthesize tableViewStyleGrouped = tableViewStyleGrouped_;
-@synthesize modalPresentation = modalPresentation_;
-@synthesize displayNavigationToolbar = displayNavigationToolbar_;
-@synthesize modalPresentationStyle = modalPresentationStyle_;
-@synthesize behavior = behavior_;
-@synthesize cancel = cancel_;
+@interface IBAInputCreditCardTypePicker : IBAInputGenericPickerView
 
 @end

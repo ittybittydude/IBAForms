@@ -71,7 +71,8 @@
 - (IBABooleanSwitchCell *)switchCell {
 	if (switchCell_ == nil) {
 		switchCell_ = [[IBABooleanSwitchCell alloc] initWithFormFieldStyle:self.formFieldStyle 
-																		reuseIdentifier:@"IBABooleanSwitchCell"];
+                                                           reuseIdentifier:@"IBABooleanSwitchCell"
+                                                                 validator:self.validator];
 	
 		[switchCell_.switchControl addTarget:self action:@selector(switchValueChanged:) 
 									  forControlEvents:UIControlEventValueChanged];
@@ -83,7 +84,8 @@
 - (IBAFormFieldCell *)checkCell {
 	if (checkCell_ == nil) {
 		checkCell_ = [[IBAFormFieldCell alloc] initWithFormFieldStyle:self.formFieldStyle 
-														   reuseIdentifier:@"IBABooleanCheckCell"];
+                                                      reuseIdentifier:@"IBABooleanCheckCell"
+                                                            validator:self.validator];
 	}
 	
 	return checkCell_;

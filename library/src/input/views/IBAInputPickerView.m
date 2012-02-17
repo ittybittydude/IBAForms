@@ -11,18 +11,13 @@
 // ANY KIND, either express or implied. See the License for the specific language governing
 // permissions and limitations under the License.
 //
+//
+//  Created by Sébastien HOUZE on 22/08/11.
+//  Copyright (c) 2011 RezZza. All rights reserved.
+//
 
-#import "ShowcaseModel.h"
+#import "IBAInputPickerView.h"
 
-
-@implementation ShowcaseModel
-
-@synthesize shouldAutoRotate = shouldAutoRotate_;
-@synthesize tableViewStyleGrouped = tableViewStyleGrouped_;
-@synthesize modalPresentation = modalPresentation_;
-@synthesize displayNavigationToolbar = displayNavigationToolbar_;
-@synthesize modalPresentationStyle = modalPresentationStyle_;
-@synthesize behavior = behavior_;
-@synthesize cancel = cancel_;
+@implementation IBAInputPickerView
 
 @end

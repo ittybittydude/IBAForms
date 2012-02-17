@@ -24,5 +24,7 @@
 
 - (void)activate;
 - (BOOL)deactivate;
+- (NSString *)getPicklistClass;
+- (BOOL)getIsCircular;
 
 @end
