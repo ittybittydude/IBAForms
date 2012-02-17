@@ -13,7 +13,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SynthesizeSingleton.h"
 #import "IBAInputManager.h"
 #import "IBACommon.h"
 #import "IBAInputCommon.h"
@@ -39,11 +38,21 @@
 
 @implementation IBAInputManager
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(IBAInputManager);
-
 @synthesize inputRequestorDataSource = inputRequestorDataSource_;
 @synthesize inputNavigationToolbar = inputNavigationToolbar_;
 @synthesize inputNavigationToolbarEnabled = inputNavigationToolbarEnabled_;
+
+
++ (IBAInputManager *)sharedIBAInputManager {
+	static dispatch_once_t once;
+	static IBAInputManager *shared_input_manager;
+	dispatch_once(&once, ^{
+		shared_input_manager = [[self alloc] init];
+	});
+
+	return shared_input_manager;
+}
+
 
 #pragma mark -
 #pragma mark Memory management
