@@ -18,11 +18,6 @@
 #import "ShowcaseController.h"
 
 
-@interface IBAFormsShowcaseAppDelegate ()
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@end
-
-
 @implementation IBAFormsShowcaseAppDelegate
 
 @synthesize window;

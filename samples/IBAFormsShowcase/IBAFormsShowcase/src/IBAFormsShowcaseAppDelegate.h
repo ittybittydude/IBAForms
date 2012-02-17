@@ -14,11 +14,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class IBAFormsShowcaseViewController;
-
-@interface IBAFormsShowcaseAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-}
-
+@interface IBAFormsShowcaseAppDelegate : NSObject <UIApplicationDelegate>
+@property (nonatomic, retain) IBOutlet UIWindow *window;
 @end
 
