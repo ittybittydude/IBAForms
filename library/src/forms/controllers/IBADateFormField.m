@@ -26,6 +26,7 @@
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(dateFormFieldCell_);
 	IBA_RELEASE_SAFELY(dateFormatter_);
+	IBA_RELEASE_SAFELY(defaultValue_);
 
 	[super dealloc];
 }
