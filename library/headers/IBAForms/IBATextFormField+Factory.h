@@ -12,17 +12,11 @@
 // permissions and limitations under the License.
 //
 
+#import "IBATextFormField.h"
 
-#import "IBAPasswordFormField.h"
+@interface IBATextFormField (Factory)
 
-
-@implementation IBAPasswordFormField
-
-- (void)setFormFieldStyle:(IBAFormFieldStyle *)formFieldStyle {
-	[super setFormFieldStyle:formFieldStyle];
-	
-	IBATextFormFieldCell *formFieldCell = self.textFormFieldCell;
-	formFieldCell.textField.secureTextEntry = YES;	
-}
++ (IBATextFormField *)emailTextFormFieldWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer;
++ (IBATextFormField *)passwordTextFormFieldWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer;
 
 @end

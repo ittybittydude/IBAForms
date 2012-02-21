@@ -12,10 +12,10 @@
 // permissions and limitations under the License.
 //
 
+#import <IBAForms/IBACommon.h>
 #import <IBAForms/IBABooleanFormField.h>
 #import <IBAForms/IBABooleanSwitchCell.h>
 #import <IBAForms/IBAButtonFormField.h>
-#import <IBAForms/IBACommon.h>
 #import <IBAForms/IBADateFormField.h>
 #import <IBAForms/IBADateFormFieldCell.h>
 #import <IBAForms/IBADateInputProvider.h>
@@ -36,7 +36,6 @@
 #import <IBAForms/IBAInputRequestorFormField.h>
 #import <IBAForms/IBALabelFormCell.h>
 #import <IBAForms/IBALabelFormField.h>
-#import <IBAForms/IBAPasswordFormField.h>
 #import <IBAForms/IBAPickListFormField.h>
 #import <IBAForms/IBAMultiplePickListInputProvider.h>
 #import <IBAForms/IBASinglePickListInputProvider.h>
@@ -46,5 +45,5 @@
 #import <IBAForms/IBATextFormFieldCell.h>
 #import <IBAForms/IBATextInputProvider.h>
 #import <IBAForms/IBATitleFormField.h>
-
+#import <IBAForms/IBATextFormField+Factory.h>
 

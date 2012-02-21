@@ -25,7 +25,7 @@
 		IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:@"Basic Form Fields" footerTitle:nil];
 
 		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"text" title:@"Text"] autorelease]];
-		[basicFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKeyPath:@"password" title:@"Password"] autorelease]];
+		[basicFieldSection addFormField:[IBATextFormField passwordTextFormFieldWithKeyPath:@"password" title:@"Password" valueTransformer:nil]];
 		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanSwitchValue" title:@"Switch"] autorelease]];
 		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanCheckValue" title:@"Check" type:IBABooleanFormFieldTypeCheck] autorelease]];
 		
@@ -43,7 +43,7 @@
 		styledFieldSection.formFieldStyle = style;
 
 		[styledFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"textStyled" title:@"Text"] autorelease]];
-		[styledFieldSection addFormField:[[[IBAPasswordFormField alloc] initWithKeyPath:@"passwordStyled" title:@"Password"] autorelease]];
+		[styledFieldSection addFormField:[IBATextFormField passwordTextFormFieldWithKeyPath:@"passwordStyled" title:@"Password" valueTransformer:nil]];
 
 
 		// Date fields
@@ -66,10 +66,10 @@
 		[dateFormatter setDateFormat:@"EEE d MMM yyyy"];
 
 		[dateFieldSection addFormField:[[[IBADateFormField alloc] initWithKeyPath:@"date"
-																		title:@"Date"
-																 defaultValue:[NSDate date]
-																		 type:IBADateFormFieldTypeDate
-																dateFormatter:dateFormatter] autorelease]];
+																			title:@"Date"
+																	 defaultValue:[NSDate date]
+																			 type:IBADateFormFieldTypeDate
+																	dateFormatter:dateFormatter] autorelease]];
 
 		NSDateFormatter *timeFormatter = [[[NSDateFormatter alloc] init] autorelease];
 		[timeFormatter setDateStyle:NSDateFormatterShortStyle];
@@ -92,10 +92,10 @@
 																					 nil]];
 
 		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"singlePickListItem"
-																		   title:@"Single"
-																valueTransformer:nil
-																   selectionMode:IBAPickListSelectionModeSingle
-																		 options:pickListOptions] autorelease]];
+																			   title:@"Single"
+																	valueTransformer:nil
+																	   selectionMode:IBAPickListSelectionModeSingle
+																			 options:pickListOptions] autorelease]];
 
 		NSArray *carListOptions = [IBAPickListFormOption pickListOptionsForStrings:[NSArray arrayWithObjects:@"Honda",
 																					  @"BMW",
@@ -107,20 +107,20 @@
 
 		IBAPickListFormOptionsStringTransformer *transformer = [[[IBAPickListFormOptionsStringTransformer alloc] initWithPickListOptions:carListOptions] autorelease];
 		[pickListSection addFormField:[[[IBAPickListFormField alloc] initWithKeyPath:@"multiplePickListItems"
-																		   title:@"Multiple"
-																valueTransformer:transformer
-																   selectionMode:IBAPickListSelectionModeMultiple
-																		 options:carListOptions] autorelease]];
+																			   title:@"Multiple"
+																	valueTransformer:transformer
+																	   selectionMode:IBAPickListSelectionModeMultiple
+																			 options:carListOptions] autorelease]];
 
 		// An example of modifying the UITextInputTraits of an IBATextFormField and using an NSValueTransformer
 		IBAFormSection *textInputTraitsSection = [self addSectionWithHeaderTitle:@"Traits & Transformations" footerTitle:nil];
 		IBATextFormField *numberField = [[IBATextFormField alloc] initWithKeyPath:@"number"
-																		title:@"Number"
-															 valueTransformer:[StringToNumberTransformer instance]];
+																			title:@"Number"
+																 valueTransformer:[StringToNumberTransformer instance]];
 		[textInputTraitsSection addFormField:[numberField autorelease]];
 		numberField.textFormFieldCell.textField.keyboardType = UIKeyboardTypeNumberPad;
 
-		
+
 		// Read-only fields
 		IBAFormFieldStyle *readonlyFieldStyle = [[[IBAFormFieldStyle alloc] init] autorelease];
 		readonlyFieldStyle.labelFrame = CGRectMake(IBAFormFieldLabelX, IBAFormFieldLabelY, IBAFormFieldLabelWidth + 100, IBAFormFieldLabelHeight);
@@ -139,25 +139,25 @@
 		labelField.formFieldStyle = readonlyFieldStyle;
 		[readonlyFieldSection addFormField:labelField];
 
-		
-    
+
+
 		// Some examples of how you might use the button form field
 		IBAFormSection *buttonsSection = [self addSectionWithHeaderTitle:@"Buttons" footerTitle:nil];
 		buttonsSection.formFieldStyle = [[[ShowcaseButtonStyle alloc] init] autorelease];
-		
+
 		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Go to Google"
-																			 icon:nil
-																   executionBlock:^{
-																	   [[UIApplication sharedApplication]
-																		openURL:[NSURL URLWithString:@"http://www.google.com"]];
-																   }] autorelease]];
+																		   icon:nil
+																 executionBlock:^{
+																	 [[UIApplication sharedApplication]
+																	  openURL:[NSURL URLWithString:@"http://www.google.com"]];
+																 }] autorelease]];
 
 		[buttonsSection addFormField:[[[IBAButtonFormField alloc] initWithTitle:@"Compose email"
-																			 icon:nil
-																   executionBlock:^{
-																	   [[UIApplication sharedApplication]
-																		openURL:[NSURL URLWithString:@"mailto:info@google.com"]];
-																   }] autorelease]];
+																		   icon:nil
+																 executionBlock:^{
+																	 [[UIApplication sharedApplication]
+																	  openURL:[NSURL URLWithString:@"mailto:info@google.com"]];
+																 }] autorelease]];
 
     }
 
