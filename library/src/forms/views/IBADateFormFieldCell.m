@@ -69,10 +69,10 @@ static UIImage *clearImage_ = nil;
 		CGFloat size = 19;
 		CGFloat strokeInset = 5;
 		CGFloat lineWidth = 2;
-		
+
 		UIGraphicsBeginImageContextWithOptions(CGSizeMake(size, size), NO, [[UIScreen mainScreen] scale]);
 		UIBezierPath* circle = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, size, size)];	
-		
+
 		[[UIColor colorWithRed:0.698 green:0.698 blue:0.698 alpha:1.0] setFill];
 		[circle fill];
 
@@ -82,10 +82,10 @@ static UIImage *clearImage_ = nil;
 		[stroke1 moveToPoint:CGPointMake(strokeInset, strokeInset)];
 		[stroke1 addLineToPoint:CGPointMake(size - strokeInset, size - strokeInset)];
 		[stroke1 closePath];
-		
+
 		[[UIColor whiteColor] setStroke];
 		[stroke1 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
-		
+
 		UIBezierPath *stroke2 = [UIBezierPath bezierPath];
 		stroke2.lineWidth = lineWidth;
 		stroke2.lineCapStyle = kCGLineCapRound;
@@ -93,11 +93,11 @@ static UIImage *clearImage_ = nil;
 		[stroke2 addLineToPoint:CGPointMake(strokeInset, size - strokeInset)];
 		[stroke2 closePath];
 		[stroke2 strokeWithBlendMode:kCGBlendModeClear alpha:1.0];
-		
-		clearImage_ = UIGraphicsGetImageFromCurrentImageContext();
+
+		clearImage_ = [UIGraphicsGetImageFromCurrentImageContext() retain];
 		UIGraphicsEndImageContext();
 	}
-	
+
 	return clearImage_;
 }
 
