@@ -50,6 +50,7 @@
 - (void)dealloc {
 	[self releaseViews];
 	IBA_RELEASE_SAFELY(formDataSource_);
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
     [super dealloc];
 }
@@ -59,9 +60,23 @@
 	IBA_RELEASE_SAFELY(hiddenCellCache_);
 }
 
+- (id)initWithFormDataSource:(IBAFormDataSource *)formDataSource {
+    if ((self = [super init])) {
+		self.formDataSource = formDataSource;
+		self.hidesBottomBarWhenPushed = YES;
+		
+		[self registerForNotifications];
+	}
+	
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-		self.formDataSource = formDataSource;		
+		self.formDataSource = formDataSource;
+		self.hidesBottomBarWhenPushed = YES;
+		
+		[self registerForNotifications];
 	}
 	
     return self;
@@ -184,6 +199,7 @@
 		// Start editing the form field
 		[[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:(id<IBAInputRequestor>)formField];
 	} else {
+		[[IBAInputManager sharedIBAInputManager] deactivateActiveInputRequestor];
 		[formField select];
 	}
 }
