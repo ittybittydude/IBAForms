@@ -16,10 +16,14 @@
 
 @implementation IBATextFormField (Factory)
 
-+ (IBATextFormField *)emailTextFormFieldWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer {
++ (IBATextFormField *)emailTextFormFieldWithSection:(IBAFormSection *)section
+											keyPath:(NSString *)keyPath
+											  title:(NSString *)title
+								   valueTransformer:(NSValueTransformer *)valueTransformer {
 	IBATextFormField *textFormField = [[self alloc] initWithKeyPath:keyPath title:title valueTransformer:valueTransformer];
-	IBATextFormFieldCell *formFieldCell = textFormField.textFormFieldCell;
+	[section addFormField:textFormField];
 
+	IBATextFormFieldCell *formFieldCell = textFormField.textFormFieldCell;
 	formFieldCell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	formFieldCell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
 	formFieldCell.textField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -27,10 +31,14 @@
 	return [textFormField autorelease];
 }
 
-+ (IBATextFormField *)passwordTextFormFieldWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer {
++ (IBATextFormField *)passwordTextFormFieldWithSection:(IBAFormSection *)section
+											   keyPath:(NSString *)keyPath
+												 title:(NSString *)title
+									  valueTransformer:(NSValueTransformer *)valueTransformer {
 	IBATextFormField *textFormField = [[self alloc] initWithKeyPath:keyPath title:title valueTransformer:valueTransformer];
-	IBATextFormFieldCell *formFieldCell = textFormField.textFormFieldCell;
+	[section addFormField:textFormField];
 
+	IBATextFormFieldCell *formFieldCell = textFormField.textFormFieldCell;
 	formFieldCell.textField.secureTextEntry = YES;
 
 	return [textFormField autorelease];

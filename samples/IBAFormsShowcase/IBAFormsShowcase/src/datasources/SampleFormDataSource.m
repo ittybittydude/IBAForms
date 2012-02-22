@@ -25,7 +25,7 @@
 		IBAFormSection *basicFieldSection = [self addSectionWithHeaderTitle:@"Basic Form Fields" footerTitle:nil];
 
 		[basicFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"text" title:@"Text"] autorelease]];
-		[basicFieldSection addFormField:[IBATextFormField passwordTextFormFieldWithKeyPath:@"password" title:@"Password" valueTransformer:nil]];
+		[IBATextFormField passwordTextFormFieldWithSection:basicFieldSection keyPath:@"password" title:@"Password" valueTransformer:nil];
 		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanSwitchValue" title:@"Switch"] autorelease]];
 		[basicFieldSection addFormField:[[[IBABooleanFormField alloc] initWithKeyPath:@"booleanCheckValue" title:@"Check" type:IBABooleanFormFieldTypeCheck] autorelease]];
 		
@@ -43,8 +43,7 @@
 		styledFieldSection.formFieldStyle = style;
 
 		[styledFieldSection addFormField:[[[IBATextFormField alloc] initWithKeyPath:@"textStyled" title:@"Text"] autorelease]];
-		[styledFieldSection addFormField:[IBATextFormField passwordTextFormFieldWithKeyPath:@"passwordStyled" title:@"Password" valueTransformer:nil]];
-
+		[IBATextFormField passwordTextFormFieldWithSection:styledFieldSection keyPath:@"passwordStyled" title:@"Password" valueTransformer:nil];
 
 		// Date fields
 		IBAFormSection *dateFieldSection = [self addSectionWithHeaderTitle:@"Dates" footerTitle:nil];

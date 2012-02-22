@@ -13,10 +13,18 @@
 //
 
 #import "IBATextFormField.h"
+#import "IBAFormSection.h"
 
 @interface IBATextFormField (Factory)
 
-+ (IBATextFormField *)emailTextFormFieldWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer;
-+ (IBATextFormField *)passwordTextFormFieldWithKeyPath:(NSString *)keyPath title:(NSString *)title valueTransformer:(NSValueTransformer *)valueTransformer;
++ (IBATextFormField *)emailTextFormFieldWithSection:(IBAFormSection *)section
+											keyPath:(NSString *)keyPath
+											  title:(NSString *)title
+								   valueTransformer:(NSValueTransformer *)valueTransformer;
+
++ (IBATextFormField *)passwordTextFormFieldWithSection:(IBAFormSection *)section
+											   keyPath:(NSString *)keyPath
+												 title:(NSString *)title
+									  valueTransformer:(NSValueTransformer *)valueTransformer;
 
 @end
