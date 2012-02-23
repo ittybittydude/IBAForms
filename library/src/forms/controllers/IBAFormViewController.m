@@ -286,12 +286,11 @@
 	if (!CGRectEqualToRect(coveringFrame, self.keyboardFrame)) {
 		self.keyboardFrame = coveringFrame;
 		CGRect normalisedWindowBounds = [self rectForOrientationFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
-		CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView.superview convertRect:self.tableView.frame 
+		CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView.superview convertRect:self.tableView.frame
 																									   toView:[[UIApplication sharedApplication] keyWindow]]];
-		CGFloat height = (CGRectEqualToRect(coveringFrame, CGRectZero)) ? 0 : 
-		coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame));
+		CGFloat height = CGRectEqualToRect(coveringFrame, CGRectZero) ? 0 : coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame));
 		UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, height, 0);
-		//NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
+		// NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
 		self.tableView.contentInset = contentInsets;
 		self.tableView.scrollIndicatorInsets = contentInsets;
 	}

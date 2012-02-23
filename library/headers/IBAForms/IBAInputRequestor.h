@@ -13,7 +13,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IBAFormFieldCell.h"
 
 @protocol IBAInputRequestor <NSObject>
 
