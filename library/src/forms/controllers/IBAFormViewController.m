@@ -50,8 +50,8 @@
 - (void)dealloc {
 	[self releaseViews];
 	IBA_RELEASE_SAFELY(formDataSource_);
-	
-    [super dealloc];
+
+	[super dealloc];
 }
 
 - (void)releaseViews {
@@ -60,11 +60,22 @@
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		self.formDataSource = formDataSource;		
 	}
-	
-    return self;
+
+	return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+	return [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil formDataSource:nil];
+}
+
+- (id)initWithFormDataSource:(IBAFormDataSource *)formDataSource {
+	if ((self = [self initWithNibName:nil bundle:nil formDataSource:formDataSource])) {
+	}
+
+	return self;
 }
 
 - (void)registerForNotifications {
@@ -72,7 +83,7 @@
 	[self registerSelector:@selector(inputManagerDidHide:) withNotification:UIKeyboardDidHideNotification];
 
 	[self registerSelector:@selector(formFieldActivated:) withNotification:IBAInputRequestorFormFieldActivated];
-	
+
 	[self registerSelector:@selector(pushViewController:) withNotification:IBAPushViewController];
 	[self registerSelector:@selector(presentModalViewController:) withNotification:IBAPresentModalViewController];
 	[self registerSelector:@selector(dismissModalViewController:) withNotification:IBADismissModalViewController];
@@ -83,25 +94,20 @@
 }
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    return [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil formDataSource:nil];
-}
-
-
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+
 	self.tableView.dataSource = self.formDataSource;
 	self.tableView.delegate = self;
-	
+
 	hiddenCellCache_ = [[UIView alloc] initWithFrame:CGRectZero];
 	[hiddenCellCache_ setAutoresizingMask:UIViewAutoresizingNone];
 	[hiddenCellCache_ setHidden:YES];
 	[hiddenCellCache_ setClipsToBounds:YES];
-	
+
 	tableViewOriginalFrame_ = self.tableView.frame;
 }
 

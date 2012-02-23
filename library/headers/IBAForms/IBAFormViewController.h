@@ -31,8 +31,12 @@
 @property (nonatomic, readonly) CGRect tableViewOriginalFrame;
 @property (nonatomic, retain) IBAFormDataSource *formDataSource;
 
+
+// Designated Initializer.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 	   formDataSource:(IBAFormDataSource *)formDataSource;
+
+- (id)initWithFormDataSource:(IBAFormDataSource *)formDataSource;
 
 /* Methods for subclasses to customise behaviour */
 
