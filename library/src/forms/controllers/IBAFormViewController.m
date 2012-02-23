@@ -287,21 +287,14 @@
 		self.keyboardFrame = coveringFrame;
 		CGRect normalisedWindowBounds = [self rectForOrientationFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
 		CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView.superview convertRect:self.tableView.frame 
-																							 toView:[[UIApplication sharedApplication] keyWindow]]];
-		[UIView animateWithDuration:0.2 
-						 animations: ^(void){
-							 CGFloat height = (CGRectEqualToRect(coveringFrame, CGRectZero)) ? 0 : 
-								coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame));
-							 UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, height, 0);
-							 //NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
-							 self.tableView.contentInset = contentInsets;
-							 self.tableView.scrollIndicatorInsets = contentInsets;
-						 }
-						 completion: ^(BOOL finished){
-							 self.tableView.scrollEnabled = YES;
-						 }];
+																									   toView:[[UIApplication sharedApplication] keyWindow]]];
+		CGFloat height = (CGRectEqualToRect(coveringFrame, CGRectZero)) ? 0 : 
+		coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame));
+		UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, height, 0);
+		//NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
+		self.tableView.contentInset = contentInsets;
+		self.tableView.scrollIndicatorInsets = contentInsets;
 	}
-	
 }
 
 
@@ -343,8 +336,7 @@
 	if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
 		return frame;
 	}
-	else
-	{
+	else {
 		return CGRectMake(frame.origin.y, frame.origin.x, frame.size.height, frame.size.width);
 	}	
 }
