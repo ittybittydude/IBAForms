@@ -12,10 +12,11 @@
 // permissions and limitations under the License.
 //
 
-#import <IBAForms/IBAFormDataSource.h>
-#import <IBAForms/IBAButtonFormField.h>
+#import <IBAForms/IBAFormFieldStyle.h>
 
-@interface AuthenticationDataSource : IBAFormDataSource
-// Designated Initializer.
-- (id)initWithModel:(id)model formAction:(IBAButtonFormFieldBlock)action; 
+@interface IBAFormFieldStyle (Authentication)
+
++ (IBAFormFieldStyle *)buttonFormFieldStyle;
++ (IBAFormFieldStyle *)textFormFieldStyle;
+
 @end

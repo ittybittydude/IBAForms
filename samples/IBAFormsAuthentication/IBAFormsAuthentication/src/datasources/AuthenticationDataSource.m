@@ -13,7 +13,9 @@
 //
 
 #import "AuthenticationDataSource.h"
+
 #import <IBAForms/IBAForms.h>
+#import "IBAFormFieldStyle+Authentication.h"
 
 @implementation AuthenticationDataSource
 
@@ -23,19 +25,23 @@
 	{
 		IBAFormSection *login_form_section = [self addSectionWithHeaderTitle:NSLocalizedString(@"Identify Yourself", @"")
 																 footerTitle:[NSString string]];
-		[IBATextFormField emailTextFormFieldWithSection:login_form_section
-												keyPath:@"emailAddress"
-												  title:NSLocalizedString(@"Email Address", @"")
-									   valueTransformer:nil];
-		[IBATextFormField passwordTextFormFieldWithSection:login_form_section
-												   keyPath:@"password"
-													 title:NSLocalizedString(@"Password", @"")
-										  valueTransformer:nil];
+		IBATextFormField *email_text_form_field = [IBATextFormField emailTextFormFieldWithSection:login_form_section
+																						  keyPath:@"emailAddress"
+																							title:NSLocalizedString(@"Email", @"")
+																				 valueTransformer:nil];
+		IBATextFormField *password_text_form_field = [IBATextFormField passwordTextFormFieldWithSection:login_form_section
+																								keyPath:@"password"
+																								  title:NSLocalizedString(@"Password", @"")
+																					   valueTransformer:nil];
+
+		[email_text_form_field setFormFieldStyle:[IBAFormFieldStyle textFormFieldStyle]];
+		[password_text_form_field setFormFieldStyle:[email_text_form_field formFieldStyle]];
 
 		IBAFormSection *submit_form_section = [self addSectionWithHeaderTitle:nil footerTitle:nil];
 		IBAButtonFormField *submit_form_field = [[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Login", @"")
 																					 icon:nil
 																		   executionBlock:action];
+		[submit_form_field setFormFieldStyle:[IBAFormFieldStyle buttonFormFieldStyle]];
 		[submit_form_section addFormField:submit_form_field];
 		[submit_form_field release], submit_form_field = nil;
 	}

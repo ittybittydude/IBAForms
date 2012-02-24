@@ -10,6 +10,7 @@
 		9524EA8114F7370F008B96D2 /* Credential.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8014F7370F008B96D2 /* Credential.m */; };
 		9524EA8D14F73B45008B96D2 /* AuthenticationFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8C14F73B45008B96D2 /* AuthenticationFormController.m */; };
 		9524EA9014F73B6D008B96D2 /* AuthenticationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8F14F73B6D008B96D2 /* AuthenticationDataSource.m */; };
+		9524EA9414F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m */; };
 		954C0AF114F71FED0052F47C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0AF014F71FED0052F47C /* UIKit.framework */; };
 		954C0AF314F71FED0052F47C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0AF214F71FED0052F47C /* Foundation.framework */; };
 		954C0AF514F71FED0052F47C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0AF414F71FED0052F47C /* CoreGraphics.framework */; };
@@ -36,6 +37,8 @@
 		9524EA8C14F73B45008B96D2 /* AuthenticationFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticationFormController.m; path = src/controllers/AuthenticationFormController.m; sourceTree = "<group>"; };
 		9524EA8E14F73B6D008B96D2 /* AuthenticationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticationDataSource.h; path = src/datasources/AuthenticationDataSource.h; sourceTree = "<group>"; };
 		9524EA8F14F73B6D008B96D2 /* AuthenticationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticationDataSource.m; path = src/datasources/AuthenticationDataSource.m; sourceTree = "<group>"; };
+		9524EA9214F7611A008B96D2 /* IBAFormFieldStyle+Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IBAFormFieldStyle+Authentication.h"; path = "src/categories/IBAFormFieldStyle+Authentication.h"; sourceTree = "<group>"; };
+		9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IBAFormFieldStyle+Authentication.m"; path = "src/categories/IBAFormFieldStyle+Authentication.m"; sourceTree = "<group>"; };
 		954C0AEC14F71FED0052F47C /* IBAFormsAuthentication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBAFormsAuthentication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		954C0AF014F71FED0052F47C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		954C0AF214F71FED0052F47C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9524EA9114F75DF4008B96D2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9524EA9214F7611A008B96D2 /* IBAFormFieldStyle+Authentication.h */,
+				9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		954C0AE114F71FED0052F47C = {
 			isa = PBXGroup;
 			children = (
@@ -97,9 +109,10 @@
 			isa = PBXGroup;
 			children = (
 				954C0B1414F72A2D0052F47C /* Bootstrap */,
-				954C0B1214F72A0C0052F47C /* Controller */,
-				954C0B1314F72A170052F47C /* Data Source */,
-				954C0B1114F72A010052F47C /* Model */,
+				954C0B1214F72A0C0052F47C /* Controllers */,
+				954C0B1314F72A170052F47C /* Data Sources */,
+				954C0B1114F72A010052F47C /* Models */,
+				9524EA9114F75DF4008B96D2 /* Categories */,
 				954C0AF714F71FED0052F47C /* Supporting Files */,
 			);
 			path = IBAFormsAuthentication;
@@ -133,31 +146,31 @@
 			name = IBAForms;
 			sourceTree = "<group>";
 		};
-		954C0B1114F72A010052F47C /* Model */ = {
+		954C0B1114F72A010052F47C /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				9524EA7F14F7370F008B96D2 /* Credential.h */,
 				9524EA8014F7370F008B96D2 /* Credential.m */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
-		954C0B1214F72A0C0052F47C /* Controller */ = {
+		954C0B1214F72A0C0052F47C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				9524EA8B14F73B45008B96D2 /* AuthenticationFormController.h */,
 				9524EA8C14F73B45008B96D2 /* AuthenticationFormController.m */,
 			);
-			name = Controller;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
-		954C0B1314F72A170052F47C /* Data Source */ = {
+		954C0B1314F72A170052F47C /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
 				9524EA8E14F73B6D008B96D2 /* AuthenticationDataSource.h */,
 				9524EA8F14F73B6D008B96D2 /* AuthenticationDataSource.m */,
 			);
-			name = "Data Source";
+			name = "Data Sources";
 			sourceTree = "<group>";
 		};
 		954C0B1414F72A2D0052F47C /* Bootstrap */ = {
@@ -252,6 +265,7 @@
 				9524EA8114F7370F008B96D2 /* Credential.m in Sources */,
 				9524EA8D14F73B45008B96D2 /* AuthenticationFormController.m in Sources */,
 				9524EA9014F73B6D008B96D2 /* AuthenticationDataSource.m in Sources */,
+				9524EA9414F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
