@@ -12,12 +12,7 @@
 // permissions and limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import <IBAForms/IBAFormViewController.h>
 
-int main(int argc, char *argv[])
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, @"IBAFormsShowcaseAppDelegate");
-    [pool release];
-    return retVal;
-}
+@interface AuthenticationFormController : IBAFormViewController
+@end

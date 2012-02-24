@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:samples/IBAFormsAuthentication/IBAFormsAuthentication.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:samples/IBAFormsShowcase/IBAFormsShowcase.xcodeproj">
    </FileRef>
    <FileRef

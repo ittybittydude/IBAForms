@@ -237,7 +237,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = "Itty Bitty Apps";
+				ORGANIZATIONNAME = "Itty Bitty Apps Pty Ltd";
 			};
 			buildConfigurationList = 756A41EB13A884E30093279E /* Build configuration list for PBXProject "IBAFormsShowcase" */;
 			compatibilityVersion = "Xcode 3.2";

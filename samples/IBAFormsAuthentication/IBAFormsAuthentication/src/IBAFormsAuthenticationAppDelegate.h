@@ -14,10 +14,6 @@
 
 #import <UIKit/UIKit.h>
 
-int main(int argc, char *argv[])
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, @"IBAFormsShowcaseAppDelegate");
-    [pool release];
-    return retVal;
-}
+@interface IBAFormsAuthenticationAppDelegate : UIResponder <UIApplicationDelegate>
+@property (nonatomic, retain, readonly) UIWindow *mainWindow;
+@end

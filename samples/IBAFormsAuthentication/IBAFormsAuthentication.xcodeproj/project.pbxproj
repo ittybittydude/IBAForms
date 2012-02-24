@@ -1,0 +1,373 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9524EA8114F7370F008B96D2 /* Credential.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8014F7370F008B96D2 /* Credential.m */; };
+		9524EA8D14F73B45008B96D2 /* AuthenticationFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8C14F73B45008B96D2 /* AuthenticationFormController.m */; };
+		9524EA9014F73B6D008B96D2 /* AuthenticationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8F14F73B6D008B96D2 /* AuthenticationDataSource.m */; };
+		954C0AF114F71FED0052F47C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0AF014F71FED0052F47C /* UIKit.framework */; };
+		954C0AF314F71FED0052F47C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0AF214F71FED0052F47C /* Foundation.framework */; };
+		954C0AF514F71FED0052F47C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0AF414F71FED0052F47C /* CoreGraphics.framework */; };
+		954C0AFB14F71FED0052F47C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 954C0AF914F71FED0052F47C /* InfoPlist.strings */; };
+		954C0AFD14F71FED0052F47C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 954C0AFC14F71FED0052F47C /* main.m */; };
+		954C0B0114F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 954C0B0014F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m */; };
+		954C0B0914F729720052F47C /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0B0814F729720052F47C /* libIBAForms.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		954C0B0E14F7299C0052F47C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 954C0B0A14F7299C0052F47C /* IBAForms.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = IBAForms;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9524EA7F14F7370F008B96D2 /* Credential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credential.h; path = src/models/Credential.h; sourceTree = "<group>"; };
+		9524EA8014F7370F008B96D2 /* Credential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credential.m; path = src/models/Credential.m; sourceTree = "<group>"; };
+		9524EA8B14F73B45008B96D2 /* AuthenticationFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticationFormController.h; path = src/controllers/AuthenticationFormController.h; sourceTree = "<group>"; };
+		9524EA8C14F73B45008B96D2 /* AuthenticationFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticationFormController.m; path = src/controllers/AuthenticationFormController.m; sourceTree = "<group>"; };
+		9524EA8E14F73B6D008B96D2 /* AuthenticationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticationDataSource.h; path = src/datasources/AuthenticationDataSource.h; sourceTree = "<group>"; };
+		9524EA8F14F73B6D008B96D2 /* AuthenticationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticationDataSource.m; path = src/datasources/AuthenticationDataSource.m; sourceTree = "<group>"; };
+		954C0AEC14F71FED0052F47C /* IBAFormsAuthentication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBAFormsAuthentication.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		954C0AF014F71FED0052F47C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		954C0AF214F71FED0052F47C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		954C0AF414F71FED0052F47C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		954C0AF814F71FED0052F47C /* IBAFormsAuthentication-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IBAFormsAuthentication-Info.plist"; sourceTree = "<group>"; };
+		954C0AFA14F71FED0052F47C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		954C0AFC14F71FED0052F47C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		954C0AFE14F71FED0052F47C /* IBAFormsAuthentication-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBAFormsAuthentication-Prefix.pch"; sourceTree = "<group>"; };
+		954C0AFF14F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IBAFormsAuthenticationAppDelegate.h; path = src/IBAFormsAuthenticationAppDelegate.h; sourceTree = "<group>"; };
+		954C0B0014F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IBAFormsAuthenticationAppDelegate.m; path = src/IBAFormsAuthenticationAppDelegate.m; sourceTree = "<group>"; };
+		954C0B0814F729720052F47C /* libIBAForms.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIBAForms.a; path = "../../library/build/Release-iphoneos/libIBAForms.a"; sourceTree = "<group>"; };
+		954C0B0A14F7299C0052F47C /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = ../../library/IBAForms.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		954C0AE914F71FED0052F47C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				954C0B0914F729720052F47C /* libIBAForms.a in Frameworks */,
+				954C0AF114F71FED0052F47C /* UIKit.framework in Frameworks */,
+				954C0AF314F71FED0052F47C /* Foundation.framework in Frameworks */,
+				954C0AF514F71FED0052F47C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		954C0AE114F71FED0052F47C = {
+			isa = PBXGroup;
+			children = (
+				954C0AF614F71FED0052F47C /* IBAFormsAuthentication */,
+				954C0AEF14F71FED0052F47C /* Frameworks */,
+				954C0AED14F71FED0052F47C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		954C0AED14F71FED0052F47C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				954C0AEC14F71FED0052F47C /* IBAFormsAuthentication.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		954C0AEF14F71FED0052F47C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				954C0B1014F729AB0052F47C /* IBAForms */,
+				954C0AF014F71FED0052F47C /* UIKit.framework */,
+				954C0AF214F71FED0052F47C /* Foundation.framework */,
+				954C0AF414F71FED0052F47C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		954C0AF614F71FED0052F47C /* IBAFormsAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				954C0B1414F72A2D0052F47C /* Bootstrap */,
+				954C0B1214F72A0C0052F47C /* Controller */,
+				954C0B1314F72A170052F47C /* Data Source */,
+				954C0B1114F72A010052F47C /* Model */,
+				954C0AF714F71FED0052F47C /* Supporting Files */,
+			);
+			path = IBAFormsAuthentication;
+			sourceTree = "<group>";
+		};
+		954C0AF714F71FED0052F47C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				954C0AF814F71FED0052F47C /* IBAFormsAuthentication-Info.plist */,
+				954C0AF914F71FED0052F47C /* InfoPlist.strings */,
+				954C0AFE14F71FED0052F47C /* IBAFormsAuthentication-Prefix.pch */,
+				954C0AFC14F71FED0052F47C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		954C0B0B14F7299C0052F47C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				954C0B0F14F7299C0052F47C /* libIBAForms.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		954C0B1014F729AB0052F47C /* IBAForms */ = {
+			isa = PBXGroup;
+			children = (
+				954C0B0814F729720052F47C /* libIBAForms.a */,
+				954C0B0A14F7299C0052F47C /* IBAForms.xcodeproj */,
+			);
+			name = IBAForms;
+			sourceTree = "<group>";
+		};
+		954C0B1114F72A010052F47C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9524EA7F14F7370F008B96D2 /* Credential.h */,
+				9524EA8014F7370F008B96D2 /* Credential.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		954C0B1214F72A0C0052F47C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9524EA8B14F73B45008B96D2 /* AuthenticationFormController.h */,
+				9524EA8C14F73B45008B96D2 /* AuthenticationFormController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		954C0B1314F72A170052F47C /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				9524EA8E14F73B6D008B96D2 /* AuthenticationDataSource.h */,
+				9524EA8F14F73B6D008B96D2 /* AuthenticationDataSource.m */,
+			);
+			name = "Data Source";
+			sourceTree = "<group>";
+		};
+		954C0B1414F72A2D0052F47C /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				954C0AFF14F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.h */,
+				954C0B0014F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m */,
+			);
+			name = Bootstrap;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		954C0AEB14F71FED0052F47C /* IBAFormsAuthentication */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 954C0B0414F71FED0052F47C /* Build configuration list for PBXNativeTarget "IBAFormsAuthentication" */;
+			buildPhases = (
+				954C0AE814F71FED0052F47C /* Sources */,
+				954C0AE914F71FED0052F47C /* Frameworks */,
+				954C0AEA14F71FED0052F47C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IBAFormsAuthentication;
+			productName = IBAFormsAuthentication;
+			productReference = 954C0AEC14F71FED0052F47C /* IBAFormsAuthentication.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		954C0AE314F71FED0052F47C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Itty Bitty Apps Pty Ltd";
+			};
+			buildConfigurationList = 954C0AE614F71FED0052F47C /* Build configuration list for PBXProject "IBAFormsAuthentication" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 954C0AE114F71FED0052F47C;
+			productRefGroup = 954C0AED14F71FED0052F47C /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 954C0B0B14F7299C0052F47C /* Products */;
+					ProjectRef = 954C0B0A14F7299C0052F47C /* IBAForms.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				954C0AEB14F71FED0052F47C /* IBAFormsAuthentication */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		954C0B0F14F7299C0052F47C /* libIBAForms.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libIBAForms.a;
+			remoteRef = 954C0B0E14F7299C0052F47C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		954C0AEA14F71FED0052F47C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				954C0AFB14F71FED0052F47C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		954C0AE814F71FED0052F47C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				954C0AFD14F71FED0052F47C /* main.m in Sources */,
+				954C0B0114F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m in Sources */,
+				9524EA8114F7370F008B96D2 /* Credential.m in Sources */,
+				9524EA8D14F73B45008B96D2 /* AuthenticationFormController.m in Sources */,
+				9524EA9014F73B6D008B96D2 /* AuthenticationDataSource.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		954C0AF914F71FED0052F47C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				954C0AFA14F71FED0052F47C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		954C0B0214F71FED0052F47C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/../../library/headers";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		954C0B0314F71FED0052F47C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/../../library/headers";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		954C0B0514F71FED0052F47C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IBAFormsAuthentication/IBAFormsAuthentication-Prefix.pch";
+				INFOPLIST_FILE = "IBAFormsAuthentication/IBAFormsAuthentication-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		954C0B0614F71FED0052F47C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IBAFormsAuthentication/IBAFormsAuthentication-Prefix.pch";
+				INFOPLIST_FILE = "IBAFormsAuthentication/IBAFormsAuthentication-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		954C0AE614F71FED0052F47C /* Build configuration list for PBXProject "IBAFormsAuthentication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				954C0B0214F71FED0052F47C /* Debug */,
+				954C0B0314F71FED0052F47C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		954C0B0414F71FED0052F47C /* Build configuration list for PBXNativeTarget "IBAFormsAuthentication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				954C0B0514F71FED0052F47C /* Debug */,
+				954C0B0614F71FED0052F47C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 954C0AE314F71FED0052F47C /* Project object */;
+}

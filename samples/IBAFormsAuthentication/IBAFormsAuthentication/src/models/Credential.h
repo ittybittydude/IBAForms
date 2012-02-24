@@ -12,12 +12,11 @@
 // permissions and limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-int main(int argc, char *argv[])
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, @"IBAFormsShowcaseAppDelegate");
-    [pool release];
-    return retVal;
-}
+@interface Credential : NSObject
+@property (nonatomic, retain) NSString *emailAddress;
+@property (nonatomic, retain) NSString *password;
+
++ (Credential *)credentialWithEmailAddress:(NSString *)emailAddress password:(NSString *)password;
+@end

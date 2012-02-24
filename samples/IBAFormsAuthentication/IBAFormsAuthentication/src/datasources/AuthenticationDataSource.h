@@ -12,12 +12,9 @@
 // permissions and limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import <IBAForms/IBAFormDataSource.h>
+#import <IBAForms/IBAButtonFormField.h>
 
-int main(int argc, char *argv[])
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, @"IBAFormsShowcaseAppDelegate");
-    [pool release];
-    return retVal;
-}
+@interface AuthenticationDataSource : IBAFormDataSource
+- (id)initWithModel:(id)model formAction:(IBAButtonFormFieldBlock)action; 
+@end

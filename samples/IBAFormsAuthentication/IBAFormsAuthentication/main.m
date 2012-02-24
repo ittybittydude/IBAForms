@@ -13,11 +13,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IBAFormsAuthenticationAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, @"IBAFormsShowcaseAppDelegate");
-    [pool release];
-    return retVal;
+	@autoreleasepool
+	{
+		return UIApplicationMain(argc, argv, nil, NSStringFromClass([IBAFormsAuthenticationAppDelegate class]));
+	}
 }
