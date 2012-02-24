@@ -258,7 +258,9 @@
 }
 
 - (void)inputManagerDidHide:(NSNotification *)notification {
-	[self adjustTableViewHeightForCoveringFrame:CGRectZero];
+	if (![[IBAInputManager sharedIBAInputManager] activeInputRequestor]) {
+		[self adjustTableViewHeightForCoveringFrame:CGRectZero];
+	}
 }
 
 - (void)formFieldActivated:(NSNotification *)notification {
@@ -354,10 +356,10 @@
 }
 
 - (BOOL)shouldAutoScrollTableToActiveField {
-    // Return YES if the table view should be automatically scrolled to the active field
-    // Defaults to YES
-    
-    return YES;
+	// Return YES if the table view should be automatically scrolled to the active field
+	// Defaults to YES
+
+	return YES;
 }
 
 @end
