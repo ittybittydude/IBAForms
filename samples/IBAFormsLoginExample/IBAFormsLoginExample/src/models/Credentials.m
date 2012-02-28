@@ -30,12 +30,12 @@
 }
 
 + (Credentials *)credentialsWithEmailAddress:(NSString *)emailAddress password:(NSString *)password {
-	Credentials *credentials = [[Credentials alloc] init];
+	Credentials *credentials = [[[Credentials alloc] init] autorelease];
 
 	[credentials setEmailAddress:emailAddress];
 	[credentials setPassword:password];
 
-	return [credentials autorelease];
+	return credentials;
 }
 
 @end

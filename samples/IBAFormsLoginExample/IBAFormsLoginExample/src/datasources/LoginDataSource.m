@@ -21,27 +21,26 @@
 
 - (id)initWithModel:(id)model formAction:(IBAButtonFormFieldBlock)action {
 	if ((self = [super initWithModel:model])) {
-		IBAFormSection *login_form_section = [self addSectionWithHeaderTitle:NSLocalizedString(@"Identify Yourself", @"")
-																 footerTitle:[NSString string]];
-		IBATextFormField *email_text_form_field = [IBATextFormField emailTextFormFieldWithSection:login_form_section
-																						  keyPath:@"emailAddress"
-																							title:NSLocalizedString(@"Email", @"")
-																				 valueTransformer:nil];
-		IBATextFormField *password_text_form_field = [IBATextFormField passwordTextFormFieldWithSection:login_form_section
-																								keyPath:@"password"
-																								  title:NSLocalizedString(@"Password", @"")
-																					   valueTransformer:nil];
+		IBAFormSection *loginFormSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+		IBATextFormField *emailTextFormField = [IBATextFormField emailTextFormFieldWithSection:loginFormSection
+                                                                                       keyPath:@"emailAddress"
+                                                                                         title:NSLocalizedString(@"Email", @"")
+                                                                              valueTransformer:nil];
+		IBATextFormField *passwordTextFormField = [IBATextFormField passwordTextFormFieldWithSection:loginFormSection
+                                                                                             keyPath:@"password"
+                                                                                               title:NSLocalizedString(@"Password", @"")
+                                                                                    valueTransformer:nil];
 
-		[email_text_form_field setFormFieldStyle:[IBAFormFieldStyle textFormFieldStyle]];
-		[password_text_form_field setFormFieldStyle:[email_text_form_field formFieldStyle]];
+		[emailTextFormField setFormFieldStyle:[IBAFormFieldStyle textFormFieldStyle]];
+		[passwordTextFormField setFormFieldStyle:[emailTextFormField formFieldStyle]];
 
-		IBAFormSection *submit_form_section = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-		IBAButtonFormField *submit_form_field = [[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Login", @"")
-																					 icon:nil
-																		   executionBlock:action];
-		[submit_form_field setFormFieldStyle:[IBAFormFieldStyle buttonFormFieldStyle]];
-		[submit_form_section addFormField:submit_form_field];
-		[submit_form_field release], submit_form_field = nil;
+		IBAFormSection *submitFormSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
+		IBAButtonFormField *submitFormField = [[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Login", @"")
+                                                                                   icon:nil
+                                                                         executionBlock:action];
+		[submitFormField setFormFieldStyle:[IBAFormFieldStyle buttonFormFieldStyle]];
+		[submitFormSection addFormField:submitFormField];
+		[submitFormField release], submitFormField = nil;
 	}
 
 	return self;

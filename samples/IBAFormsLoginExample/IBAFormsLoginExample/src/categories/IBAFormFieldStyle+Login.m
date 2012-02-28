@@ -18,7 +18,7 @@
 @implementation IBAFormFieldStyle (Authentication)
 
 + (IBAFormFieldStyle *)buttonFormFieldStyle {
-	IBAFormFieldStyle *style = [[IBAFormFieldStyle alloc] init];
+	IBAFormFieldStyle *style = [[[IBAFormFieldStyle alloc] init] autorelease];
 
 	[style setLabelTextColor:[UIColor colorWithRed:.318 green:.4 blue:.569 alpha:1.]];
 	[style setLabelFont:[UIFont boldSystemFontOfSize:14.]];
@@ -26,11 +26,11 @@
 	[style setLabelTextAlignment:UITextAlignmentCenter];
 	[style setLabelAutoresizingMask:UIViewAutoresizingFlexibleWidth];
 
-	return [style autorelease];
+	return style;
 }
 
 + (IBAFormFieldStyle *)textFormFieldStyle {
-	IBAFormFieldStyle *style = [[IBAFormFieldStyle alloc] init];
+	IBAFormFieldStyle *style = [[[IBAFormFieldStyle alloc] init] autorelease];
 
 	[style setLabelTextColor:[UIColor blackColor]];
 	[style setLabelFont:[UIFont boldSystemFontOfSize:18.]];
@@ -42,7 +42,7 @@
 	[style setValueFont:[UIFont systemFontOfSize:16.]];
 	[style setValueFrame:CGRectMake(160., 13., 150., IBAFormFieldValueHeight)];
 
-	return [style autorelease];
+	return style;
 }
 
 @end

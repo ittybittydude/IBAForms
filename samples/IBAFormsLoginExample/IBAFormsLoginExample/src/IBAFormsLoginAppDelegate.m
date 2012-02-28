@@ -37,51 +37,40 @@
 	// =====================================================================================================
 	// STEP 1 - Setup model class.
 	// =====================================================================================================
-	Credentials *user_credential = [[Credentials alloc] init];
-	[user_credential setEmailAddress:@"john.appleseed@apple.com"];
-	[user_credential setPassword:@"apple"];
+	Credentials *userCredential = [[[Credentials alloc] init] autorelease];
+	[userCredential setEmailAddress:@"john.appleseed@apple.com"];
+	[userCredential setPassword:@"apple"];
 
 	// =====================================================================================================
 	// STEP 2 - Setup data source.
 	// =====================================================================================================
-	IBAButtonFormFieldBlock login_action = ^{
-		UIAlertView *alert_view = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login Successful", @"")
-															 message:[user_credential description]
-															delegate:nil
-												   cancelButtonTitle:NSLocalizedString(@"OK", @"")
-												   otherButtonTitles:nil];
-		[alert_view show];
-		[alert_view release];
+	IBAButtonFormFieldBlock loginAction = ^{
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login Successful", @"")
+                                                            message:[userCredential description]
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                  otherButtonTitles:nil];
+		[alertView show];
+		[alertView release];
 	};
-	LoginDataSource *auth_data_source = [[LoginDataSource alloc] initWithModel:user_credential formAction:login_action];
+	LoginDataSource *loginDataSource = [[[LoginDataSource alloc] initWithModel:userCredential formAction:loginAction] autorelease];
 
 	// =====================================================================================================
 	// STEP 3 - Setup form controller.
 	// =====================================================================================================
-	LoginFormController *auth_form_controller = [[LoginFormController alloc] initWithNibName:nil
+	LoginFormController *loginFormController = [[[LoginFormController alloc] initWithNibName:nil
                                                                                       bundle:nil
-                                                                              formDataSource:auth_data_source];
-	[auth_form_controller setTitle:NSLocalizedString(@"Sample Login Form", @"")];
-	UINavigationController *navigation_controller = [[UINavigationController alloc] initWithRootViewController:auth_form_controller];
+                                                                              formDataSource:loginDataSource] autorelease];
+	[loginFormController setTitle:NSLocalizedString(@"Sample Login Form", @"")];
+	UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:loginFormController] autorelease];
 
 	// =====================================================================================================
 	// STEP 4 - Setup the main window.
 	// =====================================================================================================
-	UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	[self setMainWindow:window];
-	[window release], window = nil;
-
+	[self setMainWindow:[[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease]];
 	[[self mainWindow] setBackgroundColor:[UIColor blackColor]];
-	[[self mainWindow] setRootViewController:navigation_controller];
+	[[self mainWindow] setRootViewController:navigationController];
 	[[self mainWindow] makeKeyAndVisible];
-
-	// =====================================================================================================
-	// STEP 5 - Clean up.
-	// =====================================================================================================
-	[user_credential release];
-	[auth_data_source release];
-	[auth_form_controller release];
-	[navigation_controller release];
 
 	return YES;
 }

@@ -17,15 +17,15 @@
 @implementation LoginFormController
 
 - (void)loadView {
-	UIView *super_view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-	[super_view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+	UIView *superView = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+	[superView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 
-	UITableView *form_table_view = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
-	[form_table_view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-	[self setTableView:form_table_view];
+	UITableView *formTableView = [[[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds] style:UITableViewStyleGrouped] autorelease];
+	[formTableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+	[self setTableView:formTableView];
 
-	[super_view addSubview:form_table_view];
-	[self setView:super_view];
+	[superView addSubview:formTableView];
+	[self setView:superView];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
