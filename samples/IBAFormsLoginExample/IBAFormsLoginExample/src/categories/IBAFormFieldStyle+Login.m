@@ -17,30 +17,30 @@
 
 @implementation IBAFormFieldStyle (Authentication)
 
-+ (IBAFormFieldStyle *)buttonFormFieldStyle {
-	IBAFormFieldStyle *style = [[[IBAFormFieldStyle alloc] init] autorelease];
-
-	[style setLabelTextColor:[UIColor colorWithRed:.318 green:.4 blue:.569 alpha:1.]];
-	[style setLabelFont:[UIFont boldSystemFontOfSize:14.]];
-	[style setLabelFrame:CGRectMake(10., 8., 300., 30.)];
-	[style setLabelTextAlignment:UITextAlignmentCenter];
-	[style setLabelAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-
-	return style;
-}
-
 + (IBAFormFieldStyle *)textFormFieldStyle {
 	IBAFormFieldStyle *style = [[[IBAFormFieldStyle alloc] init] autorelease];
 
 	[style setLabelTextColor:[UIColor blackColor]];
-	[style setLabelFont:[UIFont boldSystemFontOfSize:18.]];
-	[style setLabelTextAlignment:UITextAlignmentLeft];
-	[style setLabelFrame:CGRectMake(IBAFormFieldLabelX, 8., 140., IBAFormFieldLabelHeight)];
+	[style setLabelFont:[UIFont boldSystemFontOfSize:13.]];
+	[style setLabelTextAlignment:UITextAlignmentRight];
+	[style setLabelFrame:CGRectMake(IBAFormFieldLabelX, 8., 180., IBAFormFieldLabelHeight)];
 
-	[style setValueTextAlignment:UITextAlignmentRight];
-	[style setValueTextColor:[UIColor colorWithRed:0.22 green:0.329 blue:0.529 alpha:1.]];
-	[style setValueFont:[UIFont systemFontOfSize:16.]];
-	[style setValueFrame:CGRectMake(160., 13., 150., IBAFormFieldValueHeight)];
+	[style setValueTextAlignment:UITextAlignmentLeft];
+	[style setValueTextColor:[UIColor colorWithRed:.22 green:.329 blue:.529 alpha:1.]];
+	[style setValueFont:[UIFont systemFontOfSize:14.]];
+	[style setValueFrame:CGRectMake(210., 13., 110., IBAFormFieldValueHeight)];
+
+	return style;
+}
+
++ (IBAFormFieldStyle *)buttonFormFieldStyle {
+	IBAFormFieldStyle *style = [[[IBAFormFieldStyle alloc] init] autorelease];
+
+	[style setLabelTextColor:[UIColor colorWithRed:.318 green:.4 blue:.569 alpha:1.]];
+	[style setLabelFont:[UIFont boldSystemFontOfSize:20.]];
+	[style setLabelFrame:CGRectMake(10., 8., 300., 30.)];
+	[style setLabelTextAlignment:UITextAlignmentCenter];
+	[style setLabelAutoresizingMask:UIViewAutoresizingFlexibleWidth];
 
 	return style;
 }

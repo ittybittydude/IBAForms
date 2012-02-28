@@ -16,7 +16,7 @@
 
 @interface IBAFormFieldStyle (Authentication)
 
-+ (IBAFormFieldStyle *)buttonFormFieldStyle;
 + (IBAFormFieldStyle *)textFormFieldStyle;
++ (IBAFormFieldStyle *)buttonFormFieldStyle;
 
 @end
