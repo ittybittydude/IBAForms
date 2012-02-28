@@ -12,9 +12,9 @@
 // permissions and limitations under the License.
 //
 
-#import "Credential.h"
+#import "Credentials.h"
 
-@implementation Credential
+@implementation Credentials
 
 @synthesize emailAddress = emailAddress_;
 @synthesize password = password_;
@@ -31,14 +31,14 @@
 	return [NSString stringWithFormat:@"Email address = %@, Password = %@", [self emailAddress], [self password]];
 }
 
-+ (Credential *)credentialWithEmailAddress:(NSString *)emailAddress password:(NSString *)password
++ (Credentials *)credentialsWithEmailAddress:(NSString *)emailAddress password:(NSString *)password
 {
-	Credential *credential = [[Credential alloc] init];
+	Credentials *credentials = [[Credentials alloc] init];
 
-	[credential setEmailAddress:emailAddress];
-	[credential setPassword:password];
+	[credentials setEmailAddress:emailAddress];
+	[credentials setPassword:password];
 
-	return [credential autorelease];
+	return [credentials autorelease];
 }
 
 @end

@@ -12,19 +12,19 @@
 // permissions and limitations under the License.
 //
 
-#import "IBAFormsAuthenticationAppDelegate.h"
+#import "IBAFormsLoginAppDelegate.h"
 
 #import <IBAForms/IBAButtonFormField.h>
 
-#import "AuthenticationFormController.h"
-#import "AuthenticationDataSource.h"
-#import "Credential.h"
+#import "LoginFormController.h"
+#import "LoginDataSource.h"
+#import "Credentials.h"
 
-@interface IBAFormsAuthenticationAppDelegate ()
+@interface IBAFormsLoginAppDelegate ()
 @property (nonatomic, retain, readwrite) UIWindow *mainWindow;
 @end
 
-@implementation IBAFormsAuthenticationAppDelegate
+@implementation IBAFormsLoginAppDelegate
 
 @synthesize mainWindow = mainWindow_;
 
@@ -39,7 +39,7 @@
 	// =====================================================================================================
 	// STEP 1 - Setup model class.
 	// =====================================================================================================
-	Credential *user_credential = [[Credential alloc] init];
+	Credentials *user_credential = [[Credentials alloc] init];
 	[user_credential setEmailAddress:@"john.appleseed@apple.com"];
 	[user_credential setPassword:@"apple"];
 
@@ -56,14 +56,14 @@
 		[alert_view show];
 		[alert_view release];
 	};
-	AuthenticationDataSource *auth_data_source = [[AuthenticationDataSource alloc] initWithModel:user_credential formAction:login_action];
+	LoginDataSource *auth_data_source = [[LoginDataSource alloc] initWithModel:user_credential formAction:login_action];
 
 	// =====================================================================================================
 	// STEP 3 - Setup form controller.
 	// =====================================================================================================
-	AuthenticationFormController *auth_form_controller = [[AuthenticationFormController alloc] initWithNibName:nil
-																										bundle:nil
-																								formDataSource:auth_data_source];
+	LoginFormController *auth_form_controller = [[LoginFormController alloc] initWithNibName:nil
+                                                                                      bundle:nil
+                                                                              formDataSource:auth_data_source];
 	[auth_form_controller setTitle:NSLocalizedString(@"Sample Login Form", @"")];
 	UINavigationController *navigation_controller = [[UINavigationController alloc] initWithRootViewController:auth_form_controller];
 

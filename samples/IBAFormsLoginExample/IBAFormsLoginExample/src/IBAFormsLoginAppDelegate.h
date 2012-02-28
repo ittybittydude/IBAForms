@@ -14,6 +14,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IBAFormsAuthenticationAppDelegate : UIResponder <UIApplicationDelegate>
+@interface IBAFormsLoginAppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic, retain, readonly) UIWindow *mainWindow;
 @end

@@ -12,7 +12,7 @@
 // permissions and limitations under the License.
 //
 
-#import "IBAFormFieldStyle+Authentication.h"
+#import "IBAFormFieldStyle+Login.h"
 #import <IBAForms/IBAFormConstants.h>
 
 @implementation IBAFormFieldStyle (Authentication)

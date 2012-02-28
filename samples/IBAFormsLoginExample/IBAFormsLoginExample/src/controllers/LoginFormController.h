@@ -14,5 +14,5 @@
 
 #import <IBAForms/IBAFormViewController.h>
 
-@interface AuthenticationFormController : IBAFormViewController
+@interface LoginFormController : IBAFormViewController
 @end

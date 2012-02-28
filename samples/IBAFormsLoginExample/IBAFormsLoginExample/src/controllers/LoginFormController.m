@@ -12,9 +12,9 @@
 // permissions and limitations under the License.
 //
 
-#import "AuthenticationFormController.h"
+#import "LoginFormController.h"
 
-@implementation AuthenticationFormController
+@implementation LoginFormController
 
 - (void)loadView
 {

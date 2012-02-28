@@ -13,12 +13,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IBAFormsAuthenticationAppDelegate.h"
+#import "IBAFormsLoginAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
 	@autoreleasepool
 	{
-		return UIApplicationMain(argc, argv, nil, NSStringFromClass([IBAFormsAuthenticationAppDelegate class]));
+		return UIApplicationMain(argc, argv, nil, NSStringFromClass([IBAFormsLoginAppDelegate class]));
 	}
 }

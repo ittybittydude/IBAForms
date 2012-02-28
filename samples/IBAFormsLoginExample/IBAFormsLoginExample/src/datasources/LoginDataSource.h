@@ -15,7 +15,7 @@
 #import <IBAForms/IBAFormDataSource.h>
 #import <IBAForms/IBAButtonFormField.h>
 
-@interface AuthenticationDataSource : IBAFormDataSource
+@interface LoginDataSource : IBAFormDataSource
 // Designated Initializer.
 - (id)initWithModel:(id)model formAction:(IBAButtonFormFieldBlock)action; 
 @end

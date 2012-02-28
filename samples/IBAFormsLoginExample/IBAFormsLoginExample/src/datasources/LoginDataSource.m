@@ -12,12 +12,12 @@
 // permissions and limitations under the License.
 //
 
-#import "AuthenticationDataSource.h"
+#import "LoginDataSource.h"
 
 #import <IBAForms/IBAForms.h>
-#import "IBAFormFieldStyle+Authentication.h"
+#import "IBAFormFieldStyle+Login.h"
 
-@implementation AuthenticationDataSource
+@implementation LoginDataSource
 
 - (id)initWithModel:(id)model formAction:(IBAButtonFormFieldBlock)action
 {

@@ -14,9 +14,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Credential : NSObject
+@interface Credentials : NSObject
 @property (nonatomic, retain) NSString *emailAddress;
 @property (nonatomic, retain) NSString *password;
 
-+ (Credential *)credentialWithEmailAddress:(NSString *)emailAddress password:(NSString *)password;
++ (Credentials *)credentialsWithEmailAddress:(NSString *)emailAddress password:(NSString *)password;
 @end

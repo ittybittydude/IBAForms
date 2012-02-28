@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9524EA8114F7370F008B96D2 /* Credential.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8014F7370F008B96D2 /* Credential.m */; };
-		9524EA8D14F73B45008B96D2 /* AuthenticationFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8C14F73B45008B96D2 /* AuthenticationFormController.m */; };
-		9524EA9014F73B6D008B96D2 /* AuthenticationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8F14F73B6D008B96D2 /* AuthenticationDataSource.m */; };
-		9524EA9414F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m */; };
+		9524EA8114F7370F008B96D2 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8014F7370F008B96D2 /* Credentials.m */; };
+		9524EA8D14F73B45008B96D2 /* LoginFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8C14F73B45008B96D2 /* LoginFormController.m */; };
+		9524EA9014F73B6D008B96D2 /* LoginDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8F14F73B6D008B96D2 /* LoginDataSource.m */; };
+		9524EA9414F7611A008B96D2 /* IBAFormFieldStyle+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Login.m */; };
 		954C0AF114F71FED0052F47C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0AF014F71FED0052F47C /* UIKit.framework */; };
 		954C0AF314F71FED0052F47C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0AF214F71FED0052F47C /* Foundation.framework */; };
 		954C0AF514F71FED0052F47C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0AF414F71FED0052F47C /* CoreGraphics.framework */; };
-		954C0AFB14F71FED0052F47C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 954C0AF914F71FED0052F47C /* InfoPlist.strings */; };
 		954C0AFD14F71FED0052F47C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 954C0AFC14F71FED0052F47C /* main.m */; };
-		954C0B0114F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 954C0B0014F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m */; };
+		954C0B0114F71FED0052F47C /* IBAFormsLoginAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 954C0B0014F71FED0052F47C /* IBAFormsLoginAppDelegate.m */; };
 		954C0B0914F729720052F47C /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 954C0B0814F729720052F47C /* libIBAForms.a */; };
+		958DC71F14FC76BD00EE5B95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 958DC71D14FC76BD00EE5B95 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,26 +31,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9524EA7F14F7370F008B96D2 /* Credential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credential.h; path = src/models/Credential.h; sourceTree = "<group>"; };
-		9524EA8014F7370F008B96D2 /* Credential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credential.m; path = src/models/Credential.m; sourceTree = "<group>"; };
-		9524EA8B14F73B45008B96D2 /* AuthenticationFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticationFormController.h; path = src/controllers/AuthenticationFormController.h; sourceTree = "<group>"; };
-		9524EA8C14F73B45008B96D2 /* AuthenticationFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticationFormController.m; path = src/controllers/AuthenticationFormController.m; sourceTree = "<group>"; };
-		9524EA8E14F73B6D008B96D2 /* AuthenticationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthenticationDataSource.h; path = src/datasources/AuthenticationDataSource.h; sourceTree = "<group>"; };
-		9524EA8F14F73B6D008B96D2 /* AuthenticationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthenticationDataSource.m; path = src/datasources/AuthenticationDataSource.m; sourceTree = "<group>"; };
-		9524EA9214F7611A008B96D2 /* IBAFormFieldStyle+Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IBAFormFieldStyle+Authentication.h"; path = "src/categories/IBAFormFieldStyle+Authentication.h"; sourceTree = "<group>"; };
-		9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IBAFormFieldStyle+Authentication.m"; path = "src/categories/IBAFormFieldStyle+Authentication.m"; sourceTree = "<group>"; };
-		954C0AEC14F71FED0052F47C /* IBAFormsAuthentication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBAFormsAuthentication.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9524EA7F14F7370F008B96D2 /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = src/models/Credentials.h; sourceTree = "<group>"; };
+		9524EA8014F7370F008B96D2 /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = src/models/Credentials.m; sourceTree = "<group>"; };
+		9524EA8B14F73B45008B96D2 /* LoginFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginFormController.h; path = src/controllers/LoginFormController.h; sourceTree = "<group>"; };
+		9524EA8C14F73B45008B96D2 /* LoginFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginFormController.m; path = src/controllers/LoginFormController.m; sourceTree = "<group>"; };
+		9524EA8E14F73B6D008B96D2 /* LoginDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginDataSource.h; path = src/datasources/LoginDataSource.h; sourceTree = "<group>"; };
+		9524EA8F14F73B6D008B96D2 /* LoginDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginDataSource.m; path = src/datasources/LoginDataSource.m; sourceTree = "<group>"; };
+		9524EA9214F7611A008B96D2 /* IBAFormFieldStyle+Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IBAFormFieldStyle+Login.h"; path = "src/categories/IBAFormFieldStyle+Login.h"; sourceTree = "<group>"; };
+		9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IBAFormFieldStyle+Login.m"; path = "src/categories/IBAFormFieldStyle+Login.m"; sourceTree = "<group>"; };
+		954C0AEC14F71FED0052F47C /* IBAFormsLoginExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBAFormsLoginExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		954C0AF014F71FED0052F47C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		954C0AF214F71FED0052F47C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		954C0AF414F71FED0052F47C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		954C0AF814F71FED0052F47C /* IBAFormsAuthentication-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IBAFormsAuthentication-Info.plist"; sourceTree = "<group>"; };
-		954C0AFA14F71FED0052F47C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		954C0AF814F71FED0052F47C /* IBAFormsLogin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IBAFormsLogin-Info.plist"; sourceTree = "<group>"; };
 		954C0AFC14F71FED0052F47C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		954C0AFE14F71FED0052F47C /* IBAFormsAuthentication-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBAFormsAuthentication-Prefix.pch"; sourceTree = "<group>"; };
-		954C0AFF14F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IBAFormsAuthenticationAppDelegate.h; path = src/IBAFormsAuthenticationAppDelegate.h; sourceTree = "<group>"; };
-		954C0B0014F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IBAFormsAuthenticationAppDelegate.m; path = src/IBAFormsAuthenticationAppDelegate.m; sourceTree = "<group>"; };
+		954C0AFE14F71FED0052F47C /* IBAFormsLogin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IBAFormsLogin-Prefix.pch"; sourceTree = "<group>"; };
+		954C0AFF14F71FED0052F47C /* IBAFormsLoginAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IBAFormsLoginAppDelegate.h; path = src/IBAFormsLoginAppDelegate.h; sourceTree = "<group>"; };
+		954C0B0014F71FED0052F47C /* IBAFormsLoginAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IBAFormsLoginAppDelegate.m; path = src/IBAFormsLoginAppDelegate.m; sourceTree = "<group>"; };
 		954C0B0814F729720052F47C /* libIBAForms.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libIBAForms.a; path = "../../library/build/Release-iphoneos/libIBAForms.a"; sourceTree = "<group>"; };
 		954C0B0A14F7299C0052F47C /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = ../../library/IBAForms.xcodeproj; sourceTree = "<group>"; };
+		958DC71E14FC76BD00EE5B95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,19 +68,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9524EA9114F75DF4008B96D2 /* Categories */ = {
+		9524EA9114F75DF4008B96D2 /* categories */ = {
 			isa = PBXGroup;
 			children = (
-				9524EA9214F7611A008B96D2 /* IBAFormFieldStyle+Authentication.h */,
-				9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m */,
+				9524EA9214F7611A008B96D2 /* IBAFormFieldStyle+Login.h */,
+				9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Login.m */,
 			);
-			name = Categories;
+			name = categories;
 			sourceTree = "<group>";
 		};
 		954C0AE114F71FED0052F47C = {
 			isa = PBXGroup;
 			children = (
-				954C0AF614F71FED0052F47C /* IBAFormsAuthentication */,
+				954C0AF614F71FED0052F47C /* IBAFormsLoginExample */,
 				954C0AEF14F71FED0052F47C /* Frameworks */,
 				954C0AED14F71FED0052F47C /* Products */,
 			);
@@ -89,7 +89,7 @@
 		954C0AED14F71FED0052F47C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				954C0AEC14F71FED0052F47C /* IBAFormsAuthentication.app */,
+				954C0AEC14F71FED0052F47C /* IBAFormsLoginExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,25 +105,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		954C0AF614F71FED0052F47C /* IBAFormsAuthentication */ = {
+		954C0AF614F71FED0052F47C /* IBAFormsLoginExample */ = {
 			isa = PBXGroup;
 			children = (
-				954C0B1414F72A2D0052F47C /* Bootstrap */,
-				954C0B1214F72A0C0052F47C /* Controllers */,
-				954C0B1314F72A170052F47C /* Data Sources */,
-				954C0B1114F72A010052F47C /* Models */,
-				9524EA9114F75DF4008B96D2 /* Categories */,
+				958DC71C14FC75D000EE5B95 /* src */,
 				954C0AF714F71FED0052F47C /* Supporting Files */,
 			);
-			path = IBAFormsAuthentication;
+			path = IBAFormsLoginExample;
 			sourceTree = "<group>";
 		};
 		954C0AF714F71FED0052F47C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				954C0AF814F71FED0052F47C /* IBAFormsAuthentication-Info.plist */,
-				954C0AF914F71FED0052F47C /* InfoPlist.strings */,
-				954C0AFE14F71FED0052F47C /* IBAFormsAuthentication-Prefix.pch */,
+				958DC71D14FC76BD00EE5B95 /* InfoPlist.strings */,
+				954C0AF814F71FED0052F47C /* IBAFormsLogin-Info.plist */,
+				954C0AFE14F71FED0052F47C /* IBAFormsLogin-Prefix.pch */,
 				954C0AFC14F71FED0052F47C /* main.m */,
 			);
 			name = "Supporting Files";
@@ -146,48 +142,60 @@
 			name = IBAForms;
 			sourceTree = "<group>";
 		};
-		954C0B1114F72A010052F47C /* Models */ = {
+		954C0B1114F72A010052F47C /* models */ = {
 			isa = PBXGroup;
 			children = (
-				9524EA7F14F7370F008B96D2 /* Credential.h */,
-				9524EA8014F7370F008B96D2 /* Credential.m */,
+				9524EA7F14F7370F008B96D2 /* Credentials.h */,
+				9524EA8014F7370F008B96D2 /* Credentials.m */,
 			);
-			name = Models;
+			name = models;
 			sourceTree = "<group>";
 		};
-		954C0B1214F72A0C0052F47C /* Controllers */ = {
+		954C0B1214F72A0C0052F47C /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9524EA8B14F73B45008B96D2 /* AuthenticationFormController.h */,
-				9524EA8C14F73B45008B96D2 /* AuthenticationFormController.m */,
+				9524EA8B14F73B45008B96D2 /* LoginFormController.h */,
+				9524EA8C14F73B45008B96D2 /* LoginFormController.m */,
 			);
-			name = Controllers;
+			name = controllers;
 			sourceTree = "<group>";
 		};
-		954C0B1314F72A170052F47C /* Data Sources */ = {
+		954C0B1314F72A170052F47C /* datasources */ = {
 			isa = PBXGroup;
 			children = (
-				9524EA8E14F73B6D008B96D2 /* AuthenticationDataSource.h */,
-				9524EA8F14F73B6D008B96D2 /* AuthenticationDataSource.m */,
+				9524EA8E14F73B6D008B96D2 /* LoginDataSource.h */,
+				9524EA8F14F73B6D008B96D2 /* LoginDataSource.m */,
 			);
-			name = "Data Sources";
+			name = datasources;
 			sourceTree = "<group>";
 		};
-		954C0B1414F72A2D0052F47C /* Bootstrap */ = {
+		954C0B1414F72A2D0052F47C /* bootstrap */ = {
 			isa = PBXGroup;
 			children = (
-				954C0AFF14F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.h */,
-				954C0B0014F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m */,
+				954C0AFF14F71FED0052F47C /* IBAFormsLoginAppDelegate.h */,
+				954C0B0014F71FED0052F47C /* IBAFormsLoginAppDelegate.m */,
 			);
-			name = Bootstrap;
+			name = bootstrap;
+			sourceTree = "<group>";
+		};
+		958DC71C14FC75D000EE5B95 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				954C0B1414F72A2D0052F47C /* bootstrap */,
+				9524EA9114F75DF4008B96D2 /* categories */,
+				954C0B1214F72A0C0052F47C /* controllers */,
+				954C0B1314F72A170052F47C /* datasources */,
+				954C0B1114F72A010052F47C /* models */,
+			);
+			name = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		954C0AEB14F71FED0052F47C /* IBAFormsAuthentication */ = {
+		954C0AEB14F71FED0052F47C /* IBAFormsLoginExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 954C0B0414F71FED0052F47C /* Build configuration list for PBXNativeTarget "IBAFormsAuthentication" */;
+			buildConfigurationList = 954C0B0414F71FED0052F47C /* Build configuration list for PBXNativeTarget "IBAFormsLoginExample" */;
 			buildPhases = (
 				954C0AE814F71FED0052F47C /* Sources */,
 				954C0AE914F71FED0052F47C /* Frameworks */,
@@ -197,9 +205,9 @@
 			);
 			dependencies = (
 			);
-			name = IBAFormsAuthentication;
-			productName = IBAFormsAuthentication;
-			productReference = 954C0AEC14F71FED0052F47C /* IBAFormsAuthentication.app */;
+			name = IBAFormsLoginExample;
+			productName = IBAFormsLoginExample;
+			productReference = 954C0AEC14F71FED0052F47C /* IBAFormsLoginExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -211,7 +219,7 @@
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Itty Bitty Apps Pty Ltd";
 			};
-			buildConfigurationList = 954C0AE614F71FED0052F47C /* Build configuration list for PBXProject "IBAFormsAuthentication" */;
+			buildConfigurationList = 954C0AE614F71FED0052F47C /* Build configuration list for PBXProject "IBAFormsLoginExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -229,7 +237,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				954C0AEB14F71FED0052F47C /* IBAFormsAuthentication */,
+				954C0AEB14F71FED0052F47C /* IBAFormsLoginExample */,
 			);
 		};
 /* End PBXProject section */
@@ -249,7 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				954C0AFB14F71FED0052F47C /* InfoPlist.strings in Resources */,
+				958DC71F14FC76BD00EE5B95 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,21 +269,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				954C0AFD14F71FED0052F47C /* main.m in Sources */,
-				954C0B0114F71FED0052F47C /* IBAFormsAuthenticationAppDelegate.m in Sources */,
-				9524EA8114F7370F008B96D2 /* Credential.m in Sources */,
-				9524EA8D14F73B45008B96D2 /* AuthenticationFormController.m in Sources */,
-				9524EA9014F73B6D008B96D2 /* AuthenticationDataSource.m in Sources */,
-				9524EA9414F7611A008B96D2 /* IBAFormFieldStyle+Authentication.m in Sources */,
+				954C0B0114F71FED0052F47C /* IBAFormsLoginAppDelegate.m in Sources */,
+				9524EA8114F7370F008B96D2 /* Credentials.m in Sources */,
+				9524EA8D14F73B45008B96D2 /* LoginFormController.m in Sources */,
+				9524EA9014F73B6D008B96D2 /* LoginDataSource.m in Sources */,
+				9524EA9414F7611A008B96D2 /* IBAFormFieldStyle+Login.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		954C0AF914F71FED0052F47C /* InfoPlist.strings */ = {
+		958DC71D14FC76BD00EE5B95 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				954C0AFA14F71FED0052F47C /* en */,
+				958DC71E14FC76BD00EE5B95 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -287,12 +295,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "IBAFormsLoginExample/IBAFormsLogin-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -303,6 +311,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/../../library/headers";
+				INFOPLIST_FILE = "IBAFormsLoginExample/IBAFormsLogin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -317,15 +326,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREFIX_HEADER = "IBAFormsLoginExample/IBAFormsLogin-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SOURCE_ROOT)/../../library/headers";
+				INFOPLIST_FILE = "IBAFormsLoginExample/IBAFormsLogin-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
@@ -342,8 +352,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "IBAFormsAuthentication/IBAFormsAuthentication-Prefix.pch";
-				INFOPLIST_FILE = "IBAFormsAuthentication/IBAFormsAuthentication-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -353,8 +361,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "IBAFormsAuthentication/IBAFormsAuthentication-Prefix.pch";
-				INFOPLIST_FILE = "IBAFormsAuthentication/IBAFormsAuthentication-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -363,7 +369,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		954C0AE614F71FED0052F47C /* Build configuration list for PBXProject "IBAFormsAuthentication" */ = {
+		954C0AE614F71FED0052F47C /* Build configuration list for PBXProject "IBAFormsLoginExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				954C0B0214F71FED0052F47C /* Debug */,
@@ -372,7 +378,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		954C0B0414F71FED0052F47C /* Build configuration list for PBXNativeTarget "IBAFormsAuthentication" */ = {
+		954C0B0414F71FED0052F47C /* Build configuration list for PBXNativeTarget "IBAFormsLoginExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				954C0B0514F71FED0052F47C /* Debug */,
