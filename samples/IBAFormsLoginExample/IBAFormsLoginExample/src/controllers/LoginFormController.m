@@ -16,8 +16,7 @@
 
 @implementation LoginFormController
 
-- (void)loadView
-{
+- (void)loadView {
 	UIView *super_view = [[[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 	[super_view setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 
@@ -29,8 +28,7 @@
 	[self setView:super_view];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 

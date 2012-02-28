@@ -15,10 +15,8 @@
 #import <UIKit/UIKit.h>
 #import "IBAFormsLoginAppDelegate.h"
 
-int main(int argc, char *argv[])
-{
-	@autoreleasepool
-	{
+int main(int argc, char *argv[]) {
+	@autoreleasepool {
 		return UIApplicationMain(argc, argv, nil, NSStringFromClass([IBAFormsLoginAppDelegate class]));
 	}
 }

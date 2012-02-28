@@ -28,14 +28,12 @@
 
 @synthesize mainWindow = mainWindow_;
 
-- (void)dealloc
-{
+- (void)dealloc {
 	[mainWindow_ release];
 	[super dealloc];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// =====================================================================================================
 	// STEP 1 - Setup model class.
 	// =====================================================================================================
@@ -46,8 +44,7 @@
 	// =====================================================================================================
 	// STEP 2 - Setup data source.
 	// =====================================================================================================
-	IBAButtonFormFieldBlock login_action = ^
-	{
+	IBAButtonFormFieldBlock login_action = ^{
 		UIAlertView *alert_view = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login Successful", @"")
 															 message:[user_credential description]
 															delegate:nil

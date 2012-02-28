@@ -19,20 +19,17 @@
 @synthesize emailAddress = emailAddress_;
 @synthesize password = password_;
 
-- (void)dealloc
-{
+- (void)dealloc {
 	[emailAddress_ release];
 	[password_ release];
 	[super dealloc];
 }
 
-- (NSString *)description
-{
+- (NSString *)description {
 	return [NSString stringWithFormat:@"Email address = %@, Password = %@", [self emailAddress], [self password]];
 }
 
-+ (Credentials *)credentialsWithEmailAddress:(NSString *)emailAddress password:(NSString *)password
-{
++ (Credentials *)credentialsWithEmailAddress:(NSString *)emailAddress password:(NSString *)password {
 	Credentials *credentials = [[Credentials alloc] init];
 
 	[credentials setEmailAddress:emailAddress];

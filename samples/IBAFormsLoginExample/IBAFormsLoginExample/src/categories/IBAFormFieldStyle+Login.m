@@ -17,8 +17,7 @@
 
 @implementation IBAFormFieldStyle (Authentication)
 
-+ (IBAFormFieldStyle *)buttonFormFieldStyle
-{
++ (IBAFormFieldStyle *)buttonFormFieldStyle {
 	IBAFormFieldStyle *style = [[IBAFormFieldStyle alloc] init];
 
 	[style setLabelTextColor:[UIColor colorWithRed:.318 green:.4 blue:.569 alpha:1.]];
@@ -30,8 +29,7 @@
 	return [style autorelease];
 }
 
-+ (IBAFormFieldStyle *)textFormFieldStyle
-{
++ (IBAFormFieldStyle *)textFormFieldStyle {
 	IBAFormFieldStyle *style = [[IBAFormFieldStyle alloc] init];
 
 	[style setLabelTextColor:[UIColor blackColor]];

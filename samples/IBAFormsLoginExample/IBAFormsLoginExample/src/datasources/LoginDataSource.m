@@ -19,10 +19,8 @@
 
 @implementation LoginDataSource
 
-- (id)initWithModel:(id)model formAction:(IBAButtonFormFieldBlock)action
-{
-	if ((self = [super initWithModel:model]))
-	{
+- (id)initWithModel:(id)model formAction:(IBAButtonFormFieldBlock)action {
+	if ((self = [super initWithModel:model])) {
 		IBAFormSection *login_form_section = [self addSectionWithHeaderTitle:NSLocalizedString(@"Identify Yourself", @"")
 																 footerTitle:[NSString string]];
 		IBATextFormField *email_text_form_field = [IBATextFormField emailTextFormFieldWithSection:login_form_section
