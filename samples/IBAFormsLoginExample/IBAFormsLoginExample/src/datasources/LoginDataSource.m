@@ -17,10 +17,23 @@
 #import <IBAForms/IBAForms.h>
 #import "IBAFormFieldStyle+Login.h"
 
+@interface LoginDataSource ()
+@property (nonatomic, copy) IBAButtonFormFieldBlock actionBlock;
+@end
+
 @implementation LoginDataSource
+
+@synthesize actionBlock = actionBlock_;
+
+- (void)dealloc {
+	[actionBlock_ release];
+	[super dealloc];
+}
 
 - (id)initWithModel:(id)model formAction:(IBAButtonFormFieldBlock)action {
 	if ((self = [super initWithModel:model])) {
+		[self setActionBlock:action];
+
 		IBAFormSection *loginFormSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
 		IBATextFormField *emailTextFormField = [IBATextFormField emailTextFormFieldWithSection:loginFormSection
                                                                                        keyPath:@"emailAddress"
@@ -32,18 +45,29 @@
                                                                                     valueTransformer:nil];
 
 		[emailTextFormField setFormFieldStyle:[IBAFormFieldStyle textFormFieldStyle]];
-		[passwordTextFormField setFormFieldStyle:[emailTextFormField formFieldStyle]];
+		[passwordTextFormField setFormFieldStyle:[IBAFormFieldStyle textFormFieldStyle]];
+
+		UITextField *passwordTextField = [[passwordTextFormField textFormFieldCell] textField];
+		[passwordTextField setKeyboardType:UIKeyboardTypeDefault];
+		[passwordTextField setReturnKeyType:UIReturnKeyDone];
+		[passwordTextField addTarget:self
+							  action:@selector(passwordTextFieldEditingDidEnd:withEvent:)
+					forControlEvents:UIControlEventEditingDidEnd];
 
 		IBAFormSection *submitFormSection = [self addSectionWithHeaderTitle:nil footerTitle:nil];
-		IBAButtonFormField *submitFormField = [[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Login", @"")
-                                                                                   icon:nil
-                                                                         executionBlock:action];
+		IBAButtonFormField *submitFormField = [[[IBAButtonFormField alloc] initWithTitle:NSLocalizedString(@"Login", @"")
+																					icon:nil
+																		  executionBlock:action] autorelease];
 		[submitFormField setFormFieldStyle:[IBAFormFieldStyle buttonFormFieldStyle]];
 		[submitFormSection addFormField:submitFormField];
-		[submitFormField release], submitFormField = nil;
 	}
 
 	return self;
 }
 
+- (void)passwordTextFieldEditingDidEnd:(id)sender withEvent:(UIEvent *)event {
+	if ([self actionBlock]) {
+		[self actionBlock]();
+	}
+}
 @end

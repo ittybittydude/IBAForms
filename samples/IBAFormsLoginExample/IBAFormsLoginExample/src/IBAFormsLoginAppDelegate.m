@@ -15,6 +15,7 @@
 #import "IBAFormsLoginAppDelegate.h"
 
 #import <IBAForms/IBAButtonFormField.h>
+#import <IBAForms/IBAInputManager.h>
 
 #import "LoginFormController.h"
 #import "LoginDataSource.h"
@@ -45,6 +46,10 @@
 	// STEP 2 - Setup data source.
 	// =====================================================================================================
 	IBAButtonFormFieldBlock loginAction = ^{
+		[[IBAInputManager sharedIBAInputManager] performSelector:@selector(setActiveInputRequestor:)
+													  withObject:nil
+													  afterDelay:1.];
+
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login Successful", @"")
                                                             message:[userCredential description]
                                                            delegate:nil

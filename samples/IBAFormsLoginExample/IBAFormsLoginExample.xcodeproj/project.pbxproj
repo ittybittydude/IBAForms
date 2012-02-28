@@ -36,7 +36,7 @@
 		9524EA8B14F73B45008B96D2 /* LoginFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginFormController.h; path = src/controllers/LoginFormController.h; sourceTree = "<group>"; };
 		9524EA8C14F73B45008B96D2 /* LoginFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginFormController.m; path = src/controllers/LoginFormController.m; sourceTree = "<group>"; };
 		9524EA8E14F73B6D008B96D2 /* LoginDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginDataSource.h; path = src/datasources/LoginDataSource.h; sourceTree = "<group>"; };
-		9524EA8F14F73B6D008B96D2 /* LoginDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginDataSource.m; path = src/datasources/LoginDataSource.m; sourceTree = "<group>"; };
+		9524EA8F14F73B6D008B96D2 /* LoginDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginDataSource.m; path = src/datasources/LoginDataSource.m; sourceTree = "<group>"; usesTabs = 1; };
 		9524EA9214F7611A008B96D2 /* IBAFormFieldStyle+Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IBAFormFieldStyle+Login.h"; path = "src/categories/IBAFormFieldStyle+Login.h"; sourceTree = "<group>"; };
 		9524EA9314F7611A008B96D2 /* IBAFormFieldStyle+Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IBAFormFieldStyle+Login.m"; path = "src/categories/IBAFormFieldStyle+Login.m"; sourceTree = "<group>"; };
 		954C0AEC14F71FED0052F47C /* IBAFormsLoginExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBAFormsLoginExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +85,7 @@
 				954C0AED14F71FED0052F47C /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		954C0AED14F71FED0052F47C /* Products */ = {
 			isa = PBXGroup;
