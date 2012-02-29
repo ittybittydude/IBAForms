@@ -38,9 +38,9 @@
 	// =====================================================================================================
 	// STEP 1 - Setup model class.
 	// =====================================================================================================
-	Credentials *userCredential = [[[Credentials alloc] init] autorelease];
-	[userCredential setEmailAddress:@"john.appleseed@apple.com"];
-	[userCredential setPassword:@"apple"];
+	Credentials *userCredentials = [[[Credentials alloc] init] autorelease];
+	[userCredentials setEmailAddress:@"john.appleseed@apple.com"];
+	[userCredentials setPassword:@"apple"];
 
 	// =====================================================================================================
 	// STEP 2 - Setup data source.
@@ -51,14 +51,14 @@
 													  afterDelay:1.];
 
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login Successful", @"")
-                                                            message:[userCredential description]
+                                                            message:[userCredentials description]
                                                            delegate:nil
                                                   cancelButtonTitle:NSLocalizedString(@"OK", @"")
                                                   otherButtonTitles:nil];
 		[alertView show];
 		[alertView release];
 	};
-	LoginDataSource *loginDataSource = [[[LoginDataSource alloc] initWithModel:userCredential formAction:loginAction] autorelease];
+	LoginDataSource *loginDataSource = [[[LoginDataSource alloc] initWithModel:userCredentials formAction:loginAction] autorelease];
 
 	// =====================================================================================================
 	// STEP 3 - Setup form controller.

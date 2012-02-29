@@ -28,7 +28,7 @@
 	[style setValueTextAlignment:UITextAlignmentLeft];
 	[style setValueTextColor:[UIColor colorWithRed:.22 green:.329 blue:.529 alpha:1.]];
 	[style setValueFont:[UIFont systemFontOfSize:14.]];
-	[style setValueFrame:CGRectMake(210., 13., 110., IBAFormFieldValueHeight)];
+	[style setValueFrame:CGRectMake(210., 20., 110., IBAFormFieldValueHeight)];
 
 	return style;
 }
