@@ -36,6 +36,10 @@
 	[super dealloc];
 }
 
+- (NSString *)description {
+	return [NSString stringWithFormat:@"[%@] [HeaderTitle = '%@'] [FooterTitle = '%@']", [self class], [self headerTitle], [self footerTitle]];
+}
+
 - (id)initWithHeaderTitle:(NSString *)header footerTitle:(NSString *)footer {
 	if ((self = [super init])) {
 		self.headerTitle = header;
