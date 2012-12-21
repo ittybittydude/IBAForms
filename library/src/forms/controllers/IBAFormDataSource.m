@@ -90,7 +90,7 @@
 	return indexPath;
 }
 
-- (NSArray *)formFieldForKeyPath:(NSString *)keyPath {
+- (NSArray *)formFieldsForKeyPath:(NSString *)keyPath {
     NSMutableArray *fields = [[NSMutableArray alloc] init];
     
     NSUInteger sectionCount = [self sectionCount];

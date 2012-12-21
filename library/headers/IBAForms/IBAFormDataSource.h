@@ -46,6 +46,6 @@
 - (IBAFormField *)formFieldAfter:(IBAFormField *)field;
 - (IBAFormField *)formFieldBefore:(IBAFormField *)field;
 - (NSIndexPath *)indexPathForFormField:(IBAFormField *)formField;
-- (NSArray *)formFieldForKeyPath:(NSString *)keyPath;
+- (NSArray *)formFieldsForKeyPath:(NSString *)keyPath;
 
 @end
