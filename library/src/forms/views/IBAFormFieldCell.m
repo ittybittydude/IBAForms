@@ -29,7 +29,6 @@
 @synthesize formFieldStyle = formFieldStyle_;
 @synthesize styleApplied = styleApplied_;
 @synthesize active = active_;
-@synthesize hiddenCellCache = hiddenCellCache_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(inputView_);
@@ -37,7 +36,6 @@
 	IBA_RELEASE_SAFELY(cellView_);
 	IBA_RELEASE_SAFELY(label_);
 	IBA_RELEASE_SAFELY(formFieldStyle_);
-	hiddenCellCache_ = nil;
 	
 	[super dealloc];
 }
@@ -140,11 +138,6 @@
 // UITableView, so that they are still in the view hierarchy. We ended up making this hidden view a subview of the 
 // UIViewController's view. 
 
-- (void)didMoveToWindow {
-	if (self.window == nil) {
-		NSAssert((self.hiddenCellCache != nil), @"Hidden cell cache should not be nil");
-		[self.hiddenCellCache addSubview:self];
-	}
 }
 
 
