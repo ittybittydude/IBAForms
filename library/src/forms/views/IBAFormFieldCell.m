@@ -14,6 +14,7 @@
 
 #import "IBAFormFieldCell.h"
 #import "IBAFormConstants.h"
+#import "IBAInputManager.h"
 
 @interface IBAFormFieldCell ()
 @property (nonatomic, assign, getter=isActive) BOOL active;
@@ -64,12 +65,14 @@
 }
 
 - (void)activate {
+  [self beginObservingSuperviewContentOffset];
 	[self applyActiveStyle];
 	self.active = YES;
 }
 
 
 - (void)deactivate {
+  [self endObservingSuperviewContentOffset];
 	[self applyFormFieldStyle];
 	self.active = NO;
 }
@@ -124,21 +127,52 @@
 	return YES;
 }
 
+#pragma mark - Dirty laundry
 
-#pragma mark - 
-#pragma mark Dirty laundry
+// SP: A new OS, some new dirty laundry. Why are we doing this craziness you may ask?
+// Here's an excerpt from SW's comment from the previous iOS 4/iOS 5 fix:
+// "..let me tell you a little story about UIResponders. If you call becomeFirstResponder
+// on a UIResponder that is not in the view hierarchy, it doesn't become the first responder.
+// 'So what', you might ask. Well, when cells in a UITableView scroll out of view, they are
+// removed from the view hierarchy. If you select a cell, then scroll it up out of view,
+// when you press the 'Previous' button in the toolbar, the forms framework tries to activate
+// the previous cell and make it the first responder. The previous cell won't be in the view
+// hierarchy, and the becomeFirstResponder call will fail.."
+// The previous fix relied on didMoveToWindow to keep track of cells moving offscreen, however
+// in iOS 6, this call no longer gets triggered. As a result we're having to keep track of our
+// position within our superview and our superviews contentOffset. Instead of keeping unused
+// cells around in the responder chain so we can resign them as first responder, we're now
+// resigning the cells as soon as they pass off the top of the screen.
 
-// SW. So, what's all this dirty laundry business then? Well, let me tell you a little story
-// about UIResponders. If you call becomeFirstResponder on a UIResponder that is not in the view hierarchy, it doesn't
-// become the first responder. 'So what', you might ask. Well, when cells in a UITableView scroll out of view, they
-// are removed from the view hierarchy. If you select a cell, then scroll it up out of view, when you press the 'Previous'
-// button in the toolbar, the forms framework tries to activate the previous cell and make it the first responder.
-// The previous cell won't be in the view hierarchy, and the becomeFirstResponder call will fail. We tried all sorts
-// of workarounds, but the one that seems to work is to put the cells into a hidden view when they are removed from the
-// UITableView, so that they are still in the view hierarchy. We ended up making this hidden view a subview of the 
-// UIViewController's view. 
 
+static NSString *kContentOffsetKeyPath = @"contentOffset";
+
+- (void)beginObservingSuperviewContentOffset
+{
+  if ([self.superview respondsToSelector:@selector(contentOffset)])
+  {
+    [self.superview addObserver:self forKeyPath:kContentOffsetKeyPath options:NSKeyValueObservingOptionNew context:NULL];
+  }
 }
 
+- (void)endObservingSuperviewContentOffset
+{
+  if ([self.superview respondsToSelector:@selector(contentOffset)])
+  {
+    [self.superview removeObserver:self forKeyPath:kContentOffsetKeyPath];
+  }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+  if ([keyPath isEqualToString:kContentOffsetKeyPath])
+  {
+    CGPoint contentOffset = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
+    if (CGRectGetMaxY(self.frame) <= contentOffset.y)
+    {
+      [[IBAInputManager sharedIBAInputManager] deactivateActiveInputRequestor];
+    }
+  }
+}
 
 @end
