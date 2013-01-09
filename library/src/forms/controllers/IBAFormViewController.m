@@ -194,6 +194,12 @@
     }
 }
 
+#pragma mark - 
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [[IBAInputManager sharedIBAInputManager] deactivateActiveInputRequestor];
+}
 
 #pragma mark -
 #pragma mark IBAInputRequestorDataSource
