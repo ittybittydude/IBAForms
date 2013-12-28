@@ -16,6 +16,7 @@
 #import "ShowcaseModel.h"
 #import "ShowcaseFormDataSource.h"
 #import "ShowcaseController.h"
+#import "SampleFormNavigationController.h"
 
 
 @implementation IBAFormsShowcaseAppDelegate
@@ -36,7 +37,7 @@
 	ShowcaseController *showcaseController = [[[ShowcaseController alloc] initWithNibName:nil bundle:nil formDataSource:showcaseDataSource] autorelease];
 	[showcaseController setTitle:@"IBAForms Showcase"];
 	
-	UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:showcaseController] autorelease];
+	SampleFormNavigationController *navController = [[[SampleFormNavigationController alloc] initWithRootViewController:showcaseController] autorelease];
 	
 	[self setWindow:[[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease]];
 	[[self window] setRootViewController:navController];

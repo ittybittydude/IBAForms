@@ -235,6 +235,7 @@
 @implementation IBASingleIndexTransformer
 
 @synthesize pickListOptions = pickListOptions_;
+@synthesize startValue = startValue_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(pickListOptions_);
@@ -245,6 +246,16 @@
 - (id)initWithPickListOptions:(NSArray *)pickListOptions {
 	if ((self = [super init])) {
 		self.pickListOptions = pickListOptions;
+        startValue_ = 0;
+	}
+	
+	return self;
+}
+
+- (id)initWithPickListOptions:(NSArray *)pickListOptions startValue:(NSInteger)startVal {
+    if ((self = [super init])) {
+		self.pickListOptions = pickListOptions;
+        startValue_ = startVal;
 	}
 	
 	return self;
@@ -262,7 +273,7 @@
 	// Assume we're given a set with a single IBAPickListFormOption and convert it to an NSNumber representing the option
 	// index in to pickListOptions
 	IBAPickListFormOption *option = [value anyObject];
-	NSNumber *index = [NSNumber numberWithInt:[self.pickListOptions indexOfObject:option]];
+	NSNumber *index = [NSNumber numberWithInt:([self.pickListOptions indexOfObject:option] + startValue_)];
 	
 	return index;
 }
@@ -271,13 +282,15 @@
 	// Assume we're given an NSNumber representing an index in to pickListOptions and convert it to a set with a 
 	// single IBAPickListFormOption
 	NSMutableSet *options = [[[NSMutableSet alloc] init] autorelease];
-	int index = [(NSNumber *)value intValue];
-	if ((index >= 0) && (index < [self.pickListOptions count])) {
-		IBAPickListFormOption *option = [self.pickListOptions objectAtIndex:index];
-		if (option != nil) {
-			[options addObject:option];
-		}
-	}
+    if([(NSNumber *)value respondsToSelector:@selector(intValue)] == YES) {
+        int index = [(NSNumber *)value intValue] - startValue_;
+        if ((index >= 0) && (index < [self.pickListOptions count])) {
+            IBAPickListFormOption *option = [self.pickListOptions objectAtIndex:index];
+            if (option != nil) {
+                [options addObject:option];
+            }
+        }
+    }
 	
 	return options;
 }

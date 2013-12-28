@@ -12,12 +12,10 @@
 // permissions and limitations under the License.
 //
 
-#import <Foundation/Foundation.h>
+#import <IBAForms/IBAFormDataSource.h>
 
+@interface SampleFormLocationSelectDataSource : IBAFormDataSource {
+	
+}
 
-@protocol IBAFormModelManager <NSObject>
-- (void)setModelValue:(id)value forKeyPath:(NSString *)keyPath;
-- (id)modelValueForKeyPath:(NSString *)keyPath;
-- (NSArray*)modelValuesForKeyPaths:(NSArray *)keyPaths;
-- (id)model;
 @end

@@ -66,6 +66,15 @@
 		751240FE13A8F6CF007BF2B5 /* IBATextInputProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 751240DB13A8F6CF007BF2B5 /* IBATextInputProvider.h */; };
 		753A7EFC13B36BCF003931DA /* IBATitleFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 753A7EFA13B36BCF003931DA /* IBATitleFormField.h */; };
 		753A7EFD13B36BCF003931DA /* IBATitleFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 753A7EFB13B36BCF003931DA /* IBATitleFormField.m */; };
+		75A0713F186D7513007C79D7 /* IBAComplexFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 75A0713E186D7513007C79D7 /* IBAComplexFormField.h */; };
+		75A07141186D7523007C79D7 /* IBAComplexFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A07140186D7523007C79D7 /* IBAComplexFormField.m */; };
+		75A07143186D8597007C79D7 /* IBAFormFieldProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 75A07142186D8597007C79D7 /* IBAFormFieldProtocol.h */; };
+		75A07145186DA025007C79D7 /* IBATextFormFieldWithAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A07144186DA025007C79D7 /* IBATextFormFieldWithAction.m */; };
+		75A07147186DA02F007C79D7 /* IBATextFormFieldWithAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 75A07146186DA02F007C79D7 /* IBATextFormFieldWithAction.h */; };
+		75A07149186DA3A3007C79D7 /* IBATextAreaFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A07148186DA3A3007C79D7 /* IBATextAreaFormField.m */; };
+		75A0714B186DA3A9007C79D7 /* IBATextAreaFormFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A0714A186DA3A9007C79D7 /* IBATextAreaFormFieldCell.m */; };
+		75A0714E186DA3B1007C79D7 /* IBATextAreaFormField.h in Headers */ = {isa = PBXBuildFile; fileRef = 75A0714C186DA3B1007C79D7 /* IBATextAreaFormField.h */; };
+		75A0714F186DA3B1007C79D7 /* IBATextAreaFormFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 75A0714D186DA3B1007C79D7 /* IBATextAreaFormFieldCell.h */; };
 		952FAB8014F20936006213AA /* IBATextFormField+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 952FAB7E14F20936006213AA /* IBATextFormField+Factory.m */; };
 		952FAB8214F32DA8006213AA /* IBATextFormField+Factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 952FAB8114F32DA8006213AA /* IBATextFormField+Factory.h */; };
 		AA747D9F0F9514B9006C5449 /* IBAForms_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */; settings = {ATTRIBUTES = (); }; };
@@ -132,6 +141,15 @@
 		751240DB13A8F6CF007BF2B5 /* IBATextInputProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATextInputProvider.h; sourceTree = "<group>"; };
 		753A7EFA13B36BCF003931DA /* IBATitleFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATitleFormField.h; sourceTree = "<group>"; };
 		753A7EFB13B36BCF003931DA /* IBATitleFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBATitleFormField.m; sourceTree = "<group>"; };
+		75A0713E186D7513007C79D7 /* IBAComplexFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAComplexFormField.h; sourceTree = "<group>"; };
+		75A07140186D7523007C79D7 /* IBAComplexFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IBAComplexFormField.m; path = src/forms/Controllers/IBAComplexFormField.m; sourceTree = SOURCE_ROOT; };
+		75A07142186D8597007C79D7 /* IBAFormFieldProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAFormFieldProtocol.h; sourceTree = "<group>"; };
+		75A07144186DA025007C79D7 /* IBATextFormFieldWithAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IBATextFormFieldWithAction.m; path = src/forms/Controllers/IBATextFormFieldWithAction.m; sourceTree = SOURCE_ROOT; };
+		75A07146186DA02F007C79D7 /* IBATextFormFieldWithAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATextFormFieldWithAction.h; sourceTree = "<group>"; };
+		75A07148186DA3A3007C79D7 /* IBATextAreaFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IBATextAreaFormField.m; path = src/forms/Controllers/IBATextAreaFormField.m; sourceTree = SOURCE_ROOT; };
+		75A0714A186DA3A9007C79D7 /* IBATextAreaFormFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IBATextAreaFormFieldCell.m; path = src/forms/Views/IBATextAreaFormFieldCell.m; sourceTree = SOURCE_ROOT; };
+		75A0714C186DA3B1007C79D7 /* IBATextAreaFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATextAreaFormField.h; sourceTree = "<group>"; };
+		75A0714D186DA3B1007C79D7 /* IBATextAreaFormFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBATextAreaFormFieldCell.h; sourceTree = "<group>"; };
 		952FAB7E14F20936006213AA /* IBATextFormField+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IBATextFormField+Factory.m"; path = "categories/IBATextFormField+Factory.m"; sourceTree = "<group>"; };
 		952FAB8114F32DA8006213AA /* IBATextFormField+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IBATextFormField+Factory.h"; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* IBAForms_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBAForms_Prefix.pch; sourceTree = SOURCE_ROOT; };
@@ -209,6 +227,9 @@
 		7512408113A8F6BE007BF2B5 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				75A07148186DA3A3007C79D7 /* IBATextAreaFormField.m */,
+				75A07144186DA025007C79D7 /* IBATextFormFieldWithAction.m */,
+				75A07140186D7523007C79D7 /* IBAComplexFormField.m */,
 				7512408213A8F6BE007BF2B5 /* IBABooleanFormField.m */,
 				7512408313A8F6BE007BF2B5 /* IBAButtonFormField.m */,
 				7512408413A8F6BE007BF2B5 /* IBADateFormField.m */,
@@ -230,6 +251,7 @@
 		7512409013A8F6BE007BF2B5 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				75A0714A186DA3A9007C79D7 /* IBATextAreaFormFieldCell.m */,
 				7512409113A8F6BE007BF2B5 /* IBABooleanSwitchCell.m */,
 				7512409213A8F6BE007BF2B5 /* IBADateFormFieldCell.m */,
 				7512409313A8F6BE007BF2B5 /* IBAFormFieldCell.m */,
@@ -279,6 +301,9 @@
 		751240B913A8F6CF007BF2B5 /* IBAForms */ = {
 			isa = PBXGroup;
 			children = (
+				75A0714C186DA3B1007C79D7 /* IBATextAreaFormField.h */,
+				75A0714D186DA3B1007C79D7 /* IBATextAreaFormFieldCell.h */,
+				75A07146186DA02F007C79D7 /* IBATextFormFieldWithAction.h */,
 				751240BA13A8F6CF007BF2B5 /* IBABooleanFormField.h */,
 				751240BB13A8F6CF007BF2B5 /* IBABooleanSwitchCell.h */,
 				751240BC13A8F6CF007BF2B5 /* IBAButtonFormField.h */,
@@ -288,6 +313,7 @@
 				751240C013A8F6CF007BF2B5 /* IBADateInputProvider.h */,
 				751240C113A8F6CF007BF2B5 /* IBAFormConstants.h */,
 				751240C213A8F6CF007BF2B5 /* IBAFormDataSource.h */,
+				75A0713E186D7513007C79D7 /* IBAComplexFormField.h */,
 				751240C313A8F6CF007BF2B5 /* IBAFormField.h */,
 				751240C413A8F6CF007BF2B5 /* IBAFormFieldCell.h */,
 				751240C513A8F6CF007BF2B5 /* IBAFormFieldStyle.h */,
@@ -314,6 +340,7 @@
 				751240DB13A8F6CF007BF2B5 /* IBATextInputProvider.h */,
 				753A7EFA13B36BCF003931DA /* IBATitleFormField.h */,
 				952FAB8114F32DA8006213AA /* IBATextFormField+Factory.h */,
+				75A07142186D8597007C79D7 /* IBAFormFieldProtocol.h */,
 			);
 			path = IBAForms;
 			sourceTree = "<group>";
@@ -338,9 +365,11 @@
 				751240DE13A8F6CF007BF2B5 /* IBABooleanSwitchCell.h in Headers */,
 				751240DF13A8F6CF007BF2B5 /* IBAButtonFormField.h in Headers */,
 				751240E013A8F6CF007BF2B5 /* IBACommon.h in Headers */,
+				75A0713F186D7513007C79D7 /* IBAComplexFormField.h in Headers */,
 				751240E113A8F6CF007BF2B5 /* IBADateFormField.h in Headers */,
 				751240E213A8F6CF007BF2B5 /* IBADateFormFieldCell.h in Headers */,
 				751240E313A8F6CF007BF2B5 /* IBADateInputProvider.h in Headers */,
+				75A07147186DA02F007C79D7 /* IBATextFormFieldWithAction.h in Headers */,
 				751240E413A8F6CF007BF2B5 /* IBAFormConstants.h in Headers */,
 				751240E513A8F6CF007BF2B5 /* IBAFormDataSource.h in Headers */,
 				751240E613A8F6CF007BF2B5 /* IBAFormField.h in Headers */,
@@ -348,18 +377,21 @@
 				751240E813A8F6CF007BF2B5 /* IBAFormFieldStyle.h in Headers */,
 				751240E913A8F6CF007BF2B5 /* IBAFormModelManager.h in Headers */,
 				751240EA13A8F6CF007BF2B5 /* IBAForms.h in Headers */,
+				75A0714F186DA3B1007C79D7 /* IBATextAreaFormFieldCell.h in Headers */,
 				751240EB13A8F6CF007BF2B5 /* IBAFormSection.h in Headers */,
 				751240EC13A8F6CF007BF2B5 /* IBAFormViewController.h in Headers */,
 				751240ED13A8F6CF007BF2B5 /* IBAInputCommon.h in Headers */,
 				751240EE13A8F6CF007BF2B5 /* IBAInputManager.h in Headers */,
 				751240EF13A8F6CF007BF2B5 /* IBAInputNavigationToolbar.h in Headers */,
 				751240F013A8F6CF007BF2B5 /* IBAInputProvider.h in Headers */,
+				75A07143186D8597007C79D7 /* IBAFormFieldProtocol.h in Headers */,
 				751240F113A8F6CF007BF2B5 /* IBAInputRequestor.h in Headers */,
 				751240F213A8F6CF007BF2B5 /* IBAInputRequestorDataSource.h in Headers */,
 				751240F313A8F6CF007BF2B5 /* IBAInputRequestorFormField.h in Headers */,
 				751240F413A8F6CF007BF2B5 /* IBALabelFormCell.h in Headers */,
 				751240F513A8F6CF007BF2B5 /* IBALabelFormField.h in Headers */,
 				751240F613A8F6CF007BF2B5 /* IBAMultiplePickListInputProvider.h in Headers */,
+				75A0714E186DA3B1007C79D7 /* IBATextAreaFormField.h in Headers */,
 				751240F813A8F6CF007BF2B5 /* IBAPickListFormField.h in Headers */,
 				751240F913A8F6CF007BF2B5 /* IBAPickListOptionsProvider.h in Headers */,
 				751240FA13A8F6CF007BF2B5 /* IBAReadOnlyTextFormField.h in Headers */,
@@ -428,15 +460,19 @@
 			files = (
 				7512409F13A8F6BE007BF2B5 /* IBABooleanFormField.m in Sources */,
 				751240A013A8F6BE007BF2B5 /* IBAButtonFormField.m in Sources */,
+				75A07145186DA025007C79D7 /* IBATextFormFieldWithAction.m in Sources */,
+				75A0714B186DA3A9007C79D7 /* IBATextAreaFormFieldCell.m in Sources */,
 				751240A113A8F6BE007BF2B5 /* IBADateFormField.m in Sources */,
 				751240A213A8F6BE007BF2B5 /* IBAFormDataSource.m in Sources */,
 				751240A313A8F6BE007BF2B5 /* IBAFormField.m in Sources */,
+				75A07149186DA3A3007C79D7 /* IBATextAreaFormField.m in Sources */,
 				751240A413A8F6BE007BF2B5 /* IBAFormFieldStyle.m in Sources */,
 				751240A513A8F6BE007BF2B5 /* IBAFormSection.m in Sources */,
 				751240A613A8F6BE007BF2B5 /* IBAFormViewController.m in Sources */,
 				751240A713A8F6BE007BF2B5 /* IBAInputRequestorFormField.m in Sources */,
 				751240A813A8F6BE007BF2B5 /* IBALabelFormField.m in Sources */,
 				751240AA13A8F6BE007BF2B5 /* IBAPickListFormField.m in Sources */,
+				75A07141186D7523007C79D7 /* IBAComplexFormField.m in Sources */,
 				751240AB13A8F6BE007BF2B5 /* IBAReadOnlyTextFormField.m in Sources */,
 				751240AC13A8F6BE007BF2B5 /* IBATextFormField.m in Sources */,
 				751240AD13A8F6BE007BF2B5 /* IBABooleanSwitchCell.m in Sources */,

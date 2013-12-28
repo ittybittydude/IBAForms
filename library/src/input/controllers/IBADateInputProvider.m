@@ -17,7 +17,6 @@
 
 @interface IBADateInputProvider ()
 @property (nonatomic, readonly) UIView *datePickerView;
-@property (nonatomic, readonly) UIDatePicker *datePicker;
 - (void)datePickerValueChanged;
 @end
 
@@ -58,7 +57,7 @@
 	if (datePickerView_ == nil) {
 		datePickerView_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
 		datePickerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-		datePickerView_.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+		datePickerView_.backgroundColor = [UIColor whiteColor];
 		
 		datePicker_ = [[UIDatePicker alloc] init];
 		datePicker_.datePickerMode = self.datePickerMode;
@@ -71,6 +70,13 @@
 	}
 	
 	return datePickerView_;
+}
+
+- (UIDatePicker*)datePicker {
+    if (datePickerView_ == nil) {
+        [self datePickerView];
+    }
+    return datePicker_;
 }
 
 

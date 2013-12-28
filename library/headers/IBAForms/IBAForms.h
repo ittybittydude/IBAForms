@@ -46,4 +46,8 @@
 #import <IBAForms/IBATextInputProvider.h>
 #import <IBAForms/IBATitleFormField.h>
 #import <IBAForms/IBATextFormField+Factory.h>
+#import <IBAForms/IBAComplexFormField.h>
+#import <IBAForms/IBATextFormFieldWithAction.h>
+#import <IBAForms/IBATextAreaFormField.h>
+#import <IBAForms/IBATextAreaFormFieldCell.h>
 

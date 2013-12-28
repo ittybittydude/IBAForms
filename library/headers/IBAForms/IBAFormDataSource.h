@@ -21,12 +21,15 @@
 	id model_; // the underlying object this datasource represents
 	NSMutableArray *sections_;
 	IBAFormFieldStyle *formFieldStyle_;
+    UITableView *tableView_;
+    
 }
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSMutableArray *sections;
 @property (nonatomic, retain, readonly) id model;
 @property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
+@property (nonatomic, retain) UITableView *tableView;
 
 - (id)initWithModel:(id)model;
 
@@ -34,17 +37,42 @@
 #pragma mark Section and field management
 
 - (NSInteger)sectionCount;
+
+- (IBAFormSection*)createSectionWithHeaderTitle:(NSString *)headerTitle footerTitle:(NSString *)footerTitle;
+
 - (IBAFormSection *)addSectionWithHeaderTitle:(NSString *)headerTitle footerTitle:(NSString *)footerTitle;
-- (void)addSection:(IBAFormSection *)section;
+- (IBAFormSection *)addSectionWithHeaderTitle:(NSString *)headerTitle footerTitle:(NSString *)footerTitle headerHeight:(CGFloat)headerHeight footerHeight:(CGFloat)footerHeight;
+
+// inserting sections
+- (void)insertWithAnimation:(UITableViewRowAnimation*)animation section:(IBAFormSection *)newSection;
+- (void)insertWithAnimation:(UITableViewRowAnimation*)animation sections:(IBAFormSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)insertWithAnimation:(UITableViewRowAnimation*)animation atIndex:(NSInteger)index section:(IBAFormSection *)newSection;
+- (void)insertWithAnimation:(UITableViewRowAnimation*)animation atIndexes:(NSIndexSet*)indexes sections:(IBAFormSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)insertOnceWithAnimation:(UITableViewRowAnimation*)animation section:(IBAFormSection *)newSection;
+- (void)insertOnceWithAnimation:(UITableViewRowAnimation*)animation sections:(IBAFormSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
+- (void)insertOnceWithAnimation:(UITableViewRowAnimation*)animation atIndex:(NSInteger)index section:(IBAFormSection *)newSection;
+- (void)insertOnceWithAnimation:(UITableViewRowAnimation*)animation atIndexes:(NSIndexSet*)indexes sections:(IBAFormSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
+
+// removing sections
+- (void)removeWithAnimation:(UITableViewRowAnimation*)animation section:(IBAFormSection *)section;
+- (void)removeWithAnimation:(UITableViewRowAnimation*)animation sections:(IBAFormSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
+
+// inserting and removing sections
+- (void)setWithAnimation:(UITableViewRowAnimation*)animation sections:(IBAFormSection *)firstSection, ... NS_REQUIRES_NIL_TERMINATION;
 
 - (UIView *)viewForFooterInSection:(NSInteger)section;
 - (UIView *)viewForHeaderInSection:(NSInteger)section;
 
+- (CGFloat)heightForHeaderInSection:(NSInteger)section;
+
+- (CGFloat)heightForFooterInSection:(NSInteger)section;
+
 - (NSInteger)numberOfFormFieldsInSection:(NSInteger)section;
 - (UITableViewCell *)cellForFormFieldAtIndexPath:(NSIndexPath *)indexPath;
-- (IBAFormField *)formFieldAtIndexPath:(NSIndexPath *)indexPath;
-- (IBAFormField *)formFieldAfter:(IBAFormField *)field;
-- (IBAFormField *)formFieldBefore:(IBAFormField *)field;
-- (NSIndexPath *)indexPathForFormField:(IBAFormField *)formField;
+- (id<IBAFormFieldProtocol>)formFieldAtIndexPath:(NSIndexPath *)indexPath;
+- (id<IBAFormFieldProtocol>)formFieldAfter:(id<IBAFormFieldProtocol>)field;
+- (id<IBAFormFieldProtocol>)formFieldBefore:(id<IBAFormFieldProtocol>)field;
+- (NSIndexPath *)indexPathForFormField:(id<IBAFormFieldProtocol>)formField;
+- (NSInteger)indexForFormSection:(IBAFormSection*)section;
 
 @end

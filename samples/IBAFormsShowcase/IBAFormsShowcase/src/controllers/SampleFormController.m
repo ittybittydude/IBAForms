@@ -38,4 +38,8 @@
 	return self.shouldAutoRotate;
 }
 
+- (BOOL)shouldAutorotate {
+    return self.shouldAutoRotate;
+}
+
 @end

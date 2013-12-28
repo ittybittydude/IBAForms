@@ -14,6 +14,7 @@
 
 #import "IBAFormDataSource.h"
 #import "IBACommon.h"
+#import "IBAInputManager.h"
 
 @implementation IBAFormDataSource
 
@@ -21,6 +22,7 @@
 @synthesize sections = sections_;
 @synthesize model = model_;
 @synthesize formFieldStyle = formFieldStyle_;
+@synthesize tableView = tableView_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
@@ -30,6 +32,7 @@
 	IBA_RELEASE_SAFELY(sections_);
 	IBA_RELEASE_SAFELY(model_);
 	IBA_RELEASE_SAFELY(formFieldStyle_);
+    IBA_RELEASE_SAFELY(tableView_);
 	
 	[super dealloc];
 }
@@ -39,6 +42,7 @@
 		model_ = [model retain];
 		sections_ = [[NSMutableArray alloc] init];
 		formFieldStyle_ = [[IBAFormFieldStyle alloc] init];
+        tableView_ = nil;
 	}
 	
 	return self;
@@ -63,19 +67,19 @@
 
 - (UITableViewCell *)cellForFormFieldAtIndexPath:(NSIndexPath *)indexPath {
 	// We make the form field update its contents before handing it back its cell
-	IBAFormField *formField = [self formFieldAtIndexPath:indexPath];
+	id<IBAFormFieldProtocol> formField = [self formFieldAtIndexPath:indexPath];
 	[formField updateCellContents];
 	
 	return [formField cell];
 }
 
-- (IBAFormField *)formFieldAtIndexPath:(NSIndexPath *)indexPath {
+- (id<IBAFormFieldProtocol> )formFieldAtIndexPath:(NSIndexPath *)indexPath {
 	IBAFormSection *section = [self.sections objectAtIndex:indexPath.section];
 	return [section.formFields objectAtIndex:indexPath.row];
 }
 
 
-- (NSIndexPath *)indexPathForFormField:(IBAFormField *)formField {
+- (NSIndexPath *)indexPathForFormField:(id<IBAFormFieldProtocol>)formField {
 	NSIndexPath *indexPath = nil;
 	
 	NSUInteger sectionCount = [self sectionCount];
@@ -88,6 +92,11 @@
 	}
 	
 	return indexPath;
+}
+
+- (NSInteger)indexForFormSection:(IBAFormSection*)section {
+    NSInteger index = [self.sections indexOfObject:section];
+	return index;
 }
 
 
@@ -103,14 +112,21 @@
 		if (fieldLocation != NSNotFound) {
 			if ([field isEqual:[section.formFields lastObject]]) {
 				// it's the last field in the section, so get the first one in the next section (if there is one)
-				if (sectionIndex < (sectionCount - 1)) {
-					section = [self.sections objectAtIndex:sectionIndex + 1];
+                NSUInteger currentSectionIndex = sectionIndex;
+				while (currentSectionIndex < (sectionCount - 1)) {
+					section = [self.sections objectAtIndex:currentSectionIndex + 1];
 					if ([section.formFields count] > 0) {
 						nextField = [section.formFields objectAtIndex:0];
-					}	
+                        break;
+					} else {
+                        currentSectionIndex++;
+                    }
 				}
+                if(nextField)
+                    break;
 			} else {
 				nextField = [section.formFields objectAtIndex:fieldLocation + 1];
+                break;
 			}
 		}
 	}
@@ -128,14 +144,21 @@
 		if (fieldLocation != NSNotFound) {
 			if ([field isEqual:[section.formFields objectAtIndex:0]]) {
 				// it's the first field in the section, so get the last one in the previous section (if there is one)
-				if (sectionIndex > 0) {
-					section = [self.sections objectAtIndex:sectionIndex - 1];
+                NSUInteger currentSectionIndex = sectionIndex;
+				while (currentSectionIndex > 0) {
+					section = [self.sections objectAtIndex:currentSectionIndex - 1];
 					if ([section.formFields count] > 0) {
 						previousField = [section.formFields lastObject];
-					}	
+                        break;
+					} else {
+                        currentSectionIndex--;
+                    }
 				}
+                if(previousField)
+                    break;
 			} else {
 				previousField = [section.formFields objectAtIndex:fieldLocation - 1];
+                break;
 			}
 		}
 	}
@@ -143,16 +166,269 @@
 	return previousField;
 }
 
-- (void)addSection:(IBAFormSection *)newSection {
+- (IBAFormSection*)createSectionWithHeaderTitle:(NSString *)headerTitle footerTitle:(NSString *)footerTitle {
+    IBAFormSection *newSection = [[[IBAFormSection alloc] initWithHeaderTitle:headerTitle
+																  footerTitle:footerTitle] autorelease];
+    newSection.modelManager = self;
+	newSection.formFieldStyle = self.formFieldStyle;
+	return newSection;
+}
+
+- (void)insertWithAnimation:(UITableViewRowAnimation*)animation section:(IBAFormSection *)newSection {
 	[self.sections addObject:newSection];
 	newSection.modelManager = self;
 	newSection.formFieldStyle = self.formFieldStyle;
+    if(self.tableView != nil) {
+        if(animation != NULL) {
+            [[self tableView] insertSections:[NSIndexSet indexSetWithIndex:[self.sections count]] withRowAnimation:*animation];
+        } else {
+            if([[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:nil]) {
+                [[self tableView] reloadData];
+            }
+        }
+    }
+}
+
+- (void)insertWithAnimation:(UITableViewRowAnimation*)animation sections:(IBAFormSection *)firstSection, ... {
+    va_list ap;
+    NSInteger startIndex = [self.sections count];
+    NSInteger length = 0;
+    IBAFormSection* section = nil;
+    va_start(ap, firstSection);
+    section = firstSection;
+    while(section){
+        [self.sections addObject:section];
+        section.modelManager = self;
+        section.formFieldStyle = self.formFieldStyle;
+        length++;
+        section = va_arg(ap, IBAFormSection*);
+    }
+    va_end(ap);
+    if(length > 0 && self.tableView != nil) {
+        if(animation != NULL) {
+            [[self tableView] insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIndex, length)] withRowAnimation:*animation];
+        } else {
+            if([[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:nil]) {
+                [[self tableView] reloadData];
+            }
+        }
+    }
+}
+
+- (void)insertWithAnimation:(UITableViewRowAnimation*)animation atIndex:(NSInteger)index section:(IBAFormSection *)newSection {
+    if(index < 0) index = 0;
+    if(index > [self.sections count]) index = [self.sections count];
+    [self.sections insertObject:newSection atIndex:index];
+    newSection.modelManager = self;
+    newSection.formFieldStyle = self.formFieldStyle;
+    if(self.tableView != nil) {
+        if(animation != NULL) {
+            [[self tableView] insertSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:*animation];
+        } else {
+            if([[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:nil]) {
+                [[self tableView] reloadData];
+            }
+        }
+    }
+}
+
+- (void)insertWithAnimation:(UITableViewRowAnimation*)animation atIndexes:(NSIndexSet*)indexes sections:(IBAFormSection *)firstSection, ... {
+    va_list ap;
+    NSMutableIndexSet *validIndexes = [NSMutableIndexSet indexSet];
+    IBAFormSection* section = nil;
+    va_start(ap, firstSection);
+    section = firstSection;
+    NSUInteger currentIndex = [indexes firstIndex];
+    while(section){
+        if(currentIndex > [self.sections count]) currentIndex = [self.sections count];
+        [validIndexes addIndex:currentIndex];
+        [self.sections insertObject:section atIndex:currentIndex];
+        section.modelManager = self;
+        section.formFieldStyle = self.formFieldStyle;
+        section = va_arg(ap, IBAFormSection*);
+        currentIndex = [indexes indexGreaterThanIndex:currentIndex];
+    }
+    va_end(ap);
+    if([validIndexes count] > 0 && self.tableView != nil) {
+        if(animation != NULL) {
+            [[self tableView] insertSections:validIndexes withRowAnimation:*animation];
+        } else {
+            if([[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:nil]) {
+                [[self tableView] reloadData];
+            }
+        }
+    }
+}
+
+- (void)insertOnceWithAnimation:(UITableViewRowAnimation*)animation section:(IBAFormSection *)newSection {
+    if([self.sections containsObject:newSection] == NO) {
+        [self insertWithAnimation:animation section:newSection];
+    }
+}
+
+- (void)insertOnceWithAnimation:(UITableViewRowAnimation*)animation sections:(IBAFormSection *)firstSection, ... {
+    va_list ap;
+    NSInteger startIndex = [self.sections count];
+    NSInteger length = 0;
+    IBAFormSection* section = nil;
+    va_start(ap, firstSection);
+    section = firstSection;
+    while(section){
+        if([self.sections containsObject:section] == NO) {
+            [self.sections addObject:section];
+            section.modelManager = self;
+            section.formFieldStyle = self.formFieldStyle;
+            length++;
+        }
+        section = va_arg(ap, IBAFormSection*);
+    }
+    va_end(ap);
+    if(length > 0 && self.tableView != nil) {
+        if(animation != NULL) {
+            [[self tableView] insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIndex, length)] withRowAnimation:*animation];
+        } else {
+            if([[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:nil]) {
+                [[self tableView] reloadData];
+            }
+        }
+    }
+}
+
+- (void)insertOnceWithAnimation:(UITableViewRowAnimation*)animation atIndex:(NSInteger)index section:(IBAFormSection *)newSection {
+    if([self.sections containsObject:newSection] == NO) {
+        [self insertWithAnimation:animation atIndex:index section:newSection];
+    }
+}
+
+- (void)insertOnceWithAnimation:(UITableViewRowAnimation*)animation atIndexes:(NSIndexSet*)indexes sections:(IBAFormSection *)firstSection, ... {
+    va_list ap;
+    NSMutableIndexSet *validIndexes = [NSMutableIndexSet indexSet];
+    IBAFormSection* section = nil;
+    va_start(ap, firstSection);
+    section = firstSection;
+    NSUInteger currentIndex = [indexes firstIndex];
+    while(section){
+        if([self.sections containsObject:section] == NO) {
+            if(currentIndex > [self.sections count]) currentIndex = [self.sections count];
+            [validIndexes addIndex:currentIndex];
+            [self.sections insertObject:section atIndex:currentIndex];
+            section.modelManager = self;
+            section.formFieldStyle = self.formFieldStyle;
+        }
+        section = va_arg(ap, IBAFormSection*);
+        currentIndex = [indexes indexGreaterThanIndex:currentIndex];
+    }
+    va_end(ap);
+    if([validIndexes count] > 0 && self.tableView != nil) {
+        if(animation != NULL) {
+            [[self tableView] insertSections:validIndexes withRowAnimation:*animation];
+        } else {
+            if([[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:nil]) {
+                [[self tableView] reloadData];
+            }
+        }
+    }
 }
 
 - (IBAFormSection *)addSectionWithHeaderTitle:(NSString *)headerTitle footerTitle:(NSString *)footerTitle {
 	IBAFormSection *newSection = [[[IBAFormSection alloc] initWithHeaderTitle:headerTitle
 																  footerTitle:footerTitle] autorelease];
-	[self addSection:newSection];
+	[self insertWithAnimation:NULL section:newSection];
+	
+	return newSection;
+}
+
+- (void)removeWithAnimation:(UITableViewRowAnimation*)animation section:(IBAFormSection *)section {
+    if([self.sections containsObject:section] == YES) {
+        NSIndexSet* indexesForDeleting = [NSIndexSet indexSetWithIndex:[self indexForFormSection:section]];
+        [self.sections removeObject:section];
+        if(self.tableView != nil) {
+            if(animation != NULL) {
+                [[self tableView] deleteSections:indexesForDeleting withRowAnimation:*animation];
+            } else {
+                if([[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:nil]) {
+                    [[self tableView] reloadData];
+                }
+            }
+        }
+    }
+}
+
+- (void)removeWithAnimation:(UITableViewRowAnimation*)animation sections:(IBAFormSection *)firstSection, ... {
+    va_list ap;
+    NSMutableIndexSet* indexes = [NSMutableIndexSet indexSet];
+    IBAFormSection* section = nil;
+    va_start(ap, firstSection);
+    section = firstSection;
+    while(section){
+        if([self.sections containsObject:section] == YES) {
+            [indexes addIndex:[self indexForFormSection:section]];
+        }
+        section = va_arg(ap, IBAFormSection*);
+    }
+    va_end(ap);
+    va_start(ap, firstSection);
+    section = firstSection;
+    while(section){
+        if([self.sections containsObject:section] == YES) {
+            [self.sections removeObject:section];
+        }
+        section = va_arg(ap, IBAFormSection*);
+    }
+    va_end(ap);
+    
+    if([indexes count] > 0 && self.tableView != nil) {
+        if(animation != NULL) {
+            [[self tableView] deleteSections:indexes withRowAnimation:*animation];
+        } else {
+            if([[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:nil]) {
+                [[self tableView] reloadData];
+            }
+        }
+    }
+}
+
+- (void)setWithAnimation:(UITableViewRowAnimation*)animation sections:(IBAFormSection *)firstSection, ... {
+    NSMutableIndexSet* indexesForDeleting = [[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self sectionCount])] mutableCopy] autorelease];
+    va_list ap;
+    NSInteger startIndex = [self.sections count];
+    NSInteger length = 0;
+    IBAFormSection* section = nil;
+    va_start(ap, firstSection);
+    section = firstSection;
+    while(section) {
+        if([self.sections containsObject:section] == NO) {
+            [self.sections addObject:section];
+            section.modelManager = self;
+            section.formFieldStyle = self.formFieldStyle;
+            length++;
+        } else {
+            [indexesForDeleting removeIndex:[self.sections indexOfObject:section]];
+        }
+        section = va_arg(ap, IBAFormSection*);
+    }
+    va_end(ap);
+    startIndex -= [indexesForDeleting count];
+    [self.sections removeObjectsAtIndexes:indexesForDeleting];
+    
+    if(length > 0 && self.tableView != nil) {
+        if(animation != NULL) {
+            [self.tableView beginUpdates];
+            [[self tableView] deleteSections:indexesForDeleting withRowAnimation:*animation];
+            [[self tableView] insertSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIndex, length)] withRowAnimation:*animation];
+            [[self tableView] endUpdates];
+        } else {
+            if([[IBAInputManager sharedIBAInputManager] setActiveInputRequestor:nil]) {
+                [[self tableView] reloadData];
+            }
+        }
+    }
+}
+
+- (IBAFormSection *)addSectionWithHeaderTitle:(NSString *)headerTitle footerTitle:(NSString *)footerTitle headerHeight:(CGFloat)headerHeight footerHeight:(CGFloat)footerHeight {
+    IBAFormSection *newSection = [[[IBAFormSection alloc] initWithHeaderTitle:headerTitle
+																  footerTitle:footerTitle headerHeight:headerHeight footerHeight:footerHeight] autorelease];
+	[self insertWithAnimation:NULL section:newSection];
 	
 	return newSection;
 }
@@ -165,6 +441,13 @@
 	return [[self.sections objectAtIndex:section] footerView];
 }
 
+- (CGFloat)heightForHeaderInSection:(NSInteger)section {
+    return [[self.sections objectAtIndex:section] headerHeight];
+}
+
+- (CGFloat)heightForFooterInSection:(NSInteger)section {
+    return [[self.sections objectAtIndex:section] footerHeight];
+}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -199,6 +482,22 @@
 
 - (id)modelValueForKeyPath:(NSString *)keyPath {
 	return [self.model valueForKeyPath:keyPath];
+}
+
+- (id)modelValuesForKeyPaths:(NSArray *)keyPaths {
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:[keyPaths count]];
+    for(NSString *keyPath in keyPaths) {
+        if([keyPath isKindOfClass:[NSString class]]) {
+            id val = [self.model valueForKeyPath:keyPath];
+            if(val == nil) {
+                val = [NSNull null];
+            }
+            [result addObject:val];
+        } else {
+            [[NSException exceptionWithName:@"Error" reason:@"keyPath must be a string" userInfo:nil] raise];
+        }
+    }
+	return [NSArray arrayWithArray:result];
 }
 
 @end

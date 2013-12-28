@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75A0713C186D5A0E007C79D7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A0713B186D5A0E007C79D7 /* Default-568h@2x.png */; };
 		9524EA8114F7370F008B96D2 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8014F7370F008B96D2 /* Credentials.m */; };
 		9524EA8D14F73B45008B96D2 /* LoginFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8C14F73B45008B96D2 /* LoginFormController.m */; };
 		9524EA9014F73B6D008B96D2 /* LoginDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9524EA8F14F73B6D008B96D2 /* LoginDataSource.m */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		75A0713B186D5A0E007C79D7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9524EA7F14F7370F008B96D2 /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Credentials.h; path = src/models/Credentials.h; sourceTree = "<group>"; };
 		9524EA8014F7370F008B96D2 /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Credentials.m; path = src/models/Credentials.m; sourceTree = "<group>"; };
 		9524EA8B14F73B45008B96D2 /* LoginFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginFormController.h; path = src/controllers/LoginFormController.h; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 		954C0AE114F71FED0052F47C = {
 			isa = PBXGroup;
 			children = (
+				75A0713B186D5A0E007C79D7 /* Default-568h@2x.png */,
 				954C0AF614F71FED0052F47C /* IBAFormsLoginExample */,
 				954C0AEF14F71FED0052F47C /* Frameworks */,
 				954C0AED14F71FED0052F47C /* Products */,
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				958DC71F14FC76BD00EE5B95 /* InfoPlist.strings in Resources */,
+				75A0713C186D5A0E007C79D7 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

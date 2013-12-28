@@ -43,4 +43,8 @@
 	return (interfaceOrientation == UIInterfaceOrientationPortrait) || [((ShowcaseModel *)self.formDataSource.model) shouldAutoRotate];
 }
 
+- (BOOL)shouldAutorotate {
+    return [((ShowcaseModel *)self.formDataSource.model) shouldAutoRotate];
+}
+
 @end

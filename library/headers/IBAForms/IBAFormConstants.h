@@ -34,7 +34,7 @@
 #define IBAFormFieldLabelHeight 30
 #define IBAFormFieldLabelFont [UIFont systemFontOfSize:12]
 #define IBAFormFieldLabelTextColor [UIColor grayColor]
-#define IBAFormFieldLabelTextAlignment UITextAlignmentRight
+#define IBAFormFieldLabelTextAlignment NSTextAlignmentRight
 #define IBAFormFieldLabelBackgroundColor [UIColor whiteColor]
 
 // Form field value style
@@ -44,5 +44,5 @@
 #define IBAFormFieldValueHeight 26
 #define IBAFormFieldValueFont [UIFont systemFontOfSize:16]
 #define IBAFormFieldValueTextColor [UIColor blackColor]
-#define IBAFormFieldValueTextAlignment UITextAlignmentLeft
+#define IBAFormFieldValueTextAlignment NSTextAlignmentLeft
 #define IBAFormFieldValueBackgroundColor [UIColor whiteColor]

@@ -48,7 +48,7 @@
 	if ((self = [super init])) {
 		providerView_ = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 216)];
 		providerView_.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-		providerView_.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+		providerView_.backgroundColor = [UIColor whiteColor];
 		
 		pickerView_ = [[UIPickerView alloc] initWithFrame:[providerView_ bounds]];
 		pickerView_.showsSelectionIndicator = YES;
@@ -143,7 +143,9 @@
 
 
 - (void)setSelectedOption:(id<IBAPickListOption>)selectedOption {
-	self.inputRequestor.inputRequestorValue = [NSSet setWithObject:selectedOption]; 
+    if(selectedOption != nil) {
+        self.inputRequestor.inputRequestorValue = [NSSet setWithObject:selectedOption];
+    }
 }
 
 - (void)updateSelectedOption {
