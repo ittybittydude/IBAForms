@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, CitiesUSA) {
 - (id)initWithModel:(id)aModel {
 	if (self = [super initWithModel:aModel]) {
 		// Picklists
-		IBAFormSection *pickListSection = [self addSectionWithHeaderTitle:@"Pick Lists" footerTitle:nil];
+		IBAFormSection *pickListSection = [self addSectionWithHeaderTitle:@"Country and city" footerTitle:nil];
 
 		NSArray *pickListOptionsCountry = [IBAPickListFormOption pickListOptionsForStrings:
                                            @[@"Russia", @"USA", @"Other"]];
