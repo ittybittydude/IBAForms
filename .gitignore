@@ -8,6 +8,7 @@ build/
 *.trace
 *project.xcworkspace/
 *.xcuserdatad
+*.xccheckout
 
 # OSX Noise
 .DS_Store
