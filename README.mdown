@@ -1,3 +1,22 @@
+IBAForms IS NO LONGER ACTIVELY MAINTAINED!
+============
+
+Hello good people. This is Sean, the original creator of IBAForms. When I first created IBAForms it was to solve some specific problems I found trying to create forms for the iPhone apps I was developing at the time. Over the years it's received varying amounts of maintenance on the ittybittydude branch based on our consulting, but a large part of that was (and continues to be) done on the realestate-com-au branch.
+
+As iOS moved forward and our consulting took us in different directions, IBAForms got less and less love from us even though many of you are still using, and presumably find value in it. Rather than removing the code from the ittybittydude branch we're leaving it here with this notice to hopefully make new-comers aware that the library is no longer being maintained. 
+
+If you're looking for an alternate forms framework, check out:
+
+[https://github.com/chrismiles/EZForm](https://github.com/chrismiles/EZForm)
+
+and
+
+[https://github.com/nicklockwood/FXForms](https://github.com/nicklockwood/FXForms)
+
+If you're still keen on IBAForms it'd be worth checking out one of the many active branches.
+
+------
+
 IBAForms
 ============
 IBAForms is a framework for building data entry screens on the iPhone. You can quickly make forms using the built-in form field types or create your own custom fields and the user interfaces used to enter data for them. It is an Objective-C library that provides an abstraction layer above common UIKit classes such as UITableView and UITableViewCell.
@@ -27,12 +46,6 @@ These screenshots are form the showcase application in the samples directory. Th
 
 When you run the showcase application you'll be presented with a form that allows you to specify how you'd like the sample form to run. You can use this to test out the various ways in which a form may be presented (e.g. grouped or ungrouped tableview, etc).
 
-Discussion Forum
-============
-
-Check out the discussions at the IBAForms Google Group:
-
-http://groups.google.com/group/ibaforms
 
 
 Adding IBAForms to your project
