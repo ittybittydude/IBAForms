@@ -7,11 +7,9 @@ As iOS moved forward and our consulting took us in different directions, IBAForm
 
 If you're looking for an alternate forms framework, check out:
 
-[https://github.com/chrismiles/EZForm](https://github.com/chrismiles/EZForm)
-
-and
-
-[https://github.com/nicklockwood/FXForms](https://github.com/nicklockwood/FXForms)
+* [https://github.com/chrismiles/EZForm](https://github.com/chrismiles/EZForm)
+* [https://github.com/nicklockwood/FXForms](https://github.com/nicklockwood/FXForms)
+* [https://github.com/xmartlabs/XLForm](https://github.com/xmartlabs/XLForm)
 
 If you're still keen on IBAForms it'd be worth checking out one of the many active branches.
 
