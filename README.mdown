@@ -48,8 +48,8 @@ When you run the showcase application you'll be presented with a form that allow
 
 Adding IBAForms to your project
 ============
-1. Drag the IBAForms.xcodeproj project in to your XCode 4 project. You might want to drag it in to the *Frameworks* directory to keep it out of the way. Leave the default options 'Create groups for any added folders' and 'Add to targets (Your Project)' selected and press *Finish*. If you get an empty item in the sidebar displaying "IBAForms.xcodeproj", you probably have other Xcode project windows open. Close them and try again.
-2. Select your project from the XCode sidebar and then the target you want to add IBAForms to.
+1. Drag the IBAForms.xcodeproj project in to your Xcode 4 project. You might want to drag it in to the *Frameworks* directory to keep it out of the way. Leave the default options 'Create groups for any added folders' and 'Add to targets (Your Project)' selected and press *Finish*. If you get an empty item in the sidebar displaying "IBAForms.xcodeproj", you probably have other Xcode project windows open. Close them and try again.
+2. Select your project from the Xcode sidebar and then the target you want to add IBAForms to.
 3. Select the Build Phases tab.
 4. Under the Target Dependencies group, click the plus button, select the IBAForms static library target and press *Add*.
 5. Under the Link Binary Libraries group, click the plus button, select *libIBAForms.a* and press *Add*.
