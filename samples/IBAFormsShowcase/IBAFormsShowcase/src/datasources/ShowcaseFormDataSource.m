@@ -19,6 +19,7 @@
 #import "ShowcaseModel.h"
 #import "ShowcaseButtonStyle.h"
 #import "ShowcaseFieldStyle.h"
+#import "SampleFormNavigationController.h"
 
 @interface ShowcaseFormDataSource()
 - (void)displaySampleForm;
@@ -78,6 +79,9 @@
 	sampleFormController.shouldAutoRotate = showcaseModel.shouldAutoRotate;
 	sampleFormController.tableViewStyle = showcaseModel.tableViewStyleGrouped ? UITableViewStyleGrouped : UITableViewStylePlain;
 	
+    [sampleFormModel setObject:@(sampleFormController.shouldAutoRotate) forKey:@"shouldAutoRotate"];
+    [sampleFormModel setObject:@(sampleFormController.tableViewStyle) forKey:@"tableViewStyle"];
+    
     [[IBAInputManager sharedIBAInputManager] setInputNavigationToolbarEnabled:showcaseModel.displayNavigationToolbar];
     
 	UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
@@ -86,9 +90,13 @@
 																					 target:self 
 																					 action:@selector(dismissSampleForm)] autorelease];
 		sampleFormController.navigationItem.rightBarButtonItem = doneButton;
-		UINavigationController *formNavigationController = [[[UINavigationController alloc] initWithRootViewController:sampleFormController] autorelease];
+		SampleFormNavigationController *formNavigationController = [[[SampleFormNavigationController alloc] initWithRootViewController:sampleFormController] autorelease];
 		formNavigationController.modalPresentationStyle = showcaseModel.modalPresentationStyle;
-		[rootViewController presentModalViewController:formNavigationController animated:YES];
+        if([[[UIDevice currentDevice] systemVersion] floatValue] < 6.0f) {
+            [rootViewController presentModalViewController:formNavigationController animated:YES];
+        } else {
+            [rootViewController presentViewController:formNavigationController animated:YES completion:nil];
+        }
 	} else {
         if ([rootViewController isKindOfClass:[UINavigationController class]]) {
 			[(UINavigationController *)rootViewController pushViewController:sampleFormController animated:YES];

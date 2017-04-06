@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7504BE72186F12F5002972BA /* SampleFormLocationSelectDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7504BE71186F12F5002972BA /* SampleFormLocationSelectDataSource.m */; };
 		750565AC13A88B2F00B81321 /* libIBAForms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 750565AB13A88B2F00B81321 /* libIBAForms.a */; };
 		756A41F613A884E30093279E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756A41F513A884E30093279E /* UIKit.framework */; };
 		756A41F813A884E30093279E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 756A41F713A884E30093279E /* Foundation.framework */; };
@@ -22,6 +23,8 @@
 		756A424413A8863A0093279E /* ShowcaseButtonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 756A423813A8863A0093279E /* ShowcaseButtonStyle.m */; };
 		756A424513A8863A0093279E /* ShowcaseFieldStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 756A423A13A8863A0093279E /* ShowcaseFieldStyle.m */; };
 		756A424613A8863A0093279E /* StringToNumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 756A423D13A8863A0093279E /* StringToNumberTransformer.m */; };
+		75A0713A186D58EA007C79D7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A07139186D58EA007C79D7 /* Default-568h@2x.png */; };
+		75A07152186DBC0C007C79D7 /* SampleFormNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A07151186DBC0C007C79D7 /* SampleFormNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7504BE70186F12F5002972BA /* SampleFormLocationSelectDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleFormLocationSelectDataSource.h; sourceTree = "<group>"; };
+		7504BE71186F12F5002972BA /* SampleFormLocationSelectDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleFormLocationSelectDataSource.m; sourceTree = "<group>"; };
 		750565AB13A88B2F00B81321 /* libIBAForms.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libIBAForms.a; sourceTree = SOURCE_ROOT; };
 		7521731413A8891300C1EFE4 /* IBAForms.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IBAForms.xcodeproj; path = ../../library/IBAForms.xcodeproj; sourceTree = "<group>"; };
 		756A41F113A884E30093279E /* IBAFormsShowcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBAFormsShowcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +75,9 @@
 		756A423A13A8863A0093279E /* ShowcaseFieldStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowcaseFieldStyle.m; sourceTree = "<group>"; };
 		756A423C13A8863A0093279E /* StringToNumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringToNumberTransformer.h; sourceTree = "<group>"; };
 		756A423D13A8863A0093279E /* StringToNumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringToNumberTransformer.m; sourceTree = "<group>"; };
+		75A07139186D58EA007C79D7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		75A07150186DBC0C007C79D7 /* SampleFormNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleFormNavigationController.h; sourceTree = "<group>"; };
+		75A07151186DBC0C007C79D7 /* SampleFormNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleFormNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,7 @@
 		756A41E613A884E30093279E = {
 			isa = PBXGroup;
 			children = (
+				75A07139186D58EA007C79D7 /* Default-568h@2x.png */,
 				756A41FB13A884E30093279E /* IBAFormsShowcase */,
 				756A41F413A884E30093279E /* Frameworks */,
 				756A41F213A884E30093279E /* Products */,
@@ -165,6 +174,8 @@
 				756A422913A8863A0093279E /* SampleFormController.m */,
 				756A422A13A8863A0093279E /* ShowcaseController.h */,
 				756A422B13A8863A0093279E /* ShowcaseController.m */,
+				75A07150186DBC0C007C79D7 /* SampleFormNavigationController.h */,
+				75A07151186DBC0C007C79D7 /* SampleFormNavigationController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -172,6 +183,8 @@
 		756A422C13A8863A0093279E /* datasources */ = {
 			isa = PBXGroup;
 			children = (
+				7504BE70186F12F5002972BA /* SampleFormLocationSelectDataSource.h */,
+				7504BE71186F12F5002972BA /* SampleFormLocationSelectDataSource.m */,
 				756A422D13A8863A0093279E /* SampleFormDataSource.h */,
 				756A422E13A8863A0093279E /* SampleFormDataSource.m */,
 				756A422F13A8863A0093279E /* ShowcaseFormDataSource.h */,
@@ -238,6 +251,11 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Itty Bitty Apps Pty Ltd";
+				TargetAttributes = {
+					756A41F013A884E30093279E = {
+						DevelopmentTeam = 69MLH8NUC5;
+					};
+				};
 			};
 			buildConfigurationList = 756A41EB13A884E30093279E /* Build configuration list for PBXProject "IBAFormsShowcase" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -278,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				756A420013A884E30093279E /* InfoPlist.strings in Resources */,
+				75A0713A186D58EA007C79D7 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,10 +311,12 @@
 				756A423E13A8863A0093279E /* SampleFormController.m in Sources */,
 				756A423F13A8863A0093279E /* ShowcaseController.m in Sources */,
 				756A424013A8863A0093279E /* SampleFormDataSource.m in Sources */,
+				75A07152186DBC0C007C79D7 /* SampleFormNavigationController.m in Sources */,
 				756A424113A8863A0093279E /* ShowcaseFormDataSource.m in Sources */,
 				756A424213A8863A0093279E /* IBAFormsShowcaseAppDelegate.m in Sources */,
 				756A424313A8863A0093279E /* ShowcaseModel.m in Sources */,
 				756A424413A8863A0093279E /* ShowcaseButtonStyle.m in Sources */,
+				7504BE72186F12F5002972BA /* SampleFormLocationSelectDataSource.m in Sources */,
 				756A424513A8863A0093279E /* ShowcaseFieldStyle.m in Sources */,
 				756A424613A8863A0093279E /* StringToNumberTransformer.m in Sources */,
 			);
@@ -372,17 +393,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IBAFormsShowcase/IBAFormsShowcase-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "IBAFormsShowcase/IBAFormsShowcase-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8CF333B9-F9A2-4699-9381-36161FDDB154";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -391,16 +416,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IBAFormsShowcase/IBAFormsShowcase-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "IBAFormsShowcase/IBAFormsShowcase-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8CF333B9-F9A2-4699-9381-36161FDDB154";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8CF333B9-F9A2-4699-9381-36161FDDB154";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

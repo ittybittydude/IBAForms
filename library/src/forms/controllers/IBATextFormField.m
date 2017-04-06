@@ -57,7 +57,7 @@
 #pragma mark UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	return [[IBAInputManager sharedIBAInputManager] activateNextInputRequestor];;
+	return [[IBAInputManager sharedIBAInputManager] activateNextInputRequestor];
 }
 
 

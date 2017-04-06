@@ -57,9 +57,12 @@
 
 @interface IBASingleIndexTransformer : NSValueTransformer {
 	NSArray *pickListOptions_;
+    NSInteger startValue_;
 }
 
 - (id)initWithPickListOptions:(NSArray *)pickListOptions;
+- (id)initWithPickListOptions:(NSArray *)pickListOptions startValue:(NSInteger)startVal;
 @property (nonatomic, copy) NSArray *pickListOptions;
+@property (nonatomic, assign) NSInteger startValue;
 @end
 

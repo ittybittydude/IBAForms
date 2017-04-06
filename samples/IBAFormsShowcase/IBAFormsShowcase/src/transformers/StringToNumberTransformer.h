@@ -15,7 +15,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface StringToNumberTransformer : NSObject {
+@interface StringToNumberTransformer : NSValueTransformer {
 
 }
 

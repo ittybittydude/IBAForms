@@ -24,6 +24,7 @@
 }
 
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
+@property (nonatomic, readonly) UIDatePicker *datePicker;
 
 - (id)initWithDatePickerMode:(UIDatePickerMode)datePickerMode;
 

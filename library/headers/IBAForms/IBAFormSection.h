@@ -23,6 +23,8 @@
 	NSString *footerTitle_;	
 	UIView *headerView_;
 	UIView *footerView_;
+    CGFloat headerHeight_;
+    CGFloat footerHeight_;
 }
 
 @property (nonatomic, readonly) NSMutableArray *formFields;
@@ -32,9 +34,13 @@
 @property (nonatomic, copy) NSString *footerTitle;
 @property (nonatomic, retain) UIView *headerView;
 @property (nonatomic, retain) UIView *footerView;
+@property (nonatomic, assign) CGFloat headerHeight;
+@property (nonatomic, assign) CGFloat footerHeight;
 
 - (id)initWithHeaderTitle:(NSString *)header footerTitle:(NSString *)footer;
 
-- (void)addFormField:(IBAFormField *)formField;
+- (id)initWithHeaderTitle:(NSString *)header footerTitle:(NSString *)footer headerHeight:(CGFloat)headerHeight footerHeight:(CGFloat)footerHeight;
+
+- (void)addFormField:(id<IBAFormFieldProtocol>)formField;
 
 @end

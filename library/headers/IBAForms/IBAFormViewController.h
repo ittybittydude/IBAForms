@@ -22,11 +22,14 @@
 	CGRect tableViewOriginalFrame_;
 	IBAFormDataSource *formDataSource_;
 	CGRect keyboardFrame_;
+    
+    BOOL autoAdjustTableHeight_;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, readonly) CGRect tableViewOriginalFrame;
 @property (nonatomic, retain) IBAFormDataSource *formDataSource;
+@property (nonatomic, assign) BOOL autoAdjustTableHeight;
 
 
 // Designated Initializer.
@@ -41,7 +44,7 @@
  * Called before a cell is about to be displayed by the table view.
  * Does not need to call the super method.
  */
-- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(IBAFormField *)formField atIndexPath:(NSIndexPath *)indexPath;
+- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(id<IBAFormFieldProtocol>)formField atIndexPath:(NSIndexPath *)indexPath;
 
 /*
  * Return YES if the table view should be automatically scrolled to the active field.

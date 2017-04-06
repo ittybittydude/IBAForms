@@ -24,6 +24,8 @@
 @synthesize footerTitle = footerTitle_;
 @synthesize headerView = headerView_;
 @synthesize footerView = footerView_;
+@synthesize headerHeight = headerHeight_;
+@synthesize footerHeight = footerHeight_;
 
 - (void)dealloc {
 	IBA_RELEASE_SAFELY(formFields_);
@@ -47,6 +49,22 @@
 		formFields_ = [[NSMutableArray alloc] init];
 		headerView_ = nil;
 		footerView_ = nil;
+        headerHeight_ = UITableViewAutomaticDimension;
+        footerHeight_ = UITableViewAutomaticDimension;
+	}
+  
+	return self;
+}
+
+- (id)initWithHeaderTitle:(NSString *)header footerTitle:(NSString *)footer headerHeight:(CGFloat)headerHeight footerHeight:(CGFloat)footerHeight {
+	if ((self = [super init])) {
+		self.headerTitle = header;
+		self.footerTitle = footer;
+		formFields_ = [[NSMutableArray alloc] init];
+		headerView_ = nil;
+		footerView_ = nil;
+        headerHeight_ = headerHeight;
+        footerHeight_ = footerHeight;
 	}
   
 	return self;
@@ -56,7 +74,7 @@
 	return [self initWithHeaderTitle:nil footerTitle:nil];
 }
 
-- (void)addFormField:(IBAFormField *)newFormField {
+- (void)addFormField:(id<IBAFormFieldProtocol>)newFormField {
 	if (self.formFieldStyle && nil == newFormField.formFieldStyle) {
 		newFormField.formFieldStyle = self.formFieldStyle;
 	}

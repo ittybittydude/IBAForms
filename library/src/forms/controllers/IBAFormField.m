@@ -24,6 +24,7 @@
 @synthesize formFieldStyle = formFieldStyle_;
 @synthesize nullable = nullable_;
 @synthesize valueTransformer = valueTransformer_;
+@synthesize cellHeight = cellHeight_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
@@ -43,6 +44,7 @@
 		title_ = [title copy];
 		self.nullable = YES;
 		self.valueTransformer = valueTransformer;
+        self.cellHeight = UITableViewAutomaticDimension;
 	}
 
 	return self;
@@ -106,13 +108,13 @@
 
 - (IBAFormFieldCell *)cell {
 	// To be implemented by subclasses
-	NSAssert(NO, @"Subclasses of IBAFormField should override cell");
+	NSAssert(NO, @"Subclasses of id<IBAFormFieldProtocol> should override cell");
 	return nil;
 }
 
 - (void)updateCellContents {
 	// To be implemented by subclasses
-	NSAssert(NO, @"Subclasses of IBAFormField should override updateCellContents");
+	NSAssert(NO, @"Subclasses of id<IBAFormFieldProtocol> should override updateCellContents");
 }
 
 

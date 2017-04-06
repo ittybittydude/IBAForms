@@ -53,7 +53,11 @@
 		self.label = [[[UILabel alloc] initWithFrame:style.labelFrame] autorelease];
 		self.label.autoresizingMask = style.labelAutoresizingMask;
 		self.label.adjustsFontSizeToFitWidth = YES;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+		self.label.minimumScaleFactor = 0.0;
+#else
 		self.label.minimumFontSize = 10;
+#endif
 		[self.cellView addSubview:self.label];
 
 		// set the style after the views have been created

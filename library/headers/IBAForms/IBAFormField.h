@@ -13,13 +13,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IBAFormFieldCell.h"
-#import "IBAFormModelManager.h"
+#import "IBAFormFieldProtocol.h"
 #import "IBACommon.h"
 
-@protocol IBAFormFieldDelegate;
-
-@interface IBAFormField : NSObject {
+@interface IBAFormField : NSObject <IBAFormFieldProtocol> {
 	NSString *keyPath_;
 	NSString *title_;
 	id<IBAFormModelManager> modelManager_;
@@ -27,14 +24,11 @@
 	IBAFormFieldStyle *formFieldStyle_;
 	BOOL nullable_;
 	NSValueTransformer *valueTransformer_;
+    CGFloat cellHeight_;
 }
 
 @property (nonatomic, copy) NSString *keyPath;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, readonly) IBAFormFieldCell *cell;
-@property (nonatomic, assign) id<IBAFormModelManager> modelManager;
-@property (nonatomic, assign) id<IBAFormFieldDelegate> delegate;
-@property (nonatomic, retain) IBAFormFieldStyle *formFieldStyle;
 @property (nonatomic, assign, getter=isNullable) BOOL nullable;
 @property (nonatomic, retain) NSValueTransformer *valueTransformer;
 
@@ -44,12 +38,6 @@
 - (id)initWithKeyPath:(NSString*)keyPath;
 - (id)initWithTitle:(NSString*)title;
 
-- (void)updateCellContents;
-
-#pragma mark -
-#pragma mark Detail View Controller management
-- (BOOL)hasDetailViewController;
-- (UIViewController *)detailViewController;
 
 #pragma mark -
 #pragma mark Getting and setting the form field value
@@ -57,15 +45,4 @@
 - (NSString *)formFieldStringValue;
 - (BOOL)setFormFieldValue:(id)formVieldValue;
 
-#pragma mark -
-#pragma mark Selection notification
-- (void)select;
-
-@end
-
-
-@protocol IBAFormFieldDelegate <NSObject>
-@optional
-- (BOOL)formField:(IBAFormField *)formField willSetValue:(id)value;
-- (void)formField:(IBAFormField *)formField didSetValue:(id)value;
 @end

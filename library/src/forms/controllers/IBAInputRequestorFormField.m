@@ -28,7 +28,19 @@
 }
 
 - (void)activate {
-	[[self responder] becomeFirstResponder];
+    if([[self delegate] respondsToSelector:@selector(formFieldWillBecomeActive:)]) {
+        if([[self delegate] formFieldWillBecomeActive:self]) {
+            [[self responder] becomeFirstResponder];
+        } else {
+            return;
+        }
+    } else {
+        [[self responder] becomeFirstResponder];
+    }
+    
+    if([[self delegate] respondsToSelector:@selector(formFieldDidBecomeActive:)]) {
+        [[self delegate] formFieldDidBecomeActive:self];
+    }
 
 	NSDictionary *userInfo = [[NSMutableDictionary alloc] init];
 	[userInfo setValue:self forKey:IBAFormFieldKey];

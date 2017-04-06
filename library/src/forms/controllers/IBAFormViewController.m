@@ -15,6 +15,7 @@
 #import "IBAFormViewController.h"
 #import "IBAFormConstants.h"
 #import "IBAInputManager.h"
+#import "IBAInputRequestorFormField.h"
 
 @interface IBAFormViewController ()
 
@@ -26,7 +27,7 @@
 - (void)adjustTableViewHeightForCoveringFrame:(CGRect)coveringFrame;
 - (CGRect)rectForOrientationFrame:(CGRect)frame;
 - (void)makeActiveFormFieldVisibleWithAnimation:(BOOL)animate;
-- (void)makeFormFieldVisible:(IBAFormField *)formField animated:(BOOL)animate;
+- (void)makeFormFieldVisible:(id<IBAFormFieldProtocol>)formField animated:(BOOL)animate;
 
 // Notification methods
 - (void)pushViewController:(NSNotification *)notification;
@@ -41,6 +42,7 @@
 @synthesize tableViewOriginalFrame = tableViewOriginalFrame_;
 @synthesize formDataSource = formDataSource_;
 @synthesize keyboardFrame = keyboardFrame_;
+@synthesize autoAdjustTableHeight = autoAdjustTableHeight_;
 
 #pragma mark -
 #pragma mark Initialisation and memory management
@@ -48,7 +50,7 @@
 - (void)dealloc {
 	[self releaseViews];
 	IBA_RELEASE_SAFELY(formDataSource_);
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
@@ -58,7 +60,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil formDataSource:(IBAFormDataSource *)formDataSource {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-		self.formDataSource = formDataSource;		
+		self.formDataSource = formDataSource;
+        self.autoAdjustTableHeight = YES;
 	}
 
 	return self;
@@ -138,6 +141,11 @@
 	}
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    if (![[IBAInputManager sharedIBAInputManager] activeInputRequestor]) {
+        if(self.autoAdjustTableHeight == YES)
+            [self adjustTableViewHeightForCoveringFrame:CGRectZero];
+    }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -155,7 +163,8 @@
 		IBAFormDataSource *oldDataSource = formDataSource_;
 		formDataSource_ = [dataSource retain];
 		IBA_RELEASE_SAFELY(oldDataSource);
-
+        
+        [formDataSource_ setTableView:self.tableView];
 		self.tableView.dataSource = formDataSource_;
 		[self.tableView reloadData];
 	}
@@ -165,7 +174,7 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	IBAFormField *formField = [self.formDataSource formFieldAtIndexPath:indexPath];
+	id<IBAFormFieldProtocol> formField = [self.formDataSource formFieldAtIndexPath:indexPath];
 	if ([formField hasDetailViewController]) {
 		// The row has a detail view controller that we should push on to the navigation stack
 		[[self navigationController] pushViewController:[formField detailViewController] animated:YES];
@@ -189,10 +198,19 @@
     [cell updateActiveStyle];
 	
     if ([self respondsToSelector:@selector(willDisplayCell:forFormField:atIndexPath:)]) {
-        IBAFormField *formField = [formDataSource_ formFieldAtIndexPath:indexPath];
+        id<IBAFormFieldProtocol> formField = [formDataSource_ formFieldAtIndexPath:indexPath];
         [self willDisplayCell:cell forFormField:formField atIndexPath:indexPath];
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return [[self formDataSource] heightForHeaderInSection:section];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return [[self formDataSource] heightForFooterInSection:section];
+}
+
 
 #pragma mark - 
 #pragma mark UIScrollViewDelegate
@@ -206,7 +224,7 @@
 
 - (id<IBAInputRequestor>)nextInputRequestor:(id<IBAInputRequestor>)currentInputRequestor {
 	// Return the next form field that supports inline editing
-	IBAFormField *nextField = [self.formDataSource formFieldAfter:(IBAFormField *)currentInputRequestor];
+	id<IBAFormFieldProtocol> nextField = [self.formDataSource formFieldAfter:(id<IBAFormFieldProtocol>)currentInputRequestor];
 	while ((nextField != nil) && (![nextField conformsToProtocol:@protocol(IBAInputRequestor)])) {
 		nextField = [self.formDataSource formFieldAfter:nextField];
 	}
@@ -217,7 +235,7 @@
 
 - (id<IBAInputRequestor>)previousInputRequestor:(id<IBAInputRequestor>)currentInputRequestor {
 	// Return the previous form field that supports inline editing
-	IBAFormField *previousField = [self.formDataSource formFieldBefore:(IBAFormField *)currentInputRequestor];
+	id<IBAFormFieldProtocol> previousField = [self.formDataSource formFieldBefore:(id<IBAFormFieldProtocol>)currentInputRequestor];
 	while ((previousField != nil) && (![previousField conformsToProtocol:@protocol(IBAInputRequestor)])) {
 		previousField = [self.formDataSource formFieldBefore:previousField];
 	}
@@ -232,23 +250,34 @@
 - (void)inputManagerWillShow:(NSNotification *)notification {
 	NSDictionary* info = [notification userInfo];
 	CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-	[self adjustTableViewHeightForCoveringFrame:[self rectForOrientationFrame:keyboardFrame]];
+    if(self.autoAdjustTableHeight == YES) {
+        [self adjustTableViewHeightForCoveringFrame:[self rectForOrientationFrame:keyboardFrame]];
+    }
 }
 
 - (void)inputManagerDidHide:(NSNotification *)notification {
 	if (![[IBAInputManager sharedIBAInputManager] activeInputRequestor]) {
-		[self adjustTableViewHeightForCoveringFrame:CGRectZero];
+        if(self.autoAdjustTableHeight == YES) {
+            [self adjustTableViewHeightForCoveringFrame:CGRectZero];
+        }
 	}
 }
 
 - (void)formFieldActivated:(NSNotification *)notification {
-	IBAFormField *formField = [[notification userInfo] objectForKey:IBAFormFieldKey];
+	id<IBAFormFieldProtocol> formField = [[notification userInfo] objectForKey:IBAFormFieldKey];
 	if (formField != nil) {
 		[self makeFormFieldVisible:formField animated:YES];
 		if ([formField hasDetailViewController]) {
 			// The form field has a detail view controller that we should push on to the navigation stack
 			[[self navigationController] pushViewController:[formField detailViewController] animated:YES];
-		}
+		} else if([formField isKindOfClass:[IBAInputRequestorFormField class]]) {
+            // this code is needed for fixing bug with "long" jump of table view
+            // keyboard not display when next/previous field activated and it is located on large distance from current field
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(300 * NSEC_PER_MSEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+                [[(IBAInputRequestorFormField *)formField responder] becomeFirstResponder];
+            });
+        }
 	}
 }
 
@@ -257,11 +286,11 @@
 
 - (void)makeActiveFormFieldVisibleWithAnimation:(BOOL)animate {
 	if ([[IBAInputManager sharedIBAInputManager] activeInputRequestor] != nil) {
-		[self makeFormFieldVisible:(IBAFormField *)[[IBAInputManager sharedIBAInputManager] activeInputRequestor] animated:animate];
+		[self makeFormFieldVisible:(id<IBAFormFieldProtocol>)[[IBAInputManager sharedIBAInputManager] activeInputRequestor] animated:animate];
 	}
 }
 
-- (void)makeFormFieldVisible:(IBAFormField *)formField animated:(BOOL)animate {
+- (void)makeFormFieldVisible:(id<IBAFormFieldProtocol>)formField animated:(BOOL)animate {
     if ([self shouldAutoScrollTableToActiveField]) {
         NSIndexPath *formFieldIndexPath = [self.formDataSource indexPathForFormField:formField];
         [self.tableView scrollToRowAtIndexPath:formFieldIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:animate];
@@ -274,8 +303,9 @@
 		CGRect normalisedWindowBounds = [self rectForOrientationFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
 		CGRect normalisedTableViewFrame = [self rectForOrientationFrame:[self.tableView.superview convertRect:self.tableView.frame
 																									   toView:[[UIApplication sharedApplication] keyWindow]]];
-		CGFloat height = CGRectEqualToRect(coveringFrame, CGRectZero) ? 0 : coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame));
-		UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, height, 0);
+        UIEdgeInsets currentInsets = self.tableView.contentInset;
+        CGFloat height = CGRectEqualToRect(coveringFrame, CGRectZero) ? 0 : coveringFrame.size.height - (normalisedWindowBounds.size.height - CGRectGetMaxY(normalisedTableViewFrame));
+        UIEdgeInsets contentInsets = UIEdgeInsetsMake(currentInsets.top, currentInsets.left, height, currentInsets.right);
 		// NSLog(@"UIEdgeInsets contentInsets bottom %f", contentInsets.bottom);
 		self.tableView.contentInset = contentInsets;
 		self.tableView.scrollIndicatorInsets = contentInsets;
@@ -300,21 +330,34 @@
 - (void)presentModalViewController:(NSNotification *)notification {
 	UIViewController *viewController = [[notification userInfo] objectForKey:IBAViewControllerKey];
 	if (viewController != nil) {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+        [self presentViewController:viewController animated:YES completion:nil];
+#else
 		[self presentModalViewController:viewController animated:YES];
+#endif
 	}
 }
 
-- (void)dismissModalViewController:(NSNotification *)notification; {
-	[self dismissModalViewControllerAnimated:YES];
+- (void)dismissModalViewController:(NSNotification *)notification {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
+    [self dismissViewControllerAnimated:YES completion:nil];
+#else
+    [self dismissModalViewControllerAnimated:YES];
+#endif
 }
 
 #pragma mark -
 #pragma mark Misc
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [self.formDataSource tableView:aTableView cellForRowAtIndexPath:indexPath];
-	[cell sizeToFit];
-	return cell.bounds.size.height;
+    id<IBAFormFieldProtocol> formField = [[self formDataSource] formFieldAtIndexPath:indexPath];
+    if([formField cellHeight] != UITableViewAutomaticDimension) {
+        return [formField cellHeight];
+    } else {
+        UITableViewCell *cell = [self.formDataSource tableView:aTableView cellForRowAtIndexPath:indexPath];
+        [cell sizeToFit];
+        return cell.bounds.size.height;
+    }
 }
 
 - (CGRect)rectForOrientationFrame:(CGRect)frame {
@@ -329,7 +372,7 @@
 #pragma mark -
 #pragma mark Methods for subclasses to customise behaviour
 
-- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(IBAFormField *)formField atIndexPath:(NSIndexPath *)indexPath {
+- (void)willDisplayCell:(IBAFormFieldCell *)cell forFormField:(id<IBAFormFieldProtocol>)formField atIndexPath:(NSIndexPath *)indexPath {
     // NO-OP; subclasses to override
 }
 
