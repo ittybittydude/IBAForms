@@ -90,6 +90,22 @@
 	return indexPath;
 }
 
+- (NSArray *)formFieldsForKeyPath:(NSString *)keyPath {
+    NSMutableArray *fields = [[NSMutableArray alloc] init];
+    
+    NSUInteger sectionCount = [self sectionCount];
+    for (NSUInteger sectionIndex = 0; sectionIndex < sectionCount; sectionIndex++) {
+        NSUInteger fieldCount = [self numberOfFormFieldsInSection:sectionIndex];
+        for (NSUInteger fieldIndex = 0; fieldIndex < fieldCount; fieldIndex++) {
+            IBAFormField *formField = [self formFieldAtIndexPath:[NSIndexPath indexPathForRow:fieldIndex inSection:sectionIndex]];
+            if ([formField.keyPath isEqualToString:keyPath]) {
+                [fields addObject:formField];
+            }
+        }
+	}
+    
+    return fields;
+}
 
 // This method returns the next logical form field after the one provided. That may be the first field in the next 
 // section if the given field is the last in its section.
